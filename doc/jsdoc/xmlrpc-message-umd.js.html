@@ -1,0 +1,336 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <title>JSDoc: Source: xmlrpc-message-umd.js</title>
+    
+    <script src="scripts/prettify/prettify.js"> </script>
+    <script src="scripts/prettify/lang-css.js"> </script>
+    <!--[if lt IE 9]>
+      <script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script>
+    <![endif]-->
+    <link type="text/css" rel="stylesheet" href="styles/prettify-tomorrow.css">
+    <link type="text/css" rel="stylesheet" href="styles/jsdoc-default.css">
+</head>
+
+<body>
+
+<div id="main">
+    
+    <h1 class="page-title">Source: xmlrpc-message-umd.js</h1>
+    
+    
+
+
+    
+    <section>
+        <article>
+            <pre class="prettyprint source"><code>/*
+ * xmlrpc-message-umd
+ * 
+ * @link https://github.com/T1st3/xmlrpc-message-umd
+ * @author T1st3
+ * @version 0.1.0
+ * @license https://github.com/T1st3/xmlrpc-message-umd/blob/master/LICENSE-MIT
+ * @license https://github.com/T1st3/xmlrpc-message-umd/blob/master/LICENSE-BSD
+ * @license https://github.com/T1st3/xmlrpc-message-umd/blob/master/LICENSE-GPL
+ * 
+ * 
+ * This AMD module is based on an XMLRPC message formatter written by Scott Andrew LePera
+ * 
+ * Original work:
+ * Copyright 2001 Scott Andrew LePera
+ * scott@scottandrew.com
+ * http://www.scottandrew.com/xml-rpc
+ * 
+ * Original License: 
+ * You are granted the right to use and/or redistribute this 
+ * code only if this license and the copyright notice are included 
+ * and you accept that no warranty of any kind is made or implied 
+ * by the author.
+ *
+ */
+
+/* global define */
+
+(function (window, factory) {
+	if (typeof define === 'function' && define.amd) {
+		// AMD
+		define([], factory);
+	} else if (typeof exports === 'object') {
+		// Node
+		module.exports = factory();
+	} else {
+		// Browser globals
+		window.returnExports = factory();
+	}
+}(this, function () {
+	/** 
+	* An XMLRPC message builder, AMD style
+	* @module XMLRPCMessage
+	* @namespace XMLRPCMessage
+	*/
+	
+	/**
+	* @constructor
+	* @since 0.1.0
+	*/
+	var XMLRPCMessage = function () {
+		this.params = [];
+		return this;
+	};
+	
+	/**
+	 * set method
+	 * @method setMethod
+	 * @memberof XMLRPCMessage
+	 * @param {string} methodName
+	 * @since 0.1.0
+	 */
+	XMLRPCMessage.prototype.setMethod = function (methodName) {
+		if (!methodName) {
+			return;
+		}
+		this.method = methodName;
+	};
+
+	/**
+	 * add parameter
+	 * @method addParameter
+	 * @memberof XMLRPCMessage
+	 * @param {*} data
+	 * @since 0.1.0
+	 */
+	XMLRPCMessage.prototype.addParameter = function (data) {
+		if (arguments.length === 0) {
+			return;
+		}
+		this.params[this.params.length] = data;
+	};
+
+	/**
+	 * render xml message
+	 * @method xml
+	 * @memberof XMLRPCMessage
+	 * @since 0.1.0
+	 */
+	XMLRPCMessage.prototype.xml = function () {
+
+		var method = this.method;
+
+		var xml = '';
+		xml += '&lt;?xml version=\'1.0\'?>\n';
+		xml += '&lt;methodCall>\n';
+		xml += '&lt;methodName>' + method + '&lt;/methodName>\n';
+		xml += '&lt;params>\n';
+
+		for (var i = 0; i &lt; this.params.length; i++) {
+			var data = this.params[i];
+			xml += '&lt;param>\n';
+
+			xml += '&lt;value>' + XMLRPCMessage.getParamXML(XMLRPCMessage.dataTypeOf(data), data) + '&lt;/value>\n';
+			
+			xml += '&lt;/param>\n';
+		}
+		
+		xml += '&lt;/params>\n';
+		xml += '&lt;/methodCall>';
+		
+		return xml;
+	};
+
+	/**
+	 * get type of a var
+	 * @method dataTypeOf
+	 * @memberof XMLRPCMessage
+	 * @param {*} o
+	 * @since 0.1.0
+	 */
+	XMLRPCMessage.dataTypeOf = function (o) {
+		var type = typeof(o);
+		type = type.toLowerCase();
+		switch (type) {
+			case 'number':
+				if (Math.round(o) === o) {
+					type = 'i4';
+				} else {
+					type = 'double';
+				}
+				break;
+			case 'object':
+				var con = o.constructor;
+				if (con === Date) {
+					type = 'date';
+				} else {
+					if (con === Array) {
+						type = 'array';
+					} else {
+						type = 'struct';
+					}
+				}
+				break;
+		}
+		return type;
+	};
+
+	/**
+	 * XMLize a string or a number
+	 * @method doValueXML
+	 * @memberof XMLRPCMessage
+	 * @param {string} type
+	 * @param {*} data
+	 * @since 0.1.0
+	 */
+	XMLRPCMessage.doValueXML = function (type, data) {
+		var xml = '&lt;' + type + '>' + data + '&lt;/' + type + '>';
+		return xml;
+	};
+
+	/**
+	 * XMLize a boolean
+	 * @method doBooleanXML
+	 * @memberof XMLRPCMessage
+	 * @param {boolean} data
+	 * @since 0.1.0
+	 */
+	XMLRPCMessage.doBooleanXML = function (data) {
+		var value = (data === true) ? 1 : 0;
+		var xml = '&lt;boolean>' + value + '&lt;/boolean>';
+		return xml;
+	};
+
+	/**
+	 * XMLize a date
+	 * @method doDateXML
+	 * @memberof XMLRPCMessage
+	 * @param {Object} data
+	 * @since 0.1.0
+	 */
+	XMLRPCMessage.doDateXML = function (data) {
+		var xml = '&lt;dateTime.iso8601>';
+		xml += dateToISO8601(data);
+		xml += '&lt;/dateTime.iso8601>';
+		return xml;
+	};
+
+	/**
+	 * XMLize an array
+	 * @method doArrayXML
+	 * @memberof XMLRPCMessage
+	 * @param {Orray} data
+	 * @since 0.1.0
+	 */
+	XMLRPCMessage.doArrayXML = function (data) {
+		var xml = '&lt;array>&lt;data>\n';
+		for (var i = 0; i &lt; data.length; i++) {
+			xml += '&lt;value>' + XMLRPCMessage.getParamXML(XMLRPCMessage.dataTypeOf(data[i]), data[i]) + '&lt;/value>\n';
+		}
+		xml += '&lt;/data>&lt;/array>\n';
+		return xml;
+	};
+
+	/**
+	 * Create an XML 'struct' block
+	 * @method doStructXML
+	 * @memberof XMLRPCMessage
+	 * @param {Object|Array} data
+	 * @since 0.1.0
+	 */
+	XMLRPCMessage.doStructXML = function (data) {
+		var xml = '&lt;struct>\n';
+		for (var i in data) {
+			xml += '&lt;member>\n';
+			xml += '&lt;name>' + i + '&lt;/name>\n';
+			xml += '&lt;value>' + XMLRPCMessage.getParamXML(XMLRPCMessage.dataTypeOf(data[i]), data[i]) + '&lt;/value>\n';
+			xml += '&lt;/member>\n';
+		}
+		xml += '&lt;/struct>\n';
+		return xml;
+	};
+
+	/**
+	 * XMLize any var
+	 * @method getParamXML
+	 * @memberof XMLRPCMessage
+	 * @param {string} type
+	 * @param {*} data
+	 * @since 0.1.0
+	 */
+	XMLRPCMessage.getParamXML = function (type, data) {
+		var xml;
+		switch (type) {
+			case 'date':
+				xml = XMLRPCMessage.doDateXML(data);
+				break;
+			case 'array':
+				xml = XMLRPCMessage.doArrayXML(data);
+				break;
+			case 'struct':
+				xml = XMLRPCMessage.doStructXML(data);
+				break;
+			case 'boolean':
+				xml = XMLRPCMessage.doBooleanXML(data);
+				break;
+			default:
+				xml = XMLRPCMessage.doValueXML(type, data);
+				break;
+		}
+		return xml;
+	};
+
+	/**
+	 * Date to Iso8601
+	 * @method dateToISO8601
+	 * @memberof XMLRPCMessage
+	 * @param {Object} date
+	 * @since 0.1.0
+	 */
+	var dateToISO8601 = function (date) {
+		var year = date.getYear().toString();
+		var month = leadingZero(date.getMonth().toString());
+		var day = leadingZero(date.getDate().toString());
+		var time = leadingZero(date.getHours().toString()) + ':' + leadingZero(date.getMinutes().toString()) + ':' + leadingZero(date.getSeconds().toString());
+
+		var converted = year + month + day + 'T' + time;
+		return converted;
+	};
+
+	/**
+	 * Adds a leading '0' to one-char numbers
+	 * @method leadingZero
+	 * @memberof XMLRPCMessage
+	 * @param {number|string} n
+	 * @since 0.1.0
+	 */
+	var leadingZero = function (n) {
+		if (n.length === 1) {
+			n = '0' + n;
+		}
+		return n;
+	};
+
+	return XMLRPCMessage;
+}));
+</code></pre>
+        </article>
+    </section>
+
+
+
+
+</div>
+
+<nav>
+    <h2><a href="index.html">Index</a></h2><h3>Namespaces</h3><ul><li><a href="XMLRPCMessage.html">XMLRPCMessage</a></li></ul>
+</nav>
+
+<br clear="both">
+
+<footer>
+    Documentation generated by <a href="https://github.com/jsdoc3/jsdoc">JSDoc 3.2.2</a> on Fri Feb 21 2014 07:32:41 GMT+0100 (CET)
+</footer>
+
+<script> prettyPrint(); </script>
+<script src="scripts/linenumber.js"> </script>
+</body>
+</html>
