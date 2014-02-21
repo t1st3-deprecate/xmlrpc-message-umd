@@ -132,11 +132,11 @@ module.exports = function (grunt) {
 			},
 			livereload: {
 				options: {
-					base: 'demo/browser-global',
+					base: 'demo/amd',
 					middleware: function (connect) {
 						return [
 							lrSnippet,
-							mountFolder(connect, 'demo/browser-global')
+							mountFolder(connect, 'demo/amd')
 						];
 					}
 				}
