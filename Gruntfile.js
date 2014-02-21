@@ -110,12 +110,11 @@ module.exports = function (grunt) {
 				nospawn: true,
 				livereload: true
 			},
-			js: {
+			amd: {
 				files: [
 					'src/**/*.js',
-					'demo/browser-global/app.js',
-					'demo/browser-global/index.html',
-					'demo/browser-global/main.css'
+					'demo/amd/app.js',
+					'demo/amd/index.html'
 				],
 				tasks: ['jshint', 'jscs', 'uglify', 'copy:main'],
 				options: {
@@ -188,7 +187,7 @@ module.exports = function (grunt) {
 	grunt.registerTask('serve', [
 		'connect:livereload',
 		'open',
-		'watch:js'
+		'watch:amd'
 	]);
 	
 	grunt.registerTask('doc', [
