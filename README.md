@@ -180,8 +180,8 @@ License
 
 This piece of code is triple-licensed: MIT/BSD/GPL
 
-[MIT license](https://github.com/T1st3/xmlrpc-message-umd/blob/master/LICENSE-MIT).
-[BSD license](https://github.com/T1st3/xmlrpc-message-umd/blob/master/LICENSE-BSD).
-[GPL license](https://github.com/T1st3/xmlrpc-message-umd/blob/master/LICENSE-GPL).
+  - [MIT license](https://github.com/T1st3/xmlrpc-message-umd/blob/master/LICENSE-MIT)
+  - [BSD license](https://github.com/T1st3/xmlrpc-message-umd/blob/master/LICENSE-BSD)
+  - [GPL license](https://github.com/T1st3/xmlrpc-message-umd/blob/master/LICENSE-GPL)
 
 
