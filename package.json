@@ -1,0 +1,51 @@
+{
+  "name": "xmlrpc-message-umd",
+  "version": "0.1.0",
+	"homepage": "https://github.com/T1st3/xmlrpc-message-umd",
+	"description": "A XMLRPC message builder written with UMD definition",
+	"keywords": [
+		"amd",
+		"umd",
+		"xmlrpc",
+		"module",
+		"builder",
+		"xml"
+	],
+	"license": "MIT",
+	"author": "T1st3",
+  "repository": {
+    "type": "git",
+    "url": "git://github.com/T1st3/xmlrpc-message-umd.git"
+  },
+	"bugs": {
+    "url": "https://github.com/T1st3/xmlrpc-message-umd/issues"
+  },
+	"main": "dist/xmlrpc-message-umd.js",
+	"files": [
+		"dist/xmlrpc-message-umd.js"
+	],
+	"scripts": {
+    "test": "grunt test"
+  },
+  "engines": {
+    "node": ">= 0.10.0"
+  },
+  "devDependencies": {
+    "grunt": ">= 0.4.x",
+    "grunt-contrib-watch": ">= 0.5.x",
+    "grunt-contrib-connect": ">= 0.6.x",
+    "grunt-open": ">= 0.2.x",
+    "connect-livereload": ">= 0.3.x",
+    "grunt-contrib-jshint": ">= 0.8.x",
+    "grunt-contrib-uglify": ">= 0.3.x",
+    "grunt-contrib-copy": ">= 0.5.x",
+    "grunt-jsdoc": ">= 0.5.x",
+    "grunt-jscs-checker": ">= 0.3.x",
+    "grunt-version": ">= 0.3.x",
+    "load-grunt-tasks": ">= 0.3.x",
+    "time-grunt": ">= 0.2.x",
+    "jshint-stylish": ">= 0.1.x",
+    "grunt-bower-task": ">= 0.3.x",
+		"grunt-mocha-test": ">= 0.9.x"
+  }
+}
