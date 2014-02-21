@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta http-equiv="Content-type" content="text/html; charset=utf-8">
+		<title>xmlrpc-request-amd | demo</title>
+		<link href="css/t1st3.css" media="screen" rel="stylesheet" type="text/css" />
+	</head>
+	<body>
+		<p>xmlrpc-message-umd | Usage</p>
+		<pre>
+			var a = ["chicken","duck","goose"];
+			var obj = new Object();
+			obj.x = 20;
+			obj.y = "cow";
+			obj.z = 3.14;
+			var date = new Date();
+			var msg = new XMLRPCMessage();
+			msg.setMethod("system.myMethod");
+			msg.addParameter("mississippi");
+			msg.addParameter(7);
+			msg.addParameter(false);
+			msg.addParameter(a);
+			msg.addParameter(obj);
+			msg.addParameter(date);
+			msg.xml();
+		</pre>
+		<p>to generate the following XMLRPC formatted message</p>
+		<textarea style="width: 600px; height: 400px; margin: 0 auto; display: block;" id="result"></textarea>
+
+		<script type="text/javascript" data-main="app" src="require.js"></script>
+	</body>
+</html>

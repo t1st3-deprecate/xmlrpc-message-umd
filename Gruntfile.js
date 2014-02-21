@@ -56,7 +56,9 @@ module.exports = function (grunt) {
 			demo: {
 				files: [
 					{src: ['bower_components/jquery/dist/jquery.js'], dest: 'demo/amd/jquery.js'},
-					{src: ['bower_components/requirejs/require.js'], dest: 'demo/amd/require.js'}
+					{src: ['bower_components/requirejs/require.js'], dest: 'demo/amd/require.js'},
+					{src: ['bower_components/t1st3-assets/css/stylesheet.css'], dest: 'demo/amd/css/t1st3.css'},
+					{src: ['bower_components/t1st3-assets/img/page-back.png'], dest: 'demo/amd/img/page-back.png'}
 				]
 			},
 			test: {

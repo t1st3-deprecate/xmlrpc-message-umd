@@ -38,6 +38,7 @@
 	"devDependencies": {
 		"jquery": "*",
 		"mocha": "*",
-		"chai": "*"
+		"chai": "*",
+		"t1st3-assets": "*"
 	}
 }
