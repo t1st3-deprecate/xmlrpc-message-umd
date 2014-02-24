@@ -164,7 +164,8 @@ To build, just run the Grunt task using:
 grunt build
 ```
 
-You can also launch the `grunt serve` task to load the `demo/amd` folder in your browser and benefit from livereload of the page in the browser once you edit one of your source file or one of the example files:
+You can also launch the `grunt serve` task to load the `demo/amd` folder in your browser 
+and benefit from livereload of the page in the browser once you edit one of your source file or one of the example files:
 
 ```
 grunt serve
