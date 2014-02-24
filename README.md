@@ -30,7 +30,7 @@ You can get more info on Addy Osmani's fantastic post about these definitions:
 http://addyosmani.com/writing-modular-js/
 
 
-Installation
+Installation for production
 -----------
 
 Installing depends on the context:
@@ -54,9 +54,20 @@ bower install xmlrpc-message-umd
 ```
 
 
+Installation for development
+-----------
+
 You also can download the whole project (and build it from its source; see below).
 
-Once downloaded and unzipped, the project can be initiated with the following commands:
+Either use `git clone` command to get it:
+
+```
+git clone https://github.com/T1st3/xmlrpc-message-umd.git
+```
+
+Or download the [whole master branch](https://github.com/T1st3/xmlrpc-message-umd/archive/master.zip) of the project.
+
+Once downloaded and unzipped or obtained via git clone, the project can be initiated with the following commands:
 
 ```
 cd /path/to/xmlrpc-message-umd
@@ -143,7 +154,9 @@ You can find a fully functional example in the `demo` folder.
 Build from source
 -----------
 
-You can build from the source using Grunt. The source is located in the "src" folder; the built target is located in the "dist" folder.
+Once the project is initiated with the `grunt init` command (see above), 
+you can build from the source using Grunt. 
+The source is located in the "src" folder; the built target is located in the "dist" folder.
 
 To build, just run the Grunt task using:
 
