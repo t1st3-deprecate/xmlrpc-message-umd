@@ -92,7 +92,7 @@ module.exports = function (grunt) {
       reset: {
         files: [
           {src: ['bower_components/t1st3-assets/dist/project_index.js'], dest: 'gh-pages/index.js'},
-          {src: ['bower_components/t1st3-assets/dist/project_tests.js'], dest: 'gh-pages/amd_tests.js'},
+          {src: ['bower_components/t1st3-assets/dist/project_tests.js'], dest: 'gh-pages/amd_tests.js'}
         ]
       }
     },
