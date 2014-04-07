@@ -85,8 +85,13 @@ module.exports = function (grunt) {
         ]
       },
       readme: {
+        options: {
+          process: function (content, srcpath) {
+            return content.replace(/\{\{ page.title \}\}/g, grunt.file.readJSON('package.json').name);
+          }
+        },
         files: [
-          {src: ['docs/README.md'], dest: 'README.md'}
+          {src: ['gh-pages/README.md'], dest: 'README.md'}
         ]
       },
       reset: {

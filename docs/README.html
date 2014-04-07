@@ -93,7 +93,7 @@ It enforces the <code>returnExports.js</code> pattern, which “defines a module
   <li>AMD (with Require.js or any other AMD loader)</li>
 </ul>
 
-<h2 id="installation">Installation</h2>
+<h2 id="installation-for-production">Installation for production</h2>
 
 <p>Installing depends on the context:</p>
 
@@ -114,9 +114,19 @@ npm install xmlrpc-message-umd
 bower install xmlrpc-message-umd
 </code></p>
 
+<h2 id="installation-for-development">Installation for development</h2>
+
 <p>You also can download the whole project (and build it from its source; see below).</p>
 
-<p>Once downloaded and unzipped, you should initiate the project with the following commands (recommended):</p>
+<p>Either use <code>git clone</code> command to get it:</p>
+
+<p><code>
+git clone https://github.com/T1st3/xmlrpc-message-umd.git
+</code></p>
+
+<p>Or download the <a href="https://github.com/T1st3/xmlrpc-message-umd/archive/master.zip">whole master branch</a> of the project.</p>
+
+<p>Once downloaded and unzipped or obtained via git clone, the project can be initiated with the following commands:</p>
 
 <p><code>
 cd /path/to/xmlrpc-message-umd
@@ -125,9 +135,86 @@ grunt init
 
 <h2 id="usage">Usage</h2>
 
-<p>Once the module is added to your project, ………</p>
+<p>Once the module is added to your project, you can build an XMLRPC-formatted message like this:</p>
 
-<p>You can find fully functional examples and tests in the <code>docs</code> folder.</p>
+<p><code>
+    var a = ["chicken","duck","goose"];
+    var obj = new Object();
+    obj.x = 20;
+    obj.y = "cow";
+    obj.z = 3.14;
+    var date = new Date();
+    var msg = new XMLRPCMessage("system.myMethod");
+    msg.setMethod("system.myMethod");
+    msg.addParameter("mississippi");
+    msg.addParameter(7);
+    msg.addParameter(false);
+    msg.addParameter(a);
+    msg.addParameter(obj);
+    msg.addParameter(date);
+    msg.xml();
+</code></p>
+
+<p>in order to get the following message:</p>
+
+<p><code>
+    &lt;?xml version="1.0"?&gt;
+    &lt;methodCall&gt;
+    &lt;methodName&gt;system.myMethod&lt;/methodName&gt;
+    &lt;params&gt;
+    &lt;param&gt;
+    &lt;value&gt;&lt;string&gt;mississippi&lt;/string&gt;&lt;/value&gt;
+    &lt;/param&gt;
+    &lt;param&gt;
+    &lt;value&gt;&lt;i4&gt;7&lt;/i4&gt;&lt;/value&gt;
+    &lt;/param&gt;
+    &lt;param&gt;
+    &lt;value&gt;&lt;boolean&gt;0&lt;/boolean&gt;&lt;/value&gt;
+    &lt;/param&gt;
+    &lt;param&gt;
+    &lt;value&gt;&lt;array&gt;&lt;data&gt;
+    &lt;value&gt;&lt;string&gt;chicken&lt;/string&gt;&lt;/value&gt;
+    &lt;value&gt;&lt;string&gt;duck&lt;/string&gt;&lt;/value&gt;
+    &lt;value&gt;&lt;string&gt;goose&lt;/string&gt;&lt;/value&gt;
+    &lt;/data&gt;&lt;/array&gt;
+    &lt;/value&gt;
+    &lt;/param&gt;
+    &lt;param&gt;
+    &lt;value&gt;&lt;struct&gt;
+    &lt;member&gt;
+    &lt;name&gt;x&lt;/name&gt;
+    &lt;value&gt;&lt;i4&gt;20&lt;/i4&gt;&lt;/value&gt;
+    &lt;/member&gt;
+    &lt;member&gt;
+    &lt;name&gt;y&lt;/name&gt;
+    &lt;value&gt;&lt;string&gt;cow&lt;/string&gt;&lt;/value&gt;
+    &lt;/member&gt;
+    &lt;member&gt;
+    &lt;name&gt;z&lt;/name&gt;
+    &lt;value&gt;&lt;double&gt;3.14&lt;/double&gt;&lt;/value&gt;
+    &lt;/member&gt;
+    &lt;/struct&gt;
+    &lt;/value&gt;
+    &lt;/param&gt;
+    &lt;param&gt;
+    &lt;value&gt;&lt;dateTime.iso8601&gt;1131129T02:57:13&lt;/dateTime.iso8601&gt;&lt;/value&gt;
+    &lt;/param&gt;
+    &lt;/params&gt;
+    &lt;/methodCall&gt;
+</code></p>
+
+<h2 id="documentation">Documentation</h2>
+
+<p>You can find fully functional examples, tests and documentation in the <a href="http://usejsdoc.org/">JSDoc</a> format in the <code>docs</code> folder.</p>
+
+<p>You can also browse these examples and tests online:</p>
+
+<ul>
+  <li><a href="http://t1st3.github.io/xmlrpc-message-umd/">Demo (AMD)</a></li>
+  <li><a href="http://t1st3.github.io/xmlrpc-message-umd/amd_tests.html">Tests (AMD)</a></li>
+  <li><a href="http://t1st3.github.io/xmlrpc-message-umd/README.html">this README</a></li>
+  <li><a href="http://t1st3.github.io/xmlrpc-message-umd/jsdoc/index.html">JSDoc</a></li>
+</ul>
 
 <h2 id="build-from-source">Build from source</h2>
 
@@ -148,18 +235,110 @@ grunt serve
 <p><a href="http://gruntjs.com/"><img src="https://cdn.gruntjs.com/builtwith.png" alt="Built with Grunt" /></a>
 <a href="https://david-dm.org/t1st3/xmlrpc-message-umd#info=devDependencies"><img src="https://david-dm.org/t1st3/xmlrpc-message-umd/dev-status.svg?theme=shields.io" alt="devDependency Status" /></a></p>
 
-<h2 id="documentation">Documentation</h2>
-
-<p>You can find the documentation in the <a href="http://usejsdoc.org/">JSDoc</a> format in the <code>docs/jsdoc</code> folder.</p>
-
-<p><a href="http://t1st3.github.io/xmlrpc-message-umd/">Project home</a> contains some more info (tests, demo, …).</p>
-
 <h2 id="credits">Credits</h2>
+
+<p>Beside all <a href="https://david-dm.org/t1st3/xmlrpc-message-umd">dependencies</a> 
+and <a href="https://david-dm.org/t1st3/xmlrpc-message-umd#info=devDependencies">dev dependencies</a> shown on David-DM,
+this project also uses the following for its tests and examples:</p>
+
+<ul>
+  <li>
+    <table>
+      <tbody>
+        <tr>
+          <td>jQuery <a href="http://jquery.com/">Website</a></td>
+          <td><a href="https://github.com/jquery/jquery/blob/master/MIT-LICENSE.txt">MIT License</a></td>
+        </tr>
+      </tbody>
+    </table>
+  </li>
+  <li>
+    <table>
+      <tbody>
+        <tr>
+          <td>Bootstrap <a href="http://getbootstrap.com/">Website</a></td>
+          <td><a href="https://github.com/twbs/bootstrap/blob/master/LICENSE-MIT">MIT License</a></td>
+        </tr>
+      </tbody>
+    </table>
+  </li>
+  <li>
+    <table>
+      <tbody>
+        <tr>
+          <td>Modernizr <a href="http://modernizr.com/">Website</a></td>
+          <td><a href="http://modernizr.com/license/">MIT License</a></td>
+        </tr>
+      </tbody>
+    </table>
+  </li>
+  <li>
+    <table>
+      <tbody>
+        <tr>
+          <td>Font-Awesome <a href="http://fontawesome.io/">Website</a></td>
+          <td><a href="http://fontawesome.io/license/">Sil OFL 1.1 + MIT License</a></td>
+        </tr>
+      </tbody>
+    </table>
+  </li>
+  <li>
+    <table>
+      <tbody>
+        <tr>
+          <td>HTML5Boilerplate <a href="http://html5boilerplate.com/">Website</a></td>
+          <td><a href="https://github.com/h5bp/html5-boilerplate/blob/master/LICENSE.md">MIT License</a></td>
+        </tr>
+      </tbody>
+    </table>
+  </li>
+  <li>
+    <table>
+      <tbody>
+        <tr>
+          <td>Require.js <a href="http://requirejs.org/">Website</a></td>
+          <td><a href="https://github.com/jrburke/requirejs/blob/master/LICENSE">new BSD or MIT License</a></td>
+        </tr>
+      </tbody>
+    </table>
+  </li>
+  <li>
+    <table>
+      <tbody>
+        <tr>
+          <td>Mocha <a href="http://visionmedia.github.io/mocha/">Website</a></td>
+          <td><a href="https://github.com/visionmedia/mocha/blob/master/LICENSE">MIT License</a></td>
+        </tr>
+      </tbody>
+    </table>
+  </li>
+  <li>
+    <table>
+      <tbody>
+        <tr>
+          <td>Chai <a href="http://chaijs.com/">Website</a></td>
+          <td><a href="https://github.com/chaijs/chai">MIT License</a></td>
+        </tr>
+      </tbody>
+    </table>
+  </li>
+  <li>
+    <table>
+      <tbody>
+        <tr>
+          <td>Chai-jQuery <a href="https://github.com/chaijs/chai-jquery">Website</a></td>
+          <td><a href="https://github.com/chaijs/chai-jquery/blob/master/LICENSE">MIT License</a></td>
+        </tr>
+      </tbody>
+    </table>
+  </li>
+</ul>
 
 <h2 id="license">License</h2>
 
 <p>This piece of code is triple-licensed: <a href="https://github.com/T1st3/xmlrpc-message-umd/blob/master/LICENSE.md">MIT / BSD / GPL licenses</a></p>
 
+<p>You can also view it in a re-formatted fashion: <a href="http://t1st3.github.io/xmlrpc-message-umd/LICENSE.html">MIT / BSD / GPL licenses</a>.</p>
 
     </div>
   </div>
