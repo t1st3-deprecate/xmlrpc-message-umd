@@ -35,7 +35,7 @@
 		module.exports = factory();
 	} else {
 		// Browser globals
-		window.returnExports = factory();
+		window.XMLRPCMessage = factory();
 	}
 }(this, function () {
 	/** 
