@@ -77,7 +77,11 @@ module.exports = function (grunt) {
           {expand: true, flatten: true, src: ['bower_components/bootstrap/dist/fonts/*'], dest: 'gh-pages/assets/fonts/', filter: 'isFile'},
           {src: ['bower_components/font-awesome/css/font-awesome.min.css'], dest: 'gh-pages/assets/css/font-awesome.min.css'},
           {expand: true, flatten: true, src: ['bower_components/font-awesome/fonts/*'], dest: 'gh-pages/assets/fonts/', filter: 'isFile'},
-          {expand: true, flatten: false, cwd: 'bower_components/t1st3-assets/dist/assets/img/', src: ['**/*'], dest: 'gh-pages/assets/img/'}
+          {expand: true, flatten: false, cwd: 'bower_components/t1st3-assets/dist/assets/img/', src: ['**/*'], dest: 'gh-pages/assets/img/'},
+          {src: ['bower_components/t1st3-assets/dist/assets/css/t1st3.css'], dest: 'gh-pages/assets/css/t1st3.css'},
+          {src: ['bower_components/t1st3-assets/dist/assets/css/404.css'], dest: 'gh-pages/assets/css/404.css'},
+          {expand: true, flatten: false, cwd: 'bower_components/t1st3-assets/dist/_includes/', src: ['**/*'], dest: 'gh-pages/_includes/'},
+          {expand: true, flatten: false, cwd: 'bower_components/t1st3-assets/dist/_layouts/', src: ['**/*'], dest: 'gh-pages/_layouts/'}
         ]
       },
       readme: {
@@ -87,12 +91,8 @@ module.exports = function (grunt) {
       },
       reset: {
         files: [
-          {src: ['bower_components/t1st3-assets/dist/assets/css/t1st3.css'], dest: 'gh-pages/assets/css/t1st3.css'},
-          {src: ['bower_components/t1st3-assets/dist/assets/css/404.css'], dest: 'gh-pages/assets/css/404.css'},
           {src: ['bower_components/t1st3-assets/dist/project_index.js'], dest: 'gh-pages/index.js'},
           {src: ['bower_components/t1st3-assets/dist/project_tests.js'], dest: 'gh-pages/amd_tests.js'},
-          {expand: true, flatten: false, cwd: 'bower_components/t1st3-assets/dist/_includes/', src: ['**/*'], dest: 'gh-pages/_includes/'},
-          {expand: true, flatten: false, cwd: 'bower_components/t1st3-assets/dist/_layouts/', src: ['**/*'], dest: 'gh-pages/_layouts/'},
         ]
       }
     },
