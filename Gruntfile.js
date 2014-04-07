@@ -62,7 +62,7 @@ module.exports = function (grunt) {
           {src: ['dist/xmlrpc-message-umd.js'], dest: 'gh-pages/lib/xmlrpc-message-umd.js'}
         ]
       },
-      test: {
+      init: {
         files: [
           {src: ['bower_components/jquery/dist/jquery.js'], dest: 'gh-pages/lib/jquery.js'},
           {src: ['bower_components/lodash/dist/lodash.js'], dest: 'gh-pages/lib/lodash.js'},
@@ -177,7 +177,7 @@ module.exports = function (grunt) {
       }
     },
     bower: {
-      all: {
+      init: {
         options: {
           copy: false,
           install: true,
@@ -199,12 +199,10 @@ module.exports = function (grunt) {
     }
   });
   
-  /*
   grunt.registerTask('resetdocs', [
     'copy:reset',
     'template:reset'
   ]);
-  */
 
   grunt.registerTask('init', [
     'bower:init',
