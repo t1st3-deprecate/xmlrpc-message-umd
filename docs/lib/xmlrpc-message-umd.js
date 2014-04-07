@@ -3,7 +3,7 @@
  * 
  * @link https://github.com/T1st3/xmlrpc-message-umd
  * @author T1st3
- * @version 0.2.0
+ * @version 0.2.1
  * @license https://github.com/T1st3/xmlrpc-message-umd/blob/master/LICENSE-MIT
  * @license https://github.com/T1st3/xmlrpc-message-umd/blob/master/LICENSE-BSD
  * @license https://github.com/T1st3/xmlrpc-message-umd/blob/master/LICENSE-GPL
