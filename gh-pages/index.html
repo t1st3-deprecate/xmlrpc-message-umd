@@ -7,14 +7,35 @@ title: xmlrpc-message-umd
   <div class="row">
     <div class="col-12 col-xs-12 col-sm-12 col-lg-12">
       <h1>
-        AMD Demo
+        {{ page.title }}
       </h1>
       <p>
-        Just a small demo for <i>{{ page.title }}</i>
+        A small XMLRPC message builder.
       </p>
+      <h2>Demo (using AMD modules)</h2>
       <p>
-
+        <pre class="js">
+          <code class="js">
+            var a = ["chicken","duck","goose"];
+            var obj = new Object();
+            obj.x = 20;
+            obj.y = "cow";
+            obj.z = 3.14;
+            var date = new Date();
+            var msg = new XMLRPCMessage();
+            msg.setMethod("system.myMethod");
+            msg.addParameter("mississippi");
+            msg.addParameter(7);
+            msg.addParameter(false);
+            msg.addParameter(a);
+            msg.addParameter(obj);
+            msg.addParameter(date);
+            msg.xml();
+          </code>
+        </pre>
       </p>
+      <br><br>will output:<br><br>
+      <textarea style="width: 100%; color: #000; min-height: 400px; overflow: auto; margin: 0 auto; display: block;" id="result"></textarea>
     </div>
   </div>
 </div>
