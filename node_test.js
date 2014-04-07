@@ -1,6 +1,6 @@
 'use strict';
 
-var XMLRPCMessage = require('./../../dist/xmlrpc-message-umd.js');
+var XMLRPCMessage = require('./dist/xmlrpc-message-umd.js');
 var assert = require('assert');
 
 describe('xmlrpc-message tests', function () {
