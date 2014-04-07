@@ -1,44 +1,45 @@
 {
   "name": "xmlrpc-message-umd",
   "version": "0.1.2",
-	"homepage": "https://github.com/T1st3/xmlrpc-message-umd",
-	"description": "A XMLRPC message builder written with UMD definition",
-	"keywords": [
-		"amd",
-		"umd",
-		"xmlrpc",
-		"module",
-		"builder",
-		"xml"
-	],
-	"license": "MIT",
-	"authors": [
-		"T1st3"
-	],
-	"main": "dist/xmlrpc-message-umd.js",
-	"ignore": [
-		"node_modules",
+  "homepage": "https://github.com/T1st3/xmlrpc-message-umd",
+  "description": "A XMLRPC message builder written with UMD definition",
+  "keywords": [
+    "amd",
+    "umd",
+    "xmlrpc",
+    "module",
+    "builder",
+    "xml"
+  ],
+  "license": "MIT",
+  "authors": [
+    "T1st3"
+  ],
+  "main": "dist/xmlrpc-message-umd.js",
+  "ignore": [
+    "node_modules",
     "bower_components",
-    "demo",
-		"src",
-		"doc",
+    "docs",
+    "gh-pages",
+    "src",
+    "node_test.js",
     ".git",
     ".gitignore",
-		".gitattributes",
-		".editorconfig",
+    ".gitattributes",
+    ".editorconfig",
     ".jshintrc",
-		".jscs.json",
+    ".jscs.json",
     "Gruntfile.js",
     "package.json",
-		"README.md"
-	],
-	"dependencies": {
-		"requirejs": "*"
-	},
-	"devDependencies": {
-		"jquery": "*",
-		"mocha": "*",
-		"chai": "*",
-		"t1st3-assets": "*"
-	}
+    "README.md"
+  ],
+  "dependencies": {
+    "requirejs": "*"
+  },
+  "devDependencies": {
+    "jquery": "*",
+    "mocha": "*",
+    "chai": "*",
+    "t1st3-assets": "*"
+  }
 }
