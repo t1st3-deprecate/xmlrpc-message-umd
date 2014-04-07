@@ -46,6 +46,8 @@
     "time-grunt": ">= 0.2.x",
     "jshint-stylish": ">= 0.1.x",
     "grunt-bower-task": ">= 0.3.x",
-		"grunt-mocha-test": ">= 0.9.x"
+		"grunt-mocha-test": ">= 0.9.x",
+    "grunt-jekyll": ">= 0.4.x",
+    "grunt-template": ">= 0.2.x"
   }
 }
