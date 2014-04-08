@@ -86,7 +86,7 @@ module.exports = function (grunt) {
       },
       readme: {
         options: {
-          process: function (content, srcpath) {
+          process: function (content) {
             return content.replace(/\{\{ page.title \}\}/g, grunt.file.readJSON('package.json').name);
           }
         },
