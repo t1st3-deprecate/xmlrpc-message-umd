@@ -200,15 +200,15 @@ Beside all [dependencies](https://david-dm.org/t1st3/{{ page.title }})
 and [dev dependencies](https://david-dm.org/t1st3/{{ page.title }}#info=devDependencies) shown on David-DM,
 this project also uses the following for its tests and examples:
 
-* jQuery [Website](http://jquery.com/) | [MIT License](https://github.com/jquery/jquery/blob/master/MIT-LICENSE.txt)
-* Bootstrap [Website](http://getbootstrap.com/) | [MIT License](https://github.com/twbs/bootstrap/blob/master/LICENSE-MIT)
-* Modernizr [Website](http://modernizr.com/) | [MIT License](http://modernizr.com/license/)
-* Font-Awesome [Website](http://fontawesome.io/) | [Sil OFL 1.1 + MIT License](http://fontawesome.io/license/)
-* HTML5Boilerplate [Website](http://html5boilerplate.com/) | [MIT License](https://github.com/h5bp/html5-boilerplate/blob/master/LICENSE.md)
-* Require.js [Website](http://requirejs.org/) | [new BSD or MIT License](https://github.com/jrburke/requirejs/blob/master/LICENSE)
-* Mocha [Website](http://visionmedia.github.io/mocha/) | [MIT License](https://github.com/visionmedia/mocha/blob/master/LICENSE)
-* Chai [Website](http://chaijs.com/) | [MIT License](https://github.com/chaijs/chai)
-* Chai-jQuery [Website](https://github.com/chaijs/chai-jquery) | [MIT License](https://github.com/chaijs/chai-jquery/blob/master/LICENSE)
+* jQuery [Website](http://jquery.com/) / [MIT License](https://github.com/jquery/jquery/blob/master/MIT-LICENSE.txt)
+* Bootstrap [Website](http://getbootstrap.com/) / [MIT License](https://github.com/twbs/bootstrap/blob/master/LICENSE-MIT)
+* Modernizr [Website](http://modernizr.com/) / [MIT License](http://modernizr.com/license/)
+* Font-Awesome [Website](http://fontawesome.io/) / [Sil OFL 1.1 + MIT License](http://fontawesome.io/license/)
+* HTML5Boilerplate [Website](http://html5boilerplate.com/) / [MIT License](https://github.com/h5bp/html5-boilerplate/blob/master/LICENSE.md)
+* Require.js [Website](http://requirejs.org/) / [new BSD or MIT License](https://github.com/jrburke/requirejs/blob/master/LICENSE)
+* Mocha [Website](http://visionmedia.github.io/mocha/) / [MIT License](https://github.com/visionmedia/mocha/blob/master/LICENSE)
+* Chai [Website](http://chaijs.com/) / [MIT License](https://github.com/chaijs/chai)
+* Chai-jQuery [Website](https://github.com/chaijs/chai-jquery) / [MIT License](https://github.com/chaijs/chai-jquery/blob/master/LICENSE)
 
 
 

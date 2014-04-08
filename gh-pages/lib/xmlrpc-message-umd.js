@@ -24,6 +24,8 @@
 
 /* global define */
 
+'use strict';
+
 (function (window, factory) {
   if (typeof define === 'function' && define.amd) {
     // AMD
