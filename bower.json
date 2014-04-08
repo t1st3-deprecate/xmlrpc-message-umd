@@ -24,6 +24,8 @@
     "src",
     "node_test.js",
     ".git",
+    ".travis.yml",
+    ".bowerrc",
     ".gitignore",
     ".gitattributes",
     ".editorconfig",
