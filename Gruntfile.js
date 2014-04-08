@@ -52,9 +52,7 @@ module.exports = function (grunt) {
     copy: {
       build: {
         files: [
-          {src: ['src/xmlrpc-message-umd.js'], dest: 'dist/xmlrpc-message-umd.js'},
-          {src: ['src/xmlrpc-message-umd.js'], dest: 'demo/amd/xmlrpc-message-umd.js'},
-          {src: ['src/xmlrpc-message-umd.js'], dest: 'test/amd/xmlrpc-message-umd.js'}
+          {src: ['src/xmlrpc-message-umd.js'], dest: 'dist/xmlrpc-message-umd.js'}
         ]
       },
       docs: {
