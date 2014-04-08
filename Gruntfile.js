@@ -152,7 +152,7 @@ module.exports = function (grunt) {
         livereload: true
       },
       amd: {
-        files: ['src/**/*.js', 'docs/demo.js', 'demo/demo.html', 'docs/amd_tests.js', 'demo/amd_tests.html'],
+        files: ['src/**/*.js', 'docs/index.js', 'demo/index.html', 'docs/amd_tests.js', 'demo/amd_tests.html'],
         tasks: ['copy:docs', 'jekyll:docsamd'],
         options: {
           livereload: {
