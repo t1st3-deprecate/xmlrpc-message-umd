@@ -136,71 +136,77 @@ grunt init
 
 <p>Once the module is added to your project, you can build an XMLRPC-formatted message like this:</p>
 
-<p><code>
-    var a = ["chicken","duck","goose"];
-    var obj = new Object();
-    obj.x = 20;
-    obj.y = "cow";
-    obj.z = 3.14;
-    var date = new Date();
-    var msg = new XMLRPCMessage("system.myMethod");
-    msg.setMethod("system.myMethod");
-    msg.addParameter("mississippi");
-    msg.addParameter(7);
-    msg.addParameter(false);
-    msg.addParameter(a);
-    msg.addParameter(obj);
-    msg.addParameter(date);
-    msg.xml();
-</code></p>
+<p>```</p>
+
+<pre><code>var a = ["chicken","duck","goose"];
+var obj = new Object();
+obj.x = 20;
+obj.y = "cow";
+obj.z = 3.14;
+var date = new Date();
+var msg = new XMLRPCMessage("system.myMethod");
+msg.setMethod("system.myMethod");
+msg.addParameter("mississippi");
+msg.addParameter(7);
+msg.addParameter(false);
+msg.addParameter(a);
+msg.addParameter(obj);
+msg.addParameter(date);
+msg.xml();
+</code></pre>
+
+<p>```</p>
 
 <p>in order to get the following message:</p>
 
-<p><code>
-    &lt;?xml version="1.0"?&gt;
-    &lt;methodCall&gt;
-    &lt;methodName&gt;system.myMethod&lt;/methodName&gt;
-    &lt;params&gt;
-    &lt;param&gt;
-    &lt;value&gt;&lt;string&gt;mississippi&lt;/string&gt;&lt;/value&gt;
-    &lt;/param&gt;
-    &lt;param&gt;
-    &lt;value&gt;&lt;i4&gt;7&lt;/i4&gt;&lt;/value&gt;
-    &lt;/param&gt;
-    &lt;param&gt;
-    &lt;value&gt;&lt;boolean&gt;0&lt;/boolean&gt;&lt;/value&gt;
-    &lt;/param&gt;
-    &lt;param&gt;
-    &lt;value&gt;&lt;array&gt;&lt;data&gt;
-    &lt;value&gt;&lt;string&gt;chicken&lt;/string&gt;&lt;/value&gt;
-    &lt;value&gt;&lt;string&gt;duck&lt;/string&gt;&lt;/value&gt;
-    &lt;value&gt;&lt;string&gt;goose&lt;/string&gt;&lt;/value&gt;
-    &lt;/data&gt;&lt;/array&gt;
-    &lt;/value&gt;
-    &lt;/param&gt;
-    &lt;param&gt;
-    &lt;value&gt;&lt;struct&gt;
-    &lt;member&gt;
-    &lt;name&gt;x&lt;/name&gt;
-    &lt;value&gt;&lt;i4&gt;20&lt;/i4&gt;&lt;/value&gt;
-    &lt;/member&gt;
-    &lt;member&gt;
-    &lt;name&gt;y&lt;/name&gt;
-    &lt;value&gt;&lt;string&gt;cow&lt;/string&gt;&lt;/value&gt;
-    &lt;/member&gt;
-    &lt;member&gt;
-    &lt;name&gt;z&lt;/name&gt;
-    &lt;value&gt;&lt;double&gt;3.14&lt;/double&gt;&lt;/value&gt;
-    &lt;/member&gt;
-    &lt;/struct&gt;
-    &lt;/value&gt;
-    &lt;/param&gt;
-    &lt;param&gt;
-    &lt;value&gt;&lt;dateTime.iso8601&gt;1131129T02:57:13&lt;/dateTime.iso8601&gt;&lt;/value&gt;
-    &lt;/param&gt;
-    &lt;/params&gt;
-    &lt;/methodCall&gt;
-</code></p>
+<p>```</p>
+
+<pre><code>&lt;?xml version="1.0"?&gt;
+&lt;methodCall&gt;
+&lt;methodName&gt;system.myMethod&lt;/methodName&gt;
+&lt;params&gt;
+&lt;param&gt;
+&lt;value&gt;&lt;string&gt;mississippi&lt;/string&gt;&lt;/value&gt;
+&lt;/param&gt;
+&lt;param&gt;
+&lt;value&gt;&lt;i4&gt;7&lt;/i4&gt;&lt;/value&gt;
+&lt;/param&gt;
+&lt;param&gt;
+&lt;value&gt;&lt;boolean&gt;0&lt;/boolean&gt;&lt;/value&gt;
+&lt;/param&gt;
+&lt;param&gt;
+&lt;value&gt;&lt;array&gt;&lt;data&gt;
+&lt;value&gt;&lt;string&gt;chicken&lt;/string&gt;&lt;/value&gt;
+&lt;value&gt;&lt;string&gt;duck&lt;/string&gt;&lt;/value&gt;
+&lt;value&gt;&lt;string&gt;goose&lt;/string&gt;&lt;/value&gt;
+&lt;/data&gt;&lt;/array&gt;
+&lt;/value&gt;
+&lt;/param&gt;
+&lt;param&gt;
+&lt;value&gt;&lt;struct&gt;
+&lt;member&gt;
+&lt;name&gt;x&lt;/name&gt;
+&lt;value&gt;&lt;i4&gt;20&lt;/i4&gt;&lt;/value&gt;
+&lt;/member&gt;
+&lt;member&gt;
+&lt;name&gt;y&lt;/name&gt;
+&lt;value&gt;&lt;string&gt;cow&lt;/string&gt;&lt;/value&gt;
+&lt;/member&gt;
+&lt;member&gt;
+&lt;name&gt;z&lt;/name&gt;
+&lt;value&gt;&lt;double&gt;3.14&lt;/double&gt;&lt;/value&gt;
+&lt;/member&gt;
+&lt;/struct&gt;
+&lt;/value&gt;
+&lt;/param&gt;
+&lt;param&gt;
+&lt;value&gt;&lt;dateTime.iso8601&gt;1131129T02:57:13&lt;/dateTime.iso8601&gt;&lt;/value&gt;
+&lt;/param&gt;
+&lt;/params&gt;
+&lt;/methodCall&gt;
+</code></pre>
+
+<p>```</p>
 
 <h2 id="documentation">Documentation</h2>
 

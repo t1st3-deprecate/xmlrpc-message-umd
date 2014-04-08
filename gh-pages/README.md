@@ -89,6 +89,7 @@ Usage
 Once the module is added to your project, you can build an XMLRPC-formatted message like this:
 
 ```
+
     var a = ["chicken","duck","goose"];
     var obj = new Object();
     obj.x = 20;
@@ -104,11 +105,13 @@ Once the module is added to your project, you can build an XMLRPC-formatted mess
     msg.addParameter(obj);
     msg.addParameter(date);
     msg.xml();
+
 ```
 
 in order to get the following message:
 
 ```
+
     <?xml version="1.0"?>
     <methodCall>
     <methodName>system.myMethod</methodName>
@@ -152,6 +155,7 @@ in order to get the following message:
     </param>
     </params>
     </methodCall>
+
 ```
 
 
