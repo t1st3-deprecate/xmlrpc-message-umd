@@ -19,8 +19,8 @@
   "ignore": [
     "node_modules",
     "bower_components",
-    "docs",
     "gh-pages",
+    "docs",
     "src",
     "node_test.js",
     ".git",
