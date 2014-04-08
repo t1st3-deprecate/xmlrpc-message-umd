@@ -76,6 +76,7 @@ module.exports = function (grunt) {
           {src: ['bower_components/font-awesome/css/font-awesome.min.css'], dest: 'gh-pages/assets/css/font-awesome.min.css'},
           {expand: true, flatten: true, src: ['bower_components/font-awesome/fonts/*'], dest: 'gh-pages/assets/fonts/', filter: 'isFile'},
           {expand: true, flatten: false, cwd: 'bower_components/t1st3-assets/dist/assets/img/', src: ['**/*'], dest: 'gh-pages/assets/img/'},
+          {src: ['bower_components/t1st3-assets/dist/_config.yml'], dest: 'gh-pages/_config.yml'},
           {src: ['bower_components/t1st3-assets/dist/assets/css/t1st3.css'], dest: 'gh-pages/assets/css/t1st3.css'},
           {src: ['bower_components/t1st3-assets/dist/assets/css/404.css'], dest: 'gh-pages/assets/css/404.css'},
           {expand: true, flatten: false, cwd: 'bower_components/t1st3-assets/dist/_includes/', src: ['**/*'], dest: 'gh-pages/_includes/'},
