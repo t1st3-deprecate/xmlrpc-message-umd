@@ -112,6 +112,7 @@ module.exports = function (grunt) {
           'gh-pages/index.html': ['bower_components/t1st3-assets/dist/project_index.html'],
           'gh-pages/404.html': ['bower_components/t1st3-assets/dist/project_404.html'],
           'gh-pages/amd_tests.html': ['bower_components/t1st3-assets/dist/project_tests.html'],
+          'gh-pages/jsdoc.html': ['bower_components/t1st3-assets/dist/project_jsdoc.html'],
           'gh-pages/README.md': ['bower_components/t1st3-assets/dist/README.md']
         }
       }
