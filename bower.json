@@ -43,6 +43,7 @@
     "mocha": "*",
     "chai": "*",
     "chai-jquery": "*",
-    "t1st3-assets": "*"
+    "t1st3-assets": "*",
+    "codemirror": "*"
   }
 }
