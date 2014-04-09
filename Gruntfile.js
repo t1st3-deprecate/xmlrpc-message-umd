@@ -25,12 +25,12 @@ module.exports = function (grunt) {
         reporter: require('jshint-stylish')
       },
       all: [
-        'src/**/*.js', 'docs/amd/demo.js', 'docs/amd/test.js', 'docs/node/**/*.js', 'Gruntfile.js'
+        'src/**/*.js', 'gh-pages/lib/index.js', 'gh-pages/lib/amd_tests.js', 'node_test.js', 'Gruntfile.js'
       ]
     },
     jscs: {
       src: [
-        'src/**/*.js', 'docs/amd/demo.js', 'docs/amd/test.js', 'docs/node/**/*.js', 'Gruntfile.js'
+        'src/**/*.js', 'gh-pages/lib/index.js', 'gh-pages/lib/amd_tests.js', 'node_test.js', 'Gruntfile.js'
       ],
       options: {
         config: '.jscs.json'
@@ -75,36 +75,38 @@ module.exports = function (grunt) {
           {expand: true, flatten: true, src: ['bower_components/bootstrap/dist/fonts/*'], dest: 'gh-pages/assets/fonts/', filter: 'isFile'},
           {src: ['bower_components/font-awesome/css/font-awesome.min.css'], dest: 'gh-pages/assets/css/font-awesome.min.css'},
           {expand: true, flatten: true, src: ['bower_components/font-awesome/fonts/*'], dest: 'gh-pages/assets/fonts/', filter: 'isFile'},
+          {src: ['bower_components/codemirror/lib/codemirror.css'], dest: 'gh-pages/assets/css/codemirror.css'},
+          {src: ['bower_components/codemirror/lib/codemirror.js'], dest: 'gh-pages/lib/codemirror.js'},
+          {src: ['bower_components/codemirror/mode/javascript/javascript.js'], dest: 'gh-pages/lib/codemirror/javascript.js'},
+          
           {expand: true, flatten: false, cwd: 'bower_components/t1st3-assets/dist/assets/img/', src: ['**/*'], dest: 'gh-pages/assets/img/'},
-          {src: ['bower_components/t1st3-assets/dist/_config.yml'], dest: 'gh-pages/_config.yml'},
           {src: ['bower_components/t1st3-assets/dist/assets/css/t1st3.css'], dest: 'gh-pages/assets/css/t1st3.css'},
           {src: ['bower_components/t1st3-assets/dist/assets/css/404.css'], dest: 'gh-pages/assets/css/404.css'},
-          {expand: true, flatten: false, cwd: 'bower_components/t1st3-assets/dist/_includes/', src: ['**/*'], dest: 'gh-pages/_includes/'},
-          {expand: true, flatten: false, cwd: 'bower_components/t1st3-assets/dist/_layouts/', src: ['**/*'], dest: 'gh-pages/_layouts/'}
+          {src: ['bower_components/t1st3-assets/dist/sitemap.xml'], dest: 'gh-pages/sitemap.xml'},
+          {expand: true, flatten: false, cwd: 'bower_components/t1st3-assets/dist/_layouts/', src: ['**/*'], dest: 'gh-pages/_layouts/'},
+          {src: ['bower_components/t1st3-assets/dist/_includes/bottom-menu.html'], dest: 'gh-pages/_includes/bottom-menu.html'},
+          {src: ['bower_components/t1st3-assets/dist/_includes/head.html'], dest: 'gh-pages/_includes/head.html'},
+          {src: ['bower_components/t1st3-assets/dist/_includes/header.html'], dest: 'gh-pages/_includes/header.html'},
+          {src: ['bower_components/t1st3-assets/dist/_includes/footer.html'], dest: 'gh-pages/_includes/footer.html'}
         ]
       },
       readme: {
         options: {
           process: function (content) {
-            return content.replace(/\{\{ page.title \}\}/g, grunt.file.readJSON('package.json').name);
+            return content.replace(/\{\{ site.name \}\}/g, grunt.file.readJSON('package.json').name);
           }
         },
         files: [
-          {src: ['gh-pages/README.md'], dest: 'README.md'}
-        ]
-      },
-      reset: {
-        files: [
-          {src: ['bower_components/t1st3-assets/dist/project_index.js'], dest: 'gh-pages/index.js'},
-          {src: ['bower_components/t1st3-assets/dist/project_tests.js'], dest: 'gh-pages/amd_tests.js'}
+          {src: ['gh-pages/readme.md'], dest: 'README.md'}
         ]
       }
     },
     template: {
-      reset: {
+      init: {
         options: {
           data: {
-            ProjectName: '<%= pkg.name %>'
+            ProjectName: '<%= pkg.name %>',
+            ProjectVersion: '<%= pkg.version %>'
           }
         },
         files: {
@@ -112,7 +114,9 @@ module.exports = function (grunt) {
           'gh-pages/404.html': ['bower_components/t1st3-assets/dist/project_404.html'],
           'gh-pages/amd_tests.html': ['bower_components/t1st3-assets/dist/project_tests.html'],
           'gh-pages/jsdoc.html': ['bower_components/t1st3-assets/dist/project_jsdoc.html'],
-          'gh-pages/README.md': ['bower_components/t1st3-assets/dist/README.md']
+          'gh-pages/readme.md': ['bower_components/t1st3-assets/dist/readme.md'],
+          'gh-pages/license.md': ['bower_components/t1st3-assets/dist/license.md'],
+          'gh-pages/_config.yml': ['bower_components/t1st3-assets/dist/_config.yml']
         }
       }
     },
@@ -123,6 +127,14 @@ module.exports = function (grunt) {
           src: 'gh-pages/',
           dest: 'docs/'
         }
+      }
+    },
+    matter: {
+      options: {
+        strip: true
+      },
+      files: {
+        src: 'README.md', dest: 'README.md'
       }
     },
     jsdoc : {
@@ -152,15 +164,15 @@ module.exports = function (grunt) {
         nospawn: true,
         livereload: true
       },
-      amd: {
-        files: ['src/**/*.js', 'docs/index.js', 'demo/index.html', 'docs/amd_tests.js', 'demo/amd_tests.html'],
-        tasks: ['copy:docs', 'jekyll:docsamd'],
+      src: {
+        files: ['src/**/*.js'],
+        tasks: ['copy:docs'],
         options: {
           livereload: {
             port: LIVERELOAD_PORT
           }
-        },
-      },
+        }
+      }
     },
     connect: {
       options: {
@@ -207,16 +219,10 @@ module.exports = function (grunt) {
     }
   });
   
-  /*
-  grunt.registerTask('resetdocs', [
-    'copy:reset',
-    'template:reset'
-  ]);
-  */
-
   grunt.registerTask('init', [
     'bower:init',
-    'copy:init'
+    'copy:init',
+    'template:init'
   ]);
 
   grunt.registerTask('build', [
@@ -237,7 +243,8 @@ module.exports = function (grunt) {
     'copy:docs',
     'jsdoc:dist',
     'jekyll:docsamd',
-    'copy:readme'
+    'copy:readme',
+    'matter'
   ]);
   
   grunt.registerTask('test', [
