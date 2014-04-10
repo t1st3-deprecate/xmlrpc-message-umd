@@ -9,13 +9,13 @@ var mountFolder = function (connect, dir) {
 
 module.exports = function (grunt) {
   
-  require('time-grunt')(grunt);
-  
   require('load-grunt-tasks')(grunt, {
     scope: 'devDependencies',
     config: 'package.json',
     pattern: ['grunt-*']
   });
+  
+  require('time-grunt')(grunt);
   
   grunt.initConfig({
     pkg: grunt.file.readJSON('package.json'),
