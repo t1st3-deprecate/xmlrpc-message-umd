@@ -2,7 +2,7 @@ xmlrpc-message-umd
 ==================
 
 
-[![NPM version](https://badge.fury.io/js/xmlrpc-message-umd.png)](http://badge.fury.io/js/xmlrpc-message-umd)
+[![NPM version](https://badge.fury.io/js/xmlrpc-message-umd.svg)](http://badge.fury.io/js/xmlrpc-message-umd)
 [![Dependency Status](https://david-dm.org/t1st3/xmlrpc-message-umd.svg?theme=shields.io)](https://david-dm.org/t1st3/xmlrpc-message-umd)
 [![Build Status](https://travis-ci.org/T1st3/xmlrpc-message-umd.png?branch=master)](https://travis-ci.org/T1st3/xmlrpc-message-umd)
 
@@ -35,6 +35,11 @@ You can install it with the following command:
 To install it from Bower, just run 
 
     bower install xmlrpc-message-umd
+
+Published versions on both NPM and Bower should stay in sync:
+[![NPM version](https://badge.fury.io/js/xmlrpc-message-umd.svg)](http://badge.fury.io/js/xmlrpc-message-umd)
+[![NPM version](https://badge.fury.io/bo/xmlrpc-message-umd.svg)](http://badge.fury.io/js/xmlrpc-message-umd)
+
 
 
 Installation for development

@@ -10,7 +10,7 @@ sitemap:
 ==================
 
 
-[![NPM version](https://badge.fury.io/js/{{ site.name }}.png)](http://badge.fury.io/js/{{ site.name }})
+[![NPM version](https://badge.fury.io/js/{{ site.name }}.svg)](http://badge.fury.io/js/{{ site.name }})
 [![Dependency Status](https://david-dm.org/t1st3/{{ site.name }}.svg?theme=shields.io)](https://david-dm.org/t1st3/{{ site.name }})
 [![Build Status](https://travis-ci.org/T1st3/{{ site.name }}.png?branch=master)](https://travis-ci.org/T1st3/{{ site.name }})
 
@@ -47,6 +47,11 @@ You can install it with the following command:
 To install it from Bower, just run 
 
     bower install {{ site.name }}
+
+Published versions on both NPM and Bower should stay in sync:
+[![NPM version](https://badge.fury.io/js/{{ site.name }}.svg)](http://badge.fury.io/js/{{ site.name }})
+[![NPM version](https://badge.fury.io/bo/{{ site.name }}.svg)](http://badge.fury.io/js/{{ site.name }})
+
 
 
 Installation for development
