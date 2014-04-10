@@ -1,4 +1,5 @@
 {% include head.html %}
+    <link rel="stylesheet" href="assets/css/codemirror.css">
     <link rel="stylesheet" href="assets/css/t1st3.css">
     <script type="text/javascript" src="lib/modernizr.js"></script>
 {% include header.html %}
@@ -13,4 +14,21 @@
 <script src="//ajax.googleapis.com/ajax/libs/jquery/2.1.0/jquery.min.js"></script>
 <script>window.jQuery || document.write('<script src="lib/jquery.js"><\/script>')</script>
 <script src="lib/bootstrap.min.js"></script>
+<script src="lib/codemirror.js"></script>
+<script src="lib/codemirror/javascript.js"></script>
+<script>
+  $(document).ready(function () {
+    $('pre.js > code.js').each(function () {
+      var self = $(this).parent();
+      self.find('code.js').hide(),
+      CodeMirror(self[0], {
+        value: self.find('code.js').html(),
+        mode: 'javascript',
+        tabSize: 2,
+        lineNumbers: true,
+        readOnly: true
+      });
+    });
+  });
+</script>
 {% include footer.html %}

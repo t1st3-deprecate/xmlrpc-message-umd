@@ -1,1 +1,4 @@
 markdown: kramdown
+name: xmlrpc-message-umd
+version: 0.2.2
+baseurl: http://www.tiste.org

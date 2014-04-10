@@ -1,5 +1,8 @@
   </head>
   <body>
+    <a href="https://github.com/T1st3/{{ site.name }}/">
+      <img id="ghribbon" src="https://s3.amazonaws.com/github/ribbons/forkme_right_orange_ff7600.png" alt="Fork me on GitHub">
+    </a>
     <nav class="navbar navbar-default navbar-fixed-top" id="top" role="navigation">
       <div class="container">
         <div class="navbar-header">
@@ -9,23 +12,21 @@
             <span class="icon-bar"></span>
             <span class="icon-bar"></span>
           </button>
-          <a href="index.html" class="navbar-brand">{{ page.title }}</a>
+          <a href="index.html" class="navbar-brand">{{ site.name }}</a>
         </div>
         <div class="collapse navbar-collapse" id="t1st3-navbar-collapse">
           <ul class="nav navbar-nav navbar-right">
             <li class="dropdown">
-              <a href="#" class="dropdown-toggle" data-toggle="dropdown"><i class="fa fa-globe"></i> Links <b class="caret"></b></a>
+              <a href="#" class="dropdown-toggle" data-toggle="dropdown"><i class="fa fa-code-fork"></i> v{{ site.version }} <b class="caret"></b></a>
               <ul class="dropdown-menu">
-                <li><a href="https://github.com/T1st3/{{ page.title }}"><i class="fa fa-github"></i> Github</a></li>
-                <li><a href="https://www.npmjs.org/package/{{ page.title }}"><img src="assets/img/vendor/npm-16x16.png"> NPM</a></li>
-                <li><a href="https://david-dm.org/t1st3/{{ page.title }}"><img src="assets/img/vendor/david-dm-16x16.png"> David</a></li>
-                <li><a href="https://travis-ci.org/T1st3/{{ page.title }}"><img src="assets/img/vendor/travis-ci-16x16.png"> Travis</a></li>
-                <li class="divider"></li>
-                <li><a href="http://t1st3.github.io"><img src="assets/img/gravatar-16x16.png"> Author</a></li>
+                <li>
+                  <a href="https://github.com/T1st3/{{ site.name }}/archive/master.zip"><i class="fa fa-download"></i> Download latest</a>
+                </li>
+                <li>
+                  <a href="https://github.com/T1st3/{{ site.name }}/tags"><i class="fa fa-tags"></i> All version tags</a>
+                </li>
               </ul>
             </li>
-          </ul>
-          <ul class="nav navbar-nav navbar-right">
             <li class="dropdown">
               <a href="#" class="dropdown-toggle" data-toggle="dropdown"><i class="fa fa-code"></i> Docs <b class="caret"></b></a>
               <ul class="dropdown-menu">
@@ -33,7 +34,7 @@
                   <a href="index.html"><i class="fa fa-home"></i> Home</a>
                 </li>
                 <li>
-                  <a href="README.html"><i class="fa fa-info-circle"></i> README</a>
+                  <a href="readme.html"><i class="fa fa-info-circle"></i> README</a>
                 </li>
                 <li>
                   <a href="amd_tests.html"><i class="fa fa-cogs"></i> Tests (AMD)</a>
@@ -42,8 +43,19 @@
                   <a href="jsdoc.html"><i class="fa fa-code"></i> JS Doc</a>
                 </li>
                 <li>
-                  <a href="https://github.com/T1st3/{{ page.title }}/blob/master/LICENSE"><i class="fa fa-legal"></i> License</a>
+                  <a href="https://github.com/T1st3/{{ site.name }}/blob/master/LICENSE"><i class="fa fa-legal"></i> License</a>
                 </li>
+              </ul>
+            </li>
+            <li class="dropdown">
+              <a href="#" class="dropdown-toggle" data-toggle="dropdown"><i class="fa fa-globe"></i> Links <b class="caret"></b></a>
+              <ul class="dropdown-menu">
+                <li><a href="https://github.com/T1st3/{{ site.name }}"><i class="fa fa-github"></i> Github</a></li>
+                <li><a href="https://www.npmjs.org/package/{{ site.name }}"><img src="assets/img/vendor/npm-16x16.png"> NPM</a></li>
+                <li><a href="https://david-dm.org/t1st3/{{ site.name }}"><img src="assets/img/vendor/david-dm-16x16.png"> David</a></li>
+                <li><a href="https://travis-ci.org/T1st3/{{ site.name }}"><img src="assets/img/vendor/travis-ci-16x16.png"> Travis</a></li>
+                <li class="divider"></li>
+                <li><a href="http://t1st3.github.io"><img src="assets/img/gravatar-16x16.png"> Author</a></li>
               </ul>
             </li>
           </ul>
