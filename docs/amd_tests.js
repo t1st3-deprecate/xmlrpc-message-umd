@@ -47,7 +47,6 @@ require([
         obj.x = 20;
         obj.y = 'cow';
         obj.z = 3.14;
-        var date = new Date();
         var msg = new XMLRPCMessage('system.myMethod');
         msg.setMethod('system.myMethod');
         msg.addParameter('mississippi');
