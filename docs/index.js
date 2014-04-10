@@ -26,8 +26,10 @@ require.config({
 require([
   'jquery',
   'xmlrpcmessage',
+  'lib/codemirror',
+  'lib/codemirror/javascript',
   'bootstrap'
-], function ($, XMLRPCMessage) {
+], function ($, XMLRPCMessage, CodeMirror) {
   $(document).ready(function () {
     $('#in').on('click', function () {
       var a = ['chicken', 'duck', 'goose'];
@@ -49,6 +51,18 @@ require([
     });
     $('#reset').on('click', function () {
       $('#result').val('');
+    });
+    
+    $('pre.js > code.js').each(function () {
+      var self = $(this).parent();
+      self.find('code.js').hide(),
+      CodeMirror(self[0], {
+        value: self.find('code.js').html(),
+        mode: 'javascript',
+        tabSize: 2,
+        lineNumbers: true,
+        readOnly: true
+      });
     });
   });
 });

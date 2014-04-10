@@ -3,7 +3,7 @@
   <head>
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <title>xmlrpc-message-umd</title>
+    <title>xmlrpc-message-umd - README</title>
     <meta name="description" content="">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <link rel="stylesheet" href="assets/css/bootstrap.min.css">
@@ -83,27 +83,12 @@
       <h1 id="xmlrpc-message-umd">xmlrpc-message-umd</h1>
 
 <p><a href="http://badge.fury.io/js/xmlrpc-message-umd"><img src="https://badge.fury.io/js/xmlrpc-message-umd.png" alt="NPM version" /></a>
-<a href="https://david-dm.org/t1st3/xmlrpc-message-umd"><img src="https://david-dm.org/t1st3/xmlrpc-message-umd.png?theme=shields.io" alt="Dependency Status" /></a>
+<a href="https://david-dm.org/t1st3/xmlrpc-message-umd"><img src="https://david-dm.org/t1st3/xmlrpc-message-umd.svg?theme=shields.io" alt="Dependency Status" /></a>
 <a href="https://travis-ci.org/T1st3/xmlrpc-message-umd"><img src="https://travis-ci.org/T1st3/xmlrpc-message-umd.png?branch=master" alt="Build Status" /></a></p>
 
 <h2 id="about">About</h2>
 
-<p><strong><a href="http://t1st3.github.io/xmlrpc-message-umd/">Project home</a></strong></p>
-
-<p><code>xmlrpc-message-umd</code> is a Javascript XMLRPC message builder. 
-This module only provides a message builder; it does not make any request by itself.
-Basically, it is just a small set of utils that create a correct “ready-to-be-sent” XMLRPC string.</p>
-
-<p>This module is written using the <a href="https://github.com/umdjs/umd">UMD definition</a> of modules.
-It enforces the <code>returnExports.js</code> pattern, which “defines a module that works in Node, AMD and browser globals”.</p>
-
-<p>So you can use this module in the following contexts:</p>
-
-<ul>
-  <li>Node.js</li>
-  <li>Browser globals</li>
-  <li>AMD (with Require.js or any other AMD loader)</li>
-</ul>
+<p>You’ll find all about this project on its <strong><a href="http://t1st3.github.io/xmlrpc-message-umd/">project pages</a></strong></p>
 
 <h2 id="installation-for-production">Installation for production</h2>
 
@@ -111,20 +96,21 @@ It enforces the <code>returnExports.js</code> pattern, which “defines a module
 
 <p><strong>Node.js</strong></p>
 
-<p><code>xmlrpc-message-umd</code> is available on NPM.
+<p><code>xmlrpc-message-umd</code> is available on <a href="https://www.npmjs.org/package/xmlrpc-message-umd">NPM</a>
+<a href="https://www.npmjs.org/package/xmlrpc-message-umd"><img src="http://t1st3.github.io/xmlrpc-message-umd/assets/img/vendor/npm-16x16.png" alt="NPM" /></a>.
 You can install it with the following command:</p>
 
-<p><code>
-npm install xmlrpc-message-umd
-</code></p>
+<pre><code>npm install xmlrpc-message-umd
+</code></pre>
 
 <p><strong>Browser globals and AMD</strong></p>
 
-<p><code>xmlrpc-message-umd</code> is available on <a href="http://bower.io/">Bower</a>. To install it from Bower, just run </p>
+<p><code>xmlrpc-message-umd</code> is available on <a href="http://bower.io/">Bower</a>
+<a href="https://bower.io/"><img src="http://t1st3.github.io/xmlrpc-message-umd/assets/img/vendor/bower-16x16.png" alt="Bower" /></a>. 
+To install it from Bower, just run </p>
 
-<p><code>
-bower install xmlrpc-message-umd
-</code></p>
+<pre><code>bower install xmlrpc-message-umd
+</code></pre>
 
 <h2 id="installation-for-development">Installation for development</h2>
 
@@ -132,94 +118,10 @@ bower install xmlrpc-message-umd
 
 <p>Either use <code>git clone</code> command to get it:</p>
 
-<p><code>
-git clone https://github.com/T1st3/xmlrpc-message-umd.git
-</code></p>
-
-<p>Or download the <a href="https://github.com/T1st3/xmlrpc-message-umd/archive/master.zip">whole master branch</a> of the project.</p>
-
-<p>Once downloaded and unzipped or obtained via git clone, the project can be initiated with the following commands:</p>
-
-<p><code>
-cd /path/to/xmlrpc-message-umd
-grunt init
-</code></p>
-
-<h2 id="usage">Usage</h2>
-
-<p>Once the module is added to your project, you can build an XMLRPC-formatted message like this:</p>
-
-<p>```</p>
-
-<pre><code>var a = ["chicken","duck","goose"];
-var obj = new Object();
-obj.x = 20;
-obj.y = "cow";
-obj.z = 3.14;
-var date = new Date();
-var msg = new XMLRPCMessage("system.myMethod");
-msg.setMethod("system.myMethod");
-msg.addParameter("mississippi");
-msg.addParameter(7);
-msg.addParameter(false);
-msg.addParameter(a);
-msg.addParameter(obj);
-msg.addParameter(date);
-msg.xml();
+<pre><code>git clone https://github.com/T1st3/xmlrpc-message-umd.git
 </code></pre>
 
-<p>```</p>
-
-<p>in order to get the following message:</p>
-
-<p>```</p>
-
-<pre><code>&lt;?xml version="1.0"?&gt;
-&lt;methodCall&gt;
-&lt;methodName&gt;system.myMethod&lt;/methodName&gt;
-&lt;params&gt;
-&lt;param&gt;
-&lt;value&gt;&lt;string&gt;mississippi&lt;/string&gt;&lt;/value&gt;
-&lt;/param&gt;
-&lt;param&gt;
-&lt;value&gt;&lt;i4&gt;7&lt;/i4&gt;&lt;/value&gt;
-&lt;/param&gt;
-&lt;param&gt;
-&lt;value&gt;&lt;boolean&gt;0&lt;/boolean&gt;&lt;/value&gt;
-&lt;/param&gt;
-&lt;param&gt;
-&lt;value&gt;&lt;array&gt;&lt;data&gt;
-&lt;value&gt;&lt;string&gt;chicken&lt;/string&gt;&lt;/value&gt;
-&lt;value&gt;&lt;string&gt;duck&lt;/string&gt;&lt;/value&gt;
-&lt;value&gt;&lt;string&gt;goose&lt;/string&gt;&lt;/value&gt;
-&lt;/data&gt;&lt;/array&gt;
-&lt;/value&gt;
-&lt;/param&gt;
-&lt;param&gt;
-&lt;value&gt;&lt;struct&gt;
-&lt;member&gt;
-&lt;name&gt;x&lt;/name&gt;
-&lt;value&gt;&lt;i4&gt;20&lt;/i4&gt;&lt;/value&gt;
-&lt;/member&gt;
-&lt;member&gt;
-&lt;name&gt;y&lt;/name&gt;
-&lt;value&gt;&lt;string&gt;cow&lt;/string&gt;&lt;/value&gt;
-&lt;/member&gt;
-&lt;member&gt;
-&lt;name&gt;z&lt;/name&gt;
-&lt;value&gt;&lt;double&gt;3.14&lt;/double&gt;&lt;/value&gt;
-&lt;/member&gt;
-&lt;/struct&gt;
-&lt;/value&gt;
-&lt;/param&gt;
-&lt;param&gt;
-&lt;value&gt;&lt;dateTime.iso8601&gt;1131129T02:57:13&lt;/dateTime.iso8601&gt;&lt;/value&gt;
-&lt;/param&gt;
-&lt;/params&gt;
-&lt;/methodCall&gt;
-</code></pre>
-
-<p>```</p>
+<p>Or download the latest version of <a href="https://github.com/T1st3/xmlrpc-message-umd/archive/master.zip">the whole project</a>.</p>
 
 <h2 id="documentation">Documentation</h2>
 
@@ -230,34 +132,69 @@ msg.xml();
 <ul>
   <li><a href="http://t1st3.github.io/xmlrpc-message-umd/">Demo (AMD)</a></li>
   <li><a href="http://t1st3.github.io/xmlrpc-message-umd/amd_tests.html">Tests (AMD)</a></li>
-  <li><a href="http://t1st3.github.io/xmlrpc-message-umd/README.html">this README</a></li>
+  <li><a href="http://t1st3.github.io/xmlrpc-message-umd/readme.html">this README</a></li>
   <li><a href="http://t1st3.github.io/xmlrpc-message-umd/jsdoc/index.html">JSDoc</a></li>
 </ul>
 
 <h2 id="build-from-source">Build from source</h2>
 
-<p>You can build from the source using Grunt. The source is located in the “src” folder; the built target is located in the “dist” folder.</p>
+<p>First, see “Installation for development” above.
+Then, you need <a href="http://gruntjs.com/">Grunt</a> to build the project.</p>
 
-<p>To build, just run the Grunt task using:</p>
+<p>The source is located in the “src” folder; the built target is located in the “dist” folder.</p>
 
-<p><code>
-grunt build
-</code></p>
+<p>To build, just run:</p>
 
-<p>You can also launch the <code>grunt serve</code> task to load the <code>docs/</code> pages in your browser and benefit from livereload of the page in the browser once you edit one of your source file or one of the example files:</p>
+<pre><code>grunt build
+</code></pre>
 
-<p><code>
-grunt serve
-</code></p>
+<p>To test, you can use Grunt:</p>
 
-<p><a href="http://gruntjs.com/"><img src="https://cdn.gruntjs.com/builtwith.png" alt="Built with Grunt" /></a>
-<a href="https://david-dm.org/t1st3/xmlrpc-message-umd#info=devDependencies"><img src="https://david-dm.org/t1st3/xmlrpc-message-umd/dev-status.svg?theme=shields.io" alt="devDependency Status" /></a></p>
+<pre><code>grunt test
+</code></pre>
+
+<p>or you can use the npm command directly</p>
+
+<pre><code>npm tests
+</code></pre>
+
+<p><strong>Serve and livereload</strong></p>
+
+<p>You can also use the <code>serve</code> task to load the <code>docs/</code> pages in your browser.</p>
+
+<pre><code>grunt serve
+</code></pre>
+
+<p>Once it has loaded the page in the browser, this task watches for any modification in the source.
+If changes happen in the source, the task automatically reloads the page in the browser (livereload).</p>
+
+<h2 id="build-the-docs">Build the docs</h2>
+
+<p>The files contained in <code>docs/</code> are generated with another Grunt task:</p>
+
+<pre><code>grunt doc
+</code></pre>
+
+<p>Please note that this task has a few more dependencies:</p>
+
+<ul>
+  <li><a href="https://www.ruby-lang.org/">Ruby</a></li>
+  <li><a href="http://jekyllrb.com/">Jekyll</a></li>
+</ul>
+
+<p>And finally, you also need the Ruby Gem named kramdown:</p>
+
+<pre><code>gem install kramdown
+</code></pre>
 
 <h2 id="credits">Credits</h2>
 
-<p>Beside all <a href="https://david-dm.org/t1st3/xmlrpc-message-umd">dependencies</a> 
-and <a href="https://david-dm.org/t1st3/xmlrpc-message-umd#info=devDependencies">dev dependencies</a> shown on David-DM,
-this project also uses the following for its tests and examples:</p>
+<p>Status of dependencies:</p>
+
+<p><a href="https://david-dm.org/t1st3/xmlrpc-message-umd"><img src="https://david-dm.org/t1st3/xmlrpc-message-umd.svg?theme=shields.io" alt="Dependency Status" /></a>
+<a href="https://david-dm.org/t1st3/xmlrpc-message-umd#info=devDependencies"><img src="https://david-dm.org/t1st3/xmlrpc-message-umd/dev-status.svg?theme=shields.io" alt="devDependency Status" /></a></p>
+
+<p>Beside the dependencies, this project also uses the following for its tests and examples:</p>
 
 <ul>
   <li>jQuery <a href="http://jquery.com/">Website</a> / <a href="https://github.com/jquery/jquery/blob/master/MIT-LICENSE.txt">MIT License</a></li>
@@ -269,13 +206,21 @@ this project also uses the following for its tests and examples:</p>
   <li>Mocha <a href="http://visionmedia.github.io/mocha/">Website</a> / <a href="https://github.com/visionmedia/mocha/blob/master/LICENSE">MIT License</a></li>
   <li>Chai <a href="http://chaijs.com/">Website</a> / <a href="https://github.com/chaijs/chai">MIT License</a></li>
   <li>Chai-jQuery <a href="https://github.com/chaijs/chai-jquery">Website</a> / <a href="https://github.com/chaijs/chai-jquery/blob/master/LICENSE">MIT License</a></li>
+  <li>CodeMirror <a href="http://codemirror.net/">Website</a> / <a href="https://github.com/marijnh/CodeMirror/blob/master/LICENSE">MIT License</a></li>
 </ul>
+
+<p>This project is <a href="http://gruntjs.com/"><img src="https://cdn.gruntjs.com/builtwith.png" alt="Built with Grunt" /></a>.</p>
 
 <h2 id="license">License</h2>
 
 <p>This piece of code is triple-licensed: <a href="https://github.com/T1st3/xmlrpc-message-umd/blob/master/LICENSE.md">MIT / BSD / GPL licenses</a></p>
 
-<p>You can also view it in a re-formatted fashion: <a href="http://t1st3.github.io/xmlrpc-message-umd/LICENSE.html">MIT / BSD / GPL licenses</a>.</p>
+<p>You can also view it in a re-formatted fashion: <a href="http://t1st3.github.io/xmlrpc-message-umd/license.html">MIT / BSD / GPL licenses</a>.</p>
+
+<h2 id="author">Author</h2>
+
+<p><a href="https://github.com/T1st3/">T1st3</a>
+<a href="https://github.com/T1st3/"><img src="http://t1st3.github.io/xmlrpc-message-umd/assets/img/gravatar-16x16.png" alt="T1st3" /></a></p>
 
     </div>
   </div>
