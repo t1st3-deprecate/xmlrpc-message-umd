@@ -227,6 +227,7 @@ module.exports = function (grunt) {
   
   grunt.registerTask('init', [
     'bower:init',
+    'clean:ghpages',
     'copy:init',
     'template:init'
   ]);
@@ -246,6 +247,7 @@ module.exports = function (grunt) {
   ]);
 
   grunt.registerTask('doc', [
+    'clean:docs',
     'copy:docs',
     'jsdoc:dist',
     'jekyll:docsamd',
