@@ -83,11 +83,11 @@ module.exports = function (grunt) {
           {src: ['bower_components/t1st3-assets/dist/assets/css/t1st3.css'], dest: 'gh-pages/assets/css/t1st3.css'},
           {src: ['bower_components/t1st3-assets/dist/assets/css/404.css'], dest: 'gh-pages/assets/css/404.css'},
           {src: ['bower_components/t1st3-assets/dist/sitemap.xml'], dest: 'gh-pages/sitemap.xml'},
-          {expand: true, flatten: false, cwd: 'bower_components/t1st3-assets/dist/_layouts/', src: ['**/*'], dest: 'gh-pages/_layouts/'},
-          {src: ['bower_components/t1st3-assets/dist/_includes/bottom-menu.html'], dest: 'gh-pages/_includes/bottom-menu.html'},
-          {src: ['bower_components/t1st3-assets/dist/_includes/head.html'], dest: 'gh-pages/_includes/head.html'},
-          {src: ['bower_components/t1st3-assets/dist/_includes/header.html'], dest: 'gh-pages/_includes/header.html'},
-          {src: ['bower_components/t1st3-assets/dist/_includes/footer.html'], dest: 'gh-pages/_includes/footer.html'}
+          {expand: true, flatten: false, cwd: 'bower_components/t1st3-assets/dist/_layouts/', src: ['**/umd_*'], dest: 'gh-pages/_layouts/'},
+          {src: ['bower_components/t1st3-assets/dist/_includes/umd_bottom-menu.html'], dest: 'gh-pages/_includes/umd_bottom-menu.html'},
+          {src: ['bower_components/t1st3-assets/dist/_includes/umd_head.html'], dest: 'gh-pages/_includes/umd_head.html'},
+          {src: ['bower_components/t1st3-assets/dist/_includes/umd_header.html'], dest: 'gh-pages/_includes/umd_header.html'},
+          {src: ['bower_components/t1st3-assets/dist/_includes/umd_footer.html'], dest: 'gh-pages/_includes/umd_footer.html'}
         ]
       },
       readme: {
@@ -110,13 +110,13 @@ module.exports = function (grunt) {
           }
         },
         files: {
-          'gh-pages/index.html': ['bower_components/t1st3-assets/dist/project_index.html'],
-          'gh-pages/404.html': ['bower_components/t1st3-assets/dist/project_404.html'],
-          'gh-pages/amd_tests.html': ['bower_components/t1st3-assets/dist/project_tests.html'],
-          'gh-pages/jsdoc.html': ['bower_components/t1st3-assets/dist/project_jsdoc.html'],
-          'gh-pages/readme.md': ['bower_components/t1st3-assets/dist/readme.md'],
-          'gh-pages/license.md': ['bower_components/t1st3-assets/dist/license.md'],
-          'gh-pages/_config.yml': ['bower_components/t1st3-assets/dist/_config.yml']
+          'gh-pages/index.html': ['bower_components/t1st3-assets/dist/umd_index.html'],
+          'gh-pages/404.html': ['bower_components/t1st3-assets/dist/umd_404.html'],
+          'gh-pages/tests.html': ['bower_components/t1st3-assets/dist/umd_tests.html'],
+          'gh-pages/jsdoc.html': ['bower_components/t1st3-assets/dist/umd_jsdoc.html'],
+          'gh-pages/readme.md': ['bower_components/t1st3-assets/dist/umd_readme.md'],
+          'gh-pages/license.md': ['bower_components/t1st3-assets/dist/umd_license.md'],
+          'gh-pages/_config.yml': ['bower_components/t1st3-assets/dist/_umd_config.yml']
         }
       }
     },
@@ -128,6 +128,12 @@ module.exports = function (grunt) {
           dest: 'docs/'
         }
       }
+    },
+    clean: {
+      ghpages: [
+        'gh-pages/_layouts', 'gh-pages/assets/', 'gh-pages/_config.yml', 'gh-pages/*.html', 'gh-pages/*.md', 'gh-pages/lib', 'gh-pages/_includes/umd_*', '!gh-pages/.git'
+      ],
+      docs: ['docs']
     },
     matter: {
       options: {

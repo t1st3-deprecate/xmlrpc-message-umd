@@ -62,9 +62,9 @@ You can find fully functional examples, tests and documentation in the [JSDoc](h
 You can also browse these examples and tests online:
 
 - [Demo (AMD)](http://t1st3.github.io/xmlrpc-message-umd/)
-- [Tests (AMD)](http://t1st3.github.io/xmlrpc-message-umd/amd_tests.html)
+- [Tests (AMD)](http://t1st3.github.io/xmlrpc-message-umd/tests.html)
 - [this README](http://t1st3.github.io/xmlrpc-message-umd/readme.html)
-- [JSDoc](http://t1st3.github.io/xmlrpc-message-umd/jsdoc/index.html)
+- [JSDoc](http://t1st3.github.io/xmlrpc-message-umd/jsdoc.html)
 
 
 
@@ -85,12 +85,12 @@ To test, you can use Grunt:
 
 or you can use the npm command directly
 
-    npm tests
+    npm test
 
 
 **Serve and livereload**
 
-You can also use the `serve` task to load the `docs/` pages in your browser.
+You can also use the `serve` task to load the `docs` pages in your browser.
 
     grunt serve
 
@@ -99,21 +99,63 @@ If changes happen in the source, the task automatically reloads the page in the 
 
 
 
-Build the docs
+Build the docs & Github pages
 ---
-The files contained in `docs/` are generated with another Grunt task:
+The process of building the docs makes the following:
 
-    grunt doc
+* import the `gh-pages` branch transpently into your master branch (see below)
+* rebuild those gh-pages
+* compile the gh-pages to the "docs" folder
+* the "docs" folder will include all the pages of the [project pages](http://t1st3.github.io/xmlrpc-message-umd/), viewable offline
+* the "docs" folder can be served with the `grunt serve` task (see above)
 
 Please note that this task has a few more dependencies:
 
 * [Ruby](https://www.ruby-lang.org/)
 * [Jekyll](http://jekyllrb.com/)
 
-And finally, you also need the Ruby Gem named kramdown:
+And you also need the RubyGem named kramdown:
 
     gem install kramdown
 
+---
+This part may appear tricky, since you will download the `gh-pages` branch of the project right inside the folder of your current `master` branch.
+But the process is quite transparent.
+
+
+You first need to get the "gh-pages" branch of the project, 
+and inject it in the project folder:
+
+    git clone https://github.com/T1st3/xmlrpc-message-umd.git
+    mv xmlrpc-message-umd gh-pages
+    cd gh-pages
+    git checkout --orphan gh-pages
+    git rm -rf .
+    git pull origin gh-pages
+    cd ../
+
+So, you should normally have created the `gh-pages` folder, along the `dist` and `src` folders.
+
+Note that, even if you keep the `gh-pages` folder in the project, this folder:
+
+* [will not be pushed to GIT, and won't be added to any commit](https://github.com/T1st3/xmlrpc-message-umd/blob/master/.gitignore)
+* [will not be included in Bower releases](https://github.com/T1st3/xmlrpc-message-umd/blob/master/bower.json)
+* [will not be included in NPM releases](https://github.com/T1st3/xmlrpc-message-umd/blob/master/.npmignore)
+
+
+Building the docs will rebuild and compile the `gh-pages` to the `docs` folder, using the following Grunt tasks:
+
+    grunt init
+    grunt doc
+
+And since you transparently have the `gh-pages` branch being updated by those tasks right in your project folder, 
+you can commit and push to the `gh-pages` just with a `cd`:
+
+    cd gh-pages
+    git add -A
+    git commit -m 'from master branch'
+    git push origin gh-pages
+    cd ../
 
 
 Credits

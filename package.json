@@ -49,6 +49,7 @@
     "grunt-mocha-test": ">= 0.9.x",
     "grunt-jekyll": ">= 0.4.x",
     "grunt-template": ">= 0.2.x",
-    "grunt-matter": ">= 0.1.x"
+    "grunt-matter": ">= 0.1.x",
+    "grunt-contrib-clean": ">= 0.5.x"
   }
 }

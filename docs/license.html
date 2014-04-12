@@ -9,7 +9,6 @@
     <link rel="stylesheet" href="assets/css/bootstrap.min.css">
     <link rel="stylesheet" href="assets/css/font-awesome.min.css"> 
 
-    <link rel="stylesheet" href="assets/css/codemirror.css">
     <link rel="stylesheet" href="assets/css/t1st3.css">
     <script type="text/javascript" src="lib/modernizr.js"></script>
   </head>
@@ -51,7 +50,7 @@
                   <a href="readme.html"><i class="fa fa-info-circle"></i> README</a>
                 </li>
                 <li>
-                  <a href="amd_tests.html"><i class="fa fa-cogs"></i> Tests (AMD)</a>
+                  <a href="tests.html"><i class="fa fa-cogs"></i> Tests (AMD)</a>
                 </li>
                 <li>
                   <a href="jsdoc.html"><i class="fa fa-code"></i> JS Doc</a>
@@ -522,7 +521,7 @@ Public License instead of this License.</p>
     <div id="footer-wrap">
       <footer class="container" id="footer">
         <div class="row">
-          <div class="col-3 col-xs-12 col-sm-12 col-lg-3">
+          <div class="col-3 col-xs-12 col-sm-6 col-lg-3">
             <ul>
               <li>
                 <a class="btn btn-default" href="index.html"><i class="fa fa-home"></i> Home</a>
@@ -531,7 +530,7 @@ Public License instead of this License.</p>
                 <a class="btn btn-default" href="readme.html"><i class="fa fa-info-circle"></i> README</a>
               </li>
               <li>
-                <a class="btn btn-default" href="amd_tests.html"><i class="fa fa-cogs"></i> Tests (AMD)</a>
+                <a class="btn btn-default" href="tests.html"><i class="fa fa-cogs"></i> Tests (AMD)</a>
               </li>
               <li>
                 <a class="btn btn-default" href="jsdoc.html"><i class="fa fa-code"></i> JS Doc</a>
@@ -541,7 +540,7 @@ Public License instead of this License.</p>
               </li>
             </ul>
           </div>
-          <div class="col-3 col-xs-12 col-sm-12 col-lg-3">
+          <div class="col-3 col-xs-12 col-sm-6 col-lg-3">
             <ul>
               <li>
                 <a class="btn btn-default" href="https://github.com/T1st3/xmlrpc-message-umd/archive/master.zip"><i class="fa fa-download"></i> Download latest</a>
@@ -551,7 +550,7 @@ Public License instead of this License.</p>
               </li>
             </ul>
           </div>
-          <div class="col-3 col-xs-12 col-sm-12 col-lg-3">
+          <div class="col-3 col-xs-12 col-sm-6 col-lg-3">
             <ul>
               <li>
                 <a class="btn btn-default" href="https://github.com/T1st3/xmlrpc-message-umd"><i class="fa fa-github"></i> Github</a>
@@ -567,7 +566,7 @@ Public License instead of this License.</p>
               </li>
             </ul>
           </div>
-          <div class="col-3 col-xs-12 col-sm-12 col-lg-3">
+          <div class="col-3 col-xs-12 col-sm-6 col-lg-3">
             <ul>
               <li>
                 <a class="btn btn-default" href="http://t1st3.github.io"><img src="assets/img/gravatar-16x16.png"> Author</a>
@@ -588,23 +587,6 @@ Public License instead of this License.</p>
 <script src="//ajax.googleapis.com/ajax/libs/jquery/2.1.0/jquery.min.js"></script>
 <script>window.jQuery || document.write('<script src="lib/jquery.js"><\/script>')</script>
 <script src="lib/bootstrap.min.js"></script>
-<script src="lib/codemirror.js"></script>
-<script src="lib/codemirror/javascript.js"></script>
-<script>
-  $(document).ready(function () {
-    $('pre.js > code.js').each(function () {
-      var self = $(this).parent();
-      self.find('code.js').hide(),
-      CodeMirror(self[0], {
-        value: self.find('code.js').html(),
-        mode: 'javascript',
-        tabSize: 2,
-        lineNumbers: true,
-        readOnly: true
-      });
-    });
-  });
-</script>
   </body>
 </html> 
 <!--

@@ -9,7 +9,6 @@
     <link rel="stylesheet" href="assets/css/bootstrap.min.css">
     <link rel="stylesheet" href="assets/css/font-awesome.min.css"> 
 
-    <link rel="stylesheet" href="assets/css/codemirror.css">
     <link rel="stylesheet" href="assets/css/t1st3.css">
     <script type="text/javascript" src="lib/modernizr.js"></script>
   </head>
@@ -51,7 +50,7 @@
                   <a href="readme.html"><i class="fa fa-info-circle"></i> README</a>
                 </li>
                 <li>
-                  <a href="amd_tests.html"><i class="fa fa-cogs"></i> Tests (AMD)</a>
+                  <a href="tests.html"><i class="fa fa-cogs"></i> Tests (AMD)</a>
                 </li>
                 <li>
                   <a href="jsdoc.html"><i class="fa fa-code"></i> JS Doc</a>
@@ -135,9 +134,9 @@ To install it from Bower, just run </p>
 
 <ul>
   <li><a href="http://t1st3.github.io/xmlrpc-message-umd/">Demo (AMD)</a></li>
-  <li><a href="http://t1st3.github.io/xmlrpc-message-umd/amd_tests.html">Tests (AMD)</a></li>
+  <li><a href="http://t1st3.github.io/xmlrpc-message-umd/tests.html">Tests (AMD)</a></li>
   <li><a href="http://t1st3.github.io/xmlrpc-message-umd/readme.html">this README</a></li>
-  <li><a href="http://t1st3.github.io/xmlrpc-message-umd/jsdoc/index.html">JSDoc</a></li>
+  <li><a href="http://t1st3.github.io/xmlrpc-message-umd/jsdoc.html">JSDoc</a></li>
 </ul>
 
 <h2 id="build-from-source">Build from source</h2>
@@ -159,12 +158,12 @@ Then, you need <a href="http://gruntjs.com/">Grunt</a> to build the project.</p>
 
 <p>or you can use the npm command directly</p>
 
-<pre><code>npm tests
+<pre><code>npm test
 </code></pre>
 
 <p><strong>Serve and livereload</strong></p>
 
-<p>You can also use the <code>serve</code> task to load the <code>docs/</code> pages in your browser.</p>
+<p>You can also use the <code>serve</code> task to load the <code>docs</code> pages in your browser.</p>
 
 <pre><code>grunt serve
 </code></pre>
@@ -172,12 +171,17 @@ Then, you need <a href="http://gruntjs.com/">Grunt</a> to build the project.</p>
 <p>Once it has loaded the page in the browser, this task watches for any modification in the source.
 If changes happen in the source, the task automatically reloads the page in the browser (livereload).</p>
 
-<h2 id="build-the-docs">Build the docs</h2>
+<h2 id="build-the-docs--github-pages">Build the docs &amp; Github pages</h2>
 
-<p>The files contained in <code>docs/</code> are generated with another Grunt task:</p>
+<p>The process of building the docs makes the following:</p>
 
-<pre><code>grunt doc
-</code></pre>
+<ul>
+  <li>import the <code>gh-pages</code> branch transpently into your master branch (see below)</li>
+  <li>rebuild those gh-pages</li>
+  <li>compile the gh-pages to the “docs” folder</li>
+  <li>the “docs” folder will include all the pages of the <a href="http://t1st3.github.io/xmlrpc-message-umd/">project pages</a>, viewable offline</li>
+  <li>the “docs” folder can be served with the <code>grunt serve</code> task (see above)</li>
+</ul>
 
 <p>Please note that this task has a few more dependencies:</p>
 
@@ -186,9 +190,52 @@ If changes happen in the source, the task automatically reloads the page in the 
   <li><a href="http://jekyllrb.com/">Jekyll</a></li>
 </ul>
 
-<p>And finally, you also need the Ruby Gem named kramdown:</p>
+<p>And you also need the RubyGem named kramdown:</p>
 
 <pre><code>gem install kramdown
+</code></pre>
+
+<hr />
+
+<p>This part may appear tricky, since you will download the <code>gh-pages</code> branch of the project right inside the folder of your current <code>master</code> branch.
+But the process is quite transparent.</p>
+
+<p>You first need to get the “gh-pages” branch of the project, 
+and inject it in the project folder:</p>
+
+<pre><code>git clone https://github.com/T1st3/xmlrpc-message-umd.git
+mv xmlrpc-message-umd gh-pages
+cd gh-pages
+git checkout --orphan gh-pages
+git rm -rf .
+git pull origin gh-pages
+cd ../
+</code></pre>
+
+<p>So, you should normally have created the <code>gh-pages</code> folder, along the <code>dist</code> and <code>src</code> folders.</p>
+
+<p>Note that, even if you keep the <code>gh-pages</code> folder in the project, this folder:</p>
+
+<ul>
+  <li><a href="https://github.com/T1st3/xmlrpc-message-umd/blob/master/.gitignore">will not be pushed to GIT, and won’t be added to any commit</a></li>
+  <li><a href="https://github.com/T1st3/xmlrpc-message-umd/blob/master/bower.json">will not be included in Bower releases</a></li>
+  <li><a href="https://github.com/T1st3/xmlrpc-message-umd/blob/master/.npmignore">will not be included in NPM releases</a></li>
+</ul>
+
+<p>Building the docs will rebuild and compile the <code>gh-pages</code> to the <code>docs</code> folder, using the following Grunt tasks:</p>
+
+<pre><code>grunt init
+grunt doc
+</code></pre>
+
+<p>And since you transparently have the <code>gh-pages</code> branch being updated by those tasks right in your project folder, 
+you can commit and push to the <code>gh-pages</code> just with a <code>cd</code>:</p>
+
+<pre><code>cd gh-pages
+git add -A
+git commit -m 'from master branch'
+git push origin gh-pages
+cd ../
 </code></pre>
 
 <h2 id="credits">Credits</h2>
@@ -232,7 +279,7 @@ If changes happen in the source, the task automatically reloads the page in the 
     <div id="footer-wrap">
       <footer class="container" id="footer">
         <div class="row">
-          <div class="col-3 col-xs-12 col-sm-12 col-lg-3">
+          <div class="col-3 col-xs-12 col-sm-6 col-lg-3">
             <ul>
               <li>
                 <a class="btn btn-default" href="index.html"><i class="fa fa-home"></i> Home</a>
@@ -241,7 +288,7 @@ If changes happen in the source, the task automatically reloads the page in the 
                 <a class="btn btn-default" href="readme.html"><i class="fa fa-info-circle"></i> README</a>
               </li>
               <li>
-                <a class="btn btn-default" href="amd_tests.html"><i class="fa fa-cogs"></i> Tests (AMD)</a>
+                <a class="btn btn-default" href="tests.html"><i class="fa fa-cogs"></i> Tests (AMD)</a>
               </li>
               <li>
                 <a class="btn btn-default" href="jsdoc.html"><i class="fa fa-code"></i> JS Doc</a>
@@ -251,7 +298,7 @@ If changes happen in the source, the task automatically reloads the page in the 
               </li>
             </ul>
           </div>
-          <div class="col-3 col-xs-12 col-sm-12 col-lg-3">
+          <div class="col-3 col-xs-12 col-sm-6 col-lg-3">
             <ul>
               <li>
                 <a class="btn btn-default" href="https://github.com/T1st3/xmlrpc-message-umd/archive/master.zip"><i class="fa fa-download"></i> Download latest</a>
@@ -261,7 +308,7 @@ If changes happen in the source, the task automatically reloads the page in the 
               </li>
             </ul>
           </div>
-          <div class="col-3 col-xs-12 col-sm-12 col-lg-3">
+          <div class="col-3 col-xs-12 col-sm-6 col-lg-3">
             <ul>
               <li>
                 <a class="btn btn-default" href="https://github.com/T1st3/xmlrpc-message-umd"><i class="fa fa-github"></i> Github</a>
@@ -277,7 +324,7 @@ If changes happen in the source, the task automatically reloads the page in the 
               </li>
             </ul>
           </div>
-          <div class="col-3 col-xs-12 col-sm-12 col-lg-3">
+          <div class="col-3 col-xs-12 col-sm-6 col-lg-3">
             <ul>
               <li>
                 <a class="btn btn-default" href="http://t1st3.github.io"><img src="assets/img/gravatar-16x16.png"> Author</a>
@@ -298,23 +345,6 @@ If changes happen in the source, the task automatically reloads the page in the 
 <script src="//ajax.googleapis.com/ajax/libs/jquery/2.1.0/jquery.min.js"></script>
 <script>window.jQuery || document.write('<script src="lib/jquery.js"><\/script>')</script>
 <script src="lib/bootstrap.min.js"></script>
-<script src="lib/codemirror.js"></script>
-<script src="lib/codemirror/javascript.js"></script>
-<script>
-  $(document).ready(function () {
-    $('pre.js > code.js').each(function () {
-      var self = $(this).parent();
-      self.find('code.js').hide(),
-      CodeMirror(self[0], {
-        value: self.find('code.js').html(),
-        mode: 'javascript',
-        tabSize: 2,
-        lineNumbers: true,
-        readOnly: true
-      });
-    });
-  });
-</script>
   </body>
 </html> 
 <!--
