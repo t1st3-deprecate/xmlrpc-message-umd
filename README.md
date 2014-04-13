@@ -13,6 +13,13 @@ About
 You'll find all about this project on its **[project pages](http://t1st3.github.io/xmlrpc-message-umd/)**
 
 
+Links about UMD modules:
+
+* [UMD definition](https://github.com/umdjs/umd)
+* [Addy Osmani's post about modular JS](http://addyosmani.com/writing-modular-js/)
+
+
+
 
 Installation for production
 ---
@@ -31,7 +38,7 @@ You can install it with the following command:
 
 
 `xmlrpc-message-umd` is available on [Bower](http://bower.io/)
-[![Bower](http://t1st3.github.io/xmlrpc-message-umd/assets/img/vendor/bower-16x16.png)](https://bower.io/). 
+[![Bower](http://t1st3.github.io/xmlrpc-message-umd/assets/img/vendor/bower-16x16.png)](http://bower.io/). 
 To install it from Bower, just run 
 
     bower install xmlrpc-message-umd
@@ -120,7 +127,7 @@ And you also need the RubyGem named kramdown:
 
 ---
 This part may appear tricky, since you will download the `gh-pages` branch of the project right inside the folder of your current `master` branch.
-But the process is quite transparent.
+But the process is quite transparent...
 
 
 You first need to get the "gh-pages" branch of the project, 
@@ -138,24 +145,25 @@ So, you should normally have created the `gh-pages` folder, along the `dist` and
 
 Note that, even if you keep the `gh-pages` folder in the project, this folder:
 
-* [will not be pushed to GIT, and won't be added to any commit](https://github.com/T1st3/xmlrpc-message-umd/blob/master/.gitignore)
+* [will not be commited/pushed to GIT on master branch](https://github.com/T1st3/xmlrpc-message-umd/blob/master/.gitignore)
 * [will not be included in Bower releases](https://github.com/T1st3/xmlrpc-message-umd/blob/master/bower.json)
 * [will not be included in NPM releases](https://github.com/T1st3/xmlrpc-message-umd/blob/master/.npmignore)
 
 
-Building the docs will rebuild and compile the `gh-pages` to the `docs` folder, using the following Grunt tasks:
+Building the docs will rebuild the `gh-pages`, and compile them to the `docs` folder, using the following Grunt tasks:
 
     grunt init
     grunt doc
 
 And since you transparently have the `gh-pages` branch being updated by those tasks right in your project folder, 
-you can commit and push to the `gh-pages` just with a `cd`:
+you can commit and push to the `gh-pages` branch just with a couple of `cd`:
 
     cd gh-pages
     git add -A
     git commit -m 'from master branch'
     git push origin gh-pages
     cd ../
+
 
 
 Credits
@@ -180,9 +188,10 @@ Beside the dependencies, this project also uses the following for its tests and 
 * CodeMirror [Website](http://codemirror.net/) / [MIT License](https://github.com/marijnh/CodeMirror/blob/master/LICENSE)
 
 
+All  dependencies of [T1st3-assets](https://github.com/t1st3/T1st3-assets/), 
+which is my skeleton for documentation and `github pages`.
+
 This project is [![Built with Grunt](https://cdn.gruntjs.com/builtwith.png)](http://gruntjs.com/).
-
-
 
 
 
@@ -198,3 +207,24 @@ Author
 ---
 [T1st3](https://github.com/T1st3/)
 [![T1st3](http://t1st3.github.io/xmlrpc-message-umd/assets/img/gravatar-16x16.png)](https://github.com/T1st3/)
+
+
+    _
+    
+    .-') _         .-')   .-') _            
+    (  OO) )       ( OO ).(  OO) )           
+    /     '._ .---
+(_)---
+\_/     '._ .---
+--.  
+    |'--...__/_   /    _ ||'--...__/  -.   \ 
+    '--.  .--'|   \  :` `.'--.  .--'-' _'  | 
+      |  |   |   |'..`''.)  |  |     |_  <  
+      |  |   |   .-._)   \  |  |  .-.  |  | 
+      |  |   |   \       /  |  |  \ `-'   / 
+      `--'   `---
+'`---
+--'   `--'   `---
+-''  
+    
+    _

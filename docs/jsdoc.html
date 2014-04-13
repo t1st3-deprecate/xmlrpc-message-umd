@@ -4,7 +4,7 @@
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <title>xmlrpc-message-umd - JSDoc</title>
-    <meta name="description" content="">
+    <meta name="description" content="Another JavaScript UMD module (works in Require.js/AMD loaders, Node.js, and browser globals)">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <link rel="stylesheet" href="assets/css/bootstrap.min.css">
     <link rel="stylesheet" href="assets/css/font-awesome.min.css"> 
@@ -33,10 +33,14 @@
               <a href="#" class="dropdown-toggle" data-toggle="dropdown"><i class="fa fa-code-fork"></i> v0.2.2 <b class="caret"></b></a>
               <ul class="dropdown-menu">
                 <li>
-                  <a href="https://github.com/T1st3/xmlrpc-message-umd/archive/master.zip"><i class="fa fa-download"></i> Download latest</a>
+                  <a href="https://github.com/T1st3/xmlrpc-message-umd/archive/master.zip" title="Download latest version of xmlrpc-message-umd">
+                    <i class="fa fa-download"></i> Download latest
+                  </a>
                 </li>
                 <li>
-                  <a href="https://github.com/T1st3/xmlrpc-message-umd/tags"><i class="fa fa-tags"></i> All version tags</a>
+                  <a href="https://github.com/T1st3/xmlrpc-message-umd/tags" title="All version tags for xmlrpc-message-umd">
+                    <i class="fa fa-tags"></i> All version tags
+                  </a>
                 </li>
               </ul>
             </li>
@@ -44,31 +48,51 @@
               <a href="#" class="dropdown-toggle" data-toggle="dropdown"><i class="fa fa-code"></i> Docs <b class="caret"></b></a>
               <ul class="dropdown-menu">
                 <li>
-                  <a href="index.html"><i class="fa fa-home"></i> Home</a>
+                  <a href="index.html" title="xmlrpc-message-umd project pages"><i class="fa fa-home"></i> Home</a>
                 </li>
                 <li>
-                  <a href="readme.html"><i class="fa fa-info-circle"></i> README</a>
+                  <a href="readme.html" title="xmlrpc-message-umd README"><i class="fa fa-info-circle"></i> README</a>
                 </li>
                 <li>
-                  <a href="tests.html"><i class="fa fa-cogs"></i> Tests (AMD)</a>
+                  <a href="tests.html" title="xmlrpc-message-umd tests (using AMD modules)"><i class="fa fa-cogs"></i> Tests (AMD)</a>
                 </li>
                 <li>
-                  <a href="jsdoc.html"><i class="fa fa-code"></i> JS Doc</a>
+                  <a href="jsdoc.html" title="xmlrpc-message-umd JSDoc" href="jsdoc.html"><i class="fa fa-code"></i> JS Doc</a>
                 </li>
                 <li>
-                  <a href="https://github.com/T1st3/xmlrpc-message-umd/blob/master/LICENSE"><i class="fa fa-legal"></i> License</a>
+                  <a href="https://github.com/T1st3/xmlrpc-message-umd/blob/master/LICENSE" title="xmlrpc-message-umd license"><i class="fa fa-legal"></i> License</a>
                 </li>
               </ul>
             </li>
             <li class="dropdown">
               <a href="#" class="dropdown-toggle" data-toggle="dropdown"><i class="fa fa-globe"></i> Links <b class="caret"></b></a>
               <ul class="dropdown-menu">
-                <li><a href="https://github.com/T1st3/xmlrpc-message-umd"><i class="fa fa-github"></i> Github</a></li>
-                <li><a href="https://www.npmjs.org/package/xmlrpc-message-umd"><img src="assets/img/vendor/npm-16x16.png"> NPM</a></li>
-                <li><a href="https://david-dm.org/t1st3/xmlrpc-message-umd"><img src="assets/img/vendor/david-dm-16x16.png"> David</a></li>
-                <li><a href="https://travis-ci.org/T1st3/xmlrpc-message-umd"><img src="assets/img/vendor/travis-ci-16x16.png"> Travis</a></li>
+                <li>
+                  <a title="xmlrpc-message-umd on Github" href="https://github.com/T1st3/xmlrpc-message-umd">
+                    <i class="fa fa-github"></i> Github
+                  </a>
+                </li>
+                <li>
+                  <a title="xmlrpc-message-umd on NPM" href="https://www.npmjs.org/package/xmlrpc-message-umd">
+                    <img alt="NPM logo" src="assets/img/vendor/npm-16x16.png"> NPM
+                  </a>
+                </li>
+                <li>
+                  <atitle="xmlrpc-message-umd dependencies on David-dm" href="https://david-dm.org/t1st3/xmlrpc-message-umd">
+                    <img alt="David logo" src="assets/img/vendor/david-dm-16x16.png"> David
+                  </a>
+                </li>
+                <li>
+                  <a title="xmlrpc-message-umd on Travis-CI" href="https://travis-ci.org/T1st3/xmlrpc-message-umd">
+                    <img alt="Travis logo" src="assets/img/vendor/travis-ci-16x16.png"> Travis
+                  </a>
+                </li>
                 <li class="divider"></li>
-                <li><a href="http://t1st3.github.io"><img src="assets/img/gravatar-16x16.png"> Author</a></li>
+                <li>
+                  <a title="Author (T1st3) profile on Github" href="http://t1st3.github.io">
+                    <img alt="T1st3 avatar" src="assets/img/gravatar-16x16.png"> Author
+                  </a>
+                </li>
               </ul>
             </li>
           </ul>
@@ -91,52 +115,76 @@
           <div class="col-3 col-xs-12 col-sm-6 col-lg-3">
             <ul>
               <li>
-                <a class="btn btn-default" href="index.html"><i class="fa fa-home"></i> Home</a>
+                <a class="btn btn-default" title="xmlrpc-message-umd project pages" href="index.html">
+                  <i class="fa fa-home"></i> Home
+                </a>
               </li>
               <li>
-                <a class="btn btn-default" href="readme.html"><i class="fa fa-info-circle"></i> README</a>
+                <a class="btn btn-default" title="xmlrpc-message-umd README" href="readme.html">
+                  <i class="fa fa-info-circle"></i> README
+                </a>
               </li>
               <li>
-                <a class="btn btn-default" href="tests.html"><i class="fa fa-cogs"></i> Tests (AMD)</a>
+                <a class="btn btn-default" title="xmlrpc-message-umd tests (using AMD modules)" href="tests.html">
+                  <i class="fa fa-cogs"></i> Tests (AMD)
+                </a>
               </li>
               <li>
-                <a class="btn btn-default" href="jsdoc.html"><i class="fa fa-code"></i> JS Doc</a>
+                <a class="btn btn-default" title="xmlrpc-message-umd JSDoc" href="jsdoc.html">
+                  <i class="fa fa-code"></i> JS Doc
+                </a>
               </li>
               <li>
-                <a class="btn btn-default" href="https://github.com/T1st3/xmlrpc-message-umd/blob/master/LICENSE"><i class="fa fa-legal"></i> License</a>
-              </li>
-            </ul>
-          </div>
-          <div class="col-3 col-xs-12 col-sm-6 col-lg-3">
-            <ul>
-              <li>
-                <a class="btn btn-default" href="https://github.com/T1st3/xmlrpc-message-umd/archive/master.zip"><i class="fa fa-download"></i> Download latest</a>
-              </li>
-              <li>
-                <a class="btn btn-default" href="https://github.com/T1st3/xmlrpc-message-umd/tags"><i class="fa fa-tags"></i> All version tags</a>
-              </li>
-            </ul>
-          </div>
-          <div class="col-3 col-xs-12 col-sm-6 col-lg-3">
-            <ul>
-              <li>
-                <a class="btn btn-default" href="https://github.com/T1st3/xmlrpc-message-umd"><i class="fa fa-github"></i> Github</a>
-              </li>
-              <li>
-                <a class="btn btn-default" href="https://www.npmjs.org/package/xmlrpc-message-umd"><img src="assets/img/vendor/npm-16x16.png"> NPM</a>
-              </li>
-              <li>
-                <a class="btn btn-default" href="https://david-dm.org/t1st3/xmlrpc-message-umd"><img src="assets/img/vendor/david-dm-16x16.png"> David</a>
-              </li>
-              <li>
-                <a class="btn btn-default" href="https://travis-ci.org/T1st3/xmlrpc-message-umd"><img src="assets/img/vendor/travis-ci-16x16.png"> Travis</a>
+                <a class="btn btn-default" title="xmlrpc-message-umd license" href="https://github.com/T1st3/xmlrpc-message-umd/blob/master/LICENSE">
+                  <i class="fa fa-legal"></i> License
+                </a>
               </li>
             </ul>
           </div>
           <div class="col-3 col-xs-12 col-sm-6 col-lg-3">
             <ul>
               <li>
-                <a class="btn btn-default" href="http://t1st3.github.io"><img src="assets/img/gravatar-16x16.png"> Author</a>
+                <a class="btn btn-default" title="Download latest version of xmlrpc-message-umd" href="https://github.com/T1st3/xmlrpc-message-umd/archive/master.zip">
+                  <i class="fa fa-download"></i> Download latest
+                </a>
+              </li>
+              <li>
+                <a class="btn btn-default" title="All version tags for xmlrpc-message-umd" href="https://github.com/T1st3/xmlrpc-message-umd/tags">
+                  <i class="fa fa-tags"></i> All version tags
+                </a>
+              </li>
+            </ul>
+          </div>
+          <div class="col-3 col-xs-12 col-sm-6 col-lg-3">
+            <ul>
+              <li>
+                <a class="btn btn-default" title="xmlrpc-message-umd on Github" href="https://github.com/T1st3/xmlrpc-message-umd">
+                  <i class="fa fa-github"></i> Github
+                </a>
+              </li>
+              <li>
+                <a class="btn btn-default" title="xmlrpc-message-umd on NPM" href="https://www.npmjs.org/package/xmlrpc-message-umd">
+                  <img alt="NPM logo" src="assets/img/vendor/npm-16x16.png"> NPM
+                </a>
+              </li>
+              <li>
+                <a class="btn btn-default" title="xmlrpc-message-umd dependencies on David-dm" href="https://david-dm.org/t1st3/xmlrpc-message-umd">
+                  <img alt="David logo" src="assets/img/vendor/david-dm-16x16.png"> David
+                </a>
+              </li>
+              <li>
+                <a class="btn btn-default" title="xmlrpc-message-umd on Travis-CI" href="https://travis-ci.org/T1st3/xmlrpc-message-umd">
+                  <img alt="Travis logo" src="assets/img/vendor/travis-ci-16x16.png"> Travis
+                </a>
+              </li>
+            </ul>
+          </div>
+          <div class="col-3 col-xs-12 col-sm-6 col-lg-3">
+            <ul>
+              <li>
+                <a class="btn btn-default" title="Author (T1st3) profile on Github" href="http://t1st3.github.io">
+                  <img alt="T1st3 avatar" src="assets/img/gravatar-16x16.png"> Author
+                </a>
               </li>
             </ul>
           </div>
@@ -146,7 +194,7 @@
     <nav class="navbar" id="bottom">
       <div class="container">
         <ul class="nav navbar-nav navbar-right">
-          <li><a href="#"><i class="fa fa-arrow-circle-up"></i> Top</a></li>
+          <li><a title="Scroll to top" href="#"><i class="fa fa-arrow-circle-up"></i> Top</a></li>
         </ul>
       </div>
     </nav>

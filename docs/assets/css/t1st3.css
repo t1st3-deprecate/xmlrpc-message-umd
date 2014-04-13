@@ -113,7 +113,7 @@ ul {
   padding-bottom: 60px;
 }
 
-#main li:before {
+#main ul li:before {
   content: ">>";
   font-family: Monaco, "Bitstream Vera Sans Mono", "Lucida Console", Terminal, monospace;
   font-size: 13px;

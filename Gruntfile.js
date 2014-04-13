@@ -25,12 +25,12 @@ module.exports = function (grunt) {
         reporter: require('jshint-stylish')
       },
       all: [
-        'src/**/*.js', 'gh-pages/lib/index.js', 'gh-pages/lib/amd_tests.js', 'node_test.js', 'Gruntfile.js'
+        'src/**/*.js', 'gh-pages/lib/index.js', 'gh-pages/lib/tests.js', 'node_test.js', 'Gruntfile.js'
       ]
     },
     jscs: {
       src: [
-        'src/**/*.js', 'gh-pages/lib/index.js', 'gh-pages/lib/amd_tests.js', 'node_test.js', 'Gruntfile.js'
+        'src/**/*.js', 'gh-pages/lib/index.js', 'gh-pages/lib/tests.js', 'node_test.js', 'Gruntfile.js'
       ],
       options: {
         config: '.jscs.json'
