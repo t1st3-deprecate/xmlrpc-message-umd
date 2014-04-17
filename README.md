@@ -4,7 +4,7 @@ xmlrpc-message-umd
 
 [![NPM version](https://badge.fury.io/js/xmlrpc-message-umd.svg)](http://badge.fury.io/js/xmlrpc-message-umd)
 [![Dependency Status](https://david-dm.org/t1st3/xmlrpc-message-umd.svg?theme=shields.io)](https://david-dm.org/t1st3/xmlrpc-message-umd)
-[![Build Status](https://travis-ci.org/T1st3/xmlrpc-message-umd.png?branch=master)](https://travis-ci.org/T1st3/xmlrpc-message-umd)
+[![Build Status](https://travis-ci.org/T1st3/xmlrpc-message-umd.svg?branch=master)](https://travis-ci.org/T1st3/xmlrpc-message-umd)
 
 
 
@@ -37,15 +37,15 @@ You can install it with the following command:
 **Browser globals and AMD**
 
 
-`xmlrpc-message-umd` is available on [Bower](http://bower.io/)
-[![Bower](http://t1st3.github.io/xmlrpc-message-umd/assets/img/vendor/bower-16x16.png)](http://bower.io/). 
+`xmlrpc-message-umd` is available on [Bower](http://bower.io/search/?q=xmlrpc-message-umd)
+[![Bower](http://t1st3.github.io/xmlrpc-message-umd/assets/img/vendor/bower-16x16.png)](http://bower.io/search/?q=xmlrpc-message-umd). 
 To install it from Bower, just run 
 
     bower install xmlrpc-message-umd
 
 Published versions on both NPM and Bower should stay in sync:
 [![NPM version](https://badge.fury.io/js/xmlrpc-message-umd.svg)](http://badge.fury.io/js/xmlrpc-message-umd)
-[![NPM version](https://badge.fury.io/bo/xmlrpc-message-umd.svg)](http://badge.fury.io/js/xmlrpc-message-umd)
+[![Bower version](https://badge.fury.io/bo/xmlrpc-message-umd.svg)](http://badge.fury.io/js/xmlrpc-message-umd)
 
 
 
@@ -59,6 +59,10 @@ Either use `git clone` command to get it:
 
 Or download the latest version of [the whole project](https://github.com/T1st3/xmlrpc-message-umd/archive/master.zip).
 
+Then, get the dependencies of the project:
+
+    npm install
+    bower install
 
 
 
@@ -69,7 +73,7 @@ You can find fully functional examples, tests and documentation in the [JSDoc](h
 You can also browse these examples and tests online:
 
 - [Demo (AMD)](http://t1st3.github.io/xmlrpc-message-umd/)
-- [Tests (AMD)](http://t1st3.github.io/xmlrpc-message-umd/tests.html)
+- [Tests (AMD & global)](http://t1st3.github.io/xmlrpc-message-umd/coverage.html)
 - [this README](http://t1st3.github.io/xmlrpc-message-umd/readme.html)
 - [JSDoc](http://t1st3.github.io/xmlrpc-message-umd/jsdoc.html)
 
@@ -77,8 +81,18 @@ You can also browse these examples and tests online:
 
 Build from source
 ---
-First, see "Installation for development" above.
-Then, you need [Grunt](http://gruntjs.com/) to build the project.
+First, see "Installation for development" above. 
+Do not forget to get the dependencies!
+
+Then, you also need to install [Grunt](http://gruntjs.com/) globally to build the project.
+
+    npm install -g grunt-cli
+
+See more at the ["Getting started with Grunt" page](http://gruntjs.com/getting-started).
+
+
+---
+You are now ready to build!
 
 The source is located in the "src" folder; the built target is located in the "dist" folder.
 
@@ -115,18 +129,34 @@ The process of building the docs makes the following:
 * compile the gh-pages to the "docs" folder
 * the "docs" folder will include all the pages of the [project pages](http://t1st3.github.io/xmlrpc-message-umd/), viewable offline
 * the "docs" folder can be served with the `grunt serve` task (see above)
+* finally update the README.md file in the root folder with README.md from the gh-pages
 
 Please note that this task has a few more dependencies:
 
-* [Ruby](https://www.ruby-lang.org/)
+* [Ruby](https://www.ruby-lang.org/) and [RubyGems](https://rubygems.org/)
 * [Jekyll](http://jekyllrb.com/)
+* [Kramdown](http://kramdown.gettalong.org/)
 
-And you also need the RubyGem named kramdown:
 
+Once you have installed Ruby and RubyGems, 
+you can get Jekyll and Kramdown "the RubyGem-way":
+
+    gem install jekyll
     gem install kramdown
 
+Note that on MacOS or GNU/Linux, 
+you may want to install those Gems with `sudo` 
+to install them globally on your system:
+
+    sudo gem install jekyll
+    sudo gem install kramdown
+
+
+
 ---
-This part may appear tricky, since you will download the `gh-pages` branch of the project right inside the folder of your current `master` branch.
+This part may appear tricky, 
+since you will download the `gh-pages` branch of the project 
+right inside the root folder of your current `master` branch.
 But the process is quite transparent...
 
 
@@ -150,9 +180,8 @@ Note that, even if you keep the `gh-pages` folder in the project, this folder:
 * [will not be included in NPM releases](https://github.com/T1st3/xmlrpc-message-umd/blob/master/.npmignore)
 
 
-Building the docs will rebuild the `gh-pages`, and compile them to the `docs` folder, using the following Grunt tasks:
+Building the docs will rebuild the `gh-pages`, and compile them to the `docs` folder, using the following Grunt task:
 
-    grunt init
     grunt doc
 
 And since you transparently have the `gh-pages` branch being updated by those tasks right in your project folder, 
@@ -186,9 +215,10 @@ Beside the dependencies, this project also uses the following for its tests and 
 * Chai [Website](http://chaijs.com/) / [MIT License](https://github.com/chaijs/chai)
 * Chai-jQuery [Website](https://github.com/chaijs/chai-jquery) / [MIT License](https://github.com/chaijs/chai-jquery/blob/master/LICENSE)
 * CodeMirror [Website](http://codemirror.net/) / [MIT License](https://github.com/marijnh/CodeMirror/blob/master/LICENSE)
+* Normalize.css [Website](http://necolas.github.io/normalize.css/) / [MIT License](https://github.com/necolas/normalize.css/blob/master/LICENSE.md)
 
 
-All  dependencies of [T1st3-assets](https://github.com/t1st3/T1st3-assets/), 
+They're all dependencies (in some way) of [T1st3-assets](https://github.com/t1st3/T1st3-assets/), 
 which is my skeleton for documentation and `github pages`.
 
 This project is [![Built with Grunt](https://cdn.gruntjs.com/builtwith.png)](http://gruntjs.com/).
@@ -205,26 +235,6 @@ You can also view it in a re-formatted fashion: [MIT / BSD / GPL licenses](http:
 
 Author
 ---
-[T1st3](https://github.com/T1st3/)
+[T1st3](https://github.com/T1st3/) 
 [![T1st3](http://t1st3.github.io/xmlrpc-message-umd/assets/img/gravatar-16x16.png)](https://github.com/T1st3/)
 
-
-    _
-    
-    .-') _         .-')   .-') _            
-    (  OO) )       ( OO ).(  OO) )           
-    /     '._ .---
-(_)---
-\_/     '._ .---
---.  
-    |'--...__/_   /    _ ||'--...__/  -.   \ 
-    '--.  .--'|   \  :` `.'--.  .--'-' _'  | 
-      |  |   |   |'..`''.)  |  |     |_  <  
-      |  |   |   .-._)   \  |  |  .-.  |  | 
-      |  |   |   \       /  |  |  \ `-'   / 
-      `--'   `---
-'`---
---'   `--'   `---
--''  
-    
-    _

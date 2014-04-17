@@ -1,9 +1,9 @@
-/*
+/*!
 * xmlrpc-message-umd
 * 
 * @link https://github.com/T1st3/xmlrpc-message-umd
 * @author T1st3
-* @version 0.2.2
+* @version 0.2.3
 * @license https://github.com/T1st3/xmlrpc-message-umd/blob/master/LICENSE
 * 
 * 
@@ -27,12 +27,15 @@
 'use strict';
 
 (function (window, factory) {
+  // Test for AMD modules
   if (typeof define === 'function' && define.amd) {
     // AMD
     define([], factory);
+  // Test for Node.js
   } else if (typeof exports === 'object') {
     // Node
     module.exports = factory();
+  // Browser globals
   } else {
     // Browser globals
     window.XMLRPCMessage = factory();
@@ -48,7 +51,11 @@
   * @constructor
   * @since 0.1.0
   */
-  var XMLRPCMessage = function () {
+  var XMLRPCMessage = function (method) {
+    // set method if supplied
+    if (method) {
+      this.setMethod(method);
+    }
     this.params = [];
     return this;
   };
@@ -61,10 +68,14 @@
   * @since 0.1.0
   */
   XMLRPCMessage.prototype.setMethod = function (methodName) {
+    // Check methodName 
     if (!methodName) {
-      return;
+      // keep chainability
+      return this;
     }
     this.method = methodName;
+    // keep chainability
+    return this;
   };
 
   /**
@@ -75,10 +86,14 @@
   * @since 0.1.0
   */
   XMLRPCMessage.prototype.addParameter = function (data) {
+    // Check data
     if (arguments.length === 0) {
-      return;
+      // keep chainability
+      return this;
     }
     this.params[this.params.length] = data;
+    // keep chainability
+    return this;
   };
 
   /**
@@ -89,20 +104,18 @@
   */
   XMLRPCMessage.prototype.xml = function () {
 
-    var method = this.method;
-
     var xml = '';
     xml += '<?xml version=\'1.0\'?>\n';
     xml += '<methodCall>\n';
-    xml += '<methodName>' + method + '</methodName>\n';
+    xml += '<methodName>' + this.method + '</methodName>\n';
     xml += '<params>\n';
 
     for (var i = 0; i < this.params.length; i++) {
       var data = this.params[i];
       xml += '<param>\n';
 
-      xml += '<value>' + XMLRPCMessage.getParamXML(XMLRPCMessage.dataTypeOf(data), data) + '</value>\n';
-      
+      xml += '<value>' + XMLRPCMessage.getParamXML(data, XMLRPCMessage.dataTypeOf(data)) + '</value>\n';
+
       xml += '</param>\n';
     }
     
@@ -120,12 +133,16 @@
   * @since 0.1.0
   */
   XMLRPCMessage.dataTypeOf = function (o) {
+    // false if no o
+    if (!o && o !== false) {
+      return false;
+    }
     var type = typeof(o);
     type = type.toLowerCase();
     switch (type) {
       case 'number':
         if (Math.round(o) === o) {
-          type = 'i4';
+          type = 'int';
         } else {
           type = 'double';
         }
@@ -150,11 +167,15 @@
   * XMLize a string or a number
   * @method doValueXML
   * @memberof XMLRPCMessage
-  * @param {string} type
   * @param {*} data
+  * @param {string} type
   * @since 0.1.0
   */
-  XMLRPCMessage.doValueXML = function (type, data) {
+  XMLRPCMessage.doValueXML = function (data, type) {
+    // empty if no data
+    if (!data) {
+      return '';
+    }
     var xml = '<' + type + '>' + data + '</' + type + '>';
     return xml;
   };
@@ -167,6 +188,10 @@
   * @since 0.1.0
   */
   XMLRPCMessage.doBooleanXML = function (data) {
+    // empty if no data
+    if (!data && data !== false) {
+      return '';
+    }
     var value = (data === true) ? 1 : 0;
     var xml = '<boolean>' + value + '</boolean>';
     return xml;
@@ -180,8 +205,12 @@
   * @since 0.1.0
   */
   XMLRPCMessage.doDateXML = function (data) {
+    // empty if no data
+    if (!data) {
+      return '';
+    }
     var xml = '<dateTime.iso8601>';
-    xml += dateToISO8601(data);
+    xml += XMLRPCMessage.dateToISO8601(data);
     xml += '</dateTime.iso8601>';
     return xml;
   };
@@ -194,9 +223,13 @@
   * @since 0.1.0
   */
   XMLRPCMessage.doArrayXML = function (data) {
+    // empty if no data
+    if (!data) {
+      return '';
+    }
     var xml = '<array><data>\n';
     for (var i = 0; i < data.length; i++) {
-      xml += '<value>' + XMLRPCMessage.getParamXML(XMLRPCMessage.dataTypeOf(data[i]), data[i]) + '</value>\n';
+      xml += '<value>' + XMLRPCMessage.getParamXML(data[i], XMLRPCMessage.dataTypeOf(data[i])) + '</value>\n';
     }
     xml += '</data></array>\n';
     return xml;
@@ -210,11 +243,15 @@
   * @since 0.1.0
   */
   XMLRPCMessage.doStructXML = function (data) {
+    // empty if no data
+    if (!data) {
+      return '';
+    }
     var xml = '<struct>\n';
     for (var i in data) {
       xml += '<member>\n';
       xml += '<name>' + i + '</name>\n';
-      xml += '<value>' + XMLRPCMessage.getParamXML(XMLRPCMessage.dataTypeOf(data[i]), data[i]) + '</value>\n';
+      xml += '<value>' + XMLRPCMessage.getParamXML(data[i], XMLRPCMessage.dataTypeOf(data[i])) + '</value>\n';
       xml += '</member>\n';
     }
     xml += '</struct>\n';
@@ -225,11 +262,17 @@
   * XMLize any var
   * @method getParamXML
   * @memberof XMLRPCMessage
-  * @param {string} type
   * @param {*} data
+  * @param {string} type
   * @since 0.1.0
   */
-  XMLRPCMessage.getParamXML = function (type, data) {
+  XMLRPCMessage.getParamXML = function (data, type) {
+    if (!data && data !== false) {
+      return false;
+    }
+    if (!type) {
+      type = 'string';
+    }
     var xml;
     switch (type) {
       case 'date':
@@ -245,7 +288,7 @@
         xml = XMLRPCMessage.doBooleanXML(data);
         break;
       default:
-        xml = XMLRPCMessage.doValueXML(type, data);
+        xml = XMLRPCMessage.doValueXML(data, type);
         break;
     }
     return xml;
@@ -258,11 +301,19 @@
   * @param {Object} date
   * @since 0.1.0
   */
-  var dateToISO8601 = function (date) {
+  XMLRPCMessage.dateToISO8601 = function (date) {
+    // return false if no data
+    if (!date) {
+      return false;
+    }
+    // return false if date not an object or not instance of Date
+    if (typeof(date) !== 'object' || !(date instanceof Date)) {
+      return false;
+    }
     var year = date.getYear().toString();
-    var month = leadingZero(date.getMonth().toString());
-    var day = leadingZero(date.getDate().toString());
-    var time = leadingZero(date.getHours().toString()) + ':' + leadingZero(date.getMinutes().toString()) + ':' + leadingZero(date.getSeconds().toString());
+    var month = XMLRPCMessage.leadingZero(date.getMonth().toString());
+    var day = XMLRPCMessage.leadingZero(date.getDate().toString());
+    var time = XMLRPCMessage.leadingZero(date.getHours().toString()) + ':' + XMLRPCMessage.leadingZero(date.getMinutes().toString()) + ':' + XMLRPCMessage.leadingZero(date.getSeconds().toString());
 
     var converted = year + month + day + 'T' + time;
     return converted;
@@ -275,7 +326,13 @@
   * @param {number|string} n
   * @since 0.1.0
   */
-  var leadingZero = function (n) {
+  XMLRPCMessage.leadingZero = function (n) {
+    if (!n) {
+      return false;
+    }
+    if (typeof(n) !== 'number' && typeof(n) !== 'string') {
+      return false;
+    }
     if (n.length === 1) {
       n = '0' + n;
     }

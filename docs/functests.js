@@ -1,53 +1,67 @@
+/* global define,describe,it,mocha,chai */
+/* jshint unused:false */
+
 'use strict';
 
-/* global mocha,describe,it */
+(function (window, factory) {
+  // Test for AMD modules
+  if (typeof define === 'function' && define.amd) {
+    // AMD
+    require.config({
+      baseUrl: '',
+      paths: {
+        jquery: 'lib/jquery',
+        mocha: 'lib/mocha',
+        chai: 'lib/chai',
+        chaijquery: 'lib/chai-jquery',
+        bootstrap: 'lib/bootstrap.min',
+        xmlrpcmessage: 'lib/xmlrpc-message-umd',
+      },
+      shim: {
+        jquery: {
+          exports: '$'
+        },
+        chaijquery: ['jquery', 'chai'],
+        bootstrap: ['jquery'],
+        xmlrpcmessage: {
+          exports: 'XMLRPCMessage'
+        }
+      },
+      scriptType: 'text/javascript'
+    });
+    define([
+      'chai',
+      'xmlrpcmessage',
+      'jquery',
+      'mocha',
+      'bootstrap'
+    ], factory);
+  // Test for Node.js
+  } else if (typeof exports === 'object') {
+    // Node
+    module.exports = factory(require('chai'), require('../src/xmlrpc-message-umd'));
+  // Browser globals
+  } else {
+    // Browser globals
+    /* global XMLRPCMessage */
+    window.XMLRPCMessage = factory(chai, XMLRPCMessage);
+  }
+}(this, function (chai, XMLRPCMessage) {
 
-require.config({
-  baseUrl: '',
-  paths: {
-    jquery: 'lib/jquery',
-    mocha: 'lib/mocha',
-    chai: 'lib/chai',
-    chaijquery: 'lib/chai-jquery',
-    bootstrap: 'lib/bootstrap.min',
-    xmlrpcmessage: 'lib/xmlrpc-message-umd',
-  },
-  shim: {
-    jquery: {
-      exports: '$'
-    },
-    chaijquery: ['jquery', 'chai'],
-    bootstrap: ['jquery'],
-    xmlrpcmessage: {
-      exports: 'XMLRPCMessage'
-    }
-  },
-  scriptType: 'text/javascript'
-});
-
-require([
-  'chai',
-  'chaijquery',
-  'jquery',
-  'xmlrpcmessage',
-  'mocha',
-  'bootstrap'
-], function (chai, chaiJquery, $, XMLRPCMessage) {
-
+  if (typeof exports !== 'object') {
+    mocha.setup('bdd');
+  }
   var should = chai.should();
-  chai.use(chaiJquery);
 
-  mocha.setup('bdd');
-
-  describe('xmlrpc-message tests', function () {
-    describe('#callbackWorks()', function () {
+  describe('Functional tests', function () {
+    describe('Test XMLRPC', function () {
       it('should return the correct XML', function (done) {
         var a = ['chicken', 'duck', 'goose'];
         var obj = {};
         obj.x = 20;
         obj.y = 'cow';
         obj.z = 3.14;
-        var msg = new XMLRPCMessage('system.myMethod');
+        var msg = new XMLRPCMessage();
         msg.setMethod('system.myMethod');
         msg.addParameter('mississippi');
         msg.addParameter(7);
@@ -55,7 +69,7 @@ require([
         msg.addParameter(a);
         msg.addParameter(obj);
         
-        var str = "<?xml version='1.0'?>\n";
+        var str = '<?xml version=\'1.0\'?>\n';
         str += '<methodCall>\n';
         str += '<methodName>system.myMethod</methodName>\n';
         str += '<params>\n';
@@ -63,7 +77,7 @@ require([
         str += '<value><string>mississippi</string></value>\n';
         str += '</param>\n';
         str += '<param>\n';
-        str += '<value><i4>7</i4></value>\n';
+        str += '<value><int>7</int></value>\n';
         str += '</param>\n';
         str += '<param>\n';
         str += '<value><boolean>0</boolean></value>\n';
@@ -80,7 +94,7 @@ require([
         str += '<value><struct>\n';
         str += '<member>\n';
         str += '<name>x</name>\n';
-        str += '<value><i4>20</i4></value>\n';
+        str += '<value><int>20</int></value>\n';
         str += '</member>\n';
         str += '<member>\n';
         str += '<name>y</name>\n';
@@ -95,12 +109,14 @@ require([
         str += '</param>\n';
         str += '</params>\n';
         str += '</methodCall>';
-        
+
         msg.xml().should.equal(str);
         done();
       });
     });
   });
   
-  mocha.run();
-});
+  if (typeof exports !== 'object') {
+    mocha.run();
+  }
+}));

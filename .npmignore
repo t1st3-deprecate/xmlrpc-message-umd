@@ -2,6 +2,7 @@ bower_components
 .bowerrc
 bower.json
 
+.git
 .gitignore
 .gitattributes
 
@@ -17,5 +18,4 @@ Gruntfile.js
 docs
 gh-pages
 src
-
-node_test.json 
+test

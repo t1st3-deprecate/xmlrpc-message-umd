@@ -9,12 +9,12 @@
     <link rel="stylesheet" href="assets/css/bootstrap.min.css">
     <link rel="stylesheet" href="assets/css/font-awesome.min.css"> 
 
-    <link rel="stylesheet" href="assets/css/t1st3.css">
+    <link rel="stylesheet" href="assets/css/t1st3.min.css">
     <script type="text/javascript" src="lib/modernizr.js"></script>
   </head>
   <body>
     <a href="https://github.com/T1st3/xmlrpc-message-umd/">
-      <img id="ghribbon" src="https://s3.amazonaws.com/github/ribbons/forkme_right_orange_ff7600.png" alt="Fork me on GitHub">
+      <img id="ghribbon" src="assets/img/forkme_github.png" alt="Fork me on GitHub">
     </a>
     <nav class="navbar navbar-default navbar-fixed-top" id="top" role="navigation">
       <div class="container">
@@ -30,7 +30,7 @@
         <div class="collapse navbar-collapse" id="t1st3-navbar-collapse">
           <ul class="nav navbar-nav navbar-right">
             <li class="dropdown">
-              <a href="#" class="dropdown-toggle" data-toggle="dropdown"><i class="fa fa-code-fork"></i> v0.2.2 <b class="caret"></b></a>
+              <a href="#" class="dropdown-toggle" data-toggle="dropdown"><i class="fa fa-code-fork"></i> v0.2.3 <b class="caret"></b></a>
               <ul class="dropdown-menu">
                 <li>
                   <a href="https://github.com/T1st3/xmlrpc-message-umd/archive/master.zip" title="Download latest version of xmlrpc-message-umd">
@@ -41,6 +41,9 @@
                   <a href="https://github.com/T1st3/xmlrpc-message-umd/tags" title="All version tags for xmlrpc-message-umd">
                     <i class="fa fa-tags"></i> All version tags
                   </a>
+                </li>
+                <li>
+                  <a href="https://github.com/T1st3/xmlrpc-message-umd/blob/master/LICENSE" title="xmlrpc-message-umd license"><i class="fa fa-legal"></i> License</a>
                 </li>
               </ul>
             </li>
@@ -54,13 +57,10 @@
                   <a href="readme.html" title="xmlrpc-message-umd README"><i class="fa fa-info-circle"></i> README</a>
                 </li>
                 <li>
-                  <a href="tests.html" title="xmlrpc-message-umd tests (using AMD modules)"><i class="fa fa-cogs"></i> Tests (AMD)</a>
+                  <a href="coverage.html" title="xmlrpc-message-umd tests"><i class="fa fa-cogs"></i> Tests</a>
                 </li>
                 <li>
                   <a href="jsdoc.html" title="xmlrpc-message-umd JSDoc" href="jsdoc.html"><i class="fa fa-code"></i> JS Doc</a>
-                </li>
-                <li>
-                  <a href="https://github.com/T1st3/xmlrpc-message-umd/blob/master/LICENSE" title="xmlrpc-message-umd license"><i class="fa fa-legal"></i> License</a>
                 </li>
               </ul>
             </li>
@@ -78,7 +78,7 @@
                   </a>
                 </li>
                 <li>
-                  <atitle="xmlrpc-message-umd dependencies on David-dm" href="https://david-dm.org/t1st3/xmlrpc-message-umd">
+                  <a title="xmlrpc-message-umd dependencies on David-dm" href="https://david-dm.org/t1st3/xmlrpc-message-umd">
                     <img alt="David logo" src="assets/img/vendor/david-dm-16x16.png"> David
                   </a>
                 </li>
@@ -107,7 +107,7 @@
 
 <p><a href="http://badge.fury.io/js/xmlrpc-message-umd"><img src="https://badge.fury.io/js/xmlrpc-message-umd.svg" alt="NPM version" /></a>
 <a href="https://david-dm.org/t1st3/xmlrpc-message-umd"><img src="https://david-dm.org/t1st3/xmlrpc-message-umd.svg?theme=shields.io" alt="Dependency Status" /></a>
-<a href="https://travis-ci.org/T1st3/xmlrpc-message-umd"><img src="https://travis-ci.org/T1st3/xmlrpc-message-umd.png?branch=master" alt="Build Status" /></a></p>
+<a href="https://travis-ci.org/T1st3/xmlrpc-message-umd"><img src="https://travis-ci.org/T1st3/xmlrpc-message-umd.svg?branch=master" alt="Build Status" /></a></p>
 
 <h2 id="about">About</h2>
 
@@ -135,8 +135,8 @@ You can install it with the following command:</p>
 
 <p><strong>Browser globals and AMD</strong></p>
 
-<p><code>xmlrpc-message-umd</code> is available on <a href="http://bower.io/">Bower</a>
-<a href="http://bower.io/"><img src="http://t1st3.github.io/xmlrpc-message-umd/assets/img/vendor/bower-16x16.png" alt="Bower" /></a>. 
+<p><code>xmlrpc-message-umd</code> is available on <a href="http://bower.io/search/?q=xmlrpc-message-umd">Bower</a>
+<a href="http://bower.io/search/?q=xmlrpc-message-umd"><img src="http://t1st3.github.io/xmlrpc-message-umd/assets/img/vendor/bower-16x16.png" alt="Bower" /></a>. 
 To install it from Bower, just run </p>
 
 <pre><code>bower install xmlrpc-message-umd
@@ -144,7 +144,7 @@ To install it from Bower, just run </p>
 
 <p>Published versions on both NPM and Bower should stay in sync:
 <a href="http://badge.fury.io/js/xmlrpc-message-umd"><img src="https://badge.fury.io/js/xmlrpc-message-umd.svg" alt="NPM version" /></a>
-<a href="http://badge.fury.io/js/xmlrpc-message-umd"><img src="https://badge.fury.io/bo/xmlrpc-message-umd.svg" alt="NPM version" /></a></p>
+<a href="http://badge.fury.io/js/xmlrpc-message-umd"><img src="https://badge.fury.io/bo/xmlrpc-message-umd.svg" alt="Bower version" /></a></p>
 
 <h2 id="installation-for-development">Installation for development</h2>
 
@@ -157,6 +157,12 @@ To install it from Bower, just run </p>
 
 <p>Or download the latest version of <a href="https://github.com/T1st3/xmlrpc-message-umd/archive/master.zip">the whole project</a>.</p>
 
+<p>Then, get the dependencies of the project:</p>
+
+<pre><code>npm install
+bower install
+</code></pre>
+
 <h2 id="documentation">Documentation</h2>
 
 <p>You can find fully functional examples, tests and documentation in the <a href="http://usejsdoc.org/">JSDoc</a> format in the <code>docs</code> folder.</p>
@@ -165,15 +171,26 @@ To install it from Bower, just run </p>
 
 <ul>
   <li><a href="http://t1st3.github.io/xmlrpc-message-umd/">Demo (AMD)</a></li>
-  <li><a href="http://t1st3.github.io/xmlrpc-message-umd/tests.html">Tests (AMD)</a></li>
+  <li><a href="http://t1st3.github.io/xmlrpc-message-umd/coverage.html">Tests (AMD &amp; global)</a></li>
   <li><a href="http://t1st3.github.io/xmlrpc-message-umd/readme.html">this README</a></li>
   <li><a href="http://t1st3.github.io/xmlrpc-message-umd/jsdoc.html">JSDoc</a></li>
 </ul>
 
 <h2 id="build-from-source">Build from source</h2>
 
-<p>First, see “Installation for development” above.
-Then, you need <a href="http://gruntjs.com/">Grunt</a> to build the project.</p>
+<p>First, see “Installation for development” above. 
+Do not forget to get the dependencies!</p>
+
+<p>Then, you also need to install <a href="http://gruntjs.com/">Grunt</a> globally to build the project.</p>
+
+<pre><code>npm install -g grunt-cli
+</code></pre>
+
+<p>See more at the <a href="http://gruntjs.com/getting-started">“Getting started with Grunt” page</a>.</p>
+
+<hr />
+
+<p>You are now ready to build!</p>
 
 <p>The source is located in the “src” folder; the built target is located in the “dist” folder.</p>
 
@@ -212,23 +229,37 @@ If changes happen in the source, the task automatically reloads the page in the 
   <li>compile the gh-pages to the “docs” folder</li>
   <li>the “docs” folder will include all the pages of the <a href="http://t1st3.github.io/xmlrpc-message-umd/">project pages</a>, viewable offline</li>
   <li>the “docs” folder can be served with the <code>grunt serve</code> task (see above)</li>
+  <li>finally update the README.md file in the root folder with README.md from the gh-pages</li>
 </ul>
 
 <p>Please note that this task has a few more dependencies:</p>
 
 <ul>
-  <li><a href="https://www.ruby-lang.org/">Ruby</a></li>
+  <li><a href="https://www.ruby-lang.org/">Ruby</a> and <a href="https://rubygems.org/">RubyGems</a></li>
   <li><a href="http://jekyllrb.com/">Jekyll</a></li>
+  <li><a href="http://kramdown.gettalong.org/">Kramdown</a></li>
 </ul>
 
-<p>And you also need the RubyGem named kramdown:</p>
+<p>Once you have installed Ruby and RubyGems, 
+you can get Jekyll and Kramdown “the RubyGem-way”:</p>
 
-<pre><code>gem install kramdown
+<pre><code>gem install jekyll
+gem install kramdown
+</code></pre>
+
+<p>Note that on MacOS or GNU/Linux, 
+you may want to install those Gems with <code>sudo</code> 
+to install them globally on your system:</p>
+
+<pre><code>sudo gem install jekyll
+sudo gem install kramdown
 </code></pre>
 
 <hr />
 
-<p>This part may appear tricky, since you will download the <code>gh-pages</code> branch of the project right inside the folder of your current <code>master</code> branch.
+<p>This part may appear tricky, 
+since you will download the <code>gh-pages</code> branch of the project 
+right inside the root folder of your current <code>master</code> branch.
 But the process is quite transparent…</p>
 
 <p>You first need to get the “gh-pages” branch of the project, 
@@ -253,10 +284,9 @@ cd ../
   <li><a href="https://github.com/T1st3/xmlrpc-message-umd/blob/master/.npmignore">will not be included in NPM releases</a></li>
 </ul>
 
-<p>Building the docs will rebuild the <code>gh-pages</code>, and compile them to the <code>docs</code> folder, using the following Grunt tasks:</p>
+<p>Building the docs will rebuild the <code>gh-pages</code>, and compile them to the <code>docs</code> folder, using the following Grunt task:</p>
 
-<pre><code>grunt init
-grunt doc
+<pre><code>grunt doc
 </code></pre>
 
 <p>And since you transparently have the <code>gh-pages</code> branch being updated by those tasks right in your project folder, 
@@ -289,9 +319,10 @@ cd ../
   <li>Chai <a href="http://chaijs.com/">Website</a> / <a href="https://github.com/chaijs/chai">MIT License</a></li>
   <li>Chai-jQuery <a href="https://github.com/chaijs/chai-jquery">Website</a> / <a href="https://github.com/chaijs/chai-jquery/blob/master/LICENSE">MIT License</a></li>
   <li>CodeMirror <a href="http://codemirror.net/">Website</a> / <a href="https://github.com/marijnh/CodeMirror/blob/master/LICENSE">MIT License</a></li>
+  <li>Normalize.css <a href="http://necolas.github.io/normalize.css/">Website</a> / <a href="https://github.com/necolas/normalize.css/blob/master/LICENSE.md">MIT License</a></li>
 </ul>
 
-<p>All  dependencies of <a href="https://github.com/t1st3/T1st3-assets/">T1st3-assets</a>, 
+<p>They’re all dependencies (in some way) of <a href="https://github.com/t1st3/T1st3-assets/">T1st3-assets</a>, 
 which is my skeleton for documentation and <code>github pages</code>.</p>
 
 <p>This project is <a href="http://gruntjs.com/"><img src="https://cdn.gruntjs.com/builtwith.png" alt="Built with Grunt" /></a>.</p>
@@ -304,23 +335,9 @@ which is my skeleton for documentation and <code>github pages</code>.</p>
 
 <h2 id="author">Author</h2>
 
-<p><a href="https://github.com/T1st3/">T1st3</a>
+<p><a href="https://github.com/T1st3/">T1st3</a> 
 <a href="https://github.com/T1st3/"><img src="http://t1st3.github.io/xmlrpc-message-umd/assets/img/gravatar-16x16.png" alt="T1st3" /></a></p>
 
-<pre><code>_
-
-.-') _         .-')   .-') _            
-(  OO) )       ( OO ).(  OO) )           
-/     '._ .---(_)---\_/     '._ .-----.  
-|'--...__/_   /    _ ||'--...__/  -.   \ 
-'--.  .--'|   \  :` `.'--.  .--'-' _'  | 
-  |  |   |   |'..`''.)  |  |     |_  &lt;  
-  |  |   |   .-._)   \  |  |  .-.  |  | 
-  |  |   |   \       /  |  |  \ `-'   / 
-  `--'   `---'`-----'   `--'   `----''  
-
-_
-</code></pre>
 
     </div>
   </div>
@@ -341,18 +358,13 @@ _
                 </a>
               </li>
               <li>
-                <a class="btn btn-default" title="xmlrpc-message-umd tests (using AMD modules)" href="tests.html">
-                  <i class="fa fa-cogs"></i> Tests (AMD)
+                <a class="btn btn-default" title="xmlrpc-message-umd tests" href="coverage.html">
+                  <i class="fa fa-cogs"></i> Tests
                 </a>
               </li>
               <li>
                 <a class="btn btn-default" title="xmlrpc-message-umd JSDoc" href="jsdoc.html">
                   <i class="fa fa-code"></i> JS Doc
-                </a>
-              </li>
-              <li>
-                <a class="btn btn-default" title="xmlrpc-message-umd license" href="https://github.com/T1st3/xmlrpc-message-umd/blob/master/LICENSE">
-                  <i class="fa fa-legal"></i> License
                 </a>
               </li>
             </ul>
@@ -367,6 +379,11 @@ _
               <li>
                 <a class="btn btn-default" title="All version tags for xmlrpc-message-umd" href="https://github.com/T1st3/xmlrpc-message-umd/tags">
                   <i class="fa fa-tags"></i> All version tags
+                </a>
+              </li>
+              <li>
+                <a class="btn btn-default" title="xmlrpc-message-umd license" href="https://github.com/T1st3/xmlrpc-message-umd/blob/master/LICENSE">
+                  <i class="fa fa-legal"></i> License
                 </a>
               </li>
             </ul>

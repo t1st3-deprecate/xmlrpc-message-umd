@@ -4,7 +4,7 @@ var LIVERELOAD_PORT = 35729;
 var SERVER_PORT = 9000;
 var lrSnippet = require('connect-livereload')({port: LIVERELOAD_PORT});
 var mountFolder = function (connect, dir) {
-    return connect.static(require('path').resolve(dir));
+  return connect.static(require('path').resolve(dir));
 };
 
 module.exports = function (grunt) {
@@ -25,12 +25,12 @@ module.exports = function (grunt) {
         reporter: require('jshint-stylish')
       },
       all: [
-        'src/**/*.js', 'gh-pages/lib/index.js', 'gh-pages/lib/tests.js', 'node_test.js', 'Gruntfile.js'
+        'src/**/*.js', 'test/unittests.js', 'test/functests.js', 'Gruntfile.js'
       ]
     },
     jscs: {
       src: [
-        'src/**/*.js', 'gh-pages/lib/index.js', 'gh-pages/lib/tests.js', 'node_test.js', 'Gruntfile.js'
+        'src/**/*.js', 'test/unittests.js', 'test/functests.js', 'Gruntfile.js'
       ],
       options: {
         config: '.jscs.json'
@@ -43,7 +43,7 @@ module.exports = function (grunt) {
         sourceMap: true,
         sourceMapName: 'dist/xmlrpc-message-umd.min.map'
       },
-      myTarget: {
+      build: {
         files: {
           'dist/xmlrpc-message-umd.min.js': ['src/xmlrpc-message-umd.js']
         }
@@ -63,7 +63,6 @@ module.exports = function (grunt) {
       init: {
         files: [
           {src: ['bower_components/jquery/dist/jquery.js'], dest: 'gh-pages/lib/jquery.js'},
-          {src: ['bower_components/lodash/dist/lodash.js'], dest: 'gh-pages/lib/lodash.js'},
           {src: ['bower_components/requirejs/require.js'], dest: 'gh-pages/require.js'},
           {src: ['bower_components/mocha/mocha.js'], dest: 'gh-pages/lib/mocha.js'},
           {src: ['bower_components/mocha/mocha.css'], dest: 'gh-pages/assets/css/mocha.css'},
@@ -80,14 +79,17 @@ module.exports = function (grunt) {
           {src: ['bower_components/codemirror/mode/javascript/javascript.js'], dest: 'gh-pages/lib/codemirror/javascript.js'},
           
           {expand: true, flatten: false, cwd: 'bower_components/t1st3-assets/dist/assets/img/', src: ['**/*'], dest: 'gh-pages/assets/img/'},
-          {src: ['bower_components/t1st3-assets/dist/assets/css/t1st3.css'], dest: 'gh-pages/assets/css/t1st3.css'},
-          {src: ['bower_components/t1st3-assets/dist/assets/css/404.css'], dest: 'gh-pages/assets/css/404.css'},
-          {src: ['bower_components/t1st3-assets/dist/sitemap.xml'], dest: 'gh-pages/sitemap.xml'},
+          {src: ['bower_components/t1st3-assets/dist/assets/css/t1st3.css'], dest: 'gh-pages/assets/css/t1st3.min.css'},
+          {src: ['bower_components/t1st3-assets/dist/assets/css/404.css'], dest: 'gh-pages/assets/css/404.min.css'},
+          {src: ['bower_components/t1st3-assets/dist/umd_sitemap.xml'], dest: 'gh-pages/sitemap.xml'},
           {expand: true, flatten: false, cwd: 'bower_components/t1st3-assets/dist/_layouts/', src: ['**/umd_*'], dest: 'gh-pages/_layouts/'},
           {src: ['bower_components/t1st3-assets/dist/_includes/umd_bottom-menu.html'], dest: 'gh-pages/_includes/umd_bottom-menu.html'},
           {src: ['bower_components/t1st3-assets/dist/_includes/umd_head.html'], dest: 'gh-pages/_includes/umd_head.html'},
           {src: ['bower_components/t1st3-assets/dist/_includes/umd_header.html'], dest: 'gh-pages/_includes/umd_header.html'},
-          {src: ['bower_components/t1st3-assets/dist/_includes/umd_footer.html'], dest: 'gh-pages/_includes/umd_footer.html'}
+          {src: ['bower_components/t1st3-assets/dist/_includes/umd_footer.html'], dest: 'gh-pages/_includes/umd_footer.html'},
+          
+          {src: ['test/unittests.js'], dest: 'gh-pages/unittests.js'},
+          {src: ['test/functests.js'], dest: 'gh-pages/functests.js'}
         ]
       },
       readme: {
@@ -106,13 +108,18 @@ module.exports = function (grunt) {
         options: {
           data: {
             ProjectName: '<%= pkg.name %>',
-            ProjectVersion: '<%= pkg.version %>'
+            ProjectVersion: '<%= pkg.version %>',
+            ProjectDependencies: ''
           }
         },
         files: {
           'gh-pages/index.html': ['bower_components/t1st3-assets/dist/umd_index.html'],
           'gh-pages/404.html': ['bower_components/t1st3-assets/dist/umd_404.html'],
-          'gh-pages/tests.html': ['bower_components/t1st3-assets/dist/umd_tests.html'],
+          'gh-pages/unittests_amd.html': ['bower_components/t1st3-assets/dist/umd_unittests_amd.html'],
+          'gh-pages/unittests_global.html': ['bower_components/t1st3-assets/dist/umd_unittests_global.html'],
+          'gh-pages/functests_amd.html': ['bower_components/t1st3-assets/dist/umd_functests_amd.html'],
+          'gh-pages/functests_global.html': ['bower_components/t1st3-assets/dist/umd_functests_global.html'],
+          'gh-pages/coverage.html': ['bower_components/t1st3-assets/dist/umd_coverage.html'],
           'gh-pages/jsdoc.html': ['bower_components/t1st3-assets/dist/umd_jsdoc.html'],
           'gh-pages/readme.md': ['bower_components/t1st3-assets/dist/umd_readme.md'],
           'gh-pages/license.md': ['bower_components/t1st3-assets/dist/umd_license.md'],
@@ -218,9 +225,38 @@ module.exports = function (grunt) {
       test: {
         options: {
           reporter: 'spec',
-          timeout: 30000
+          timeout: 30000,
+          require: 'test/blanket'
         },
-        src: ['node_test.js']
+        src: ['test/unittests.js', 'test/functests.js']
+      },
+      coverage: {
+        options: {
+          reporter: 'html-cov',
+          quiet: true,
+          captureFile: 'gh-pages/coverage/index.html'
+        },
+        src: ['test/unittests.js']
+      }
+    },
+    compress: {
+      sitemap: {
+        options: {
+          mode: 'gzip'
+        },
+        expand: true,
+        cwd: 'docs/',
+        src: ['**/*sitemap.xml'],
+        dest: 'docs/'
+      },
+      sitemapgh: {
+        options: {
+          mode: 'gzip'
+        },
+        expand: true,
+        cwd: 'docs/',
+        src: ['**/*sitemap.xml'],
+        dest: 'gh-pages/'
       }
     }
   });
@@ -247,15 +283,22 @@ module.exports = function (grunt) {
   ]);
 
   grunt.registerTask('doc', [
+    'init',
     'clean:docs',
     'copy:docs',
     'jsdoc:dist',
+    'mochaTest:test',
+    'mochaTest:coverage',
     'jekyll:docsamd',
     'copy:readme',
+    'compress:sitemap',
+    'compress:sitemapgh',
     'matter'
   ]);
   
   grunt.registerTask('test', [
+    'jshint',
+    'jscs',
     'mochaTest:test'
   ]);
 };

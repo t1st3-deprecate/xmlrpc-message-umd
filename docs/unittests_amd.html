@@ -3,14 +3,14 @@
   <head>
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <title>xmlrpc-message-umd | 404 - Page not found</title>
+    <title>xmlrpc-message-umd - Unit tests (using AMD modules)</title>
     <meta name="description" content="Another JavaScript UMD module (works in Require.js/AMD loaders, Node.js, and browser globals)">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <link rel="stylesheet" href="assets/css/bootstrap.min.css">
     <link rel="stylesheet" href="assets/css/font-awesome.min.css"> 
 
+    <link rel="stylesheet" href="assets/css/mocha.css">
     <link rel="stylesheet" href="assets/css/t1st3.min.css">
-    <link rel="stylesheet" href="assets/css/404.min.css">
     <script type="text/javascript" src="lib/modernizr.js"></script>
   </head>
   <body>
@@ -101,22 +101,45 @@
       </div>
     </nav>
 
-    <div class="container" id="main">
+    <div class="container">
       <div class="row">
         <div class="col-12 col-xs-12 col-sm-12 col-lg-12">
-          <ul id="gridnotfound">
-            <li class="ot-letter-left"><span data-letter="4">4</span></li>
-            <li class="ot-letter-bottom"><span data-letter="0">0</span></li>
-            <li class="ot-letter-right"><span data-letter="4">4</span></li>
+          <h1>xmlrpc-message-umd - Tests</h1>
+          <ul>
+            <li>
+              <a href="unittests_amd.html">Unit tests (using AMD modules)</a>
+            </li>
+            <li>
+              <a href="unittests_global.html">Unit tests (using globals)</a>
+            </li>
+            <li>
+              <a href="functests_amd.html">Functional tests (using AMD modules)</a>
+            </li>
+            <li>
+              <a href="functests_amd.html">Functional tests (using globals)</a>
+            </li>
+            <li>
+              <a href="coverage.html">Code coverage</a>
+            </li>
+            <li>
+              Status of tests for Node.js: <a href="https://travis-ci.org/T1st3/xmlrpc-message-umd" title="Build status on Travis CI">
+                <img src="https://travis-ci.org/T1st3/xmlrpc-message-umd.svg?branch=master" alt="Build Status">
+              </a>
+            </li>
           </ul>
         </div>
       </div>
+    </div>
+    <div class="container">
       <div class="row">
         <div class="col-12 col-xs-12 col-sm-12 col-lg-12">
-          <a id="backlink" href="index.html"><i class="fa fa-home"></i> Back</a>
+          <h1>xmlrpc-message-umd - Unit tests (using AMD modules)</h1>
+          <!-- Required for browser reporter -->
+          <div id="mocha"></div>
         </div>
       </div>
     </div>
+
     <div id="footer-wrap">
       <footer class="container" id="footer">
         <div class="row">
@@ -207,9 +230,7 @@
       </div>
     </nav>
 
-<script src="//ajax.googleapis.com/ajax/libs/jquery/2.1.0/jquery.min.js"></script>
-<script>window.jQuery || document.write('<script src="lib/jquery.js"><\/script>')</script>
-<script src="lib/bootstrap.min.js"></script>
+<script type="text/javascript" data-main="unittests" src="require.js"></script>
   </body>
 </html> 
 <!--

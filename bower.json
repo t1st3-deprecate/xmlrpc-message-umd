@@ -1,6 +1,6 @@
 {
   "name": "xmlrpc-message-umd",
-  "version": "0.2.2",
+  "version": "0.2.3",
   "homepage": "https://github.com/T1st3/xmlrpc-message-umd",
   "description": "A XMLRPC message builder written with UMD definition",
   "keywords": [
@@ -22,6 +22,7 @@
     "gh-pages",
     "docs",
     "src",
+    "test",
     "node_test.js",
     ".git",
     ".travis.yml",
