@@ -3,9 +3,10 @@
 require.config({
   baseUrl: '',
   paths: {
-    jquery: 'lib/jquery',
-    bootstrap: 'lib/bootstrap.min',
-    xmlrpcmessage: 'lib/xmlrpc-message-umd'
+    jquery: 'assets/js/lib/jquery.min',
+    bootstrap: 'assets/js/lib/bootstrap.min',
+    xmlrpcmessage: 'assets/js/lib/xmlrpc-message-umd',
+    btoa: 'assets/js/lib/btoa-umd'
   },
   shim: {
     jquery: {
@@ -26,8 +27,8 @@ require.config({
 require([
   'jquery',
   'xmlrpcmessage',
-  'lib/codemirror',
-  'lib/codemirror/javascript',
+  'assets/js/lib/codemirror',
+  'assets/js/lib/codemirror/javascript',
   'bootstrap'
 ], function ($, XMLRPCMessage, CodeMirror) {
   $(document).ready(function () {

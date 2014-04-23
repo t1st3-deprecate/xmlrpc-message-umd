@@ -1,7 +1,7 @@
 {
   "name": "xmlrpc-message-umd",
-  "version": "0.2.3",
-  "homepage": "https://github.com/T1st3/xmlrpc-message-umd",
+  "version": "0.3.0",
+  "homepage": "http://t1st3.github.io/xmlrpc-message-umd",
   "description": "A XMLRPC message builder written with UMD definition",
   "keywords": [
     "amd",
@@ -25,12 +25,20 @@
     "dist/xmlrpc-message-umd.js"
   ],
   "scripts": {
-    "test": "grunt test"
+    "test": "grunt test",
+    "posttest": "grunt ci"
+  },
+  "config": {
+    "travis-cov": {
+      "threshold": 70
+    }
   },
   "engines": {
     "node": ">= 0.10.0"
   },
-  "dependencies": {},
+  "dependencies": {
+    "btoa-umd": "*"
+  },
   "devDependencies": {
     "grunt": ">= 0.4.x",
     "load-grunt-tasks": ">= 0.3.x",
@@ -49,12 +57,15 @@
     "grunt-contrib-uglify": ">= 0.3.x",
     "grunt-version": ">= 0.3.x",
     "grunt-mocha-test": ">= 0.9.x",
+    "mocha-lcov-reporter": ">= 0.0.x",
+    "travis-cov": ">= 0.2.x",
     "chai": ">= 1.9.x",
     "blanket": ">= 1.1.x",
+    "grunt-coveralls": ">= 0.3.x",
     "grunt-bower-task": ">= 0.3.x",
     "grunt-jsdoc": ">= 0.5.x",
     "grunt-jekyll": ">= 0.4.x",
     "grunt-template": ">= 0.2.x",
-    "grunt-matter": ">= 0.1.x"
+    "grunt-banner": ">= 0.2.x"
   }
 }

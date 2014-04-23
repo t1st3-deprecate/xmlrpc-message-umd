@@ -3,13 +3,12 @@
   <head>
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <title>xmlrpc-message-umd - Functional tests (using globals)</title>
+    <title>xmlrpc-message-umd</title>
     <meta name="description" content="Another JavaScript UMD module (works in Require.js/AMD loaders, Node.js, and browser globals)">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <link rel="stylesheet" href="assets/css/bootstrap.min.css">
     <link rel="stylesheet" href="assets/css/font-awesome.min.css"> 
 
-    <link rel="stylesheet" href="assets/css/mocha.css">
     <link rel="stylesheet" href="assets/css/t1st3.min.css">
     <script type="text/javascript" src="assets/js/lib/modernizr.js"></script>
   </head>
@@ -117,32 +116,93 @@
       </div>
     </nav>
 
-    <div class="container" id="tests">
-      <div class="row">
-        <div class="col-12 col-xs-12 col-sm-12 col-lg-12">
-          <h2>xmlrpc-message-umd - Functional tests (using globals)</h2>
-          <a href="tests.html" title="Tests section"><i class="fa fa-arrow-circle-left"></i> Back to all tests</a><br><br>
-          <hr>
-          <br>
-          <!-- Required for browser reporter -->
-          <div id="mocha"></div>
-        </div>
-      </div>
+<div class="container" id="main">
+  <div class="row">
+    <div class="col-12 col-xs-12 col-sm-12 col-lg-12">
+      <h1 id="t1st3-assets">t1st3-assets</h1>
+
+      <h2 id="build-the-docs-and-github-pages">Build the docs and Github pages</h2>
+
+      <p>The process of building the docs makes the following:</p>
+
+      <ul>
+        <li>import the <code>gh-pages</code> branch transpently into your master branch (see below)</li>
+        <li>rebuild those gh-pages</li>
+        <li>compile the gh-pages to the “docs” folder</li>
+        <li>the “docs” folder will include all the pages of the <a href="http://t1st3.github.io/t1st3-assets/">project pages</a>, viewable offline</li>
+        <li>the “docs” folder can be served with the <code>grunt serve</code> task</li>
+        <li>finally update the README.md file in the root folder with README.md from the gh-pages</li>
+      </ul>
+
+      <p>Please note that this task has a few more dependencies:</p>
+
+      <ul>
+        <li><a href="https://www.ruby-lang.org/">Ruby</a> and <a href="https://rubygems.org/">RubyGems</a></li>
+        <li><a href="http://jekyllrb.com/">Jekyll</a></li>
+        <li><a href="http://kramdown.gettalong.org/">Kramdown</a></li>
+      </ul>
+
+      <p>Once you have installed Ruby and RubyGems, 
+      you can get Jekyll and Kramdown “the RubyGem-way”:</p>
+
+      <pre><code>gem install jekyll
+      gem install kramdown
+      </code></pre>
+
+      <p>Note that on MacOS or GNU/Linux, 
+      you may want to install those Gems with <code>sudo</code> 
+      to install them globally on your system:</p>
+
+      <pre><code>sudo gem install jekyll
+      sudo gem install kramdown
+      </code></pre>
+
       <hr>
-      <div class="row">
-        <div class="col-12 col-xs-12 col-sm-12 col-lg-12">
-          <h2>Notes</h2>
-          <p>All tests are run with <a href="http://visionmedia.github.io/mocha/">Mocha</a>, and use 
-          <a href="http://chaijs.com/" title="Chai website">Chai</a> as the assertion library.<br><br>
-          If you want to run the tests in Node.js, you will need 
-          <a href="http://gruntjs.com/" title="Grunt website">Grunt</a>, and then just run:
-          </p>
-          <pre><code>grunt test</code></pre>
-          <br><br><br>
-          <a href="tests.html" title="Tests section"><i class="fa fa-arrow-circle-left"></i> Back to all tests</a><br><br>
-        </div>
-      </div>
+
+      <p>This part may appear tricky, 
+      since you will download the <code>gh-pages</code> branch of the project 
+      right inside the root folder of your current <code>master</code> branch.
+      But the process is quite transparent…</p>
+
+      <p>You first need to get the “gh-pages” branch of the project, 
+      and inject it in the project folder:</p>
+
+      <pre><code>git clone https://github.com/T1st3/t1st3-assets.git
+      mv t1st3-assets gh-pages
+      cd gh-pages
+      git checkout --orphan gh-pages
+      git rm -rf .
+      git pull origin gh-pages
+      cd ../
+      </code></pre>
+
+      <p>So, you should normally have created the <code>gh-pages</code> folder, along the <code>dist</code> and <code>src</code> folders.</p>
+
+      <p>Note that, even if you keep the <code>gh-pages</code> folder in the project, this folder:</p>
+
+      <ul>
+        <li><a href="https://github.com/T1st3/t1st3-assets/blob/master/.gitignore">will not be commited/pushed to GIT on master branch</a></li>
+        <li><a href="https://github.com/T1st3/t1st3-assets/blob/master/bower.json">will not be included in Bower releases</a></li>
+        <li><a href="https://github.com/T1st3/t1st3-assets/blob/master/.npmignore">will not be included in NPM releases</a></li>
+      </ul>
+
+      <p>Building the docs will rebuild the <code>gh-pages</code>, and compile them to the <code>docs</code> folder, using the following Grunt task:</p>
+
+      <pre><code>grunt doc
+      </code></pre>
+
+      <p>And since you transparently have the <code>gh-pages</code> branch being updated by those tasks right in your project folder, 
+      you can commit and push to the <code>gh-pages</code> branch just with a couple of <code>cd</code>:</p>
+
+      <pre><code>cd gh-pages
+      git add -A
+      git commit -m 'from master branch'
+      git push origin gh-pages
+      cd ../
+      </code></pre>
     </div>
+  </div>
+</div>
 
     <div id="footer-wrap">
       <footer class="container" id="footer">
@@ -226,15 +286,7 @@
 
 <script src="//ajax.googleapis.com/ajax/libs/jquery/2.1.0/jquery.min.js"></script>
 <script>window.jQuery || document.write('<script src="assets/js/lib/jquery.min.js"><\/script>')</script>
-<script src="assets/js/lib/mocha.js"></script>
-<script src="assets/js/lib/chai.js"></script>
-<script src="assets/js/lib/chai-jquery.js"></script>
-<script src="assets/js//bootstrap.min.js"></script>
-
-  <script src="assets/js/lib/btoa-umd.js"></script>
-
-<script src="assets/js/lib/xmlrpc-message-umd.js"></script>
-<script src="functests.js"></script>
+<script src="assets/js/lib/bootstrap.min.js"></script>
 <!--
 .-') _         .-')   .-') _            
 (  OO) )       ( OO ).(  OO) )           

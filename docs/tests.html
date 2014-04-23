@@ -3,13 +3,12 @@
   <head>
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <title>xmlrpc-message-umd - Functional tests (using globals)</title>
+    <title>xmlrpc-message-umd - Tests</title>
     <meta name="description" content="Another JavaScript UMD module (works in Require.js/AMD loaders, Node.js, and browser globals)">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <link rel="stylesheet" href="assets/css/bootstrap.min.css">
     <link rel="stylesheet" href="assets/css/font-awesome.min.css"> 
 
-    <link rel="stylesheet" href="assets/css/mocha.css">
     <link rel="stylesheet" href="assets/css/t1st3.min.css">
     <script type="text/javascript" src="assets/js/lib/modernizr.js"></script>
   </head>
@@ -117,32 +116,96 @@
       </div>
     </nav>
 
-    <div class="container" id="tests">
-      <div class="row">
-        <div class="col-12 col-xs-12 col-sm-12 col-lg-12">
-          <h2>xmlrpc-message-umd - Functional tests (using globals)</h2>
-          <a href="tests.html" title="Tests section"><i class="fa fa-arrow-circle-left"></i> Back to all tests</a><br><br>
-          <hr>
-          <br>
-          <!-- Required for browser reporter -->
-          <div id="mocha"></div>
-        </div>
-      </div>
-      <hr>
-      <div class="row">
-        <div class="col-12 col-xs-12 col-sm-12 col-lg-12">
-          <h2>Notes</h2>
-          <p>All tests are run with <a href="http://visionmedia.github.io/mocha/">Mocha</a>, and use 
-          <a href="http://chaijs.com/" title="Chai website">Chai</a> as the assertion library.<br><br>
-          If you want to run the tests in Node.js, you will need 
-          <a href="http://gruntjs.com/" title="Grunt website">Grunt</a>, and then just run:
-          </p>
-          <pre><code>grunt test</code></pre>
-          <br><br><br>
-          <a href="tests.html" title="Tests section"><i class="fa fa-arrow-circle-left"></i> Back to all tests</a><br><br>
-        </div>
-      </div>
+<div class="container">
+  <div class="row">
+    <div class="col-12 col-xs-12 col-sm-12 col-lg-12">
+      <h1>xmlrpc-message-umd - Tests</h1>
     </div>
+  </div>
+  <div class="row">
+    <div class="col-12 col-xs-12 col-sm-12 col-lg-12">
+      <h3>Browser tests</h3>
+      <h4><i class="fa fa-cog"></i> Unit tests</h4>
+      <ul>
+        <li>
+          <a href="unittests_amd.html" title="Unit tests for xmlrpc-message-umd, using AMD modules">
+            Unit tests (using AMD modules)
+          </a>
+        </li>
+        <li>
+          <a href="unittests_global.html" title="Unit tests for xmlrpc-message-umd, using globals">
+            Unit tests (using globals)
+          </a>
+        </li>
+      </ul>
+    </div>
+    <div class="col-12 col-xs-12 col-sm-12 col-lg-12">
+      <h4><i class="fa fa-cogs"></i> Functional tests</h4>
+      <ul>
+        <li>
+          <a href="functests_amd.html" title="Functional tests for xmlrpc-message-umd, using AMD modules">
+            Functional tests (using AMD modules)
+          </a>
+        </li>
+        <li>
+          <a href="functests_global.html" title="Functional tests for xmlrpc-message-umd, using globals">
+            Functional tests (using globals)
+          </a>
+        </li>
+      </ul>
+    </div>
+  </div>
+  <hr>
+  <div class="row">
+    <div class="col-12 col-xs-12 col-sm-12 col-lg-12">
+      <h3>Node.js tests</h3>
+      <h4><i class="fa fa-refresh"></i> Continuous testing</h4>
+      <p>
+        Unit tests and functional tests in Node.js for xmlrpc-message-umd are performed on 
+        <a href="https://travis-ci.org/T1st3/xmlrpc-message-umd" title="xmlrpc-message-umd on Travis CI">
+          <img alt="Travis logo" src="http://t1st3.github.io/xmlrpc-message-umd/assets/img/vendor/travis-ci-16x16.png"> Travis-CI
+        </a><br>
+        Status on Travis-CI:
+        <a href="https://travis-ci.org/T1st3/xmlrpc-message-umd" title="Build status of xmlrpc-message-umd on Travis CI">
+          <img src="https://travis-ci.org/T1st3/xmlrpc-message-umd.svg?branch=master" alt="Build Status">
+        </a>
+      </p>
+    </div>
+    <div class="col-12 col-xs-12 col-sm-12 col-lg-12">
+      <h4><i class="fa fa-shield"></i> Coverage</h4>
+      <p>
+        <a href="coverage.html" title="Code coverage of xmlrpc-message-umd, generated with Blanket.js">
+          Code coverage of xmlrpc-message-umd in Node tests
+        </a> (Generated during the tests)
+        <br><br>
+        This code coverage can also be viewed on 
+        <a href="https://coveralls.io/r/T1st3/xmlrpc-message-umd?branch=master" title="xmlrpc-message-umd on Coveralls.io">
+          <img alt="Coveralls logo" src="http://t1st3.github.io/xmlrpc-message-umd/assets/img/vendor/coveralls-16x16.png"> Coveralls.io
+        </a><br>
+        Status on Coveralls:
+        <a href="https://coveralls.io/r/T1st3/xmlrpc-message-umd?branch=master" title="Coverage status of xmlrpc-message-umd on Coveralls.io">
+          <img src="https://coveralls.io/repos/T1st3/xmlrpc-message-umd/badge.png?branch=master" alt="Coverage Status" />
+        </a>
+      </p>
+    </div>
+  </div>
+  <hr>
+  <div class="row">
+    <div class="col-12 col-xs-12 col-sm-12 col-lg-12">
+      <h3>Notes</h3>
+      <p>
+        All tests are run with <a href="http://visionmedia.github.io/mocha/">Mocha</a>.<br><br>
+        <a href="http://chaijs.com/" title="Chai website">Chai</a> is used in the tests as the assertion library.<br><br>
+        <a href="coverage.html" title="Code coverage of xmlrpc-message-umd, generated with Blanket.js">The coverage page</a> 
+        is generated using <a href="http://blanketjs.org/" title="Blanket.js website">Blanket.js</a><br><br>
+        Other reporters for Mocha are involved, such as 
+        <a href="https://github.com/StevenLooman/mocha-lcov-reporter" title="mocha-lcov-reporter on Github">mocha-lcov-reporter</a> and 
+        <a href="https://github.com/alex-seville/travis-cov" title="travis-cov on Github">travis-cov</a>
+      </p>
+      <br><br>
+    </div>
+  </div>
+</div>
 
     <div id="footer-wrap">
       <footer class="container" id="footer">
@@ -226,15 +289,7 @@
 
 <script src="//ajax.googleapis.com/ajax/libs/jquery/2.1.0/jquery.min.js"></script>
 <script>window.jQuery || document.write('<script src="assets/js/lib/jquery.min.js"><\/script>')</script>
-<script src="assets/js/lib/mocha.js"></script>
-<script src="assets/js/lib/chai.js"></script>
-<script src="assets/js/lib/chai-jquery.js"></script>
-<script src="assets/js//bootstrap.min.js"></script>
-
-  <script src="assets/js/lib/btoa-umd.js"></script>
-
-<script src="assets/js/lib/xmlrpc-message-umd.js"></script>
-<script src="functests.js"></script>
+<script src="assets/js/lib/bootstrap.min.js"></script>
 <!--
 .-') _         .-')   .-') _            
 (  OO) )       ( OO ).(  OO) )           

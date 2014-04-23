@@ -3,7 +3,7 @@
 * 
 * @link https://github.com/T1st3/xmlrpc-message-umd
 * @author T1st3
-* @version 0.2.3
+* @version 0.3.0
 * @license https://github.com/T1st3/xmlrpc-message-umd/blob/master/LICENSE
 * 
 * 
@@ -26,21 +26,23 @@
 
 'use strict';
 
-(function (window, factory) {
+(function (root, factory) {
   // Test for AMD modules
   if (typeof define === 'function' && define.amd) {
     // AMD
-    define([], factory);
+    define([
+      'btoa'
+    ], factory);
   // Test for Node.js
   } else if (typeof exports === 'object') {
     // Node
-    module.exports = factory();
+    module.exports = factory(require('btoa-umd'));
   // Browser globals
   } else {
     // Browser globals
-    window.XMLRPCMessage = factory();
+    root.XMLRPCMessage = factory(root.Btoa);
   }
-}(this, function () {
+}(this, function (Btoa) {
   /** 
   * An XMLRPC message builder, AMD style
   * @module XMLRPCMessage
@@ -130,9 +132,13 @@
   * @method dataTypeOf
   * @memberof XMLRPCMessage
   * @param {*} o
+  * @param {string} forceType
   * @since 0.1.0
   */
-  XMLRPCMessage.dataTypeOf = function (o) {
+  XMLRPCMessage.dataTypeOf = function (o, forceType) {
+    if (forceType) {
+      return forceType;
+    }
     // false if no o
     if (!o && o !== false) {
       return false;
@@ -149,16 +155,22 @@
         break;
       case 'object':
         var con = o.constructor;
-        if (con === Date) {
-          type = 'date';
+        if (con === Btoa) {
+          type = 'base64';
         } else {
-          if (con === Array) {
-            type = 'array';
+          if (con === Date) {
+          type = 'date';
           } else {
-            type = 'struct';
+            if (con === Array) {
+              type = 'array';
+            } else {
+              type = 'struct';
+            }
           }
         }
+        
         break;
+      
     }
     return type;
   };
@@ -212,6 +224,24 @@
     var xml = '<dateTime.iso8601>';
     xml += XMLRPCMessage.dateToISO8601(data);
     xml += '</dateTime.iso8601>';
+    return xml;
+  };
+  
+  /**
+  * XMLize base64 data
+  * @method doBase64XML
+  * @memberof XMLRPCMessage
+  * @param {Object} data
+  * @since 0.1.0
+  */
+  XMLRPCMessage.doBase64XML = function (data) {
+    // empty if no data
+    if (!data) {
+      return '';
+    }
+    var xml = '<base64>';
+    xml += data.a;
+    xml += '</base64>';
     return xml;
   };
 
@@ -275,6 +305,9 @@
     }
     var xml;
     switch (type) {
+      case 'base64':
+        xml = XMLRPCMessage.doBase64XML(data);
+        break;
       case 'date':
         xml = XMLRPCMessage.doDateXML(data);
         break;
@@ -337,6 +370,21 @@
       n = '0' + n;
     }
     return n;
+  };
+  
+  /**
+  * handles binary to ascii
+  * @method btoa
+  * @memberof XMLRPCMessage
+  * @param {string} data
+  * @since 0.1.0
+  */
+  XMLRPCMessage.btoa = function (data) {
+    if (!data) {
+      return false;
+    }
+    var ba = new Btoa();
+    return ba.handle(data);
   };
 
   return XMLRPCMessage;

@@ -130,8 +130,26 @@ ul {
   padding-bottom: 15px;
 }
 
+#main .anchor-link {
+  position: absolute;
+  left: -0.5em;
+  opacity: 0;
+  -webkit-transition: opacity 0.2s ease-in-out 0.1s;
+          transition: opacity 0.2s ease-in-out 0.1s;
+}
+
+#main h1:hover .anchor-link,
+#main h2:hover .anchor-link,
+#main h3:hover .anchor-link,
+#main h4:hover .anchor-link,
+#main h5:hover .anchor-link,
+#main h6:hover .anchor-link {
+  opacity: 1;
+}
+
 #footer-wrap {
   border-top: 3px dashed #b5e853;
+  margin-top: 60px;
 }
 
 #footer {
@@ -144,7 +162,7 @@ ul {
   margin: 10px;
   background-color: transparent;
   color: #fff;
-  min-width: 150px;
+  min-width: 180px;
 }
 
 #footer .btn-default:hover, #footer .btn-default:focus, #footer .btn-default:active, #footer .btn-default.active, #footer .open .dropdown-toggle.btn-default {

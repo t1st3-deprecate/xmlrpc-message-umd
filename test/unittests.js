@@ -3,19 +3,20 @@
 
 'use strict';
 
-(function (window, factory) {
+(function (root, factory) {
   // Test for AMD modules
   if (typeof define === 'function' && define.amd) {
     // AMD
     require.config({
       baseUrl: '',
       paths: {
-        jquery: 'lib/jquery',
-        mocha: 'lib/mocha',
-        chai: 'lib/chai',
-        chaijquery: 'lib/chai-jquery',
-        bootstrap: 'lib/bootstrap.min',
-        xmlrpcmessage: 'lib/xmlrpc-message-umd',
+        jquery: 'assets/js/lib/jquery.min',
+        mocha: 'assets/js/lib/mocha',
+        chai: 'assets/js/lib/chai',
+        chaijquery: 'assets/js/lib/chai-jquery',
+        bootstrap: 'assets/js/lib/bootstrap.min',
+        xmlrpcmessage: 'assets/js/lib/xmlrpc-message-umd',
+        btoa: 'assets/js/lib/btoa-umd'
       },
       shim: {
         jquery: {
@@ -43,8 +44,7 @@
   // Browser globals
   } else {
     // Browser globals
-    /* global XMLRPCMessage */
-    window.XMLRPCMessage = factory(chai, XMLRPCMessage);
+    root.XMLRPCMessage = factory(root.chai, root.XMLRPCMessage);
   }
 }(this, function (chai, XMLRPCMessage) {
 
@@ -100,7 +100,7 @@
   });
 
   describe('tests against addParameter', function () {
-    describe('No param', function () {
+    describe('No param for data', function () {
       it('XMLRPCMessage should not have been altered', function (done) {
         var msg = new XMLRPCMessage();
         var res = msg.addParameter();
@@ -108,7 +108,7 @@
         done();
       });
     });
-    describe('Correct param "xyz" for o', function () {
+    describe('Correct param "xyz" for data', function () {
       it('Should return "xyz"', function (done) {
         var msg = new XMLRPCMessage();
         msg.addParameter('xyz');
@@ -116,7 +116,7 @@
         done();
       });
     });
-    describe('Correct param 22 for o', function () {
+    describe('Correct param 22 for data', function () {
       it('Should return 22', function (done) {
         var msg = new XMLRPCMessage();
         msg.addParameter(20);
@@ -125,7 +125,7 @@
         done();
       });
     });
-    describe('Correct param 39.5 for o', function () {
+    describe('Correct param 39.5 for data', function () {
       it('Should return 39.5', function (done) {
         var msg = new XMLRPCMessage();
         msg.addParameter(39.5);
@@ -133,7 +133,7 @@
         done();
       });
     });
-    describe('Correct param [] for o', function () {
+    describe('Correct param [] for data', function () {
       it('Should return an array with length = 0', function (done) {
         var msg = new XMLRPCMessage();
         msg.addParameter([]);
@@ -141,7 +141,7 @@
         done();
       });
     });
-      describe('Correct param ["a", "b"] for o', function () {
+      describe('Correct param ["a", "b"] for data', function () {
       it('Should return an array with length = 2', function (done) {
         var msg = new XMLRPCMessage();
         msg.addParameter(['a', 'b']);
@@ -149,7 +149,7 @@
         done();
       });
     });
-    describe('Correct param {} for o', function () {
+    describe('Correct param {} for data', function () {
       it('Should return an object', function (done) {
       var msg = new XMLRPCMessage();
         msg.addParameter({});
@@ -157,7 +157,7 @@
         done();
       });
     });
-    describe('Correct param {a: "b", c: "d"} for o', function () {
+    describe('Correct param {a: "b", c: "d"} for data', function () {
       it('Should return an object with "a" property of length 1', function (done) {
         var msg = new XMLRPCMessage();
         msg.addParameter({a: 'b', c: 'd'});
@@ -165,12 +165,21 @@
         done();
       });
     });
-    describe('Correct param Date for o', function () {
+    describe('Correct param Date for data', function () {
       it('Should return Date', function (done) {
         var y2k = new Date(2000, 1, 1, 0, 0, 0, 0);
         var msg = new XMLRPCMessage();
         msg.addParameter(y2k);
         msg.params[0].should.equal(y2k);
+        done();
+      });
+    });
+    describe('Correct param btoa("Hello world") for data', function () {
+      it('Should return SGVsbG8gd29ybGQ=', function (done) {
+        var bin = XMLRPCMessage.btoa('Hello world');
+        var msg = new XMLRPCMessage();
+        msg.addParameter(bin);
+        msg.params[0].a.should.equal('SGVsbG8gd29ybGQ=');
         done();
       });
     });
@@ -189,6 +198,7 @@
       it('should return the correct XML', function (done) {
         console.log('This should be a functional test rather than a unit one');
         var a = ['chicken', 'duck', 'goose'];
+        var bin = XMLRPCMessage.btoa('Hello world');
         var obj = {};
         obj.x = 20;
         obj.y = 'cow';
@@ -198,6 +208,7 @@
         msg.addParameter('mississippi');
         msg.addParameter(7);
         msg.addParameter(false);
+        msg.addParameter(bin);
         msg.addParameter(a);
         msg.addParameter(obj);
         
@@ -213,6 +224,9 @@
         str += '</param>\n';
         str += '<param>\n';
         str += '<value><boolean>0</boolean></value>\n';
+        str += '</param>\n';
+        str += '<param>\n';
+        str += '<value><base64>SGVsbG8gd29ybGQ=</base64></value>\n';
         str += '</param>\n';
         str += '<param>\n';
         str += '<value><array><data>\n';
@@ -310,6 +324,13 @@
         var y2k = new Date(2000, 1, 1, 0, 0, 0, 0);
         var type = XMLRPCMessage.dataTypeOf(y2k);
         type.should.equal('date');
+        done();
+      });
+    });
+    describe('Correct param base64 for o', function () {
+      it('Should return "base64"', function (done) {
+        var type = XMLRPCMessage.dataTypeOf(XMLRPCMessage.btoa('iiiiiiii'));
+        type.should.equal('base64');
         done();
       });
     });
@@ -621,6 +642,23 @@
       it('Should return "10"', function (done) {
         var n = XMLRPCMessage.leadingZero('10');
         '10'.should.equal(n);
+        done();
+      });
+    });
+  });
+  
+  describe('tests against btoa', function () {
+    describe('No param for data', function () {
+      it('Should return false', function (done) {
+        var data = XMLRPCMessage.btoa();
+        data.should.equal(false);
+        done();
+      });
+    });
+    describe('Correct param "Hello world" for data', function () {
+      it('Should return "SGVsbG8gd29ybGQ="', function (done) {
+        var data = XMLRPCMessage.btoa('Hello world');
+        'SGVsbG8gd29ybGQ='.should.equal(data.a);
         done();
       });
     });
