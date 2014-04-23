@@ -32,6 +32,7 @@
     ".editorconfig",
     ".jshintrc",
     ".jscs.json",
+    ".npmignore",
     "Gruntfile.js",
     "package.json",
     "README.md"
