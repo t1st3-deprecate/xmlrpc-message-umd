@@ -44,7 +44,7 @@
   // Browser globals
   } else {
     // Browser globals
-    root.XMLRPCMessage = factory(root.chai, root.XMLRPCMessage);
+    root.XMLRPCMessageTests = factory(root.chai, root.XMLRPCMessage);
   }
 }(this, function (chai, XMLRPCMessage) {
 
