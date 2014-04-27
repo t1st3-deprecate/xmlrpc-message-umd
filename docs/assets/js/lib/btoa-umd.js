@@ -3,7 +3,7 @@
 * 
 * @link https://github.com/T1st3/btoa-umd
 * @author T1st3
-* @version 0.1.5
+* @version 0.2.0
 * @license https://github.com/T1st3/btoa-umd/blob/master/LICENSE
 * 
 */
@@ -59,7 +59,7 @@
   */
   Btoa.prototype.handle = function (b) {
     // Check a
-    if (!b) {
+    if (!b || arguments.length === 0) {
       // keep chainability
       return this;
     }
@@ -74,7 +74,11 @@
     
     if (browser === true) {
       /* global window */
-      this.a = window.btoa(b);
+      if (typeof window.btoa === 'function') {
+        this.a = window.btoa(b);
+      } else {
+        this.a = Btoa.encode(b);
+      }
     } else {
       var buffer;
       if (b instanceof Buffer) {
@@ -86,6 +90,37 @@
     }
     // keep chainability
     return this;
+  };
+  
+  Btoa.encode = function (b) {
+    if (!b || arguments.length === 0) {
+      return '';
+    }
+    var _byte = [], 
+    _char = [], 
+    _result = [],
+    j = 0, i = 0;
+    var CHAR_MAP = 'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789+/=';
+    /*jshint bitwise: false*/
+    for (i = 0; i < b.length; i += 3) {
+      _byte[0] = b.charCodeAt(i);
+      _byte[1] = b.charCodeAt(i + 1);
+      _byte[2] = b.charCodeAt(i + 2);
+      _char[0] = _byte[0] >> 2;
+      _char[1] = ((_byte[0] & 3) << 4) | (_byte[1] >> 4);
+      _char[2] = ((_byte[1] & 15) << 2) | (_byte[2] >> 6);
+      _char[3] = _byte[2] & 63;
+      if (isNaN(_byte[1])) {
+        _char[2] = _char[3] = 64;
+      } else if (isNaN(_byte[2])) {
+        _char[3] = 64;
+      }
+      _result[j++] = CHAR_MAP.charAt(_char[0]) + 
+        CHAR_MAP.charAt(_char[1]) + 
+        CHAR_MAP.charAt(_char[2]) + 
+        CHAR_MAP.charAt(_char[3]);
+    }
+    return _result.join('');
   };
   
   return Btoa;
