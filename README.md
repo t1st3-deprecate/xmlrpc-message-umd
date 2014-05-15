@@ -115,7 +115,7 @@ To build, just run:
 
 To test, you can use Grunt:
 
-    grunt test
+    npm test
 
 
 

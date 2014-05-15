@@ -26,10 +26,8 @@
   position: relative;
   color: hsla(0, 0%, 0%, 0.6);
   -webkit-transform-style: preserve-3d;
-      -ms-transform-style: preserve-3d;
           transform-style: preserve-3d;
   -webkit-perspective: 550px;
-      -ms-perspective: 550px;
           perspective: 550px;
   z-index: 1;
 }
@@ -88,7 +86,6 @@
 .ot-letter-left span:after {
   text-shadow: -1px 0px 0px hsla(360, 100%, 100%, 0.1), 3px 0px 1px hsla(0, 0%, 0%, 0.4);
   -webkit-transform: rotateY(-15deg);
-      -ms-transform: rotateY(-15deg);
           transform: rotateY(-15deg);
 }
 
@@ -100,7 +97,6 @@
 
 .ot-letter-left:hover span:after {
   -webkit-transform: rotateY(-40deg);
-      -ms-transform: rotateY(-40deg);
           transform: rotateY(-40deg);
 }
 
@@ -121,7 +117,6 @@
 .ot-letter-right span:after {
   text-shadow: 1px 0px 0px hsla(360, 100%, 100%, 0.1), -3px 0px 1px hsla(0, 0%, 0%, 0.4);
   -webkit-transform: rotateY(15deg);
-      -ms-transform: rotateY(15deg);
           transform: rotateY(15deg);
 }
 
@@ -133,7 +128,6 @@
 
 .ot-letter-right:hover span:after {
   -webkit-transform: rotateY(40deg);
-      -ms-transform: rotateY(40deg);
           transform: rotateY(40deg);
 }
 
@@ -154,7 +148,6 @@
 .ot-letter-top span:after {
   text-shadow: 0px 1px 0px hsla(360, 100%, 100%, 0.1), 0px -3px 1px hsla(0, 0%, 0%, 0.4);
   -webkit-transform: rotateX(-15deg);
-      -ms-transform: rotateX(-15deg);
           transform: rotateX(-15deg);
 }
 
@@ -166,7 +159,6 @@
 
 .ot-letter-top:hover span:after {
   -webkit-transform: translateY(-0.035em) rotateX(-40deg);
-      -ms-transform: translateY(-0.035em) rotateX(-40deg);
           transform: translateY(-0.035em) rotateX(-40deg);
 }
 
@@ -187,7 +179,6 @@
 .ot-letter-bottom span:after {
   text-shadow: 0px -1px 0px hsla(360, 100%, 100%, 0.1), 0px 3px 1px hsla(0, 0%, 0%, 0.4);
   -webkit-transform: rotateX(15deg);
-      -ms-transform: rotateX(15deg);
           transform: rotateX(15deg);
 }
 
@@ -199,7 +190,6 @@
 
 .ot-letter-bottom:hover span:after {
   -webkit-transform: translateY(0.045em) rotateX(40deg);
-      -ms-transform: translateY(0.045em) rotateX(40deg);
           transform: translateY(0.045em) rotateX(40deg);
 }
 

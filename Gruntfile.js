@@ -223,46 +223,6 @@ module.exports = function (grunt) {
         }
       }
     },
-    mochaTest: {
-      'spec': {
-        options: {
-          reporter: 'spec',
-          timeout: 30000,
-          require: 'test/blanket'
-        },
-        src: ['test/unittests.js', 'test/functests.js']
-      },
-      'html-cov': {
-        options: {
-          reporter: 'html-cov',
-          quiet: true,
-          captureFile: 'gh-pages/coverage/index.html'
-        },
-        src: ['test/unittests.js', 'test/functests.js']
-      },
-      'mocha-lcov-reporter': {
-        options: {
-          reporter: 'mocha-lcov-reporter',
-          quiet: true,
-          captureFile: 'gh-pages/coverage/lcov.info'
-        },
-        src: ['test/unittests.js', 'test/functests.js']
-      },
-      'travis-cov': {
-        options: {
-          reporter: 'travis-cov'
-        },
-        src: ['test/unittests.js', 'test/functests.js']
-      }
-    },
-    coveralls: {
-      options: {
-        force: true
-      },
-      all: {
-        src: 'gh-pages/coverage/lcov.info'
-      }
-    },
     compress: {
       sitemap: {
         options: {
@@ -282,53 +242,49 @@ module.exports = function (grunt) {
         src: ['**/*sitemap.xml'],
         dest: 'gh-pages/'
       }
+    },
+    shell: {
+      coverage: {
+        options: {
+          stderr: false
+        },
+        command: 'istanbul cover ./node_modules/mocha/bin/_mocha test/*tests.js --report lcov --dir=gh-pages/coverage -- -R spec && cat ./gh-pages/coverage/lcov.info'
+      }
     }
   });
   
   grunt.registerTask('init', [
-    'bower:init',
-    'clean:ghpages',
-    'copy:init',
-    'template:init'
+  'bower:init',
+  'clean:ghpages',
+  'copy:init',
+  'template:init'
   ]);
-
+  
   grunt.registerTask('build', [
-    'version:js',
-    'version:json',
-    'jshint',
-    'jscs',
-    'copy:build',
-    'uglify:dist'
+  'version:js',
+  'version:json',
+  'jshint',
+  'jscs',
+  'copy:build',
+  'uglify:dist'
   ]);
-
+  
   grunt.registerTask('serve', [
-    'connect:livereload',
-    'open',
-    'watch:amd'
+  'connect:livereload',
+  'open',
+  'watch:amd'
   ]);
-
+  
   grunt.registerTask('doc', [
-    'init',
-    'clean:docs',
-    'copy:docs',
-    'jsdoc:dist',
-    'mochaTest:spec',
-    'mochaTest:html-cov',
-    'usebanner:readme',
-    'jekyll:docsamd',
-    'compress:sitemap',
-    'compress:sitemapgh'
-  ]);
-  
-  grunt.registerTask('test', [
-    'jshint',
-    'jscs',
-    'mochaTest:spec',
-    'mochaTest:travis-cov'
-  ]);
-  
-  grunt.registerTask('ci', [
-    'mochaTest',
-    'coveralls'
+  'init',
+  'shell:coverage',
+  'build',
+  'clean:docs',
+  'copy:docs',
+  'jsdoc:dist',
+  'usebanner:readme',
+  'jekyll:docsamd',
+  'compress:sitemap',
+  'compress:sitemapgh'
   ]);
 };

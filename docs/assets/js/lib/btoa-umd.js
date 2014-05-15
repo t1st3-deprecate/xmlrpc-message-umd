@@ -3,7 +3,7 @@
 * 
 * @link https://github.com/T1st3/btoa-umd
 * @author T1st3
-* @version 0.2.0
+* @version 0.3.0
 * @license https://github.com/T1st3/btoa-umd/blob/master/LICENSE
 * 
 */
@@ -92,6 +92,13 @@
     return this;
   };
   
+  /**
+  * encode fix for browser which don't support btoa
+  * @method encode
+  * @memberof Btoa
+  * @param {string} b
+  * @since 0.2.0
+  */
   Btoa.encode = function (b) {
     if (!b || arguments.length === 0) {
       return '';

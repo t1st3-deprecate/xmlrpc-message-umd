@@ -30,7 +30,7 @@
         <div class="collapse navbar-collapse" id="t1st3-navbar-collapse">
           <ul class="nav navbar-nav navbar-right">
             <li class="dropdown">
-              <a href="#" class="dropdown-toggle" data-toggle="dropdown"><i class="fa fa-code-fork"></i> v0.3.2 <b class="caret"></b></a>
+              <a href="#" class="dropdown-toggle" data-toggle="dropdown"><i class="fa fa-code-fork"></i> v0.4.0 <b class="caret"></b></a>
               <ul class="dropdown-menu">
                 <li>
                   <a href="https://github.com/T1st3/xmlrpc-message-umd/archive/master.zip" title="Download latest version of xmlrpc-message-umd">
@@ -124,13 +124,22 @@
           <p><strong>Note that coverage is made from tests in Node.js context.</strong><br>
           Please check the link above for tests in a browser context.
           <br><br>
-          If you want to run the tests in Node.js, you will need 
-          <a href="http://gruntjs.com/" title="Grunt website">Grunt</a>, and then just run:
+          If you want to run the tests in Node.js, you will need to run:
           </p>
-          <pre><code>grunt test</code></pre>
+          <pre><code>npm test</code></pre>
           <hr>
           <br>
-          <iframe src="coverage/index.html" id="coverageiframe" style="min-height: 80%; width: 100%;"></iframe>
+          <iframe src="coverage/lcov-report/index.html" id="coverageiframe" style="min-height: 80%; width: 100%;"></iframe>
+        </div>
+      </div>
+      <hr>
+      <div class="row">
+        <div class="col-12 col-xs-12 col-sm-12 col-lg-12">
+          <h2>Notes</h2>
+          <p>All tests are run with <a href="http://visionmedia.github.io/mocha/">Mocha</a>, and use 
+          <a href="http://chaijs.com/" title="Chai website">Chai</a> as the assertion library.<br><br>
+          This coverage was generated with <a href="https://github.com/gotwarlost/istanbul">Istanbul</a>.<br><br>
+          <a href="tests.html" title="Tests section"><i class="fa fa-arrow-circle-left"></i> Back to all tests</a><br><br>
         </div>
       </div>
     </div> 
