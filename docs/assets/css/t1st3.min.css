@@ -138,7 +138,6 @@ ul {
           transition: opacity 0.2s ease-in-out 0.1s;
 }
 
-#main h1:hover .anchor-link,
 #main h2:hover .anchor-link,
 #main h3:hover .anchor-link,
 #main h4:hover .anchor-link,
