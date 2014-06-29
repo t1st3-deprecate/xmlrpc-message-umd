@@ -230,7 +230,7 @@ gulp.task('doc_template', ['doc_copy'], function () {
       .pipe(template({
         ProjectName: pkg.name,
         ProjectVersion: pkg.version,
-        ProjectDependencies: ''
+        ProjectDependencies: 'btoa-umd'
       }))
       .pipe(rename(num))
       .pipe(gulp.dest('gh-pages'));
