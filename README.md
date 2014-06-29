@@ -20,8 +20,6 @@ Basically, it is just a small set of utils that create a correct “ready-to-be-
 You'll find all about this project on its **[project pages](http://t1st3.github.io/xmlrpc-message-umd/)**
 
 
-
-
 Installation for production
 ---
 
@@ -96,11 +94,11 @@ Build from source
 First, see "Installation for development" above. 
 Do not forget to get the dependencies!
 
-Then, you also need to install [Grunt](http://gruntjs.com/) globally to build the project.
+Then, you also need to install [Gulp](http://gulpjs.com/) globally to build the project.
 
-    npm install -g grunt-cli
+    npm install -g gulp
 
-See more at the ["Getting started with Grunt" page](http://gruntjs.com/getting-started).
+See more at the ["Getting started with Gulp" page](https://github.com/gulpjs/gulp/blob/master/docs/getting-started.md#getting-started).
 
 
 ---
@@ -111,11 +109,15 @@ The source is located in the "src" folder; the built target is located in the "d
 
 To build, just run:
 
-    grunt build
+    gulp build
 
-To test, you can use Grunt:
+To test, you can use either the `npm test` command or the `gulp test` command:
 
     npm test
+
+or
+
+    gulp test
 
 
 
@@ -124,13 +126,11 @@ To test, you can use Grunt:
 
 You can also use the `serve` task to load the `docs` pages in your browser.
 
-    grunt serve
+    gulp serve
 
 Once it has loaded the page in the browser, this task watches for any modification in the source.
 If changes happen in the source, the task automatically reloads the page in the browser (livereload).
 
-
-This project is [![Built with Grunt](https://cdn.gruntjs.com/builtwith.png)](http://gruntjs.com/).
 
 
 
@@ -149,6 +149,7 @@ Build the docs and Github pages
 
 Please note that this task has a few more dependencies:
 
+* [Istanbul](http://gotwarlost.github.io/istanbul/)
 * [Ruby](https://www.ruby-lang.org/) and [RubyGems](https://rubygems.org/)
 * [Jekyll](http://jekyllrb.com/)
 * [Kramdown](http://kramdown.gettalong.org/)

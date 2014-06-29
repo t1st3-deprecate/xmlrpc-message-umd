@@ -1,6 +1,6 @@
 {
   "name": "xmlrpc-message-umd",
-  "version": "0.4.0",
+  "version": "0.5.0",
   "homepage": "http://t1st3.github.io/xmlrpc-message-umd",
   "description": "A XMLRPC message builder written with UMD definition",
   "keywords": [
@@ -31,34 +31,30 @@
     "node": ">= 0.10.0"
   },
   "dependencies": {
-    "btoa-umd": "~0.3.0"
+    "btoa-umd": "~0.4.0"
   },
   "devDependencies": {
-    "grunt": "~0.4.5",
-    "load-grunt-tasks": "~0.4.0",
-    "time-grunt": "~0.3.1",
-    "grunt-contrib-copy": "~0.5.0",
-    "grunt-contrib-concat": "~0.4.0",
-    "grunt-contrib-clean": "~0.5.0",
-    "grunt-contrib-compress": "~0.8.0",
-    "grunt-contrib-watch": "~0.6.1",
-    "grunt-contrib-uglify": "~0.4.0",
-    "grunt-contrib-connect": "~0.7.1",
-    "grunt-open": "~0.2.3",
-    "connect-livereload": "~0.4.0",
-    "grunt-contrib-jshint": "~0.10.0",
+    "lodash": "~2.4.1",
+    "gulp": "~3.8.5",
+    "gulp-load-plugins": "~0.5.3",
+    "gulp-notify": "~1.4.0",
+    "gulp-concat": "~2.2.0",
+    "gulp-rename": "~1.2.0",
+    "gulp-replace": "~0.3.0",
+    "del": "~0.1.1",
+    "gulp-gzip": "~0.0.8",
+    "gulp-uglify": "~0.3.1",
+    "gulp-template": "~0.1.1",
+    "gulp-header": "~1.0.2",
+    "browser-sync": "~1.1.2",
+    "gulp-jshint": "~1.6.3",
     "jshint-stylish": "~0.2.0",
-    "grunt-jscs-checker": "~0.4.3",
+    "gulp-jscs": "~0.5.0",
     "mocha": "~1.18.2",
     "chai": "~1.9.1",
     "istanbul": "~0.2.9",
     "coveralls": "~2.10.0",
-    "grunt-version": "~0.3.0",
-    "grunt-bower-task": "~0.3.4",
-    "grunt-jsdoc": "~0.5.4",
-    "grunt-jekyll": "~0.4.2",
-    "grunt-template": "~0.2.3",
-    "grunt-banner": "~0.2.2",
-    "grunt-shell": "~0.7.0"
+    "gulp-jsdoc": "~0.1.4",
+    "gulp-bower": "~0.0.6"
   }
 }

@@ -30,11 +30,21 @@
         <div class="collapse navbar-collapse" id="t1st3-navbar-collapse">
           <ul class="nav navbar-nav navbar-right">
             <li class="dropdown">
-              <a href="#" class="dropdown-toggle" data-toggle="dropdown"><i class="fa fa-code-fork"></i> v0.4.0 <b class="caret"></b></a>
+              <a href="#" class="dropdown-toggle" data-toggle="dropdown"><i class="fa fa-code-fork"></i> v0.5.0 <b class="caret"></b></a>
               <ul class="dropdown-menu">
                 <li>
                   <a href="https://github.com/T1st3/xmlrpc-message-umd/archive/master.zip" title="Download latest version of xmlrpc-message-umd">
                     <i class="fa fa-download"></i> Download latest
+                  </a>
+                </li>
+                <li>
+                  <a title="xmlrpc-message-umd on NPM" href="https://www.npmjs.org/package/xmlrpc-message-umd">
+                    <img alt="NPM logo" src="assets/img/vendor/npm-16x16.png"> NPM
+                  </a>
+                </li>
+                <li>
+                  <a title="xmlrpc-message-umd on Bower" href="http://bower.io/search/?q=xmlrpc-message-umd">
+                    <img alt="Bower logo" src="assets/img/vendor/bower-16x16.png"> Bower
                   </a>
                 </li>
                 <li>
@@ -84,18 +94,8 @@
                   </a>
                 </li>
                 <li>
-                  <a title="xmlrpc-message-umd on NPM" href="https://www.npmjs.org/package/xmlrpc-message-umd">
-                    <img alt="NPM logo" src="assets/img/vendor/npm-16x16.png"> NPM
-                  </a>
-                </li>
-                <li>
                   <a title="xmlrpc-message-umd dependencies on David-dm" href="https://david-dm.org/t1st3/xmlrpc-message-umd">
                     <img alt="David logo" src="assets/img/vendor/david-dm-16x16.png"> David
-                  </a>
-                </li>
-                <li>
-                  <a title="xmlrpc-message-umd on Bower" href="http://bower.io/search/?q=xmlrpc-message-umd">
-                    <img alt="Bower logo" src="assets/img/vendor/bower-16x16.png"> Bower
                   </a>
                 </li>
                 <li>
@@ -204,12 +204,12 @@ bower install
 <p>First, see “Installation for development” above. 
 Do not forget to get the dependencies!</p>
 
-<p>Then, you also need to install <a href="http://gruntjs.com/">Grunt</a> globally to build the project.</p>
+<p>Then, you also need to install <a href="http://gulpjs.com/">Gulp</a> globally to build the project.</p>
 
-<pre><code>npm install -g grunt-cli
+<pre><code>npm install -g gulp
 </code></pre>
 
-<p>See more at the <a href="http://gruntjs.com/getting-started">“Getting started with Grunt” page</a>.</p>
+<p>See more at the <a href="https://github.com/gulpjs/gulp/blob/master/docs/getting-started.md#getting-started">“Getting started with Gulp” page</a>.</p>
 
 <hr />
 
@@ -219,25 +219,28 @@ Do not forget to get the dependencies!</p>
 
 <p>To build, just run:</p>
 
-<pre><code>grunt build
+<pre><code>gulp build
 </code></pre>
 
-<p>To test, you can use Grunt:</p>
+<p>To test, you can use either the <code>npm test</code> command or the <code>gulp test</code> command:</p>
 
 <pre><code>npm test
+</code></pre>
+
+<p>or</p>
+
+<pre><code>gulp test
 </code></pre>
 
 <p><strong>Serve and livereload</strong></p>
 
 <p>You can also use the <code>serve</code> task to load the <code>docs</code> pages in your browser.</p>
 
-<pre><code>grunt serve
+<pre><code>gulp serve
 </code></pre>
 
 <p>Once it has loaded the page in the browser, this task watches for any modification in the source.
 If changes happen in the source, the task automatically reloads the page in the browser (livereload).</p>
-
-<p>This project is <a href="http://gruntjs.com/"><img src="https://cdn.gruntjs.com/builtwith.png" alt="Built with Grunt" /></a>.</p>
 
 <h2 id="dependencies">Dependencies</h2>
 
@@ -251,6 +254,7 @@ If changes happen in the source, the task automatically reloads the page in the 
 <p>Please note that this task has a few more dependencies:</p>
 
 <ul>
+  <li><a href="http://gotwarlost.github.io/istanbul/">Istanbul</a></li>
   <li><a href="https://www.ruby-lang.org/">Ruby</a> and <a href="https://rubygems.org/">RubyGems</a></li>
   <li><a href="http://jekyllrb.com/">Jekyll</a></li>
   <li><a href="http://kramdown.gettalong.org/">Kramdown</a></li>
