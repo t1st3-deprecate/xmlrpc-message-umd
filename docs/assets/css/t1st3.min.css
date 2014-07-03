@@ -146,6 +146,14 @@ ul {
   opacity: 1;
 }
 
+#main .fa {
+  color: #b5e853;
+}
+
+#main .anchor-link .fa {
+  color: #428bca;
+}
+
 #footer-wrap {
   border-top: 3px dashed #b5e853;
   margin-top: 60px;

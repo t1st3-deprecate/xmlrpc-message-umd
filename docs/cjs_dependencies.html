@@ -3,7 +3,7 @@
   <head>
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <title>xmlrpc-message-umd</title>
+    <title>xmlrpc-message-umd - CommonJS dependencies</title>
     <meta name="description" content="Another JavaScript UMD module (works in Require.js/AMD loaders, Node.js, and browser globals)">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <link rel="stylesheet" href="assets/css/bootstrap.min.css">
@@ -145,166 +145,28 @@
         </div>
       </div>
     </div>
-<div class="container" id="main">
-  <div class="row">
-    <div class="col-12 col-xs-12 col-sm-12 col-lg-12">
-      <h1 id="xmlrpc-message-umd">xmlrpc-message-umd</h1>
+    <div class="container" id="deps">
+      <div class="row">
+        <div class="col-12 col-xs-12 col-sm-12 col-lg-12">
+          <h2><i class="fa fa-puzzle-piece"></i> xmlrpc-message-umd - CommonJS dependencies</h2>
+          You can view the status of CommonJS dependencies on 
+          <a title="xmlrpc-message-umd dependencies on David-dm" href="https://david-dm.org/t1st3/xmlrpc-message-umd">
+            <img alt="David logo" src="assets/img/vendor/david-dm-16x16.png"> David
+          </a><br><br>
+          <a href="index.html" title="Home page"><i class="fa fa-arrow-circle-left"></i> Back to home</a><br><br>
+          <iframe src="dependo/cjs_deps.html" id="cjsiframe" style="min-height: 80%; width: 100%;"></iframe>
+        </div>
+      </div>
+      <hr>
+      <div class="row">
+        <div class="col-12 col-xs-12 col-sm-12 col-lg-12">
+          <h2><i class="fa fa-file-text-o"></i> Notes</h2>
+          <p>Dependency tree is created with <a href="https://github.com/auchenberg/dependo">Dependo</a>.<br><br>
+          <a href="index.html" title="Home page"><i class="fa fa-arrow-circle-left"></i> Back to home</a><br><br>
+        </div>
+      </div>
+    </div> 
 
-<p><a href="http://badge.fury.io/js/xmlrpc-message-umd"><img src="https://badge.fury.io/js/xmlrpc-message-umd.svg" alt="NPM version" /></a>
-<a href="https://david-dm.org/t1st3/xmlrpc-message-umd"><img src="https://david-dm.org/t1st3/xmlrpc-message-umd.svg?theme=shields.io" alt="Dependency Status" /></a>
-<a href="https://travis-ci.org/T1st3/xmlrpc-message-umd"><img src="https://travis-ci.org/T1st3/xmlrpc-message-umd.svg?branch=master" alt="Build Status" /></a>
-<a href="https://coveralls.io/r/T1st3/xmlrpc-message-umd"><img src="https://coveralls.io/repos/T1st3/xmlrpc-message-umd/badge.png" alt="Coverage Status" /></a></p>
-
-<h2 id="about">About</h2>
-
-<p><code>xmlrpc-message-umd</code> is a Javascript XMLRPC message builder. </p>
-
-<p>This module only provides a message builder; it does not make any request by itself.
-Basically, it is just a small set of utils that create a correct “ready-to-be-sent” XMLRPC string.</p>
-
-<p>You’ll find all about this project on its <strong><a href="http://t1st3.github.io/xmlrpc-message-umd/">project pages</a></strong></p>
-
-<h2 id="installation-for-production">Installation for production</h2>
-
-<p><strong>with Node.js</strong></p>
-
-<p><code>xmlrpc-message-umd</code> is available on <a href="https://www.npmjs.org/package/xmlrpc-message-umd">NPM</a>
-<a href="https://www.npmjs.org/package/xmlrpc-message-umd"><img src="http://t1st3.github.io/xmlrpc-message-umd/assets/img/vendor/npm-16x16.png" alt="NPM" /></a>.</p>
-
-<p><a href="http://badge.fury.io/js/xmlrpc-message-umd"><img src="https://badge.fury.io/js/xmlrpc-message-umd.svg" alt="NPM version" /></a></p>
-
-<p>You can install it with the following command:</p>
-
-<pre><code>npm install xmlrpc-message-umd
-</code></pre>
-
-<p><strong>Browser globals and AMD</strong></p>
-
-<p><code>xmlrpc-message-umd</code> is available on <a href="http://bower.io/search/?q=xmlrpc-message-umd">Bower</a>
-<a href="http://bower.io/search/?q=xmlrpc-message-umd"><img src="http://t1st3.github.io/xmlrpc-message-umd/assets/img/vendor/bower-16x16.png" alt="Bower" /></a>.</p>
-
-<p><a href="http://badge.fury.io/js/xmlrpc-message-umd"><img src="https://badge.fury.io/bo/xmlrpc-message-umd.svg" alt="Bower version" /></a></p>
-
-<p>To install it from Bower, just run </p>
-
-<pre><code>bower install xmlrpc-message-umd
-</code></pre>
-
-<p>Note that published versions on both NPM and Bower should stay in sync.</p>
-
-<h2 id="installation-for-development">Installation for development</h2>
-
-<p>You also can download the whole project (and build it from its source; see below).</p>
-
-<p>Either use <code>git clone</code> command to get it:</p>
-
-<pre><code>git clone https://github.com/T1st3/xmlrpc-message-umd.git
-</code></pre>
-
-<p>Or download the latest version of <a href="https://github.com/T1st3/xmlrpc-message-umd/archive/master.zip">the whole project</a>.</p>
-
-<p>Then, get the dependencies of the project from both Bower and NPM:</p>
-
-<pre><code>npm install
-bower install
-</code></pre>
-
-<h2 id="documentation">Documentation</h2>
-
-<p>You can find fully functional examples, tests and a documentation in the <a href="http://usejsdoc.org/">JSDoc</a> format in the <code>docs</code> folder.</p>
-
-<p>You can also browse these documents and tests online:</p>
-
-<ul>
-  <li><a href="http://t1st3.github.io/xmlrpc-message-umd/demo.html">Demo</a></li>
-  <li><a href="http://t1st3.github.io/xmlrpc-message-umd">this README and more info</a></li>
-  <li><a href="http://t1st3.github.io/xmlrpc-message-umd/jsdoc.html">JSDoc</a></li>
-  <li><a href="http://t1st3.github.io/xmlrpc-message-umd/credits.html">Credits</a></li>
-  <li><a href="http://t1st3.github.io/xmlrpc-message-umd/tests.html">Tests</a></li>
-</ul>
-
-<h2 id="build-from-source">Build from source</h2>
-
-<p>First, see “Installation for development” above. 
-Do not forget to get the dependencies!</p>
-
-<p>Then, you also need to install <a href="http://gulpjs.com/">Gulp</a> globally to build the project.</p>
-
-<pre><code>npm install -g gulp
-</code></pre>
-
-<p>See more at the <a href="https://github.com/gulpjs/gulp/blob/master/docs/getting-started.md#getting-started">“Getting started with Gulp” page</a>.</p>
-
-<hr />
-
-<p>You are now ready to build!</p>
-
-<p>The source is located in the “src” folder; the built target is located in the “dist” folder.</p>
-
-<p>To build, just run:</p>
-
-<pre><code>gulp build
-</code></pre>
-
-<p>To test, you can use either the <code>npm test</code> command or the <code>gulp test</code> command:</p>
-
-<pre><code>npm test
-</code></pre>
-
-<p>or</p>
-
-<pre><code>gulp test
-</code></pre>
-
-<p><strong>Serve and livereload</strong></p>
-
-<p>You can also use the <code>serve</code> task to load the <code>docs</code> pages in your browser.</p>
-
-<pre><code>gulp serve
-</code></pre>
-
-<p>Once it has loaded the page in the browser, this task watches for any modification in the source.
-If changes happen in the source, the task automatically reloads the page in the browser (livereload).</p>
-
-<h2 id="dependencies">Dependencies</h2>
-
-<p>Status of dependencies:</p>
-
-<p><a href="https://david-dm.org/t1st3/xmlrpc-message-umd"><img src="https://david-dm.org/t1st3/xmlrpc-message-umd.svg?theme=shields.io" alt="Dependency Status" /></a>
-<a href="https://david-dm.org/t1st3/xmlrpc-message-umd#info=devDependencies"><img src="https://david-dm.org/t1st3/xmlrpc-message-umd/dev-status.svg?theme=shields.io" alt="devDependency Status" /></a></p>
-
-<h2 id="build-the-docs-and-github-pages">Build the docs and Github pages</h2>
-
-<p>Please note that this task has a few more dependencies:</p>
-
-<ul>
-  <li><a href="http://gotwarlost.github.io/istanbul/">Istanbul</a></li>
-  <li><a href="https://www.ruby-lang.org/">Ruby</a> and <a href="https://rubygems.org/">RubyGems</a></li>
-  <li><a href="http://jekyllrb.com/">Jekyll</a></li>
-  <li><a href="http://kramdown.gettalong.org/">Kramdown</a></li>
-</ul>
-
-<p>Check <a href="http://t1st3.github.io/xmlrpc-message-umd/build_docs.html">the build-docs page</a> for more info.</p>
-
-<h2 id="credits">Credits</h2>
-
-<p>See <a href="http://t1st3.github.io/xmlrpc-message-umd/credits.html">the credits page</a> to see more.</p>
-
-<h2 id="license">License</h2>
-
-<p>This piece of code is triple-licensed: <a href="https://github.com/T1st3/xmlrpc-message-umd/blob/master/LICENSE.md">MIT / BSD / GPL licenses</a></p>
-
-<p>You can also view it in a re-formatted fashion: <a href="http://t1st3.github.io/xmlrpc-message-umd/license.html">MIT / BSD / GPL licenses</a>.</p>
-
-<h2 id="initial-author">Initial author</h2>
-
-<p><a href="https://github.com/T1st3/">T1st3</a> 
-<a href="https://github.com/T1st3/"><img src="http://t1st3.github.io/xmlrpc-message-umd/assets/img/gravatar-16x16.png" alt="T1st3" /></a></p>
-
-
-    </div>
-  </div>
-</div>
     <div id="footer-wrap">
       <footer class="container" id="footer">
         <div class="row">
@@ -392,21 +254,6 @@ If changes happen in the source, the task automatically reloads the page in the 
 <script src="//ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
 <script>window.jQuery || document.write('<script src="assets/js/lib/jquery.min.js"><\/script>')</script>
 <script src="assets/js/lib/bootstrap.min.js"></script>
-<script type="text/javascript">
-  $(document).ready(function() {
-    $('#main h2, #main h3, #main h4, #main h5, #main h6').each(function(i, el) {
-      var $el, icon, id, html;
-      $el = $(el);
-      html = $el.html();
-      id = html.toLowerCase().replace(/\s/g, '_').replace(/\W/g, '');
-      icon = '<i class="fa fa-link"></i>';
-      if (id) {
-        $el.prepend($('<a />').addClass('anchor-link').attr('href', '#' + id).attr('name', id).attr('id', id).html(icon));
-        return $el;
-      }
-    });
-  });
-</script>
 <!--
 .-') _         .-')   .-') _            
 (  OO) )       ( OO ).(  OO) )           

@@ -20,6 +20,9 @@ var jsdoc = require('gulp-jsdoc');
 var header = require('gulp-header');
 var gzip = require('gulp-gzip');
 var browserSync = require('browser-sync');
+var qr = require('qr-image');
+var imagemin = require('gulp-imagemin');
+var dependo = require('dependo');
 
 /*
  * BUILD TASKS
@@ -127,10 +130,18 @@ gulp.task('bower', function () {
 });
 
 gulp.task('doc_clean', function (cb) {
-  del(['gh-pages/_layouts', 'gh-pages/assets/', 'gh-pages/_config.yml', 'gh-pages/*.md', 'gh-pages/lib', 'gh-pages/_includes/umd_*', '!gh-pages/.git', 'docs'], cb);
+  del([
+    'gh-pages/_layouts', 'gh-pages/assets/', 'gh-pages/coverage/', 'gh-pages/jsdoc/', 'gh-pages/dependo/', 
+    'gh-pages/_config.yml', 'gh-pages/*.md', 'gh-pages/lib', 'gh-pages/_includes/umd_*', '!gh-pages/.git', 'docs'
+  ], cb);
 });
 
-gulp.task('doc_copy', ['bower', 'doc_clean'], function () {
+gulp.task('qr', ['bower', 'doc_clean'], function () {
+  var qrPng = qr.image(pkg.homepage, { type: 'png' });
+  qrPng.pipe(require('fs').createWriteStream('bower_components/t1st3-assets/dist/assets/img/qr.png'));
+});
+
+gulp.task('doc_copy', ['bower', 'doc_clean', 'qr'], function () {
   
   /* JS */
   gulp.src([
@@ -144,8 +155,7 @@ gulp.task('doc_copy', ['bower', 'doc_clean'], function () {
     'bower_components/bootstrap/dist/js/bootstrap.min.js',
     'bower_components/codemirror/lib/codemirror.js',
     'bower_components/jshint/dist/jshint.js',
-    'src/' + pkg.name + '.js',
-    'bower_components/btoa-umd/dist/btoa-umd.js'
+    'src/' + pkg.name + '.js'
   ])
     .pipe(gulp.dest('gh-pages/assets/js/lib'));
     
@@ -184,9 +194,8 @@ gulp.task('doc_copy', ['bower', 'doc_clean'], function () {
     .pipe(gulp.dest('gh-pages/assets/fonts'));
   
   /* IMG */
-  gulp.src([
-    'bower_components/t1st3-assets/dist/assets/img/**/*.png'
-  ])
+  gulp.src('bower_components/t1st3-assets/dist/assets/img/**/*.png')
+    .pipe(imagemin())
     .pipe(gulp.dest('gh-pages/assets/img'));
     
   /* XML */
@@ -224,13 +233,16 @@ gulp.task('doc_template', ['doc_copy'], function () {
     'credits.html',
     'jsdoc.html',
     'license.md',
+    'dependencies.html',
+    'cjs_dependencies.html',
+    'amd_dependencies.html',
     '_config.yml'
   ]).forEach(function (num) {
       gulp.src('bower_components/t1st3-assets/dist/umd_' + num)
       .pipe(template({
         ProjectName: pkg.name,
         ProjectVersion: pkg.version,
-        ProjectDependencies: 'btoa-umd'
+        ProjectDependencies: ''
       }))
       .pipe(rename(num))
       .pipe(gulp.dest('gh-pages'));
@@ -244,12 +256,74 @@ gulp.task('banner', ['doc_template'], function () {
     .pipe(gulp.dest('gh-pages'));
 });
 
-gulp.task('jsdoc', function () {
+gulp.task('jsdoc', ['doc_copy'], function () {
   gulp.src('./src/**/*.js')
     .pipe(jsdoc('./gh-pages/jsdoc'));
 });
 
-gulp.task('coverage', function (cb) {
+gulp.task('dependo', ['doc_copy'], function () {
+  function getDateTime() {
+    var date = new Date();
+    var hour = date.getHours();
+    hour = (hour < 10 ? '0' : '') + hour;
+    var min  = date.getMinutes();
+    min = (min < 10 ? '0' : '') + min;
+    var sec  = date.getSeconds();
+    sec = (sec < 10 ? '0' : '') + sec;
+    var year = date.getFullYear();
+    var month = date.getMonth() + 1;
+    month = (month < 10 ? '0' : '') + month;
+    var day  = date.getDate();
+    day = (day < 10 ? '0' : '') + day;
+    return year + ':' + month + ':' + day + ':' + hour + ':' + min + ':' + sec;
+  }
+  var fs = require('fs');
+  var path = require('path');
+  fs.mkdirParent = function (dirPath, mode, callback) {
+    fs.mkdir(dirPath, mode, function (error) {
+      if (error && error.errno === 34) {
+        fs.mkdirParent(path.dirname(dirPath), mode, callback);
+        fs.mkdirParent(dirPath, mode, callback);
+      }
+      //callback && callback(error);
+    });
+  };
+  fs.mkdirParent('./gh-pages/dependo/');
+  
+  var dep = new dependo('./src/', {
+    format: 'cjs',
+    exclude: '^node_modules|bower_components',
+    transform: function(d){
+      return d;
+    }
+  });
+  var html = dep.generateHtml();
+  fs.writeFile('./gh-pages/dependo/cjs_deps.html', html, function(err) {
+    if (err) {
+      console.log(err);
+    } else {
+      console.log('[' + getDateTime() + '] Dependo: ./gh-pages/dependo/cjs_deps.html was saved!');
+    }
+  });
+  
+  dep = new dependo('./src/', {
+    format: 'amd',
+    exclude: '^node_modules|bower_components',
+    transform: function(d){
+      return d;
+    }
+  });
+  html = dep.generateHtml();
+  fs.writeFile('./gh-pages/dependo/amd_deps.html', html, function(err) {
+    if (err) {
+      console.log(err);
+    } else {
+      console.log('[' + getDateTime() + '] Dependo: ./gh-pages/dependo/amd_deps.html was saved!');
+    }
+  });
+});
+
+gulp.task('coverage', ['doc_copy'], function (cb) {
   exec('istanbul cover ./node_modules/mocha/bin/_mocha test/*tests.js --report lcov --dir=gh-pages/coverage -- -R spec && cat ./gh-pages/coverage/lcov.info', function (err, stdout, stderr) {
     console.log(stdout);
     console.log(stderr);
@@ -263,7 +337,7 @@ gulp.task('gzip', ['doc_template'], function () {
     .pipe(gulp.dest('./gh-pages'));
 });
 
-gulp.task('jekyll', ['doc_clean', 'doc_copy', 'doc_template', 'banner', 'jsdoc', 'coverage', 'gzip'], function (cb) {
+gulp.task('jekyll', ['doc_clean', 'qr', 'doc_copy', 'doc_template', 'banner', 'jsdoc', 'coverage', 'gzip', 'dependo'], function (cb) {
   exec('jekyll build --config ./gh-pages/_config.yml --source ./gh-pages --destination ./docs', function (err, stdout, stderr) {
     console.log(stdout);
     console.log(stderr);
@@ -271,7 +345,7 @@ gulp.task('jekyll', ['doc_clean', 'doc_copy', 'doc_template', 'banner', 'jsdoc',
   });
 });
 
-gulp.task('doc', ['doc_clean', 'doc_copy', 'doc_template', 'banner', 'jsdoc', 'coverage', 'gzip', 'jekyll'], function () {
+gulp.task('doc', ['doc_clean', 'qr', 'doc_copy', 'doc_template', 'banner', 'jsdoc', 'coverage', 'gzip', 'dependo', 'jekyll'], function () {
   gulp.src('./')
     .pipe(notify({
       title: 'Doc Builder',

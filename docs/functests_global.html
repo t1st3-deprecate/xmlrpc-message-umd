@@ -31,7 +31,7 @@
         <div class="collapse navbar-collapse" id="t1st3-navbar-collapse">
           <ul class="nav navbar-nav navbar-right">
             <li class="dropdown">
-              <a href="#" class="dropdown-toggle" data-toggle="dropdown"><i class="fa fa-code-fork"></i> v0.5.2 <b class="caret"></b></a>
+              <a href="#" class="dropdown-toggle" data-toggle="dropdown"><i class="fa fa-code-fork"></i> v0.5.3 <b class="caret"></b></a>
               <ul class="dropdown-menu">
                 <li>
                   <a href="https://github.com/T1st3/xmlrpc-message-umd/archive/master.zip" title="Download latest version of xmlrpc-message-umd">
@@ -58,6 +58,11 @@
                     <i style="color: #EE7600;" class="fa fa-rss"></i> RSS/Atom for version tags
                   </a>
                 </li>
+                <li>
+                  <a title="QR code for xmlrpc-message-umd" href="#" data-toggle="modal" data-target="#mainModal">
+                    <i class="fa fa-qrcode"></i> QR code
+                  </a>
+                </li>
               </ul>
             </li>
             <li class="dropdown">
@@ -80,6 +85,9 @@
                 </li>
                 <li>
                   <a href="https://github.com/T1st3/xmlrpc-message-umd/blob/master/LICENSE" title="xmlrpc-message-umd license"><i class="fa fa-legal"></i> License</a>
+                </li>
+                <li>
+                  <a href="dependencies.html" title="xmlrpc-message-umd dependencies"><i class="fa fa-puzzle-piece"></i> Dependencies</a>
                 </li>
                 <li>
                   <a href="credits.html" title="xmlrpc-message-umd credits"><i class="fa fa-share-square-o"></i> Credits</a>
@@ -122,10 +130,26 @@
       </div>
     </nav>
 
+    <div class="modal fade" id="mainModal" tabindex="-1" role="dialog" aria-labelledby="mainModalLabel" aria-hidden="true">
+      <div class="modal-dialog">
+        <div class="modal-content">
+          <div class="modal-header">
+            <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
+            <h4 class="modal-title" id="mainModalLabel">xmlrpc-message-umd</h4>
+          </div>
+          <div class="modal-body">
+            <img src="assets/img/qr.png" alt="QR code">
+          </div>
+          <div class="modal-footer">
+            <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+          </div>
+        </div>
+      </div>
+    </div>
     <div class="container" id="tests">
       <div class="row">
         <div class="col-12 col-xs-12 col-sm-12 col-lg-12">
-          <h2>xmlrpc-message-umd - Functional tests (using globals)</h2>
+          <h2><i class="fa fa-cogs"></i> xmlrpc-message-umd - Functional tests (using globals)</h2>
           <a href="tests.html" title="Tests section"><i class="fa fa-arrow-circle-left"></i> Back to all tests</a><br><br>
           <hr>
           <br>
@@ -136,7 +160,7 @@
       <hr>
       <div class="row">
         <div class="col-12 col-xs-12 col-sm-12 col-lg-12">
-          <h2>Notes</h2>
+          <h2><i class="fa fa-file-text-o"></i> Notes</h2>
           <p>All tests are run with <a href="http://visionmedia.github.io/mocha/">Mocha</a>, and use 
           <a href="http://chaijs.com/" title="Chai website">Chai</a> as the assertion library.<br><br>
           If you want to run the tests in Node.js, you will need to run:
@@ -224,6 +248,7 @@
       <div class="container">
         <ul class="nav navbar-nav navbar-leftt">
           <li><a title="Print" href="javascript:window.print();"><i class="fa fa-print"></i> Print</a></li>
+          <li><a title="QR code" href="#" data-toggle="modal" data-target="#mainModal"><i class="fa fa-qrcode"></i> QR code</a></li>
         </ul>
         <ul class="nav navbar-nav navbar-right">
           <li><a title="Scroll to top" href="#"><i class="fa fa-arrow-circle-up"></i> Top</a></li>
@@ -237,8 +262,6 @@
 <script src="assets/js/lib/chai.js"></script>
 <script src="assets/js/lib/chai-jquery.js"></script>
 <script src="assets/js/lib/bootstrap.min.js"></script>
-
-  <script src="assets/js/lib/btoa-umd.js"></script>
 
 <script src="assets/js/lib/xmlrpc-message-umd.js"></script>
 <script src="functests.js"></script>
