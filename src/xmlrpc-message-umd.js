@@ -3,7 +3,7 @@
 *
 * @link https://github.com/T1st3/xmlrpc-message-umd
 * @author T1st3
-* @version 0.5.7
+* @version 0.5.8
 * @license https://github.com/T1st3/xmlrpc-message-umd/blob/master/LICENSE
 *
 *
@@ -14,10 +14,10 @@
 * scott@scottandrew.com
 * http://www.scottandrew.com/xml-rpc
 *
-* Original License: 
-* You are granted the right to use and/or redistribute this 
-* code only if this license and the copyright notice are included 
-* and you accept that no warranty of any kind is made or implied 
+* Original License:
+* You are granted the right to use and/or redistribute this
+* code only if this license and the copyright notice are included
+* and you accept that no warranty of any kind is made or implied
 * by the author.
 *
 */
@@ -70,7 +70,7 @@
   * @since 0.1.0
   */
   XMLRPCMessage.prototype.setMethod = function (methodName) {
-    // Check methodName 
+    // Check methodName
     if (!methodName) {
       // keep chainability
       return this;
@@ -105,17 +105,19 @@
   * @since 0.1.0
   */
   XMLRPCMessage.prototype.xml = function () {
-    var xml = '';
+    var xml = '',
+    i = 0,
+    data = null;
     xml += '<?xml version=\'1.0\'?>\n';
     xml += '<methodCall>\n';
     xml += '<methodName>' + this.method + '</methodName>\n';
     xml += '<params>\n';
-    var i = 0,
-    data = null;
     for (i = 0; i < this.params.length; i++) {
       data = this.params[i];
       xml += '<param>\n';
-      xml += '<value>' + XMLRPCMessage.getParamXML(data, XMLRPCMessage.dataTypeOf(data)) + '</value>\n';
+      xml += '<value>';
+      xml += XMLRPCMessage.getParamXML(data, XMLRPCMessage.dataTypeOf(data));
+      xml += '</value>\n';
       xml += '</param>\n';
     }
     xml += '</params>\n';
@@ -252,9 +254,12 @@
     if (!data) {
       return '';
     }
-    var xml = '<array><data>\n';
-    for (var i = 0; i < data.length; i++) {
-      xml += '<value>' + XMLRPCMessage.getParamXML(data[i], XMLRPCMessage.dataTypeOf(data[i])) + '</value>\n';
+    var xml = '<array><data>\n',
+    i = 0;
+    for (i = 0; i < data.length; i++) {
+      xml += '<value>';
+      xml += XMLRPCMessage.getParamXML(data[i], XMLRPCMessage.dataTypeOf(data[i]));
+      xml += '</value>\n';
     }
     xml += '</data></array>\n';
     return xml;
@@ -272,11 +277,14 @@
     if (!data) {
       return '';
     }
-    var xml = '<struct>\n';
-    for (var i in data) {
+    var xml = '<struct>\n',
+    i = 0;
+    for (i in data) {
       xml += '<member>\n';
       xml += '<name>' + i + '</name>\n';
-      xml += '<value>' + XMLRPCMessage.getParamXML(data[i], XMLRPCMessage.dataTypeOf(data[i])) + '</value>\n';
+      xml += '<value>' ;
+      xml += XMLRPCMessage.getParamXML(data[i], XMLRPCMessage.dataTypeOf(data[i]));
+      xml += '</value>\n';
       xml += '</member>\n';
     }
     xml += '</struct>\n';

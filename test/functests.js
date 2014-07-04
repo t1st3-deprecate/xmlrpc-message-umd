@@ -57,13 +57,15 @@
   describe('Functional tests', function () {
     describe('Test XMLRPC', function () {
       it('should return the correct XML', function (done) {
-        var a = ['chicken', 'duck', 'goose'];
-        var bin = XMLRPCMessage.btoa('Hello world');
-        var obj = {};
+        var a = ['chicken', 'duck', 'goose'],
+        bin = XMLRPCMessage.btoa('Hello world'),
+        obj = {},
+        msg = null,
+        str = '';
         obj.x = 20;
         obj.y = 'cow';
         obj.z = 3.14;
-        var msg = new XMLRPCMessage();
+        msg = new XMLRPCMessage();
         msg.setMethod('system.myMethod');
         msg.addParameter('mississippi');
         msg.addParameter(7);
@@ -72,7 +74,7 @@
         msg.addParameter(a);
         msg.addParameter(obj);
 
-        var str = '<?xml version=\'1.0\'?>\n';
+        str = '<?xml version=\'1.0\'?>\n';
         str += '<methodCall>\n';
         str += '<methodName>system.myMethod</methodName>\n';
         str += '<params>\n';

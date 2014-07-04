@@ -190,8 +190,11 @@
     describe('No param', function () {
       it('Should return the correct XML', function (done) {
         var msg = new XMLRPCMessage(),
+        str = '',
         res = msg.xml();
-        res.should.equal('<?xml version=\'1.0\'?>\n<methodCall>\n<methodName>undefined</methodName>\n<params>\n</params>\n</methodCall>');
+        str += '<?xml version=\'1.0\'?>\n<methodCall>\n<methodName>undefined';
+        str += '</methodName>\n<params>\n</params>\n</methodCall>';
+        res.should.equal(str);
         done();
       });
     });
@@ -214,7 +217,7 @@
         msg.addParameter(bin);
         msg.addParameter(a);
         msg.addParameter(obj);
-        
+
         str = '<?xml version=\'1.0\'?>\n';
         str += '<methodCall>\n';
         str += '<methodName>system.myMethod</methodName>\n';
@@ -324,8 +327,8 @@
     });
     describe('Correct param Date for o', function () {
       it('Should return "date"', function (done) {
-        var y2k = new Date(2000, 1, 1, 0, 0, 0, 0);
-        var type = XMLRPCMessage.dataTypeOf(y2k);
+        var y2k = new Date(2000, 1, 1, 0, 0, 0, 0),
+        type = XMLRPCMessage.dataTypeOf(y2k);
         type.should.equal('date');
         done();
       });
@@ -479,8 +482,8 @@
     });
     describe('Correct param {c: "d", e: 4} for data', function () {
       it('Should return the correct XML', function (done) {
-        var xml = XMLRPCMessage.doStructXML({c: 'd', e: 4});
-        var str = '<struct>\n';
+        var xml = XMLRPCMessage.doStructXML({c: 'd', e: 4}),
+        str = '<struct>\n';
         str += '<member>\n';
         str += '<name>c</name>\n';
         str += '<value><string>d</string></value>\n';
@@ -650,7 +653,7 @@
       });
     });
   });
-  
+
   describe('tests against btoa', function () {
     describe('No param for data', function () {
       it('Should return false', function (done) {
@@ -667,7 +670,7 @@
       });
     });
   });
-  
+
   if (typeof exports !== 'object') {
     mocha.run();
   }
