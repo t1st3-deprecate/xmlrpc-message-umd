@@ -6,7 +6,7 @@ bower.json
 .gitignore
 .gitattributes
 
-Gruntfile.js
+gulpfile.js
 
 .travis.yml
 

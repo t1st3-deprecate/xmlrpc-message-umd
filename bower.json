@@ -32,7 +32,7 @@
     ".jshintrc",
     ".jscs.json",
     ".npmignore",
-    "Gruntfile.js",
+    "gulpfile.js",
     "package.json",
     "README.md"
   ],
