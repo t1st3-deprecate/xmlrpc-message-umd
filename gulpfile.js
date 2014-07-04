@@ -1,5 +1,7 @@
 'use strict';
 
+var deps = ['btoa-umd'];
+
 var pkg = require('./package.json');
 
 var _ = require('lodash');
@@ -262,6 +264,11 @@ gulp.task('doc_copy', ['bower', 'doc_clean', 'qr'], function () {
     'src/' + pkg.name + '.js'
   ])
     .pipe(gulp.dest('gh-pages/assets/js/lib'));
+  
+   _([deps]).forEach(function (num) {
+     gulp.src(['bower_components/' + num + '/dist/' + num + '.js'])
+      .pipe(gulp.dest('gh-pages/assets/js/lib'));
+   });
     
   gulp.src([
     'bower_components/codemirror/mode/javascript/javascript.js'
@@ -319,7 +326,7 @@ gulp.task('doc_copy', ['bower', 'doc_clean', 'qr'], function () {
     .pipe(gulp.dest('gh-pages/_includes'));
   
   gulp.src([
-    'bower_components/t1st3-assets/dist/_layouts/**/*'
+    'bower_components/t1st3-assets/dist/_layouts/**/umd_*'
   ])
     .pipe(gulp.dest('gh-pages/_layouts'));
 });
@@ -347,7 +354,7 @@ gulp.task('doc_template', ['doc_copy'], function () {
       .pipe(template({
         ProjectName: pkg.name,
         ProjectVersion: pkg.version,
-        ProjectDependencies: ''
+        ProjectDependencies: deps
       }))
       .pipe(rename(num))
       .pipe(gulp.dest('gh-pages'));
