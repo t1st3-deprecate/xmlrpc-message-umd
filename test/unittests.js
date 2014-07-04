@@ -11,6 +11,7 @@
       baseUrl: '',
       paths: {
         jquery: 'assets/js/lib/jquery.min',
+        lodash: 'assets/js/lib/lodash.min',
         mocha: 'assets/js/lib/mocha',
         chai: 'assets/js/lib/chai',
         chaijquery: 'assets/js/lib/chai-jquery',
@@ -83,8 +84,8 @@
   describe('tests against setMethod', function () {
     describe('No param for methodName', function () {
       it('XMLRPCMessage should not have been altered', function (done) {
-        var msg = new XMLRPCMessage();
-        var res = msg.setMethod();
+        var msg = new XMLRPCMessage(),
+        res = msg.setMethod();
         msg.should.equal(res);
         done();
       });
@@ -102,8 +103,8 @@
   describe('tests against addParameter', function () {
     describe('No param for data', function () {
       it('XMLRPCMessage should not have been altered', function (done) {
-        var msg = new XMLRPCMessage();
-        var res = msg.addParameter();
+        var msg = new XMLRPCMessage(),
+        res = msg.addParameter();
         msg.should.equal(res);
         done();
       });
@@ -167,8 +168,8 @@
     });
     describe('Correct param Date for data', function () {
       it('Should return Date', function (done) {
-        var y2k = new Date(2000, 1, 1, 0, 0, 0, 0);
-        var msg = new XMLRPCMessage();
+        var y2k = new Date(2000, 1, 1, 0, 0, 0, 0),
+        msg = new XMLRPCMessage();
         msg.addParameter(y2k);
         msg.params[0].should.equal(y2k);
         done();
@@ -176,8 +177,8 @@
     });
     describe('Correct param btoa("Hello world") for data', function () {
       it('Should return SGVsbG8gd29ybGQ=', function (done) {
-        var bin = XMLRPCMessage.btoa('Hello world');
-        var msg = new XMLRPCMessage();
+        var bin = XMLRPCMessage.btoa('Hello world'),
+        msg = new XMLRPCMessage();
         msg.addParameter(bin);
         msg.params[0].a.should.equal('SGVsbG8gd29ybGQ=');
         done();
@@ -188,8 +189,8 @@
   describe('tests against xml', function () {
     describe('No param', function () {
       it('Should return the correct XML', function (done) {
-        var msg = new XMLRPCMessage();
-        var res = msg.xml();
+        var msg = new XMLRPCMessage(),
+        res = msg.xml();
         res.should.equal('<?xml version=\'1.0\'?>\n<methodCall>\n<methodName>undefined</methodName>\n<params>\n</params>\n</methodCall>');
         done();
       });
@@ -197,13 +198,15 @@
     describe('Correct params', function () {
       it('should return the correct XML', function (done) {
         console.log('This should be a functional test rather than a unit one');
-        var a = ['chicken', 'duck', 'goose'];
-        var bin = XMLRPCMessage.btoa('Hello world');
-        var obj = {};
+        var a = ['chicken', 'duck', 'goose'],
+        bin = XMLRPCMessage.btoa('Hello world'),
+        obj = {},
+        msg = null,
+        str = '';
         obj.x = 20;
         obj.y = 'cow';
         obj.z = 3.14;
-        var msg = new XMLRPCMessage();
+        msg = new XMLRPCMessage();
         msg.setMethod('system.myMethod');
         msg.addParameter('mississippi');
         msg.addParameter(7);
@@ -212,7 +215,7 @@
         msg.addParameter(a);
         msg.addParameter(obj);
         
-        var str = '<?xml version=\'1.0\'?>\n';
+        str = '<?xml version=\'1.0\'?>\n';
         str += '<methodCall>\n';
         str += '<methodName>system.myMethod</methodName>\n';
         str += '<params>\n';
@@ -401,8 +404,8 @@
     });
     describe('Correct param for data', function () {
       it('Should return <dateTime.iso8601></dateTime.iso8601>', function (done) {
-        var y2k = new Date(2000, 1, 1, 0, 0, 0, 0);
-        var xml = XMLRPCMessage.doDateXML(y2k);
+        var y2k = new Date(2000, 1, 1, 0, 0, 0, 0),
+        xml = XMLRPCMessage.doDateXML(y2k);
         xml.should.equal('<dateTime.iso8601>1000101T00:00:00</dateTime.iso8601>');
         done();
       });
@@ -426,8 +429,8 @@
     });
     describe('Correct param ["a"] for data', function () {
       it('Should return the correct XML', function (done) {
-        var xml = XMLRPCMessage.doArrayXML(['a']);
-        var str = '<array><data>\n';
+        var xml = XMLRPCMessage.doArrayXML(['a']),
+        str = '<array><data>\n';
         str += '<value><string>a</string></value>\n';
         str += '</data></array>\n';
         done();
@@ -435,8 +438,8 @@
     });
     describe('Correct param ["a", "b", "c"] for data', function () {
       it('Should return the correct XML', function (done) {
-        var xml = XMLRPCMessage.doArrayXML(['a', 'b', 'c']);
-        var str = '<array><data>\n';
+        var xml = XMLRPCMessage.doArrayXML(['a', 'b', 'c']),
+        str = '<array><data>\n';
         str += '<value><string>a</string></value>\n';
         str += '<value><string>b</string></value>\n';
         str += '<value><string>c</string></value>\n';
@@ -463,8 +466,8 @@
     });
     describe('Correct param {a: "b"} for data', function () {
       it('Should return the correct XML', function (done) {
-        var xml = XMLRPCMessage.doStructXML({a: 'b'});
-        var str = '<struct>\n';
+        var xml = XMLRPCMessage.doStructXML({a: 'b'}),
+        str = '<struct>\n';
         str += '<member>\n';
         str += '<name>a</name>\n';
         str += '<value><string>b</string></value>\n';
@@ -538,17 +541,17 @@
     });
     describe('Correct params Date & "date"', function () {
       it('Should return <dateTime.iso8601>1000101T00:00:00</dateTime.iso8601>', function (done) {
-        var y2k = new Date(2000, 1, 1, 0, 0, 0, 0);
-        var xml = XMLRPCMessage.getParamXML(y2k, 'date');
+        var y2k = new Date(2000, 1, 1, 0, 0, 0, 0),
+        xml = XMLRPCMessage.getParamXML(y2k, 'date');
         xml.should.equal('<dateTime.iso8601>1000101T00:00:00</dateTime.iso8601>');
         done();
       });
     });
     describe('Correct params ["chicken", "duck", "goose"] & "array"', function () {
       it('Should return the correct XML', function (done) {
-        var a = ['chicken', 'duck', 'goose'];
-        var xml = XMLRPCMessage.getParamXML(a, 'array');
-        var str = '<array><data>\n';
+        var a = ['chicken', 'duck', 'goose'],
+        xml = XMLRPCMessage.getParamXML(a, 'array'),
+        str = '<array><data>\n';
         str += '<value><string>chicken</string></value>\n';
         str += '<value><string>duck</string></value>\n';
         str += '<value><string>goose</string></value>\n';
@@ -559,12 +562,13 @@
     });
     describe('Correct params {x: 20, y: "cow", z: 3.14}  & "struct"', function () {
       it('Should return the correct XML', function (done) {
-        var obj = {};
+        var obj = {},
+        xml = null,
+        str = '<struct>\n';
         obj.x = 20;
         obj.y = 'cow';
         obj.z = 3.14;
-        var xml = XMLRPCMessage.getParamXML(obj, 'struct');
-        var str = '<struct>\n';
+        xml = XMLRPCMessage.getParamXML(obj, 'struct');
         str += '<member>\n';
         str += '<name>x</name>\n';
         str += '<value><int>20</int></value>\n';
@@ -608,8 +612,8 @@
     });
     describe('Correct param for date', function () {
       it('Should return "1000101T00:00:00"', function (done) {
-        var y2k = new Date(2000, 1, 1, 0, 0, 0, 0);
-        var date = XMLRPCMessage.dateToISO8601(y2k);
+        var y2k = new Date(2000, 1, 1, 0, 0, 0, 0),
+        date = XMLRPCMessage.dateToISO8601(y2k);
         '1000101T00:00:00'.should.equal(date);
         done();
       });

@@ -1,13 +1,11 @@
 {
   "name": "xmlrpc-message-umd",
-  "version": "0.5.6",
+  "version": "0.5.7",
   "homepage": "http://t1st3.github.io/xmlrpc-message-umd",
   "description": "A XMLRPC message builder written with UMD definition",
   "keywords": [
-    "amd",
     "umd",
     "xmlrpc",
-    "module",
     "builder",
     "xml"
   ],
@@ -31,7 +29,7 @@
     "node": ">= 0.10.0"
   },
   "dependencies": {
-    "btoa-umd": "~0.4.4"
+    "btoa-umd": "~0.4.5"
   },
   "devDependencies": {
     "lodash": "~2.4.1",

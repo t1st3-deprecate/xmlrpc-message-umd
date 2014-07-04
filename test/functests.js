@@ -11,6 +11,7 @@
       baseUrl: '',
       paths: {
         jquery: 'assets/js/lib/jquery.min',
+        lodash: 'assets/js/lib/lodash.min',
         mocha: 'assets/js/lib/mocha',
         chai: 'assets/js/lib/chai',
         chaijquery: 'assets/js/lib/chai-jquery',
@@ -70,7 +71,7 @@
         msg.addParameter(bin);
         msg.addParameter(a);
         msg.addParameter(obj);
-        
+
         var str = '<?xml version=\'1.0\'?>\n';
         str += '<methodCall>\n';
         str += '<methodName>system.myMethod</methodName>\n';
@@ -120,7 +121,7 @@
       });
     });
   });
-  
+
   if (typeof exports !== 'object') {
     mocha.run();
   }

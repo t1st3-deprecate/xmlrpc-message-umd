@@ -1,13 +1,11 @@
 {
   "name": "xmlrpc-message-umd",
-  "version": "0.5.5",
+  "version": "0.5.7",
   "homepage": "http://t1st3.github.io/xmlrpc-message-umd",
   "description": "A XMLRPC message builder written with UMD definition",
   "keywords": [
-    "amd",
     "umd",
     "xmlrpc",
-    "module",
     "builder",
     "xml"
   ],
@@ -46,6 +44,7 @@
     "chai": "*",
     "chai-jquery": "*",
     "t1st3-assets": "*",
-    "codemirror": "*"
+    "codemirror": "*",
+    "lodash": "*"
   }
 }

@@ -1,11 +1,11 @@
 /*!
 * btoa-umd
-* 
+*
 * @link https://github.com/T1st3/btoa-umd
 * @author T1st3
-* @version 0.4.4
+* @version 0.4.5
 * @license https://github.com/T1st3/btoa-umd/blob/master/LICENSE
-* 
+*
 */
 
 /* global define */
@@ -27,12 +27,12 @@
     root.Btoa = factory();
   }
 }(this, function () {
-  /** 
+  /**
   * btoa(), UMD style
   * @module Btoa
   * @namespace Btoa
   */
-  
+
   /**
   * @constructor
   * @param {string} b
@@ -49,7 +49,7 @@
     // keep chainability
     return this;
   };
-  
+
   /**
   * handle B to A
   * @method handle
@@ -64,14 +64,15 @@
       return this;
     }
     this.b = b;
-    
-    var browser = true;
+
+    var browser = true,
+    buffer;
     if (typeof define === 'function' && define.amd) {
       browser = true;
     } else if (typeof exports === 'object') {
       browser = false;
     }
-    
+
     if (browser === true) {
       /* global window */
       if (typeof window.btoa === 'function') {
@@ -80,7 +81,6 @@
         this.a = Btoa.encode(b);
       }
     } else {
-      var buffer;
       if (b instanceof Buffer) {
         buffer = b;
       } else {
@@ -91,7 +91,7 @@
     // keep chainability
     return this;
   };
-  
+
   /**
   * encode fix for browser which don't support btoa
   * @method encode
@@ -103,11 +103,11 @@
     if (!b || arguments.length === 0) {
       return '';
     }
-    var _byte = [], 
-    _char = [], 
+    var _byte = [],
+    _char = [],
     _result = [],
-    j = 0, i = 0;
-    var CHAR_MAP = 'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789+/=';
+    j = 0, i = 0,
+    CHAR_MAP = 'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789+/=';
     /*jshint bitwise: false*/
     for (i = 0; i < b.length; i += 3) {
       _byte[0] = b.charCodeAt(i);
@@ -122,13 +122,13 @@
       } else if (isNaN(_byte[2])) {
         _char[3] = 64;
       }
-      _result[j++] = CHAR_MAP.charAt(_char[0]) + 
-        CHAR_MAP.charAt(_char[1]) + 
-        CHAR_MAP.charAt(_char[2]) + 
+      _result[j++] = CHAR_MAP.charAt(_char[0]) +
+        CHAR_MAP.charAt(_char[1]) +
+        CHAR_MAP.charAt(_char[2]) +
         CHAR_MAP.charAt(_char[3]);
     }
     return _result.join('');
   };
-  
+
   return Btoa;
 }));

@@ -1,19 +1,19 @@
 /*!
 * xmlrpc-message-umd
-* 
+*
 * @link https://github.com/T1st3/xmlrpc-message-umd
 * @author T1st3
-* @version 0.5.6
+* @version 0.5.7
 * @license https://github.com/T1st3/xmlrpc-message-umd/blob/master/LICENSE
-* 
-* 
+*
+*
 * This AMD module is based on an XMLRPC message formatter written by Scott Andrew LePera
-* 
+*
 * Original work:
 * Copyright 2001 Scott Andrew LePera
 * scott@scottandrew.com
 * http://www.scottandrew.com/xml-rpc
-* 
+*
 * Original License: 
 * You are granted the right to use and/or redistribute this 
 * code only if this license and the copyright notice are included 
@@ -43,12 +43,12 @@
     root.XMLRPCMessage = factory(root.Btoa);
   }
 }(this, function (Btoa) {
-  /** 
+  /**
   * An XMLRPC message builder, AMD style
   * @module XMLRPCMessage
   * @namespace XMLRPCMessage
   */
-  
+
   /**
   * @constructor
   * @since 0.1.0
@@ -61,7 +61,7 @@
     this.params = [];
     return this;
   };
-  
+
   /**
   * set method
   * @method setMethod
@@ -105,25 +105,22 @@
   * @since 0.1.0
   */
   XMLRPCMessage.prototype.xml = function () {
-
     var xml = '';
     xml += '<?xml version=\'1.0\'?>\n';
     xml += '<methodCall>\n';
     xml += '<methodName>' + this.method + '</methodName>\n';
     xml += '<params>\n';
-
-    for (var i = 0; i < this.params.length; i++) {
-      var data = this.params[i];
+    var i = 0,
+    data = null;
+    for (i = 0; i < this.params.length; i++) {
+      data = this.params[i];
       xml += '<param>\n';
-
       xml += '<value>' + XMLRPCMessage.getParamXML(data, XMLRPCMessage.dataTypeOf(data)) + '</value>\n';
-
       xml += '</param>\n';
     }
-    
     xml += '</params>\n';
     xml += '</methodCall>';
-    
+
     return xml;
   };
 
@@ -143,7 +140,8 @@
     if (!o && o !== false) {
       return false;
     }
-    var type = typeof(o);
+    var type = typeof(o),
+    con = null;
     type = type.toLowerCase();
     switch (type) {
       case 'number':
@@ -154,7 +152,7 @@
         }
         break;
       case 'object':
-        var con = o.constructor;
+        con = o.constructor;
         if (con === Btoa) {
           type = 'base64';
         } else {
@@ -168,9 +166,7 @@
             }
           }
         }
-        
         break;
-      
     }
     return type;
   };
@@ -205,8 +201,7 @@
       return '';
     }
     var value = (data === true) ? 1 : 0;
-    var xml = '<boolean>' + value + '</boolean>';
-    return xml;
+    return '<boolean>' + value + '</boolean>';
   };
 
   /**
@@ -226,7 +221,7 @@
     xml += '</dateTime.iso8601>';
     return xml;
   };
-  
+
   /**
   * XMLize base64 data
   * @method doBase64XML
@@ -343,12 +338,14 @@
     if (typeof(date) !== 'object' || !(date instanceof Date)) {
       return false;
     }
-    var year = date.getYear().toString();
-    var month = XMLRPCMessage.leadingZero(date.getMonth().toString());
-    var day = XMLRPCMessage.leadingZero(date.getDate().toString());
-    var time = XMLRPCMessage.leadingZero(date.getHours().toString()) + ':' + XMLRPCMessage.leadingZero(date.getMinutes().toString()) + ':' + XMLRPCMessage.leadingZero(date.getSeconds().toString());
-
-    var converted = year + month + day + 'T' + time;
+    var year = date.getYear().toString(),
+    month = XMLRPCMessage.leadingZero(date.getMonth().toString()),
+    day = XMLRPCMessage.leadingZero(date.getDate().toString()),
+    time = XMLRPCMessage.leadingZero(date.getHours().toString()),
+    converted = '';
+    time += ':' + XMLRPCMessage.leadingZero(date.getMinutes().toString());
+    time += ':' + XMLRPCMessage.leadingZero(date.getSeconds().toString());
+    converted = year + month + day + 'T' + time;
     return converted;
   };
 
@@ -371,7 +368,7 @@
     }
     return n;
   };
-  
+
   /**
   * handles binary to ascii
   * @method btoa
