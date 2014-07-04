@@ -21,30 +21,93 @@ var header = require('gulp-header');
 var gzip = require('gulp-gzip');
 var browserSync = require('browser-sync');
 var qr = require('qr-image');
+var qrcode = require('qrcode-terminal');
 var imagemin = require('gulp-imagemin');
 var dependo = require('dependo');
+var figlet = require('figlet');
+var cowsay = require('cowsay');
+var ip = require('ip');
+
+/*
+ * TEST TASKS
+ */
+
+gulp.task('test_figlet', function (cb) {
+  figlet.text('gulp test', {
+    font: 'Ogre',
+    horizontalLayout: 'default',
+    verticalLayout: 'default'
+  }, function(err, data) {
+    if (err) {
+      console.log('Something went wrong with FIGlet');
+      console.dir(err);
+      return;
+    }
+    console.log('\n\n');
+    console.log(data);
+    console.log('\n\n');
+    cb();
+  });
+});
+
+gulp.task('test', ['test_figlet'], function (cb) {
+  exec('./node_modules/mocha/bin/_mocha test/*tests.js --reporter spec', function (err, stdout, stderr) {
+    console.log(stdout);
+    console.log(stderr);
+    console.log(cowsay.say({
+      text : 'gulp test - DONE',
+      e : 'oO',
+      T : 'U '
+    }));
+    console.log('\n\n');
+    cb(err);
+    gulp.src('./')
+      .pipe(notify({
+        title: 'Test Runner',
+        message: 'Successfully tested application'
+      }));
+  });
+});
 
 /*
  * BUILD TASKS
  */
 
-gulp.task('build_clean', function (cb) {
+gulp.task('build_figlet', ['test'], function (cb) {
+  figlet.text('gulp build', {
+    font: 'Ogre',
+    horizontalLayout: 'default',
+    verticalLayout: 'default'
+  }, function(err, data) {
+    if (err) {
+      console.log('Something went wrong with FIGlet');
+      console.dir(err);
+      return;
+    }
+    console.log('\n\n');
+    console.log(data);
+    console.log('\n\n');
+    cb();
+  });
+});
+
+gulp.task('build_clean', ['build_figlet'], function (cb) {
   del(['dist'], cb);
 });
 
-gulp.task('lint', function () {
+gulp.task('lint', ['build_figlet'], function () {
   gulp.src(['src/**/*.js', 'test/unittests.js', 'test/functests.js', 'gulpfile.js'])
     .pipe(jshint('./.jshintrc'))
     .pipe(jshint.reporter('jshint-stylish'))
     .pipe(jshint.reporter('fail'));
 });
 
-gulp.task('jscs', ['lint'], function () {
+gulp.task('jscs', ['lint', 'build_figlet'], function () {
   gulp.src(['src/**/*.js', 'test/unittests.js', 'test/functests.js', 'gulpfile.js'])
     .pipe(jscs('./.jscs.json'));
 });
 
-gulp.task('version', function () {
+gulp.task('version', ['build_figlet'], function () {
   gulp.src(['src/**/*.js'])
     .pipe(replace(/(version [0-9]+.[0-9]+.[0-9]+)/g, 'version ' + pkg.version))
     .pipe(gulp.dest('./src'));
@@ -54,12 +117,12 @@ gulp.task('version', function () {
     .pipe(gulp.dest('./'));
 });
 
-gulp.task('build_copy', ['build_clean', 'lint', 'jscs', 'version'], function () {
+gulp.task('build_copy', ['build_figlet', 'build_clean', 'lint', 'jscs', 'version'], function () {
   gulp.src('./src/' + pkg.name + '.js')
     .pipe(gulp.dest('dist'));
 });
 
-gulp.task('uglify', ['build_clean', 'lint', 'jscs'], function () {
+gulp.task('uglify', ['build_figlet', 'build_clean', 'lint', 'jscs'], function () {
   gulp.src('./src/' + pkg.name + '.js')
     .pipe(rename(pkg.name + '.min.js'))
     .pipe(uglify({
@@ -69,7 +132,14 @@ gulp.task('uglify', ['build_clean', 'lint', 'jscs'], function () {
     .pipe(gulp.dest('./dist'));
 });
 
-gulp.task('build', ['build_copy', 'uglify'], function () {
+gulp.task('build', ['build_figlet', 'build_copy', 'uglify'], function () {
+  console.log('\n\n');
+  console.log(cowsay.say({
+    text : 'gulp build - DONE',
+    e : 'oO',
+    T : 'U '
+  }));
+  console.log('\n\n');
   gulp.src('./')
     .pipe(notify({
       title: 'Task Builder',
@@ -81,18 +151,36 @@ gulp.task('build', ['build_copy', 'uglify'], function () {
  * SERVE TASKS
  */
 
-gulp.task('serve_lib', function () {
+gulp.task('serve_figlet', function (cb) {
+  figlet.text('gulp serve', {
+    font: 'Ogre',
+    horizontalLayout: 'default',
+    verticalLayout: 'default'
+  }, function(err, data) {
+    if (err) {
+      console.log('Something went wrong with FIGlet');
+      console.dir(err);
+      return;
+    }
+    console.log('\n\n');
+    console.log(data);
+    console.log('\n\n');
+    cb();
+  });
+});
+
+gulp.task('serve_lib', ['serve_figlet'], function () {
   gulp.src([
     'src/' + pkg.name + '.js'
   ])
     .pipe(gulp.dest('docs/assets/js/lib'));
 });
 
-gulp.task('watch', function() {
+gulp.task('watch', ['serve_figlet'], function() {
   gulp.watch(['./src/**/*.js', 'test/**/*.js'], ['serve_lib']);
 });
 
-gulp.task('browser-sync', function() {  
+gulp.task('browser-sync', ['serve_figlet'], function() {  
   browserSync.init(['docs/assets/js/lib/*.js'], {
     server: {
       baseDir: './docs'
@@ -100,7 +188,17 @@ gulp.task('browser-sync', function() {
   });
 });
 
-gulp.task('serve', ['watch', 'browser-sync'], function () {
+gulp.task('serve', ['serve_figlet', 'watch', 'browser-sync'], function () {
+  console.log(cowsay.say({
+    text : 'Server started on ' + ip.address() + ':3000 - DONE',
+    e : 'oO',
+    T : 'U '
+  }));
+  console.log('\n\n');
+  console.log(ip.address() + ':3000');
+  console.log('\n');
+  qrcode.generate(ip.address() + ':3000');
+  console.log('\n\n');
   gulp.src('./')
     .pipe(notify({
       title: 'Serve',
@@ -109,27 +207,33 @@ gulp.task('serve', ['watch', 'browser-sync'], function () {
 });
 
 /*
- * TEST TASKS
- */
-
-gulp.task('test', function (cb) {
-  exec('./node_modules/mocha/bin/_mocha test/*tests.js --reporter spec', function (err, stdout, stderr) {
-    console.log(stdout);
-    console.log(stderr);
-    cb(err);
-  });
-});
-
-/*
  * DOC TASKS
  */
 
-gulp.task('bower', function () {
+gulp.task('doc_figlet', ['build'], function (cb) {
+  figlet.text('gulp doc', {
+    font: 'Ogre',
+    horizontalLayout: 'default',
+    verticalLayout: 'default'
+  }, function(err, data) {
+    if (err) {
+      console.log('Something went wrong with FIGlet');
+      console.dir(err);
+      return;
+    }
+    console.log('\n\n');
+    console.log(data);
+    console.log('\n\n');
+    cb();
+  });
+});
+
+gulp.task('bower', ['doc_figlet'], function () {
   return bower()
     .pipe(gulp.dest('./bower_components'));
 });
 
-gulp.task('doc_clean', function (cb) {
+gulp.task('doc_clean', ['doc_figlet'], function (cb) {
   del([
     'gh-pages/_layouts', 'gh-pages/assets/', 'gh-pages/coverage/', 'gh-pages/jsdoc/', 'gh-pages/dependo/', 
     'gh-pages/_config.yml', 'gh-pages/*.md', 'gh-pages/lib', 'gh-pages/_includes/umd_*', '!gh-pages/.git', 'docs'
@@ -236,6 +340,7 @@ gulp.task('doc_template', ['doc_copy'], function () {
     'dependencies.html',
     'cjs_dependencies.html',
     'amd_dependencies.html',
+    'sitemap.html',
     '_config.yml'
   ]).forEach(function (num) {
       gulp.src('bower_components/t1st3-assets/dist/umd_' + num)
@@ -345,7 +450,14 @@ gulp.task('jekyll', ['doc_clean', 'qr', 'doc_copy', 'doc_template', 'banner', 'j
   });
 });
 
-gulp.task('doc', ['doc_clean', 'qr', 'doc_copy', 'doc_template', 'banner', 'jsdoc', 'coverage', 'gzip', 'dependo', 'jekyll'], function () {
+gulp.task('doc', ['doc_figlet', 'doc_clean', 'qr', 'doc_copy', 'doc_template', 'banner', 'jsdoc', 'coverage', 'gzip', 'dependo', 'jekyll'], function () {
+  console.log('\n\n');
+  console.log(cowsay.say({
+    text : 'gulp doc - DONE',
+    e : 'oO',
+    T : 'U '
+  }));
+  console.log('\n\n');
   gulp.src('./')
     .pipe(notify({
       title: 'Doc Builder',
@@ -353,4 +465,77 @@ gulp.task('doc', ['doc_clean', 'qr', 'doc_copy', 'doc_template', 'banner', 'jsdo
     }));
 });
 
-gulp.task('default', ['build', 'doc']);
+/*
+ * INFO TASKS
+ */
+
+gulp.task('info_figlet', function (cb) {
+  figlet.text('gulp info', {
+    font: 'Ogre',
+    horizontalLayout: 'default',
+    verticalLayout: 'default'
+  }, function(err, data) {
+    if (err) {
+      console.log('Something went wrong with FIGlet');
+      console.dir(err);
+      return;
+    }
+    console.log('\n\n');
+    console.log(data);
+    console.log('\n\n');
+    cb();
+  });
+});
+
+gulp.task('info', ['info_figlet'], function () {
+  console.log('\n\n');
+  console.log('[NAME] ' + pkg.name);
+  console.log('[DESCRIPTION] ' + pkg.description);
+  console.log('[VERSION] ' + pkg.version);
+  console.log('[HOMEPAGE] ' + pkg.homepage);
+  console.log('[GITHUB REPOSITORY] ' + pkg.repository.url);
+  console.log('[NPM URL] https://npmjs.org/package/' + pkg.name);
+  console.log('[BOWER URL] http://bower.io/search/?q=' + pkg.name);
+  console.log('[BUG-TRACKER] ' + pkg.bugs.url);
+  console.log('\n');
+  console.log('[DOWNLOAD LATEST] https://github.com/T1st3/' + pkg.name + '/archive/master.zip');
+  console.log('[ALL VERSION TAGS] https://github.com/T1st3/' + pkg.name + '/tags');
+  console.log('[RSS/ATOM FOR VERSION TAGS] https://github.com/T1st3/' + pkg.name + '/tags.atom');
+  console.log('\n');
+  console.log('[DEPENDENCIES] ' + pkg.homepage + '/dependencies.html');
+  console.log('[COMMONJS DEPENDENCIES] ' + pkg.homepage + '/cjs_dependencies.html');
+  console.log('[AMD DEPENDENCIES] ' + pkg.homepage + '/amd_dependencies.html');
+  console.log('[DAVID-DM URL] https://david-dm.org/t1st3/' + pkg.name);
+  console.log('\n');
+  console.log('[TESTS] ' + pkg.homepage + '/tests.html');
+  console.log('[TRAVIS-CI URL] https://travis-ci.org/T1st3/' + pkg.name);
+  console.log('[UNIT TESTS (AMD)] ' + pkg.homepage + '/unittests_amd.html');
+  console.log('[UNIT TESTS (GLOBAL)] ' + pkg.homepage + '/unittests_global.html');
+  console.log('[FUNCTIONAL TESTS (AMD)] ' + pkg.homepage + '/functests_amd.html');
+  console.log('[FUNCTIONAL TESTS (GLOBAL)] ' + pkg.homepage + '/functests_global.html');
+  console.log('[CODE COVERAGE] ' + pkg.homepage + '/coverage.html');
+  console.log('[COVERALLS URL] https://coveralls.io/r/T1st3/' + pkg.name + '?branch=master');
+  console.log('\n');
+  console.log('[DEMO] ' + pkg.homepage + '/demo.html');
+  console.log('[JSDOC] ' + pkg.homepage + '/jsdoc.html');
+  console.log('[BUILD THE DOC] ' + pkg.homepage + '/build_docs.html');
+  console.log('[CREDITS] ' + pkg.homepage + '/credits.html');
+  console.log('[LICENSE] https://github.com/T1st3/' + pkg.name + '/blob/master/LICENSE');
+  console.log('[SITEMAP] ' + pkg.homepage + '/sitemap.html');
+  console.log('\n\n');
+  qrcode.generate(pkg.homepage);
+  console.log('\n\n');
+  console.log(cowsay.say({
+    text : 'gulp info - DONE',
+    e : 'oO',
+    T : 'U '
+  }));
+  console.log('\n\n');
+  gulp.src('./')
+    .pipe(notify({
+      title: 'INFO',
+      message: ''
+    }));
+});
+
+gulp.task('default', ['info', 'build']);

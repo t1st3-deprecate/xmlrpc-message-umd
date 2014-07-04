@@ -1,6 +1,6 @@
 {
   "name": "xmlrpc-message-umd",
-  "version": "0.5.3",
+  "version": "0.5.4",
   "homepage": "http://t1st3.github.io/xmlrpc-message-umd",
   "description": "A XMLRPC message builder written with UMD definition",
   "keywords": [
@@ -31,7 +31,7 @@
     "node": ">= 0.10.0"
   },
   "dependencies": {
-    "btoa-umd": "~0.4.2"
+    "btoa-umd": "~0.4.3"
   },
   "devDependencies": {
     "lodash": "~2.4.1",
@@ -58,6 +58,10 @@
     "gulp-bower": "~0.0.6",
     "qr-image": "~1.2.0",
     "gulp-imagemin": "~0.6.1",
-    "dependo": "~0.1.3"
+    "dependo": "~0.1.3",
+    "figlet": "~1.0.9",
+    "cowsay": "~1.0.3",
+    "qrcode-terminal": "~0.9.4",
+    "ip": "~0.3.0"
   }
 }
