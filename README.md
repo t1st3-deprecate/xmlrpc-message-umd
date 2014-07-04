@@ -119,8 +119,12 @@ or
 
     gulp test
 
+To get info about the package from the command line, just run:
+
+    gulp info
 
 
+---
 
 **Serve and livereload**
 
@@ -131,16 +135,6 @@ You can also use the `serve` task to load the `docs` pages in your browser.
 Once it has loaded the page in the browser, this task watches for any modification in the source.
 If changes happen in the source, the task automatically reloads the page in the browser (livereload).
 
-
-
-
-Dependencies
----
-
-Status of dependencies:
-
-[![Dependency Status](https://david-dm.org/t1st3/xmlrpc-message-umd.svg?theme=shields.io)](https://david-dm.org/t1st3/xmlrpc-message-umd)
-[![devDependency Status](https://david-dm.org/t1st3/xmlrpc-message-umd/dev-status.svg?theme=shields.io)](https://david-dm.org/t1st3/xmlrpc-message-umd#info=devDependencies)
 
 
 
