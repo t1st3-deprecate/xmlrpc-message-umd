@@ -34,7 +34,6 @@
   "devDependencies": {
     "lodash": "~2.4.1",
     "gulp": "~3.8.5",
-    "gulp-load-plugins": "~0.5.3",
     "gulp-notify": "~1.4.0",
     "gulp-concat": "~2.2.0",
     "gulp-rename": "~1.2.0",
@@ -50,8 +49,8 @@
     "gulp-jscs": "~0.6.0",
     "mocha": "~1.20.1",
     "chai": "~1.9.1",
-    "istanbul": "~0.2.14",
-    "coveralls": "~2.10.1",
+    "istanbul": "~0.2.16",
+    "coveralls": "~2.11.0",
     "gulp-jsdoc": "~0.1.4",
     "gulp-bower": "~0.0.6",
     "qr-image": "~1.2.0",
