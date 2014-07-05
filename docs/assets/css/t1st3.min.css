@@ -97,15 +97,31 @@ ul {
   color: #b5e853;
 }
 
+.dropdown-menu .divider {
+  background-color: #E5E5E5;
+}
+
 @media (max-width: 767px) {
+  .navbar-default .navbar-nav .open .dropdown-menu>li>a {
+    color: #000;
+  }
+  
   .navbar-default .navbar-nav .open .dropdown-menu>li>a:hover, .navbar-default .navbar-nav .open .dropdown-menu>li>a:focus {
     background-color: #b5e853;
     color: #000;
+  }
+  
+  .dropdown-menu .divider {
+    background-color: #444;
   }
 }
 
 .dropdown-menu>li>a:hover, .dropdown-menu>li>a:focus {
   background-color: #b5e853;
+}
+
+.navbar-fixed-top .navbar-collapse, .navbar-fixed-bottom .navbar-collapse {
+  max-height: none;
 }
 
 #main {

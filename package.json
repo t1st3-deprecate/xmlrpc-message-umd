@@ -1,6 +1,6 @@
 {
   "name": "xmlrpc-message-umd",
-  "version": "0.5.8",
+  "version": "0.5.9",
   "homepage": "http://t1st3.github.io/xmlrpc-message-umd",
   "description": "A XMLRPC message builder written with UMD definition",
   "keywords": [
@@ -59,6 +59,7 @@
     "figlet": "~1.0.9",
     "cowsay": "~1.0.3",
     "qrcode-terminal": "~0.9.4",
-    "ip": "~0.3.0"
+    "ip": "~0.3.0",
+    "changelog": "~1.0.5"
   }
 }
