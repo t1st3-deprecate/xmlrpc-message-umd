@@ -37,7 +37,7 @@
     "gulp-notify": "~1.4.0",
     "gulp-concat": "~2.2.0",
     "gulp-rename": "~1.2.0",
-    "gulp-replace": "~0.3.0",
+    "gulp-replace": "~0.4.0",
     "del": "~0.1.1",
     "gulp-gzip": "~0.0.8",
     "gulp-uglify": "~0.3.1",
