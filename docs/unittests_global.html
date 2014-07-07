@@ -1,19 +1,53 @@
 <!DOCTYPE html>
-<html class="no-js">
+<!--[if lt IE 7 ]><html class="no-js oldie ie6" lang="en"><![endif]-->
+<!--[if IE 7 ]><html class="no-js oldie ie7" lang="en"><![endif]-->
+<!--[if IE 8 ]><html class="no-js oldie ie8" lang="en"><![endif]-->
+<!--[if (gte IE 9)|!(IE)]><!-->
+<html class="no-js" lang="en"><!--<![endif]-->
   <head>
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <title>xmlrpc-message-umd - Unit tests (using globals)</title>
     <meta name="description" content="Another JavaScript UMD module (works in Require.js/AMD loaders, Node.js, and browser globals)">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <link rel="stylesheet" href="assets/css/bootstrap.min.css">
-    <link rel="stylesheet" href="assets/css/font-awesome.min.css"> 
 
-    <link rel="stylesheet" href="assets/css/mocha.css">
-    <link rel="stylesheet" href="assets/css/t1st3.min.css">
-    <script src="assets/js/lib/modernizr.js"></script>
+    <link rel="icon" sizes="16x16 32x32 48x48 64x64" href="http://www.tiste.org/xmlrpc-message-umd/favicon.ico">
+    <!--[if IE]><link rel="shortcut icon" href="http://www.tiste.org/xmlrpc-message-umd/favicon.ico"><![endif]-->
+    <link rel="apple-touch-icon-precomposed" href="http://www.tiste.org/xmlrpc-message-umd/assets/img/favicon/apple-touch-icon-152.png">
+    <meta name="msapplication-TileColor" content="#B5E853">
+    <meta name="msapplication-TileImage" content="http://www.tiste.org/xmlrpc-message-umd/assets/img/favicon/apple-touch-icon-144.png">
+    <link rel="apple-touch-icon-precomposed" sizes="152x152" href="http://www.tiste.org/xmlrpc-message-umd/assets/img/favicon/apple-touch-icon-152.png">
+    <link rel="apple-touch-icon-precomposed" sizes="144x144" href="http://www.tiste.org/xmlrpc-message-umd/assets/img/favicon/apple-touch-icon-144.png">
+    <link rel="apple-touch-icon-precomposed" sizes="120x120" href="http://www.tiste.org/xmlrpc-message-umd/assets/img/favicon/apple-touch-icon-120.png">                                                                                                                                                                    
+    <link rel="apple-touch-icon-precomposed" sizes="114x114" href="http://www.tiste.org/xmlrpc-message-umd/assets/img/favicon/apple-touch-icon-114.png">                                                                                                                                                                    
+    <link rel="apple-touch-icon-precomposed" sizes="72x72" href="http://www.tiste.org/xmlrpc-message-umd/assets/img/favicon/apple-touch-icon-72.png">                                                                                                                                                                       
+    <link rel="apple-touch-icon-precomposed" href="http://www.tiste.org/xmlrpc-message-umd/assets/img/favicon/apple-touch-icon-57.png">
+
+    <link rel="stylesheet" href="assets/css/bootstrap.min.css">
+    <link rel="stylesheet" href="assets/css/font-awesome.min.css">
+
+    <meta name="keywords" content="javascript, module, UMD, AMD, Node.js, CommonJS, Require.js">
+    <meta name="author" content="T1st3">
+    <meta name="generator" content="Gulp / Jekyll / Github pages">
+    <meta name="robots" content="index,follow">
+
+    <link rel="alternate" type="application/atom+xml" title="xmlrpc-message-umd version tags" href="https://github.com/T1st3/xmlrpc-message-umd/tags.atom">
+    <link rel="canonical" href="http://www.tiste.org/xmlrpc-message-umd/unittests_global.html">
+    <link rel="author" href="http://www.tiste.org/">
+    <link rel="help" href="/index.html">
+    <link rel="license" href="/license.html">
+
+<link rel="stylesheet" href="assets/css/mocha.css">
+<link rel="stylesheet" href="assets/css/t1st3.min.css">
+<script src="assets/js/lib/modernizr.js"></script>
+<!--[if lt IE 9]>
+<script src="//oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
+<![endif]-->
   </head>
-  <body>
+  <body role="document">
+    <!--[if lt IE 8]>
+        <p class="browsehappy">You are using an <strong>outdated</strong> browser. Please <a href="http://browsehappy.com/">upgrade your browser</a> to improve your experience.</p>
+    <![endif]-->
     <a href="https://github.com/T1st3/xmlrpc-message-umd/">
       <img id="ghribbon" src="assets/img/forkme_github.png" alt="Fork me on GitHub">
     </a>
@@ -29,10 +63,10 @@
           <a href="index.html" class="navbar-brand">xmlrpc-message-umd</a>
         </div>
         <div class="collapse navbar-collapse" id="t1st3-navbar-collapse">
-          <ul class="nav navbar-nav navbar-right">
+          <ul class="nav navbar-nav navbar-right" role="menubar">
             <li class="dropdown">
               <a href="#" class="dropdown-toggle" data-toggle="dropdown"><i class="fa fa-code-fork"></i> v0.5.9 <b class="caret"></b></a>
-              <ul class="dropdown-menu">
+              <ul class="dropdown-menu" role="menu">
                 <li>
                   <a href="https://github.com/T1st3/xmlrpc-message-umd/archive/master.zip" title="Download latest version of xmlrpc-message-umd">
                     <i class="fa fa-download"></i> Download latest
@@ -67,7 +101,7 @@
             </li>
             <li class="dropdown">
               <a href="#" class="dropdown-toggle" data-toggle="dropdown"><i class="fa fa-code"></i> Docs <b class="caret"></b></a>
-              <ul class="dropdown-menu">
+              <ul class="dropdown-menu" role="menu">
                 <li>
                   <a href="index.html" title="xmlrpc-message-umd project pages"><i class="fa fa-home"></i> Home</a>
                 </li>
@@ -102,7 +136,7 @@
             </li>
             <li class="dropdown">
               <a href="#" class="dropdown-toggle" data-toggle="dropdown"><i class="fa fa-globe"></i> Links <b class="caret"></b></a>
-              <ul class="dropdown-menu">
+              <ul class="dropdown-menu" role="menu">
                 <li>
                   <a title="xmlrpc-message-umd on Github" href="https://github.com/T1st3/xmlrpc-message-umd">
                     <i class="fa fa-github"></i> Github
@@ -158,7 +192,17 @@
         </div>
       </div>
     </div>
-    <div class="container" id="tests">
+
+    <noscript>
+      <div class="container" id="noscript">
+        <div class="row noscript_wrap">
+          <div class="col-12 col-xs-12 col-sm-12 col-lg-12">
+            <div class="alert alert-danger" role="alert">JavaScript is not activated in your browser. Please activate JavaScript to view this page correctly.</div>
+          </div>
+        </div>
+      </div>
+    </noscript>
+    <main class="container" id="tests" role="main">
       <header class="row">
         <div class="col-12 col-xs-12 col-sm-12 col-lg-12">
           <h1>
@@ -169,7 +213,7 @@
         </div>
       </header>
       <hr>
-      <article class="row">
+      <article class="row" role="article">
         <div class="col-12 col-xs-12 col-sm-12 col-lg-12">
           <!-- Required for browser reporter -->
           <div id="mocha"></div>
@@ -179,8 +223,8 @@
       <section class="row">
         <div class="col-12 col-xs-12 col-sm-12 col-lg-12">
           <h2><i class="fa fa-file-text-o"></i> Notes</h2>
-          <p>All tests are run with <a target="_blank" href="http://visionmedia.github.io/mocha/">Mocha</a>, and use 
-          <a target="_blank" href="http://chaijs.com/" title="Chai website">Chai</a> as the assertion library.<br><br>
+          <p>All tests are run with <a target="_blank" href="http://visionmedia.github.io/mocha/" title="Mocha website"><i class="fa fa-external-link"></i> Mocha</a>, and use 
+          <a target="_blank" href="http://chaijs.com/" title="Chai website"><i class="fa fa-external-link"></i> Chai</a> as the assertion library.<br><br>
           If you want to run the tests in Node.js, you will need to run:
           </p>
           <pre><code>npm test</code></pre>
@@ -194,10 +238,10 @@
           <a href="index.html" title="Home page"><i class="fa fa-home"></i> Back to home</a><br><br>
         </div>
       </footer>
-    </div>
+    </main>
 
     <div id="footer-wrap">
-      <footer class="container" id="footer">
+      <footer class="container" id="footer" role="contentinfo">
         <div class="row">
           <div class="col-3 col-xs-12 col-sm-6 col-lg-3">
             <ul>
@@ -270,7 +314,7 @@
     </div>
     <nav class="navbar" id="bottom">
       <div class="container">
-        <ul class="nav navbar-nav navbar-leftt">
+        <ul class="nav navbar-nav navbar-left">
           <li><a title="Print" href="javascript:window.print();"><i class="fa fa-print"></i> Print</a></li>
           <li><a title="QR code" href="#" data-toggle="modal" data-target="#mainModal"><i class="fa fa-qrcode"></i> QR code</a></li>
         </ul>
@@ -293,15 +337,11 @@
 <script src="assets/js/lib/xmlrpc-message-umd.js"></script>
 <script src="unittests.js"></script>
 <!--
-.-') _         .-')   .-') _            
-(  OO) )       ( OO ).(  OO) )           
-/     '._ .---(_)---\_/     '._ .-----.  
-|'--...__/_   /    _ ||'--...__/  -.   \ 
-'--.  .--'|   \  :` `.'--.  .--'-' _'  | 
-  |  |   |   |'..`''.)  |  |     |_  <  
-  |  |   |   .-._)   \  |  |  .-.  |  | 
-  |  |   |   \       /  |  |  \ `-'   / 
-  `--'   `---'`-----'   `--'   `----''  
+
+ __ __| _ |       |   __ / 
+    |     | (_-<   _|  _ \ 
+   _|    _| ___/ \__| ___/ 
+                           
 -->
   </body>
 </html> 

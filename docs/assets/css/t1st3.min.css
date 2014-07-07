@@ -83,6 +83,10 @@ ul {
   max-height: none;
 }
 
+.navbar-default .navbar-brand:hover, .navbar-default .navbar-brand:focus {
+  color: #FFF;
+}
+
 .navbar-default .navbar-nav>li>a {
   color: #fff;
 }
@@ -103,7 +107,8 @@ ul {
 
 @media (max-width: 767px) {
   .navbar-default .navbar-nav .open .dropdown-menu>li>a {
-    color: #000;
+    color: #FFF;
+    padding-left: 50px;
   }
   
   .navbar-default .navbar-nav .open .dropdown-menu>li>a:hover, .navbar-default .navbar-nav .open .dropdown-menu>li>a:focus {
@@ -149,20 +154,22 @@ ul {
   border-top: 1px dashed #b5e853;
 }
 
+#main h2, #main h3 {
+  cursor: default;
+}
+
 #main .anchor-link {
   position: absolute;
-  left: -0.5em;
+  left: -20px;
   opacity: 0;
   -webkit-transition: opacity 0.2s ease-in-out 0.1s;
           transition: opacity 0.2s ease-in-out 0.1s;
+  display: inline;
 }
 
-#main h2:hover .anchor-link,
-#main h3:hover .anchor-link,
-#main h4:hover .anchor-link,
-#main h5:hover .anchor-link,
-#main h6:hover .anchor-link {
+#main h2:hover .anchor-link, #main h3:hover .anchor-link {
   opacity: 1;
+  cursor: pointer;
 }
 
 #main .fa {
@@ -207,4 +214,10 @@ ul {
 #bottom .nav>li>a:hover, .nav>li>a:focus {
   background-color: #b5e853;
   color: #000;
+}
+
+@media (max-width: 768px) {
+  #main .anchor-link {
+    display: none;
+  }
 }
