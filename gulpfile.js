@@ -317,8 +317,19 @@ gulp.task('doc_copy', ['bower', 'doc_clean', 'qr'], function () {
     .pipe(gulp.dest('gh-pages/assets/fonts'));
 
   /* IMG */
-  gulp.src('bower_components/t1st3-assets/dist/assets/img/**/*.png')
+  gulp.src([
+    'bower_components/t1st3-assets/dist/assets/img/**/*.png',
+    'bower_components/t1st3-assets/dist/assets/img/**/*.gif',
+    'bower_components/t1st3-assets/dist/assets/img/**/*.jpg',
+    'bower_components/t1st3-assets/dist/assets/img/**/*.jpeg'
+  ])
     .pipe(imagemin())
+    .pipe(gulp.dest('gh-pages/assets/img'));
+
+  gulp.src([
+    'bower_components/t1st3-assets/dist/assets/img/**/*.ico',
+    'bower_components/t1st3-assets/dist/assets/img/**/*.svg'
+  ])
     .pipe(gulp.dest('gh-pages/assets/img'));
 
   /* XML */
