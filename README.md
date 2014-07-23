@@ -83,6 +83,8 @@ You can also browse these documents and tests online:
 - [JSDoc](http://t1st3.github.io/xmlrpc-message-umd/jsdoc.html)
 - [Credits](http://t1st3.github.io/xmlrpc-message-umd/credits.html)
 - [Tests](http://t1st3.github.io/xmlrpc-message-umd/tests.html)
+- [Coverage](http://t1st3.github.io/xmlrpc-message-umd/coverage.html)
+- [Dependencies](http://t1st3.github.io/xmlrpc-message-umd/dependencies.html)
 
 
 

@@ -43,6 +43,10 @@ ul {
   list-style-type: none;
 }
 
+pre {
+  max-width: 60%;
+}
+
 #ghribbon {
   display: none;
   position: fixed;
@@ -55,6 +59,12 @@ ul {
 @media (min-width: 768px) {
   #ghribbon {
     display: block;
+  }
+}
+
+@media (max-width: 768px) {
+  pre {
+    max-width: 100%;
   }
 }
 

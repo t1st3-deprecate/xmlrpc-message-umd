@@ -7,7 +7,7 @@
   <head>
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <title>xmlrpc-message-umd - Functional tests (using AMD modules)</title>
+    <title>xmlrpc-message-umd - Tests (using AMD modules)</title>
     <meta name="description" content="Another JavaScript UMD module (works in Require.js/AMD loaders, Node.js, and browser globals)">
     <meta name="viewport" content="width=device-width, initial-scale=1">
 
@@ -32,7 +32,7 @@
     <meta name="robots" content="index,follow">
 
     <link rel="alternate" type="application/atom+xml" title="xmlrpc-message-umd version tags" href="https://github.com/T1st3/xmlrpc-message-umd/tags.atom">
-    <link rel="canonical" href="http://www.tiste.org/xmlrpc-message-umd/functests_amd.html">
+    <link rel="canonical" href="http://www.tiste.org/xmlrpc-message-umd/tests_amd.html">
     <link rel="author" href="http://www.tiste.org/">
     <link rel="help" href="/index.html">
     <link rel="license" href="/license.html">
@@ -202,19 +202,23 @@
         </div>
       </div>
     </noscript>
-    <main class="container" id="tests" role="main">
+    <main class="container" id="tests" role="main" itemscope itemtype="http://schema.org/WebPage">
       <header class="row">
         <div class="col-12 col-xs-12 col-sm-12 col-lg-12">
-          <h1>
-            <i class="fa fa-cogs"></i> xmlrpc-message-umd - Functional tests (using AMD modules)
+          <h1 itemprop="name">
+            <i class="fa fa-cogs"></i> xmlrpc-message-umd - Tests (using AMD modules)
           </h1>
           <a href="tests.html" title="Tests section"><i class="fa fa-arrow-circle-left"></i> Back to all tests</a><br><br>
           <a href="index.html" title="Home page"><i class="fa fa-home"></i> Back to home</a><br>
         </div>
       </header>
       <hr>
-      <article class="row" role="article">
-        <div class="col-12 col-xs-12 col-sm-12 col-lg-12">
+      <article class="row" role="article" itemprop="mainContentOfPage">
+        <div class="col-12 col-xs-12 col-sm-12 col-lg-12" itemscope itemtype="http://schema.org/Code">
+          <meta content="xmlrpc-message-umd" itemprop="name">
+          <meta content="http://tiste.org/xmlrpc-message-umd/" itemprop="url">
+          <meta content="https://github.com/T1st3/xmlrpc-message-umd/blob/master/LICENSE" itemprop="license">
+          <meta content="https://github.com/T1st3/xmlrpc-message-umd" itemprop="codeRepository">
           <!-- Required for browser reporter -->
           <div id="mocha"></div>
         </div>
@@ -325,7 +329,7 @@
       </div>
     </nav>
 
-<script type="text/javascript" data-main="functests" src="require.js"></script>
+<script type="text/javascript" data-main="tests" src="require.js"></script>
 <!--
 
  __ __| _ |       |   __ / 
