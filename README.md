@@ -102,6 +102,10 @@ Then, you also need to install [Gulp](http://gulpjs.com/) globally to build the 
 
 See more at the ["Getting started with Gulp" page](https://github.com/gulpjs/gulp/blob/master/docs/getting-started.md#getting-started).
 
+Once you got the dependencies and installed Gulp globally, to get info about the package from the command line, just run:
+
+    gulp info
+
 
 ---
 
@@ -113,6 +117,14 @@ To build, just run:
 
     gulp build
 
+---
+
+**Tests**
+
+Note that you need a few more dependencies to test the project.
+
+See [the tests page for more info](http://t1st3.github.io/xmlrpc-message-umd/tests.html)
+
 To test, you can use either the `npm test` command or the `gulp test` command:
 
     npm test
@@ -120,10 +132,6 @@ To test, you can use either the `npm test` command or the `gulp test` command:
 or
 
     gulp test
-
-To get info about the package from the command line, just run:
-
-    gulp info
 
 
 ---
