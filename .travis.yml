@@ -5,6 +5,10 @@ before_install:
   - npm install -g gulp
 after_success:
 - gulp ci
+addons:
+  code_climate:
+    repo_token: 
+      secure: dXSHB/la5xsevu9btEbmjydHrUzrUGPrv11jDWrwqinXtW92/oraASlKdXVNt/x7v+GhNYx4QfR9dINFyvM1kC2HtdsoborsNRvq5ad1mZvGNGKfTEpObCQh2mfbt9RJccBLVCclKQ9c21qu+CJ7IIHunbIj/otJq9bZFsAPusY=
 deploy:
   provider: npm
   email: contact@tiste.org

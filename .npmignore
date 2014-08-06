@@ -9,6 +9,7 @@ bower.json
 gulpfile.js
 
 .travis.yml
+.istanbul.yml
 
 .editorconfig
 

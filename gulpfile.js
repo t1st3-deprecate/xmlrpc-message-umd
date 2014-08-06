@@ -1,6 +1,7 @@
 'use strict';
 
 var deps = ['btoa-umd'],
+figletShown = 0,
 pkg = require('./package.json'),
 _ = require('lodash'),
 gulp = require('gulp'),
@@ -51,29 +52,53 @@ function getDateTime() {
   return hour + ':' + min + ':' + sec;
 }
 
+function displayCowsay (txt, cb) {
+  console.log('\n\n');
+  console.log(chalk.magenta(cowsay.say({
+    text: pkg.name + ' - ' + txt,
+    e: 'oO',
+    T: 'U '
+  })));
+  console.log('\n\n');
+  cb();
+}
+
+function triggerNotification (title, txt, cb) {
+  gulp.src('./')
+    .pipe(notify({
+      title: pkg.name + ' - ' + title,
+      message: txt
+    }));
+  cb();
+}
+
+gulp.task('figlet', [], function (cb) {
+  if (figletShown === 0) {
+    figlet.text(pkg.name, {
+      font: 'Small',
+      horizontalLayout: 'default',
+      verticalLayout: 'default'
+    }, function(err, data) {
+      if (err) {
+        console.log('Something went wrong with FIGlet');
+        console.dir(err);
+        return;
+      }
+      console.log('\n\n');
+      console.log(chalk.green(data));
+      console.log(chalk.blue(pkg.version));
+      console.log('\n\n');
+      figletShown = 1;
+      cb();
+    });
+  }
+});
+
 /*
  * TEST TASKS
  */
 
-gulp.task('test_figlet', function (cb) {
-  figlet.text('gulp test', {
-    font: 'Ogre',
-    horizontalLayout: 'default',
-    verticalLayout: 'default'
-  }, function(err, data) {
-    if (err) {
-      console.log('Something went wrong with FIGlet');
-      console.dir(err);
-      return;
-    }
-    console.log('\n\n');
-    console.log(chalk.green(data));
-    console.log('\n\n');
-    cb();
-  });
-});
-
-gulp.task('test_copy', ['test_figlet'], function () {
+gulp.task('test_copy', ['figlet'], function () {
   gulp.src('./src/' + pkg.name + '.js')
     .pipe(gulp.dest('./test/assets/js/lib'));
 });
@@ -114,60 +139,32 @@ gulp.task('test_browser_global', ['test_copy'], function (cb) {
 });
 
 gulp.task('test', ['test_node', 'test_browser_amd', 'test_browser_global'], function (cb) {
-  console.log('\n\n');
-  console.log(chalk.green(cowsay.say({
-    text: 'gulp test - DONE',
-    e: 'oO',
-    T: 'U '
-  })));
-  console.log('\n\n');
-  gulp.src('./')
-    .pipe(notify({
-      title: 'Test Runner',
-      message: 'All tests OK'
-    }));
-  cb();
+  triggerNotification ('Test Runner', 'All tests OK', function () {
+    displayCowsay('gulp test - DONE', cb);
+  });
 });
 
 /*
  * BUILD TASKS
  */
 
-gulp.task('build_figlet', function (cb) {
-  figlet.text('gulp build', {
-    font: 'Ogre',
-    horizontalLayout: 'default',
-    verticalLayout: 'default'
-  }, function(err, data) {
-    if (err) {
-      console.log('Something went wrong with FIGlet');
-      console.dir(err);
-      return;
-    }
-    console.log('\n\n');
-    console.log(chalk.blue(data));
-    console.log('\n\n');
-    cb();
-  });
-});
-
-gulp.task('build_clean', ['build_figlet'], function (cb) {
+gulp.task('build_clean', ['figlet', 'test'], function (cb) {
   del(['dist'], cb);
 });
 
-gulp.task('lint', ['build_figlet'], function () {
+gulp.task('lint', [], function () {
   gulp.src(['src/**/*.js', 'test/tests.js', 'gulpfile.js'])
     .pipe(jshint('./.jshintrc'))
     .pipe(jshint.reporter('jshint-stylish'))
     .pipe(jshint.reporter('fail'));
 });
 
-gulp.task('jscs', ['lint', 'build_figlet'], function () {
+gulp.task('jscs', ['lint'], function () {
   gulp.src(['src/**/*.js', 'test/tests.js', 'gulpfile.js'])
     .pipe(jscs('./.jscs.json'));
 });
 
-gulp.task('version', ['build_figlet'], function () {
+gulp.task('version', [], function () {
   gulp.src(['src/**/*.js'])
     .pipe(replace(/(version [0-9]+.[0-9]+.[0-9]+)/g, 'version ' + pkg.version))
     .pipe(gulp.dest('./src'));
@@ -177,12 +174,12 @@ gulp.task('version', ['build_figlet'], function () {
     .pipe(gulp.dest('./'));
 });
 
-gulp.task('build_copy', ['build_figlet', 'build_clean', 'lint', 'jscs', 'version'], function () {
+gulp.task('build_copy', ['build_clean', 'lint', 'jscs', 'version'], function () {
   gulp.src('./src/' + pkg.name + '.js')
     .pipe(gulp.dest('dist'));
 });
 
-gulp.task('uglify', ['build_figlet', 'build_clean', 'lint', 'jscs'], function () {
+gulp.task('uglify', ['build_clean', 'lint', 'jscs'], function () {
   gulp.src('./src/' + pkg.name + '.js')
     .pipe(rename(pkg.name + '.min.js'))
     .pipe(uglify({
@@ -192,108 +189,56 @@ gulp.task('uglify', ['build_figlet', 'build_clean', 'lint', 'jscs'], function ()
     .pipe(gulp.dest('./dist'));
 });
 
-gulp.task('build', ['build_figlet', 'build_copy', 'uglify'], function () {
-  console.log('\n\n');
-  console.log(chalk.blue(cowsay.say({
-    text: 'gulp build - DONE',
-    e: 'oO',
-    T: 'U '
-  })));
-  console.log('\n\n');
-  gulp.src('./')
-    .pipe(notify({
-      title: 'Task Builder',
-      message: 'Successfully built application'
-    }));
+gulp.task('build', ['build_copy', 'uglify'], function (cb) {
+  triggerNotification ('Builder', 'Successfully built application', function () {
+    displayCowsay('gulp build - DONE', cb);
+  });
 });
 
 /*
  * SERVE TASKS
  */
 
-gulp.task('serve_figlet', function (cb) {
-  figlet.text('gulp serve', {
-    font: 'Ogre',
-    horizontalLayout: 'default',
-    verticalLayout: 'default'
-  }, function(err, data) {
-    if (err) {
-      console.log('Something went wrong with FIGlet');
-      console.dir(err);
-      return;
-    }
-    console.log('\n\n');
-    console.log(data);
-    console.log('\n\n');
-    cb();
-  });
-});
-
-gulp.task('serve_lib', ['serve_figlet'], function () {
+gulp.task('serve_lib', ['figlet'], function () {
   gulp.src([
     'src/' + pkg.name + '.js'
   ])
-    .pipe(gulp.dest('docs/assets/js/lib'));
+    .pipe(gulp.dest('test/assets/js/lib'));
 });
 
-gulp.task('watch', ['serve_figlet'], function() {
+gulp.task('watch', [], function() {
   gulp.watch(['./src/**/*.js', 'test/**/*.js'], ['serve_lib']);
 });
 
-gulp.task('browser-sync', ['serve_figlet'], function() {
-  browserSync.init(['docs/assets/js/lib/*.js'], {
+gulp.task('browser-sync', [], function() {
+  browserSync.init(['test/assets/js/lib/*.js'], {
     server: {
-      baseDir: './docs'
+      baseDir: './test',
+      index: 'tests_amd.html'
     }
   });
 });
 
-gulp.task('serve', ['serve_figlet', 'watch', 'browser-sync'], function () {
-  console.log(cowsay.say({
-    text: 'Server started on ' + ip.address() + ':3000 - DONE',
-    e: 'oO',
-    T: 'U '
-  }));
-  console.log('\n\n');
-  console.log(ip.address() + ':3000');
-  console.log('\n');
-  qrcode.generate(ip.address() + ':3000');
-  console.log('\n\n');
-  gulp.src('./')
-    .pipe(notify({
-      title: 'Serve',
-      message: 'Successfully served application'
-    }));
+gulp.task('serve', ['watch', 'browser-sync'], function (cb) {
+  triggerNotification ('App server', 'Successfully served application', function () {
+    console.log('\n\n');
+    console.log(ip.address() + ':3000');
+    console.log('\n');
+    qrcode.generate(ip.address() + ':3000');
+    displayCowsay('Server started on ' + ip.address() + ':3000 - DONE', cb);
+  });
 });
 
 /*
  * DOC TASKS
  */
 
-gulp.task('doc_figlet', ['build', 'test'], function (cb) {
-  figlet.text('gulp doc', {
-    font: 'Ogre',
-    horizontalLayout: 'default',
-    verticalLayout: 'default'
-  }, function(err, data) {
-    if (err) {
-      console.log('Something went wrong with FIGlet');
-      console.dir(err);
-      return;
-    }
-    console.log('\n\n');
-    console.log(chalk.magenta(data));
-    console.log('\n\n');
-    cb();
-  });
-});
-
-gulp.task('bower', ['doc_figlet'], function () {
+gulp.task('bower', ['figlet', 'build'], function () {
   return bower()
     .pipe(gulp.dest('./bower_components'));
 });
 
-gulp.task('doc_clean', ['doc_figlet'], function (cb) {
+gulp.task('doc_clean', [], function (cb) {
   del([
     'gh-pages/_layouts', 'gh-pages/assets/', 'gh-pages/coverage/',
     'gh-pages/jsdoc/', 'gh-pages/dependo/', 'gh-pages/_config.yml',
@@ -321,6 +266,7 @@ gulp.task('doc_copy', ['bower', 'doc_clean', 'qr'], function () {
     'bower_components/codemirror/lib/codemirror.js',
     'bower_components/jshint/dist/jshint.js',
     'bower_components/lodash/dist/lodash.min.js',
+    'bower_components/respond/dest/respond.min.js',
     'src/' + pkg.name + '.js'
   ])
     .pipe(gulp.dest('gh-pages/assets/js/lib'));
@@ -347,14 +293,10 @@ gulp.task('doc_copy', ['bower', 'doc_clean', 'qr'], function () {
     'bower_components/mocha/mocha.css',
     'bower_components/codemirror/lib/codemirror.css',
     'bower_components/font-awesome/css/font-awesome.min.css',
-    'bower_components/t1st3-assets/dist/assets/css/404.css'
+    'bower_components/t1st3-assets/dist/assets/css/t1st3.min.css',
+    'bower_components/t1st3-assets/dist/assets/css/404.min.css',
+    'bower_components/t1st3-assets/dist/assets/css/ie-noscript.min.css'
   ])
-    .pipe(gulp.dest('gh-pages/assets/css'));
-
-  gulp.src([
-    'bower_components/t1st3-assets/dist/assets/css/t1st3.css'
-  ])
-    .pipe(rename('t1st3.min.css'))
     .pipe(gulp.dest('gh-pages/assets/css'));
 
   /* FONTS */
@@ -532,7 +474,7 @@ gulp.task('coverage_browser_amd', ['coverage_browser_global'], function (cb) {
   });
 });
 
-gulp.task('coverage_node', ['doc_figlet'], function (cb) {
+gulp.task('coverage_node', ['build'], function (cb) {
   var cmd = 'istanbul cover ./node_modules/mocha/bin/_mocha test/tests.js';
   cmd += ' --dir ./tmp -- -R json-cov';
   //cmd += ' && cat ./tmp/coverage_node.json';
@@ -610,22 +552,13 @@ gulp.task('jekyll', [
 });
 
 gulp.task('doc', [
-  'doc_figlet', 'doc_clean', 'qr', 'doc_copy', 'doc_template',
+  'doc_clean', 'qr', 'doc_copy', 'doc_template',
   'banner', 'jsdoc', 'coverage', 'gzip',
   'dependo', 'changelog', 'jekyll'
-], function () {
-  console.log('\n\n');
-  console.log(chalk.magenta(cowsay.say({
-    text: 'gulp doc - DONE',
-    e: 'oO',
-    T: 'U '
-  })));
-  console.log('\n\n');
-  gulp.src('./')
-    .pipe(notify({
-      title: 'Doc Builder',
-      message: 'Doc successfully created'
-    }));
+], function (cb) {
+  triggerNotification ('Doc Builder', 'Doc successfully created', function () {
+    displayCowsay('gulp doc - DONE', cb);
+  });
 });
 
 gulp.task('ci', ['coverage'], function (cb) {
@@ -634,35 +567,23 @@ gulp.task('ci', ['coverage'], function (cb) {
   exec(cmd, function (err, stdout, stderr) {
     console.log(stdout);
     console.log(stderr);
-    del([
-      'tmp', 'tmp2'
-    ], cb);
+    cmd = './node_modules/codeclimate-test-reporter/bin/codeclimate.js < ';
+    cmd += './gh-pages/coverage/lcov.info';
+    exec(cmd, function (err, stdout, stderr) {
+      console.log(stdout);
+      console.log(stderr);
+      del([
+        'tmp', 'tmp2'
+      ], cb);
+    });
   });
 });
 
 /*
- * INFO TASKS
+ * INFO TASK
  */
 
-gulp.task('info_figlet', function (cb) {
-  figlet.text('gulp info', {
-    font: 'Ogre',
-    horizontalLayout: 'default',
-    verticalLayout: 'default'
-  }, function(err, data) {
-    if (err) {
-      console.log('Something went wrong with FIGlet');
-      console.dir(err);
-      return;
-    }
-    console.log('\n\n');
-    console.log(chalk.gray(data));
-    console.log('\n\n');
-    cb();
-  });
-});
-
-gulp.task('info', ['info_figlet'], function () {
+gulp.task('info', ['figlet'], function (cb) {
   var txt;
   console.log('\n\n');
   console.log('[' + chalk.green('NAME') + '] ' + pkg.name);
@@ -715,17 +636,9 @@ gulp.task('info', ['info_figlet'], function () {
   console.log('\n\n');
   qrcode.generate(pkg.homepage);
   console.log('\n\n');
-  console.log(chalk.gray(cowsay.say({
-    text: 'gulp info - DONE',
-    e: 'oO',
-    T: 'U '
-  })));
-  console.log('\n\n');
-  gulp.src('./')
-    .pipe(notify({
-      title: 'INFO',
-      message: 'Info rendered...'
-    }));
+  triggerNotification ('Info', 'Rendered the info...', function () {
+    displayCowsay('gulp info - DONE', cb);
+  });
 });
 
 gulp.task('default', ['info', 'build']);
