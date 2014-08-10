@@ -454,7 +454,10 @@ gulp.task('coverage_instrument', ['build'], function (cb) {
     console.log(stderr);
     del([
       'tmp', 'tmp2'
-    ], cb);
+    ], function () {
+      fs.mkdirParent('./tmp/');
+      cb();
+    });
   });
 });
 
@@ -464,7 +467,7 @@ gulp.task('coverage_browser_global', ['coverage_instrument'], function (cb) {
   exec(cmd, function (err, stdout, stderr) {
     //console.log(stdout);
     console.log(stderr);
-    fs.mkdirParent('./tmp/');
+    //fs.mkdirParent('./tmp/');
     fs.writeFile('./tmp/coverage_global.json', stdout, function(err) {
       if (err) {
         console.log(err);
