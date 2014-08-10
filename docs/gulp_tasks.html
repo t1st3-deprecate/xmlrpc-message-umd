@@ -7,7 +7,7 @@
   <head prefix="og: http://ogp.me/ns#">
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <title>xmlrpc-message-umd - Tests (using AMD modules)</title>
+    <title>xmlrpc-message-umd - Gulp tasks</title>
     <meta name="description" content="Another JavaScript UMD module (works in Require.js/AMD loaders, Node.js, and browser globals)">
     <meta name="viewport" content="width=device-width, initial-scale=1">
 
@@ -30,7 +30,7 @@
     <![endif]-->
 
     <meta name="keywords" content="javascript, module, UMD, AMD, Node.js, CommonJS, Require.js">
-    <link rel="canonical" href="http://www.tiste.org/xmlrpc-message-umd/tests_amd.html">
+    <link rel="canonical" href="http://www.tiste.org/xmlrpc-message-umd/gulp_tasks.html">
     <link rel="author" href="http://www.tiste.org/">
     <meta name="generator" content="Gulp / Jekyll / Github pages">
     <meta name="robots" content="index,follow">
@@ -40,7 +40,7 @@
     <link rel="alternate" type="application/atom+xml" title="xmlrpc-message-umd version tags" href="https://github.com/T1st3/xmlrpc-message-umd/tags.atom">
     <link rel="alternate" type="application/atom+xml" title="Commits to xmlrpc-message-umd" href="https://github.com/T1st3/xmlrpc-message-umd/commits.atom">
 
-    <meta property="og:title" content="xmlrpc-message-umd - Tests (using AMD modules)">
+    <meta property="og:title" content="xmlrpc-message-umd - Gulp tasks">
     <meta property="og:type" content="article">
     <meta property="og:url" content="http://www.tiste.org/xmlrpc-message-umd">
     <meta property="og:image" content="http://www.gravatar.com/avatar/16d4be686da36a34b427924e844ff5f7.png">
@@ -70,7 +70,6 @@
       <noscript><link rel="stylesheet" href="assets/css/ie-noscript.css"></noscript>
     <![endif]-->
 
-<link rel="stylesheet" href="assets/css/mocha.css" media="all">
 <link rel="stylesheet" href="assets/css/t1st3.min.css" media="all">
 <script type="text/javascript" src="assets/js/lib/modernizr.js"></script>
 <!--[if lt IE 9]>
@@ -265,47 +264,127 @@
         </div>
       </div>
     </noscript>
-    <main class="container" id="tests" role="main" itemscope itemtype="http://schema.org/WebPage">
-      <header class="row">
-        <div class="col-12 col-xs-12 col-sm-12 col-lg-12">
-          <h1 itemprop="name">
-            <i class="fa fa-cogs"></i> xmlrpc-message-umd - Tests (using AMD modules)
-          </h1>
-          <a href="tests.html" title="Tests section"><i class="fa fa-arrow-circle-left"></i> Back to all tests</a><br><br>
-          <a href="index.html" title="Navigate to homepage" rel="home"><i class="fa fa-home"></i> Back to home</a><br>
-        </div>
-      </header>
+<main class="container" id="main" role="main" itemscope itemtype="http://schema.org/WebPage">
+  <header class="row">
+    <div class="col-12 col-xs-12 col-sm-12 col-lg-12">
+      <h1 itemprop="name">
+        <i class="fa fa-file-text-o"></i> xmlrpc-message-umd - Gulp tasks
+      </h1>
+      <a href="index.html" title="Navigate to homepage" rel="home"><i class="fa fa-home"></i> Back to home</a><br>
+    </div>
+  </header>
+  <hr>
+  <article class="row" role="article" itemprop="mainContentOfPage">
+    <div class="col-12 col-xs-12 col-sm-12 col-lg-12">
+      <h2>Getting started</h2>
+      <p>
+        <code>xmlrpc-message-umd</code> comes with some handy tools, that allow to test the code, to build the project for repositories like NPM or Bower, or generate the documentation.<br>
+        All this is made possible with Gulp, in addiction to many other projects listed on the <a href="http://www.tiste.org/xmlrpc-message-umd/credits.html" title="credits of xmlrpc-message-umd">credits page</a>.<br><br>
+        <a href="http://gulpjs.com/" title="Gulp website" target="_blank"><i class="fa fa-external-link"></i> Gulp</a> is a build system which relies on a set of tasks. Those tasks can perform all kinds stuff on the project.<br>
+        <code>xmlrpc-message-umd</code> has the following tasks:
+        <ul>
+          <li>Info task</li>
+          <li>Test task</li>
+          <li>Serve task</li>
+          <li>Build task</li>
+          <li>Doc task</li>
+          <li>CI task</li>
+        </ul>
+      </p>
+    </div>
+    <div class="col-12 col-xs-12 col-sm-12 col-lg-12">
       <hr>
-      <article class="row" role="article" itemprop="mainContentOfPage">
-        <div class="col-12 col-xs-12 col-sm-12 col-lg-12" itemscope itemtype="http://schema.org/Code">
-          <meta content="xmlrpc-message-umd" itemprop="name">
-          <meta content="http://tiste.org/xmlrpc-message-umd/" itemprop="url">
-          <meta content="https://github.com/T1st3/xmlrpc-message-umd/blob/master/LICENSE" itemprop="license">
-          <meta content="https://github.com/T1st3/xmlrpc-message-umd" itemprop="codeRepository">
-          <!-- Required for browser reporter -->
-          <div id="mocha"></div>
-        </div>
-      </article>
+      <h2>Info task</h2>
+      <p>
+        The info task just prints info about the project on the console.<br>
+        Just run:<br>
+      <pre><code>
+gulp info
+      </code></pre>
+      </p>
+    </div>
+    <hr>
+    <div class="col-12 col-xs-12 col-sm-12 col-lg-12">
+      <h2>Test task</h2>
+      <p>
+        The test task runs the tests located in the <code>test</code> folder of the project.<br>
+        The tests are run 3 times:
+        <ul>
+          <li>in Node.js</li>
+          <li>in a browser (PhantomJS), using AMD modules</li>
+          <li>in a browser (PhantomJS), using globals</li>
+        </ul><br>
+        Just run:<br>
+      <pre><code>
+gulp test
+      </code></pre>
+      </p>
+    </div>
+    <div class="col-12 col-xs-12 col-sm-12 col-lg-12">
       <hr>
-      <section class="row">
-        <div class="col-12 col-xs-12 col-sm-12 col-lg-12">
-          <h2><i class="fa fa-file-text-o"></i> Notes</h2>
-          <p>All tests are run with <a target="_blank" href="http://visionmedia.github.io/mocha/" title="Mocha website"><i class="fa fa-external-link"></i> Mocha</a>, and use 
-          <a target="_blank" href="http://chaijs.com/" title="Chai website"><i class="fa fa-external-link"></i> Chai</a> as the assertion library.<br><br>
-          If you want to run the tests in Node.js, you will need to run:
-          </p>
-          <pre><code>npm test</code></pre>
-          <br><br><br>
-        </div>
-      </section>
+      <h2>Build task</h2>
+      <p>
+        The build task does the following:
+        <ul>
+          <li>Runs the test task, and if it is successful, begin the build task</li>
+          <li>Lints the code with JSHint</li>
+          <li>Analyzes the code with JSCS</li>
+          <li>Updates version from package.json to bower.json and the source</li>
+          <li>if the 3 previous tasks succeed, copies the source to the dist folder twice (1 identic to source, 1 minified)</li>
+        </ul><br>
+        Just run:<br>
+      <pre><code>
+gulp build
+      </code></pre>
+      </p>
+    </div>
+    <div class="col-12 col-xs-12 col-sm-12 col-lg-12">
       <hr>
-      <footer class="row">
-        <div class="col-12 col-xs-12 col-sm-12 col-lg-12">
-          <a href="tests.html" title="Tests section"><i class="fa fa-arrow-circle-left"></i> Back to all tests</a><br><br>
-          <a href="index.html" title="Navigate to homepage" rel="home"><i class="fa fa-home"></i> Back to home</a><br><br>
-        </div>
-      </footer>
-    </main>
+      <h2>Doc task</h2>
+      <p>
+        Please check the <a href="http://www.tiste.org/xmlrpc-message-umd/build_docs.html" title="Build the docs of xmlrpc-message-umd">page dedicated to this task</a>!<br><br>
+        The doc task does the following:
+        <ul>
+          <li>Runs the build task, and if it is successful, begins the doc task</li>
+          <li>Creates the gh-pages skeleton</li>
+          <li>Imports assets for gh-pages from Bower dependencies</li>
+          <li>Creates JSDoc documentation (in gh-pages)</li>
+          <li>Creates changelog (in gh-pages)</li>
+          <li>Creates code coverage (in gh-pages)</li>
+          <li>Creates dependency trees (in gh-pages)</li>
+          <li>Gzip the sitemap (in gh-pages)</li>
+          <li>Compiles docs form gh-pages (using Jekyll)</li>
+        </ul><br>
+        Just run:<br>
+      <pre><code>
+gulp doc
+      </code></pre>
+      </p>
+    </div>
+    <div class="col-12 col-xs-12 col-sm-12 col-lg-12">
+      <hr>
+      <h2>CI task</h2>
+      <p>
+        The ci task is mainly geared towards Travis CI.<br>
+        While used in Travis Ci, it does the following:
+        <ul>
+          <li>Runs the tests</li>
+          <li>if tests succeed, gets code coverage and sends code coverage to Coveralls and Code Climate</li>
+          <li>if tests succeed and the commit is a new tag, it pusblishes the tag on NPM.</li>
+        </ul><br>
+      <pre><code>
+gulp ci
+      </code></pre>
+      </p>
+    </div>
+  </article>
+  <hr>
+  <footer class="row">
+    <div class="col-12 col-xs-12 col-sm-12 col-lg-12">
+      <a href="index.html" title="Navigate to homepage" rel="home"><i class="fa fa-home"></i> Back to home</a><br><br>
+    </div>
+  </footer>
+</main>
 
     <div id="footer-wrap">
       <footer class="container" id="footer" role="contentinfo">
@@ -392,7 +471,25 @@
       </div>
     </nav>
 
-<script type="text/javascript" data-main="tests" src="require.js"></script>
+<script src="//ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
+<script>window.jQuery || document.write('<script src="assets/js/lib/jquery.min.js"><\/script>')</script>
+<script src="assets/js/lib/bootstrap.min.js"></script>
+<script type="text/javascript">
+  $(document).ready(function() {
+    $('#main h2, #main h3, #main h4').each(function(i, el) {
+      var $el, icon, id, tmp, html;
+      $el = $(el);
+      html = $el.html();
+      id = html.toLowerCase().replace(/<i class="fa fa[a-z-]+"><\/i> /g, '');
+      tmp = id.replace(/\s/g, '_').replace(/\W/g, '');
+      icon = '<i class="fa fa-link"></i>';
+      if (tmp) {
+        $el.prepend($('<a />').addClass('anchor-link').attr('href', '#' + tmp).attr('title', id).attr('id', tmp).html(icon));
+        return $el;
+      }
+    });
+  });
+</script>
 <script>
   (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
   (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
