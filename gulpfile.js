@@ -374,6 +374,7 @@ gulp.task('doc_template', ['doc_copy'], function () {
     'cjs_dependencies.html',
     'amd_dependencies.html',
     'sitemap.html',
+    'gulp_tasks.html',
     '_config.yml'
   ]).forEach(function (num) {
       gulp.src('bower_components/t1st3-assets/dist/umd_' + num)
