@@ -1,6 +1,6 @@
 'use strict';
 
-var deps = ['btoa-umd'],
+var deps = ['http-request-umd'],
 figletShown = 0,
 pkg = require('./package.json'),
 _ = require('lodash'),
@@ -114,6 +114,11 @@ gulp.task('test_init', ['bower'], function (cb) {
     'src/' + pkg.name + '.js'
   ])
     .pipe(gulp.dest('test/assets/js/lib'));
+
+  gulp.src([
+    'bower_components/requirejs/require.js'
+  ])
+    .pipe(gulp.dest('./test'));
 
    _(deps).forEach(function (num) {
      gulp.src(['bower_components/' + num + '/dist/' + num + '.js'])
@@ -229,7 +234,7 @@ gulp.task('build', ['build_copy', 'uglify'], function (cb) {
  * SERVE TASKS
  */
 
-gulp.task('serve_lib', ['test_init', 'figlet'], function () {
+gulp.task('serve_lib', ['figlet'], function () {
   gulp.src([
     'src/' + pkg.name + '.js'
   ])
