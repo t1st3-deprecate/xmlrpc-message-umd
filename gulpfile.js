@@ -93,6 +93,37 @@ gulp.task('figlet', [], function (cb) {
   }
 });
 
+gulp.task('bower', ['figlet'], function () {
+  return bower()
+    .pipe(gulp.dest('./bower_components'));
+});
+
+/*
+ * TEST-INIT TASK
+ */
+
+gulp.task('test_init', ['bower'], function (cb) {
+  gulp.src([
+    'bower_components/jquery/dist/jquery.min.js',
+    'bower_components/jquery/dist/jquery.min.map',
+    'bower_components/mocha/mocha.js',
+    'bower_components/chai/chai.js',
+    'bower_components/chai-jquery/chai-jquery.js',
+    'bower_components/bootstrap/dist/js/bootstrap.min.js',
+    'bower_components/lodash/dist/lodash.min.js',
+    'src/' + pkg.name + '.js'
+  ])
+    .pipe(gulp.dest('test/assets/js/lib'));
+
+   _(deps).forEach(function (num) {
+     gulp.src(['bower_components/' + num + '/dist/' + num + '.js'])
+      .pipe(gulp.dest('test/assets/js/lib'));
+   });
+   triggerNotification ('Test-init', 'Successfully copied libraries.', function () {
+    displayCowsay('gulp test_init - DONE', cb);
+  });
+});
+
 /*
  * TEST TASKS
  */
@@ -198,7 +229,7 @@ gulp.task('build', ['build_copy', 'uglify'], function (cb) {
  * SERVE TASKS
  */
 
-gulp.task('serve_lib', ['figlet'], function () {
+gulp.task('serve_lib', ['test_init', 'figlet'], function () {
   gulp.src([
     'src/' + pkg.name + '.js'
   ])
@@ -232,11 +263,6 @@ gulp.task('serve', ['watch', 'browser-sync'], function (cb) {
  * DOC TASKS
  */
 
-gulp.task('bower', ['figlet', 'build'], function () {
-  return bower()
-    .pipe(gulp.dest('./bower_components'));
-});
-
 gulp.task('doc_clean', ['figlet', 'build'], function (cb) {
   del([
     'gh-pages/_layouts', 'gh-pages/assets/', 'gh-pages/coverage/',
@@ -251,7 +277,7 @@ gulp.task('qr', ['bower', 'doc_clean'], function () {
   qrPng.pipe(fs.createWriteStream(stream));
 });
 
-gulp.task('doc_copy', ['bower', 'doc_clean', 'qr'], function () {
+gulp.task('doc_copy', ['build', 'bower', 'doc_clean', 'qr'], function () {
 
   /* JS */
   gulp.src([
