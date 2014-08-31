@@ -1,6 +1,6 @@
 'use strict';
 
-var deps = ['http-request-umd'],
+var deps = ['btoa-umd'],
 figletShown = 0,
 pkg = require('./package.json'),
 _ = require('lodash'),
@@ -104,25 +104,25 @@ gulp.task('bower', ['figlet'], function () {
 
 gulp.task('test_init', ['bower'], function (cb) {
   gulp.src([
-    'bower_components/jquery/dist/jquery.min.js',
-    'bower_components/jquery/dist/jquery.min.map',
-    'bower_components/mocha/mocha.js',
-    'bower_components/chai/chai.js',
-    'bower_components/chai-jquery/chai-jquery.js',
-    'bower_components/bootstrap/dist/js/bootstrap.min.js',
-    'bower_components/lodash/dist/lodash.min.js',
-    'src/' + pkg.name + '.js'
+    './bower_components/jquery/dist/jquery.min.js',
+    './bower_components/jquery/dist/jquery.min.map',
+    './bower_components/mocha/mocha.js',
+    './bower_components/chai/chai.js',
+    './bower_components/chai-jquery/chai-jquery.js',
+    './bower_components/bootstrap/dist/js/bootstrap.min.js',
+    './bower_components/lodash/dist/lodash.min.js',
+    './src/' + pkg.name + '.js'
   ])
-    .pipe(gulp.dest('test/assets/js/lib'));
+    .pipe(gulp.dest('./test/assets/js/lib'));
 
   gulp.src([
-    'bower_components/requirejs/require.js'
+    './bower_components/requirejs/require.js'
   ])
     .pipe(gulp.dest('./test'));
 
    _(deps).forEach(function (num) {
-     gulp.src(['bower_components/' + num + '/dist/' + num + '.js'])
-      .pipe(gulp.dest('test/assets/js/lib'));
+     gulp.src(['./bower_components/' + num + '/dist/' + num + '.js'])
+      .pipe(gulp.dest('./test/assets/js/lib'));
    });
    triggerNotification ('Test-init', 'Successfully copied libraries.', function () {
     displayCowsay('gulp test_init - DONE', cb);
@@ -151,7 +151,7 @@ gulp.task('test_node', ['test_copy'], function (cb) {
 
 gulp.task('test_browser_amd', ['test_copy'], function (cb) {
   var cmd = './node_modules/mocha-phantomjs/bin/mocha-phantomjs';
-  cmd += ' test/tests_amd.html --reporter spec';
+  cmd += ' ./test/tests_amd.html --reporter spec';
   exec(cmd, function (err, stdout, stderr) {
     console.log('\n\n');
     console.log(chalk.green('Browser tests using AMD modules (in PhantomJS)'));
@@ -184,7 +184,7 @@ gulp.task('test', ['test_node', 'test_browser_amd', 'test_browser_global'], func
  */
 
 gulp.task('build_clean', ['figlet', 'test'], function (cb) {
-  del(['dist'], cb);
+  del(['./dist'], cb);
 });
 
 gulp.task('lint', ['figlet'], function () {
@@ -211,7 +211,7 @@ gulp.task('version', ['figlet', 'jscs'], function () {
 
 gulp.task('build_copy', ['build_clean', 'lint', 'jscs', 'version'], function () {
   gulp.src('./src/' + pkg.name + '.js')
-    .pipe(gulp.dest('dist'));
+    .pipe(gulp.dest('./dist'));
 });
 
 gulp.task('uglify', ['build_clean', 'lint', 'jscs'], function () {
@@ -238,7 +238,7 @@ gulp.task('serve_lib', ['figlet'], function () {
   gulp.src([
     'src/' + pkg.name + '.js'
   ])
-    .pipe(gulp.dest('test/assets/js/lib'));
+    .pipe(gulp.dest('./test/assets/js/lib'));
 });
 
 gulp.task('watch', [], function() {
@@ -270,15 +270,15 @@ gulp.task('serve', ['watch', 'browser-sync'], function (cb) {
 
 gulp.task('doc_clean', ['figlet', 'build'], function (cb) {
   del([
-    'gh-pages/_layouts', 'gh-pages/assets/', 'gh-pages/coverage/',
-    'gh-pages/jsdoc/', 'gh-pages/dependo/', 'gh-pages/_config.yml',
-    'gh-pages/*.md', 'gh-pages/lib', 'gh-pages/_includes/umd_*', '!gh-pages/.git', 'docs'
+    './gh-pages/_layouts', './gh-pages/assets/', './gh-pages/coverage/',
+    './gh-pages/jsdoc/', './gh-pages/dependo/', './gh-pages/_config.yml',
+    './gh-pages/*.md', './gh-pages/lib', './gh-pages/_includes/umd_*', '!gh-pages/.git', 'docs'
   ], cb);
 });
 
 gulp.task('qr', ['bower', 'doc_clean'], function () {
   var qrPng = qr.image(pkg.homepage, { type: 'png' }),
-  stream = 'bower_components/t1st3-assets/dist/assets/img/qr.png';
+  stream = './bower_components/t1st3-assets/dist/assets/img/qr.png';
   qrPng.pipe(fs.createWriteStream(stream));
 });
 
@@ -286,108 +286,108 @@ gulp.task('doc_copy', ['build', 'bower', 'doc_clean', 'qr'], function () {
 
   /* JS */
   gulp.src([
-    'bower_components/jquery/dist/jquery.min.js',
-    'bower_components/jquery/dist/jquery.min.map',
-    'bower_components/mocha/mocha.js',
-    'bower_components/chai/chai.js',
-    'bower_components/chai-jquery/chai-jquery.js',
-    'bower_components/modernizr/modernizr.js',
-    'bower_components/bootstrap/dist/js/bootstrap.min.js',
-    'bower_components/codemirror/lib/codemirror.js',
-    'bower_components/jshint/dist/jshint.js',
-    'bower_components/lodash/dist/lodash.min.js',
-    'bower_components/respond/dest/respond.min.js',
-    'src/' + pkg.name + '.js'
+    './bower_components/jquery/dist/jquery.min.js',
+    './bower_components/jquery/dist/jquery.min.map',
+    './bower_components/mocha/mocha.js',
+    './bower_components/chai/chai.js',
+    './bower_components/chai-jquery/chai-jquery.js',
+    './bower_components/modernizr/modernizr.js',
+    './bower_components/bootstrap/dist/js/bootstrap.min.js',
+    './bower_components/codemirror/lib/codemirror.js',
+    './bower_components/jshint/dist/jshint.js',
+    './bower_components/lodash/dist/lodash.min.js',
+    './bower_components/respond/dest/respond.min.js',
+    './src/' + pkg.name + '.js'
   ])
-    .pipe(gulp.dest('gh-pages/assets/js/lib'));
+    .pipe(gulp.dest('./gh-pages/assets/js/lib'));
 
    _(deps).forEach(function (num) {
-     gulp.src(['bower_components/' + num + '/dist/' + num + '.js'])
-      .pipe(gulp.dest('gh-pages/assets/js/lib'));
+     gulp.src(['./bower_components/' + num + '/dist/' + num + '.js'])
+      .pipe(gulp.dest('./gh-pages/assets/js/lib'));
    });
 
   gulp.src([
-    'bower_components/codemirror/mode/javascript/javascript.js'
+    './bower_components/codemirror/mode/javascript/javascript.js'
   ])
-    .pipe(gulp.dest('gh-pages/assets/js/lib/codemirror'));
+    .pipe(gulp.dest('./gh-pages/assets/js/lib/codemirror'));
 
   gulp.src([
-    'test/tests.js',
-    'bower_components/requirejs/require.js'
+    './test/tests.js',
+    './bower_components/requirejs/require.js'
   ])
-    .pipe(gulp.dest('gh-pages'));
+    .pipe(gulp.dest('./gh-pages'));
 
   /* CSS */
   gulp.src([
-    'bower_components/bootstrap/dist/css/bootstrap.min.css',
-    'bower_components/mocha/mocha.css',
-    'bower_components/codemirror/lib/codemirror.css',
-    'bower_components/font-awesome/css/font-awesome.min.css',
-    'bower_components/t1st3-assets/dist/assets/css/t1st3.min.css',
-    'bower_components/t1st3-assets/dist/assets/css/404.min.css',
-    'bower_components/t1st3-assets/dist/assets/css/ie-noscript.min.css'
+    './bower_components/bootstrap/dist/css/bootstrap.min.css',
+    './bower_components/mocha/mocha.css',
+    './bower_components/codemirror/lib/codemirror.css',
+    './bower_components/font-awesome/css/font-awesome.min.css',
+    './bower_components/t1st3-assets/dist/assets/css/t1st3.min.css',
+    './bower_components/t1st3-assets/dist/assets/css/404.min.css',
+    './bower_components/t1st3-assets/dist/assets/css/ie-noscript.min.css'
   ])
-    .pipe(gulp.dest('gh-pages/assets/css'));
+    .pipe(gulp.dest('./gh-pages/assets/css'));
 
   /* FONTS */
   gulp.src([
-    'bower_components/font-awesome/fonts/*',
-    'bower_components/bootstrap/dist/fonts/*'
+    './bower_components/font-awesome/fonts/*',
+    './bower_components/bootstrap/dist/fonts/*'
   ])
-    .pipe(gulp.dest('gh-pages/assets/fonts'));
+    .pipe(gulp.dest('./gh-pages/assets/fonts'));
 
   /* IMG */
   gulp.src([
-    'bower_components/t1st3-assets/dist/assets/img/**/*.png',
-    'bower_components/t1st3-assets/dist/assets/img/**/*.gif',
-    'bower_components/t1st3-assets/dist/assets/img/**/*.jpg',
-    'bower_components/t1st3-assets/dist/assets/img/**/*.jpeg'
+    './bower_components/t1st3-assets/dist/assets/img/**/*.png',
+    './bower_components/t1st3-assets/dist/assets/img/**/*.gif',
+    './bower_components/t1st3-assets/dist/assets/img/**/*.jpg',
+    './bower_components/t1st3-assets/dist/assets/img/**/*.jpeg'
   ])
     .pipe(imagemin())
-    .pipe(gulp.dest('gh-pages/assets/img'));
+    .pipe(gulp.dest('./gh-pages/assets/img'));
 
   gulp.src([
-    'bower_components/t1st3-assets/dist/assets/img/**/*.ico',
-    'bower_components/t1st3-assets/dist/assets/img/**/*.svg'
+    './bower_components/t1st3-assets/dist/assets/img/**/*.ico',
+    './bower_components/t1st3-assets/dist/assets/img/**/*.svg'
   ])
-    .pipe(gulp.dest('gh-pages/assets/img'));
+    .pipe(gulp.dest('./gh-pages/assets/img'));
 
   gulp.src([
-    'bower_components/t1st3-assets/dist/assets/img/favicon/apple*.png'
+    './bower_components/t1st3-assets/dist/assets/img/favicon/apple*.png'
   ])
     .pipe(imagemin())
     .pipe(gulp.dest('./gh-pages'));
 
   gulp.src([
-    'bower_components/t1st3-assets/dist/assets/img/favicon/*.ico'
+    './bower_components/t1st3-assets/dist/assets/img/favicon/*.ico'
   ])
     .pipe(gulp.dest('./gh-pages/'));
 
   /* XML */
   gulp.src([
-    'bower_components/t1st3-assets/dist/umd_sitemap.xml'
+    './bower_components/t1st3-assets/dist/umd_sitemap.xml'
   ])
     .pipe(rename('sitemap.xml'))
-    .pipe(gulp.dest('gh-pages'));
+    .pipe(gulp.dest('./gh-pages'));
   gulp.src([
-    'bower_components/t1st3-assets/dist/umd_opensearch.xml'
+    './bower_components/t1st3-assets/dist/umd_opensearch.xml'
   ])
     .pipe(rename('opensearch.xml'))
-    .pipe(gulp.dest('gh-pages'));
+    .pipe(gulp.dest('./gh-pages'));
 
   /* HTML */
   gulp.src([
-    'bower_components/t1st3-assets/dist/_includes/umd_bottom-menu.html',
-    'bower_components/t1st3-assets/dist/_includes/umd_head.html',
-    'bower_components/t1st3-assets/dist/_includes/umd_header.html',
-    'bower_components/t1st3-assets/dist/_includes/umd_footer.html'
+    './bower_components/t1st3-assets/dist/_includes/umd_bottom-menu.html',
+    './bower_components/t1st3-assets/dist/_includes/umd_head.html',
+    './bower_components/t1st3-assets/dist/_includes/umd_header.html',
+    './bower_components/t1st3-assets/dist/_includes/umd_footer.html'
   ])
-    .pipe(gulp.dest('gh-pages/_includes'));
+    .pipe(gulp.dest('./gh-pages/_includes'));
 
   gulp.src([
-    'bower_components/t1st3-assets/dist/_layouts/**/umd_*'
+    './bower_components/t1st3-assets/dist/_layouts/**/umd_*'
   ])
-    .pipe(gulp.dest('gh-pages/_layouts'));
+    .pipe(gulp.dest('./gh-pages/_layouts'));
 });
 
 gulp.task('doc_template', ['doc_copy'], function () {
@@ -408,14 +408,14 @@ gulp.task('doc_template', ['doc_copy'], function () {
     'gulp_tasks.html',
     '_config.yml'
   ]).forEach(function (num) {
-      gulp.src('bower_components/t1st3-assets/dist/umd_' + num)
+      gulp.src('./bower_components/t1st3-assets/dist/umd_' + num)
       .pipe(template({
         ProjectName: pkg.name,
         ProjectVersion: pkg.version,
         ProjectDependencies: deps
       }))
       .pipe(rename(num))
-      .pipe(gulp.dest('gh-pages'));
+      .pipe(gulp.dest('./gh-pages'));
   });
 });
 
@@ -425,7 +425,7 @@ gulp.task('banner', ['doc_template'], function () {
   gulp.src('./README.md')
     .pipe(header(h))
     .pipe(rename('index.md'))
-    .pipe(gulp.dest('gh-pages'));
+    .pipe(gulp.dest('./gh-pages'));
 });
 
 gulp.task('jsdoc', ['doc_copy'], function () {
@@ -545,7 +545,7 @@ gulp.task('coverage', [
     console.log(stdout);
     console.log(stderr);
     del([
-      'tmp', 'tmp2'
+      './tmp', './tmp2'
     ], cb);
   });
 });
@@ -559,7 +559,7 @@ gulp.task('gzip', ['doc_template'], function () {
 gulp.task('changelog', ['doc_template'], function (cb) {
   console.log(pkg.repository.url);
   var cmd = 'node ./node_modules/github-changes/bin/index.js';
-  cmd += ' -o t1st3 -r atob-umd -b master -a --repo ' + pkg.repository.url;
+  cmd += ' -o t1st3 -r ' + pkg.name + ' -b master -a --repo ' + pkg.repository.url;
   exec(cmd, function (err, stdout, stderr) {
     console.log(stdout);
     console.log(stderr);
@@ -570,7 +570,7 @@ gulp.task('changelog', ['doc_template'], function (cb) {
     gulp.src('./CHANGELOG.md')
       .pipe(header(h))
       .pipe(rename('changelog.md'))
-      .pipe(gulp.dest('gh-pages'));
+      .pipe(gulp.dest('./gh-pages'));
     cb(err);
   });
 });
