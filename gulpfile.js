@@ -278,7 +278,7 @@ gulp.task('doc_clean', ['figlet', 'build'], function (cb) {
 
 gulp.task('qr', ['bower', 'doc_clean'], function () {
   var qrPng = qr.image(pkg.homepage, { type: 'png' }),
-  stream = './bower_components/t1st3-assets/dist/assets/img/qr.png';
+  stream = './bower_components/t1st3-assets/dist/common/assets/img/qr.png';
   qrPng.pipe(fs.createWriteStream(stream));
 });
 
@@ -323,9 +323,9 @@ gulp.task('doc_copy', ['build', 'bower', 'doc_clean', 'qr'], function () {
     './bower_components/mocha/mocha.css',
     './bower_components/codemirror/lib/codemirror.css',
     './bower_components/font-awesome/css/font-awesome.min.css',
-    './bower_components/t1st3-assets/dist/assets/css/t1st3.min.css',
-    './bower_components/t1st3-assets/dist/assets/css/404.min.css',
-    './bower_components/t1st3-assets/dist/assets/css/ie-noscript.min.css'
+    './bower_components/t1st3-assets/dist/common/assets/css/t1st3.min.css',
+    './bower_components/t1st3-assets/dist/common/assets/css/404.min.css',
+    './bower_components/t1st3-assets/dist/common/assets/css/ie-noscript.min.css'
   ])
     .pipe(gulp.dest('./gh-pages/assets/css'));
 
@@ -338,54 +338,55 @@ gulp.task('doc_copy', ['build', 'bower', 'doc_clean', 'qr'], function () {
 
   /* IMG */
   gulp.src([
-    './bower_components/t1st3-assets/dist/assets/img/**/*.png',
-    './bower_components/t1st3-assets/dist/assets/img/**/*.gif',
-    './bower_components/t1st3-assets/dist/assets/img/**/*.jpg',
-    './bower_components/t1st3-assets/dist/assets/img/**/*.jpeg'
+    './bower_components/t1st3-assets/dist/common/assets/img/**/*.png',
+    './bower_components/t1st3-assets/dist/common/assets/img/**/*.gif',
+    './bower_components/t1st3-assets/dist/common/assets/img/**/*.jpg',
+    './bower_components/t1st3-assets/dist/common/assets/img/**/*.jpeg'
   ])
     .pipe(imagemin())
     .pipe(gulp.dest('./gh-pages/assets/img'));
 
   gulp.src([
-    './bower_components/t1st3-assets/dist/assets/img/**/*.ico',
-    './bower_components/t1st3-assets/dist/assets/img/**/*.svg'
+    './bower_components/t1st3-assets/dist/common/assets/img/**/*.ico',
+    './bower_components/t1st3-assets/dist/common/assets/img/**/*.svg'
   ])
     .pipe(gulp.dest('./gh-pages/assets/img'));
 
   gulp.src([
-    './bower_components/t1st3-assets/dist/assets/img/favicon/apple*.png'
+    './bower_components/t1st3-assets/dist/common/assets/img/favicon/apple*.png'
   ])
     .pipe(imagemin())
     .pipe(gulp.dest('./gh-pages'));
 
   gulp.src([
-    './bower_components/t1st3-assets/dist/assets/img/favicon/*.ico'
+    './bower_components/t1st3-assets/dist/common/assets/img/favicon/*.ico'
   ])
     .pipe(gulp.dest('./gh-pages/'));
 
   /* XML */
   gulp.src([
-    './bower_components/t1st3-assets/dist/umd_sitemap.xml'
+    './bower_components/t1st3-assets/dist/common/sitemap.xml'
   ])
     .pipe(rename('sitemap.xml'))
     .pipe(gulp.dest('./gh-pages'));
   gulp.src([
-    './bower_components/t1st3-assets/dist/umd_opensearch.xml'
+    './bower_components/t1st3-assets/dist/common/opensearch.xml'
   ])
     .pipe(rename('opensearch.xml'))
     .pipe(gulp.dest('./gh-pages'));
 
   /* HTML */
   gulp.src([
-    './bower_components/t1st3-assets/dist/_includes/umd_bottom-menu.html',
-    './bower_components/t1st3-assets/dist/_includes/umd_head.html',
-    './bower_components/t1st3-assets/dist/_includes/umd_header.html',
-    './bower_components/t1st3-assets/dist/_includes/umd_footer.html'
+    './bower_components/t1st3-assets/dist/umd_docs/_includes/bottom-menu.html',
+    './bower_components/t1st3-assets/dist/umd_docs/_includes/head.html',
+    './bower_components/t1st3-assets/dist/umd_docs/_includes/header.html',
+    './bower_components/t1st3-assets/dist/common/_includes/footer.html'
   ])
     .pipe(gulp.dest('./gh-pages/_includes'));
 
   gulp.src([
-    './bower_components/t1st3-assets/dist/_layouts/**/umd_*'
+    './bower_components/t1st3-assets/dist/common/_layouts/*',
+    './bower_components/t1st3-assets/dist/umd_docs/_layouts/*'
   ])
     .pipe(gulp.dest('./gh-pages/_layouts'));
 });
@@ -393,22 +394,17 @@ gulp.task('doc_copy', ['build', 'bower', 'doc_clean', 'qr'], function () {
 gulp.task('doc_template', ['doc_copy'], function () {
   _([
     '404.html',
-    'tests.html',
     'tests_amd.html',
-    'tests_global.html',
     'coverage.html',
     'build_docs.html',
-    'credits.html',
     'jsdoc.html',
     'license.md',
     'dependencies.html',
     'cjs_dependencies.html',
     'amd_dependencies.html',
-    'sitemap.html',
-    'gulp_tasks.html',
-    '_config.yml'
+    'sitemap.html'
   ]).forEach(function (num) {
-      gulp.src('./bower_components/t1st3-assets/dist/umd_' + num)
+      gulp.src('./bower_components/t1st3-assets/dist/common/' + num)
       .pipe(template({
         ProjectName: pkg.name,
         ProjectVersion: pkg.version,
@@ -419,8 +415,27 @@ gulp.task('doc_template', ['doc_copy'], function () {
   });
 });
 
-gulp.task('banner', ['doc_template'], function () {
-  var h = '---\nlayout: umd_readme\ntitle: ' + pkg.name;
+gulp.task('doc_template_umd', ['doc_template'], function () {
+  _([
+    'tests.html',
+    'tests_global.html',
+    'credits.html',
+    'gulp_tasks.html',
+    '_config.yml'
+  ]).forEach(function (num) {
+      gulp.src('./bower_components/t1st3-assets/dist/umd_docs/' + num)
+      .pipe(template({
+        ProjectName: pkg.name,
+        ProjectVersion: pkg.version,
+        ProjectDependencies: deps
+      }))
+      .pipe(rename(num))
+      .pipe(gulp.dest('./gh-pages'));
+  });
+});
+
+gulp.task('banner', ['doc_template_umd'], function () {
+  var h = '---\nlayout: readme\ntitle: ' + pkg.name;
   h += '\nsitemap:\n  priority: 1\n  changefreq: monthly\n---\n\n';
   gulp.src('./README.md')
     .pipe(header(h))
@@ -550,20 +565,20 @@ gulp.task('coverage', [
   });
 });
 
-gulp.task('gzip', ['doc_template'], function () {
+gulp.task('gzip', ['doc_template_umd'], function () {
   gulp.src('./gh-pages/sitemap.xml')
     .pipe(gzip())
     .pipe(gulp.dest('./gh-pages'));
 });
 
-gulp.task('changelog', ['doc_template'], function (cb) {
+gulp.task('changelog', ['doc_template_umd'], function (cb) {
   console.log(pkg.repository.url);
   var cmd = 'node ./node_modules/github-changes/bin/index.js';
   cmd += ' -o t1st3 -r ' + pkg.name + ' -b master -a --repo ' + pkg.repository.url;
   exec(cmd, function (err, stdout, stderr) {
     console.log(stdout);
     console.log(stderr);
-    var h = '---\nlayout: umd_readme\ntitle: ' + pkg.name;
+    var h = '---\nlayout: readme\ntitle: ' + pkg.name;
     h += '\nsitemap:\n  priority: 0.7\n  changefreq: weekly\n---\n\n';
     h += '<h1>' + pkg.name + ' | Changelog</h1>\n\n';
     h += '<a href="index.html" title="Home page"><i class="fa fa-home"></i> Back to home</a>\n\n';
@@ -576,7 +591,7 @@ gulp.task('changelog', ['doc_template'], function (cb) {
 });
 
 gulp.task('jekyll', [
-  'doc_clean', 'qr', 'doc_copy', 'doc_template',
+  'doc_clean', 'qr', 'doc_copy', 'doc_template', 'doc_template_umd',
   'banner', 'jsdoc', 'coverage', 'gzip',
   'dependo', 'changelog'
 ], function (cb) {
@@ -590,7 +605,7 @@ gulp.task('jekyll', [
 });
 
 gulp.task('doc', [
-  'doc_clean', 'qr', 'doc_copy', 'doc_template',
+  'doc_clean', 'qr', 'doc_copy', 'doc_template', 'doc_template_umd',
   'banner', 'jsdoc', 'coverage', 'gzip',
   'dependo', 'changelog', 'jekyll'
 ], function (cb) {
