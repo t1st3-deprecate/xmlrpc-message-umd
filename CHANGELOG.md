@@ -1,8 +1,17 @@
 ## Change Log
 
-### upcoming (2014/09/01 15:36 +00:00)
+### 0.7.6 (2014/09/01 15:36 +00:00)
 - [8be822f](https://github.com/T1st3/xmlrpc-message-umd/commit/8be822f512979dbdd7a0e0c6a1cafeee85f43d57) Update gulpfile (@T1st3)
 - [b9c2595](https://github.com/T1st3/xmlrpc-message-umd/commit/b9c259544be7f4454dd4d120961560513f512a8f) Update Node deps (@T1st3)
+- [512c83c](https://github.com/T1st3/xmlrpc-message-umd/commit/512c83c926c15fd519c7df9e4ce67577e9ecbb2d) Update Node deps (@T1st3)
+- [c6bf46e](https://github.com/T1st3/xmlrpc-message-umd/commit/c6bf46e570d87a6e0e76640844b2df14f781f7cc) Update Node deps (@T1st3)
+- [ef2f14f](https://github.com/T1st3/xmlrpc-message-umd/commit/ef2f14ffd95c3ed54eaee66bbbc75607bb22953e) Set .directory as a forbidden file (useful when working with GNU/Linux & KDE) (@T1st3)
+- [1108aec](https://github.com/T1st3/xmlrpc-message-umd/commit/1108aec40a21c5f0954d30db40c8d3b4180ea2c3) Set .directory as a forbidden file (useful when working with GNU/Linux & KDE) (@T1st3)
+- [6a1225b](https://github.com/T1st3/xmlrpc-message-umd/commit/6a1225b0356e44afa8c61266b88a4c84d7594203) Set .directory as a forbidden file (useful when working with GNU/Linux & KDE) (@T1st3)
+- [ae51713](https://github.com/T1st3/xmlrpc-message-umd/commit/ae51713c16f36e53e9c5137fb063323dd675c312) Update gulpfile (@T1st3)
+- [b234484](https://github.com/T1st3/xmlrpc-message-umd/commit/b23448491a68f105ecc4513c2e5fecf6fa296803) Update test libs (@T1st3)
+- [9d278fb](https://github.com/T1st3/xmlrpc-message-umd/commit/9d278fb00009b88b37261caa279bac2ed48eec43) Update gulpfile (@T1st3)
+- [de77978](https://github.com/T1st3/xmlrpc-message-umd/commit/de77978aa412c70d0598b3081f0800dbf1434c62) 0.7.6 (@T1st3)
 
 ### 0.7.5 (2014/08/11 10:41 +00:00)
 - [b161d49](https://github.com/T1st3/xmlrpc-message-umd/commit/b161d49aa1f4fdb78a3a477cd755e788d54c29e5) 0.7.5 (@T1st3)
@@ -44,7 +53,6 @@
 
 ### 0.5.9 (2014/07/05 19:23 +00:00)
 - [f3a4e2d](https://github.com/T1st3/xmlrpc-message-umd/commit/f3a4e2dcd3839dfc8c7e7610dbb8db096b4b6d46) Update package.json (@T1st3)
-- [3c64d79](https://github.com/T1st3/xmlrpc-message-umd/commit/3c64d791a1b55490af5d8b9f0ac8367a012b151f) 0.5.9 (@T1st3)
 
 ### 0.5.8 (2014/07/04 20:50 +00:00)
 - [01f7e29](https://github.com/T1st3/xmlrpc-message-umd/commit/01f7e29ac0413868a465cf11d5ce9660e7079fe7) 0.5.8 (@T1st3)
@@ -100,6 +108,14 @@
 ### 0.2.3 (2014/04/17 15:30 +00:00)
 - [97869ad](https://github.com/T1st3/xmlrpc-message-umd/commit/97869ada611c5f0bce0d90550f7e5d0d4428726b) Update grunt tasks (@T1st3)
 - [948ffb4](https://github.com/T1st3/xmlrpc-message-umd/commit/948ffb468c40c127fedd6602d78ecd2bb5c7195e) Add codemirror in bower.json (@T1st3)
+
+### upcoming (2014/09/22 13:16 +00:00)
+- [ed31cb9](https://github.com/T1st3/xmlrpc-message-umd/commit/ed31cb99f898b276db4c10466fafd88faee81dae) Update deps (@T1st3)
+
+### 0.5.9 (2014/07/05 19:23 +00:00)
+- [3c64d79](https://github.com/T1st3/xmlrpc-message-umd/commit/3c64d791a1b55490af5d8b9f0ac8367a012b151f) 0.5.9 (@T1st3)
+
+### 0.2.3 (2014/04/17 15:30 +00:00)
 - [3e441a8](https://github.com/T1st3/xmlrpc-message-umd/commit/3e441a8aa151740e5e6afffe81eaf85d3221f7eb) Fix node_test for jshint; grunt init; grunt build (@T1st3)
 - [69d5eb1](https://github.com/T1st3/xmlrpc-message-umd/commit/69d5eb14c4a7dbe2bb9705cc70d893ae559d5db1) Fix in gh-pages (@T1st3)
 - [f97af0b](https://github.com/T1st3/xmlrpc-message-umd/commit/f97af0bcd59d4fe2625d4a1f967c675a503e718b) Fix in gh-pages (@T1st3)
@@ -160,13 +176,6 @@
 - [782cf78](https://github.com/T1st3/xmlrpc-message-umd/commit/782cf781d2b286675e0d7829071b3b7d06df509a) 0.2.0 (@T1st3)
 
 ### 0.1.2 (2014/02/21 20:35 +00:00)
-- [c0da311](https://github.com/T1st3/xmlrpc-message-umd/commit/c0da31165fb27d1ef6fd445fa8546f42ebaf6d18) Add travis.yml (@T1st3)
-- [3b17ffb](https://github.com/T1st3/xmlrpc-message-umd/commit/3b17ffbd5a10793f0020820597a6f326f01aadec) Minor fixes (@T1st3)
-- [0ebbfa4](https://github.com/T1st3/xmlrpc-message-umd/commit/0ebbfa4e299e4327e6d65904dd9bfea1e32b99ca) Update README.md (@T1st3)
-- [ec5decf](https://github.com/T1st3/xmlrpc-message-umd/commit/ec5decfa8115d0ac9fd6490f705367400d3e60c6) Fix Gruntfile for watch task (@T1st3)
-- [76f61c5](https://github.com/T1st3/xmlrpc-message-umd/commit/76f61c55a80da49be7a628d9af477f4e9553b305) v0.1.2 (@T1st3)
-
-### 0.1.1 (2014/02/21 19:43 +00:00)
 - [3a860e5](https://github.com/T1st3/xmlrpc-message-umd/commit/3a860e5fabd26df988ea39f0900654b911bce653) Add README (@T1st3)
 - [1af83df](https://github.com/T1st3/xmlrpc-message-umd/commit/1af83df398dcaafe6175ca185db7830b4f884499) Add 3 licenses (@T1st3)
 - [8763bfc](https://github.com/T1st3/xmlrpc-message-umd/commit/8763bfcf813532aa06c34e6cbab01839a42f1ea9) Add package.json (@T1st3)
@@ -185,3 +194,8 @@
 - [da6008b](https://github.com/T1st3/xmlrpc-message-umd/commit/da6008b194bba2dc931d665cac9ce73f78d59e20) grunt doc (@T1st3)
 - [229fbdd](https://github.com/T1st3/xmlrpc-message-umd/commit/229fbdded252aeafd851568cd9ad0eff35057bb4) Add AMD demo and update AMD tests (@T1st3)
 - [9472323](https://github.com/T1st3/xmlrpc-message-umd/commit/94723230cb8f832a05631184daca7f2f3d975dce) v0.1.1 (@T1st3)
+- [c0da311](https://github.com/T1st3/xmlrpc-message-umd/commit/c0da31165fb27d1ef6fd445fa8546f42ebaf6d18) Add travis.yml (@T1st3)
+- [3b17ffb](https://github.com/T1st3/xmlrpc-message-umd/commit/3b17ffbd5a10793f0020820597a6f326f01aadec) Minor fixes (@T1st3)
+- [0ebbfa4](https://github.com/T1st3/xmlrpc-message-umd/commit/0ebbfa4e299e4327e6d65904dd9bfea1e32b99ca) Update README.md (@T1st3)
+- [ec5decf](https://github.com/T1st3/xmlrpc-message-umd/commit/ec5decfa8115d0ac9fd6490f705367400d3e60c6) Fix Gruntfile for watch task (@T1st3)
+- [76f61c5](https://github.com/T1st3/xmlrpc-message-umd/commit/76f61c55a80da49be7a628d9af477f4e9553b305) v0.1.2 (@T1st3)

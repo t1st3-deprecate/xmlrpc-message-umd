@@ -102,7 +102,7 @@ gulp.task('bower', ['figlet'], function () {
  * TEST-INIT TASK
  */
 
-gulp.task('test_init', ['bower'], function (cb) {
+gulp.task('init_test', ['bower'], function (cb) {
   gulp.src([
     './bower_components/jquery/dist/jquery.min.js',
     './bower_components/jquery/dist/jquery.min.map',
@@ -250,7 +250,8 @@ gulp.task('browser-sync', [], function() {
     server: {
       baseDir: './test',
       index: 'tests_amd.html'
-    }
+    },
+    port: 3000
   });
 });
 
@@ -404,14 +405,13 @@ gulp.task('doc_template', ['doc_copy'], function () {
     'amd_dependencies.html',
     'sitemap.html'
   ]).forEach(function (num) {
-      gulp.src('./bower_components/t1st3-assets/dist/common/' + num)
-      .pipe(template({
-        ProjectName: pkg.name,
-        ProjectVersion: pkg.version,
-        ProjectDependencies: deps
-      }))
-      .pipe(rename(num))
-      .pipe(gulp.dest('./gh-pages'));
+    gulp.src('./bower_components/t1st3-assets/dist/common/' + num)
+    .pipe(template({
+      ProjectName: pkg.name,
+      ProjectVersion: pkg.version,
+      ProjectDependencies: deps
+    }))
+    .pipe(gulp.dest('./gh-pages'));
   });
 });
 
@@ -423,14 +423,13 @@ gulp.task('doc_template_umd', ['doc_template'], function () {
     'gulp_tasks.html',
     '_config.yml'
   ]).forEach(function (num) {
-      gulp.src('./bower_components/t1st3-assets/dist/umd_docs/' + num)
-      .pipe(template({
-        ProjectName: pkg.name,
-        ProjectVersion: pkg.version,
-        ProjectDependencies: deps
-      }))
-      .pipe(rename(num))
-      .pipe(gulp.dest('./gh-pages'));
+    gulp.src('./bower_components/t1st3-assets/dist/umd_docs/' + num)
+    .pipe(template({
+      ProjectName: pkg.name,
+      ProjectVersion: pkg.version,
+      ProjectDependencies: deps
+    }))
+    .pipe(gulp.dest('./gh-pages'));
   });
 });
 
@@ -574,7 +573,8 @@ gulp.task('gzip', ['doc_template_umd'], function () {
 gulp.task('changelog', ['doc_template_umd'], function (cb) {
   console.log(pkg.repository.url);
   var cmd = 'node ./node_modules/github-changes/bin/index.js';
-  cmd += ' -o t1st3 -r ' + pkg.name + ' -b master -a --repo ' + pkg.repository.url;
+  cmd += ' -o t1st3 -r ' + pkg.name + ' -b master -f ./CHANGELOG.md -a';
+  cmd += ' --order-semver --use-commit-body';
   exec(cmd, function (err, stdout, stderr) {
     console.log(stdout);
     console.log(stderr);

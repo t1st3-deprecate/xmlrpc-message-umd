@@ -38,8 +38,11 @@
     <link rel="help" href="/index.html">
     <link rel="license" href="/license.html">
 
+    <link rel="alternate" href="http://www.tiste.org/xmlrpc-message-umd/gulp_tasks.html" hreflang="en">
+
     <link rel="alternate" type="application/atom+xml" title="xmlrpc-message-umd version tags" href="https://github.com/T1st3/xmlrpc-message-umd/tags.atom">
     <link rel="alternate" type="application/atom+xml" title="Commits to xmlrpc-message-umd" href="https://github.com/T1st3/xmlrpc-message-umd/commits.atom">
+    <link rel="alternate" type="application/rss+xml" title="ROR Sitemap" href="http://www.tiste.org/ror.xml">
 
     <meta property="og:title" content="xmlrpc-message-umd - Gulp tasks">
     <meta property="og:type" content="article">
@@ -101,7 +104,7 @@
         <div class="collapse navbar-collapse" id="t1st3-navbar-collapse">
           <ul class="nav navbar-nav navbar-right" role="menubar">
             <li class="dropdown">
-              <a href="#" class="dropdown-toggle" data-toggle="dropdown" title="Toggle dropdown menu"><i class="fa fa-code-fork"></i> v0.7.6 <b class="caret"></b></a>
+              <a href="#" class="dropdown-toggle" data-toggle="dropdown" title="Toggle dropdown menu"><i class="fa fa-code-fork"></i> v0.7.7 <b class="caret"></b></a>
               <ul class="dropdown-menu" role="menu">
                 <li>
                   <a href="https://github.com/T1st3/xmlrpc-message-umd/archive/master.zip" title="Download latest version of xmlrpc-message-umd">
@@ -249,12 +252,28 @@
       </div>
     </noscript>
 <main class="container" id="main" role="main" itemscope itemtype="http://schema.org/WebPage" aria-labelledby="page-title">
+  <nav class="row" id="breadcrumb-wrap" role="navigation" aria-labelledby="breadcrumb-label">
+    <div class="col-12 col-xs-12 col-sm-12 col-lg-12" id="breadcrumb">
+      <ul>
+        <li id="breadcrumb-label">You are here: </li>
+        <li itemscope itemtype="http://data-vocabulary.org/Breadcrumb">
+          <a href="http://www.tiste.org/" title="T1st3 home"><i class="fa fa-home"></i> <span itemprop="title">T1st3 home</span></a>
+        </li>
+        <li itemscope itemtype="http://data-vocabulary.org/Breadcrumb">
+          <a href="http://www.tiste.org/xmlrpc-message-umd" title="xmlrpc-message-umd project homepage" itemprop="url">./ <span itemprop="title">xmlrpc-message-umd</span></a>
+        </li>
+        <li itemscope itemtype="http://data-vocabulary.org/Breadcrumb">
+          <i class="fa fa-tasks"></i> <span itemprop="title">Gulp tasks</span>
+        </li>
+      </ul>
+    </div>
+  </nav>
+  <hr>
   <header class="row">
     <div class="col-12 col-xs-12 col-sm-12 col-lg-12">
       <h1 itemprop="name" id="page-title">
         <i class="fa fa-file-text-o"></i> xmlrpc-message-umd - Gulp tasks
       </h1>
-      <a href="index.html" title="Navigate to homepage" rel="home"><i class="fa fa-home"></i> Back to home</a><br>
     </div>
   </header>
   <hr>
@@ -267,17 +286,17 @@
         <a href="http://gulpjs.com/" title="Gulp website" target="_blank"><i class="fa fa-external-link"></i> Gulp</a> is a build system which relies on a set of tasks. Those tasks can perform all kinds stuff on the project.<br>
         <code>xmlrpc-message-umd</code> has the following tasks:
         <ul>
-          <li>Info task</li>
-          <li>Test-Init task</li>
-          <li>Test task</li>
-          <li>Serve task</li>
-          <li>Build task</li>
-          <li>Doc task</li>
-          <li>CI task</li>
+          <li><a href="#info_task" title="Navigate to Info task">Info task</a></li>
+          <li><a href="#inittest_task" title="Navigate to Init-Test task">Init-Test task</a></li>
+          <li><a href="#test_task" title="Navigate to Test task">Test task</a></li>
+          <li><a href="#serve_task" title="Navigate to Serve task">Serve task</a></li>
+          <li><a href="#build_task" title="Navigate to Build task">Build task</a></li>
+          <li><a href="#doc_task" title="Navigate to Doc task">Doc task</a></li>
+          <li><a href="#ci_task" title="Navigate to CI task">CI task</a></li>
         </ul>
       </p>
     </div>
-    <div class="col-12 col-xs-12 col-sm-12 col-lg-12">
+    <div class="col-12 col-xs-12 col-sm-12 col-lg-12" id="info_task">
       <hr>
       <h2>Info task</h2>
       <p>
@@ -288,19 +307,19 @@ gulp info
       </code></pre>
       </p>
     </div>
-    <div class="col-12 col-xs-12 col-sm-12 col-lg-12">
+    <div class="col-12 col-xs-12 col-sm-12 col-lg-12" id="inittest_task">
       <hr>
-      <h2>Test-Init task</h2>
+      <h2>Init-Test task</h2>
       <p>
-        The test-init task fetches latest libs from Bower, and copies them to the <code>test/</code> folder. The copied libs are used for testing with PhantomJS.<br>
+        The init-test task fetches latest libs from Bower, and copies them to the <code>test/</code> folder. The copied libs are used for testing with PhantomJS.<br>
         Just run:<br>
       <pre><code>
 bower update
-gulp test_init
+gulp init_test
       </code></pre>
       </p>
     </div>
-    <div class="col-12 col-xs-12 col-sm-12 col-lg-12">
+    <div class="col-12 col-xs-12 col-sm-12 col-lg-12" id="test_task">
       <hr>
       <h2>Test task</h2>
       <p>
@@ -317,7 +336,7 @@ gulp test
       </code></pre>
       </p>
     </div>
-    <div class="col-12 col-xs-12 col-sm-12 col-lg-12">
+    <div class="col-12 col-xs-12 col-sm-12 col-lg-12" id="build_task">
       <hr>
       <h2>Build task</h2>
       <p>
@@ -335,7 +354,7 @@ gulp build
       </code></pre>
       </p>
     </div>
-    <div class="col-12 col-xs-12 col-sm-12 col-lg-12">
+    <div class="col-12 col-xs-12 col-sm-12 col-lg-12" id="doc_task">
       <hr>
       <h2>Doc task</h2>
       <p>
@@ -358,7 +377,7 @@ gulp doc
       </code></pre>
       </p>
     </div>
-    <div class="col-12 col-xs-12 col-sm-12 col-lg-12">
+    <div class="col-12 col-xs-12 col-sm-12 col-lg-12" id="ci_task">
       <hr>
       <h2>CI task</h2>
       <p>
@@ -531,7 +550,7 @@ gulp ci
     |     | (_-<   _|  _ \ 
    _|    _| ___/ \__| ___/ 
                            
-built with T1st3-Assets 1.0.3
+built with T1st3-Assets 1.1.0
 -->
   </body>
 </html> 
