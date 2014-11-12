@@ -1,3 +1,6 @@
+.directory
+.DS_Store
+
 bower_components
 .bowerrc
 bower.json
@@ -20,5 +23,3 @@ docs
 gh-pages
 src
 test
-
-.directory
