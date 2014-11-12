@@ -39,7 +39,7 @@
     "README.md"
   ],
   "dependencies": {
-    "requirejs": "~2.1"
+    "requirejs": "~2.1",
     "btoa-umd": "~0.6"
   },
   "devDependencies": {
