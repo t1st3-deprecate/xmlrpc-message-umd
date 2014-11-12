@@ -1,34 +1,44 @@
 'use strict';
 
-var deps = ['btoa-umd'],
-figletShown = 0,
-pkg = require('./package.json'),
-_ = require('lodash'),
-gulp = require('gulp'),
-jshint = require('gulp-jshint'),
-jscs = require('gulp-jscs'),
-uglify = require('gulp-uglify'),
-rename = require('gulp-rename'),
-del = require('del'),
-notify = require('gulp-notify'),
-bower = require('gulp-bower'),
-template = require('gulp-template'),
-replace = require('gulp-replace'),
+var pkg = require('./package.json'),
+
+docXtraDep = ['btoa-umd'],
+
+fs = require('fs'),
+path = require('path'),
 exec = require('child_process').exec,
-jsdoc = require('gulp-jsdoc'),
-header = require('gulp-header'),
-gzip = require('gulp-gzip'),
-browserSync = require('browser-sync'),
-qr = require('qr-image'),
-qrcode = require('qrcode-terminal'),
-imagemin = require('gulp-imagemin'),
-dependo = require('dependo'),
-figlet = require('figlet'),
-cowsay = require('cowsay'),
+
+_ = require('lodash'),
 ip = require('ip'),
 chalk = require('chalk'),
-fs = require('fs'),
-path = require('path');
+del = require('del'),
+somebody = require('somebody'),
+pkgAuthor = somebody.parse(pkg.author),
+
+figletShown = 0,
+figlet = require('figlet'),
+cowsay = require('cowsay'),
+qr = require('qr-image'),
+qrcode = require('qrcode-terminal'),
+
+gulp = require('gulp'),
+header = require('gulp-header'),
+rename = require('gulp-rename'),
+replace = require('gulp-replace'),
+template = require('gulp-template'),
+gzip = require('gulp-gzip'),
+imagemin = require('gulp-imagemin'),
+uglify = require('gulp-uglify'),
+sourcemaps = require('gulp-sourcemaps'),
+jshint = require('gulp-jshint'),
+jscs = require('gulp-jscs'),
+jsdoc = require('gulp-jsdoc'),
+
+bower = require('gulp-bower'),
+notify = require('gulp-notify'),
+
+browserSync = require('browser-sync'),
+dependo = require('dependo');
 
 fs.mkdirParent = function (dirPath, mode, callback) {
   fs.mkdir(dirPath, mode, function (error) {
@@ -99,10 +109,44 @@ gulp.task('bower', ['figlet'], function () {
 });
 
 /*
- * TEST-INIT TASK
+ * INIT TASKS
  */
 
-gulp.task('init_test', ['bower'], function (cb) {
+gulp.task('init_clean', ['bower'], function (cb) {
+  del([
+    './gh-pages/_layouts', './gh-pages/_config.yml', './gh-pages/_includes/umd_*',
+    './gh-pages/jsdoc/', './gh-pages/dependo/', './gh-pages/coverage/',
+    './gh-pages/tests.js',
+    './gh-pages/assets/', './gh-pages/*.md',
+    './gh-pages/404.html',
+    './gh-pages/build_docs.html',
+    './gh-pages/coverage.html',
+    './gh-pages/credits.html',
+    './gh-pages/gulp_tasks.html',
+    './gh-pages/jsdoc.html',
+    './gh-pages/license.md',
+    './gh-pages/dependencies.html',
+    './gh-pages/cjs_dependencies.html',
+    './gh-pages/amd_dependencies.html',
+    './gh-pages/sitemap.html',
+    './gh-pages/tests.html',
+    './gh-pages/tests_amd.html',
+    './gh-pages/tests_global.html',
+    '!gh-pages/.git',
+    './docs',
+    './tmp',
+    './test/assets/js/lib'
+  ], cb);
+});
+
+gulp.task('qr', ['init_clean'], function (cb) {
+  var qrPng = qr.image(pkg.homepage, { type: 'png' }),
+  stream = './bower_components/t1st3-assets/dist/common/assets/img/qr.png';
+  qrPng.pipe(fs.createWriteStream(stream));
+  cb();
+});
+
+gulp.task('init', ['qr'], function (cb) {
   gulp.src([
     './bower_components/jquery/dist/jquery.min.js',
     './bower_components/jquery/dist/jquery.min.map',
@@ -110,202 +154,24 @@ gulp.task('init_test', ['bower'], function (cb) {
     './bower_components/chai/chai.js',
     './bower_components/chai-jquery/chai-jquery.js',
     './bower_components/bootstrap/dist/js/bootstrap.min.js',
-    './bower_components/lodash/dist/lodash.min.js',
-    './src/' + pkg.name + '.js'
+    './bower_components/lodash/dist/lodash.min.js'
   ])
-    .pipe(gulp.dest('./test/assets/js/lib'));
+    .pipe(gulp.dest('./test/assets/js/lib'))
+    .pipe(gulp.dest('./gh-pages/assets/js/lib'));
+
+  gulp.src([
+    './bower_components/modernizr/modernizr.js',
+    './bower_components/codemirror/lib/codemirror.js',
+    './bower_components/jshint/dist/jshint.js',
+    './bower_components/respond/dest/respond.min.js'
+  ])
+    .pipe(gulp.dest('./gh-pages/assets/js/lib'));
 
   gulp.src([
     './bower_components/requirejs/require.js'
   ])
-    .pipe(gulp.dest('./test'));
-
-   _(deps).forEach(function (num) {
-     gulp.src(['./bower_components/' + num + '/dist/' + num + '.js'])
-      .pipe(gulp.dest('./test/assets/js/lib'));
-   });
-   triggerNotification ('Test-init', 'Successfully copied libraries.', function () {
-    displayCowsay('gulp test_init - DONE', cb);
-  });
-});
-
-/*
- * TEST TASKS
- */
-
-gulp.task('test_copy', ['figlet'], function () {
-  gulp.src('./src/' + pkg.name + '.js')
-    .pipe(gulp.dest('./test/assets/js/lib'));
-});
-
-gulp.task('test_node', ['test_copy'], function (cb) {
-  var cmd = './node_modules/mocha/bin/_mocha test/*tests.js --reporter spec';
-  exec(cmd, function (err, stdout, stderr) {
-    console.log('\n\n');
-    console.log(chalk.green('Node.js tests'));
-    console.log(stdout);
-    console.log(stderr);
-    cb(err);
-  });
-});
-
-gulp.task('test_browser_amd', ['test_copy'], function (cb) {
-  var cmd = './node_modules/mocha-phantomjs/bin/mocha-phantomjs';
-  cmd += ' ./test/tests_amd.html --reporter spec';
-  exec(cmd, function (err, stdout, stderr) {
-    console.log('\n\n');
-    console.log(chalk.green('Browser tests using AMD modules (in PhantomJS)'));
-    console.log(stdout);
-    console.log(stderr);
-    cb(err);
-  });
-});
-
-gulp.task('test_browser_global', ['test_copy'], function (cb) {
-  var cmd = './node_modules/mocha-phantomjs/bin/mocha-phantomjs';
-  cmd += ' test/tests_global.html --reporter spec';
-  exec(cmd, function (err, stdout, stderr) {
-    console.log('\n\n');
-    console.log(chalk.green('Browser tests using globals (in PhantomJS)'));
-    console.log(stdout);
-    console.log(stderr);
-    cb(err);
-  });
-});
-
-gulp.task('test', ['test_node', 'test_browser_amd', 'test_browser_global'], function (cb) {
-  triggerNotification ('Test Runner', 'All tests OK', function () {
-    displayCowsay('gulp test - DONE', cb);
-  });
-});
-
-/*
- * BUILD TASKS
- */
-
-gulp.task('build_clean', ['figlet', 'test'], function (cb) {
-  del(['./dist'], cb);
-});
-
-gulp.task('lint', ['figlet'], function () {
-  gulp.src(['src/**/*.js', 'test/tests.js', 'gulpfile.js'])
-    .pipe(jshint('./.jshintrc'))
-    .pipe(jshint.reporter('jshint-stylish'))
-    .pipe(jshint.reporter('fail'));
-});
-
-gulp.task('jscs', ['lint'], function () {
-  gulp.src(['src/**/*.js', 'test/tests.js', 'gulpfile.js'])
-    .pipe(jscs('./.jscs.json'));
-});
-
-gulp.task('version', ['figlet', 'jscs'], function () {
-  gulp.src(['src/**/*.js'])
-    .pipe(replace(/(version [0-9]+.[0-9]+.[0-9]+)/g, 'version ' + pkg.version))
-    .pipe(gulp.dest('./src'));
-
-  gulp.src(['./bower.json'])
-    .pipe(replace(/(.version.: .[0-9]+.[0-9]+.[0-9]+.)/g, '"version": "' + pkg.version + '"'))
-    .pipe(gulp.dest('./'));
-});
-
-gulp.task('build_copy', ['build_clean', 'lint', 'jscs', 'version'], function () {
-  gulp.src('./src/' + pkg.name + '.js')
-    .pipe(gulp.dest('./dist'));
-});
-
-gulp.task('uglify', ['build_clean', 'lint', 'jscs'], function () {
-  gulp.src('./src/' + pkg.name + '.js')
-    .pipe(rename(pkg.name + '.min.js'))
-    .pipe(uglify({
-      mangle: false,
-      preserveComments: 'some'
-    }))
-    .pipe(gulp.dest('./dist'));
-});
-
-gulp.task('build', ['build_copy', 'uglify'], function (cb) {
-  triggerNotification ('Builder', 'Successfully built application', function () {
-    displayCowsay('gulp build - DONE', cb);
-  });
-});
-
-/*
- * SERVE TASKS
- */
-
-gulp.task('serve_lib', ['figlet'], function () {
-  gulp.src([
-    'src/' + pkg.name + '.js'
-  ])
-    .pipe(gulp.dest('./test/assets/js/lib'));
-});
-
-gulp.task('watch', [], function() {
-  gulp.watch(['./src/**/*.js', 'test/**/*.js'], ['serve_lib']);
-});
-
-gulp.task('browser-sync', [], function() {
-  browserSync.init(['test/assets/js/lib/*.js'], {
-    server: {
-      baseDir: './test',
-      index: 'tests_amd.html'
-    },
-    port: 3000
-  });
-});
-
-gulp.task('serve', ['watch', 'browser-sync'], function (cb) {
-  triggerNotification ('App server', 'Successfully served application', function () {
-    console.log('\n\n');
-    console.log(ip.address() + ':3000');
-    console.log('\n');
-    qrcode.generate(ip.address() + ':3000');
-    displayCowsay('Server started on ' + ip.address() + ':3000 - DONE', cb);
-  });
-});
-
-/*
- * DOC TASKS
- */
-
-gulp.task('doc_clean', ['figlet', 'build'], function (cb) {
-  del([
-    './gh-pages/_layouts', './gh-pages/assets/', './gh-pages/coverage/',
-    './gh-pages/jsdoc/', './gh-pages/dependo/', './gh-pages/_config.yml',
-    './gh-pages/*.md', './gh-pages/lib', './gh-pages/_includes/umd_*', '!gh-pages/.git', 'docs'
-  ], cb);
-});
-
-gulp.task('qr', ['bower', 'doc_clean'], function () {
-  var qrPng = qr.image(pkg.homepage, { type: 'png' }),
-  stream = './bower_components/t1st3-assets/dist/common/assets/img/qr.png';
-  qrPng.pipe(fs.createWriteStream(stream));
-});
-
-gulp.task('doc_copy', ['build', 'bower', 'doc_clean', 'qr'], function () {
-
-  /* JS */
-  gulp.src([
-    './bower_components/jquery/dist/jquery.min.js',
-    './bower_components/jquery/dist/jquery.min.map',
-    './bower_components/mocha/mocha.js',
-    './bower_components/chai/chai.js',
-    './bower_components/chai-jquery/chai-jquery.js',
-    './bower_components/modernizr/modernizr.js',
-    './bower_components/bootstrap/dist/js/bootstrap.min.js',
-    './bower_components/codemirror/lib/codemirror.js',
-    './bower_components/jshint/dist/jshint.js',
-    './bower_components/lodash/dist/lodash.min.js',
-    './bower_components/respond/dest/respond.min.js',
-    './src/' + pkg.name + '.js'
-  ])
-    .pipe(gulp.dest('./gh-pages/assets/js/lib'));
-
-   _(deps).forEach(function (num) {
-     gulp.src(['./bower_components/' + num + '/dist/' + num + '.js'])
-      .pipe(gulp.dest('./gh-pages/assets/js/lib'));
-   });
+    .pipe(gulp.dest('./test'))
+    .pipe(gulp.dest('./gh-pages'));
 
   gulp.src([
     './bower_components/codemirror/mode/javascript/javascript.js'
@@ -313,15 +179,14 @@ gulp.task('doc_copy', ['build', 'bower', 'doc_clean', 'qr'], function () {
     .pipe(gulp.dest('./gh-pages/assets/js/lib/codemirror'));
 
   gulp.src([
-    './test/tests.js',
-    './bower_components/requirejs/require.js'
+    './bower_components/mocha/mocha.css'
   ])
-    .pipe(gulp.dest('./gh-pages'));
+    .pipe(gulp.dest('./test/assets/css'))
+    .pipe(gulp.dest('./gh-pages/assets/css'));
 
   /* CSS */
   gulp.src([
     './bower_components/bootstrap/dist/css/bootstrap.min.css',
-    './bower_components/mocha/mocha.css',
     './bower_components/codemirror/lib/codemirror.css',
     './bower_components/font-awesome/css/font-awesome.min.css',
     './bower_components/t1st3-assets/dist/common/assets/css/t1st3.min.css',
@@ -390,9 +255,185 @@ gulp.task('doc_copy', ['build', 'bower', 'doc_clean', 'qr'], function () {
     './bower_components/t1st3-assets/dist/umd_docs/_layouts/*'
   ])
     .pipe(gulp.dest('./gh-pages/_layouts'));
+
+   triggerNotification ('Init', 'Successfully initiated the project.', function () {
+    displayCowsay('gulp init - DONE', cb);
+  });
 });
 
-gulp.task('doc_template', ['doc_copy'], function () {
+/*
+ * TEST TASKS
+ */
+
+gulp.task('test_copy', ['figlet'], function (cb) {
+  del([
+    './test/assets/js/lib/' + pkg.name + '.js'
+  ], function() {
+    gulp.src('./src/*.js')
+      .pipe(gulp.dest('./test/assets/js/lib'));
+    cb();
+  });
+});
+
+/* CORE */
+gulp.task('test_node', ['figlet'], function (cb) {
+  var cmd = './node_modules/mocha/bin/_mocha test/tests.js --reporter spec';
+  exec(cmd, function (err, stdout, stderr) {
+    console.log('\n\n');
+    console.log(chalk.green('CORE | Node.js tests'));
+    console.log(stdout);
+    console.log(stderr);
+    cb(err);
+  });
+});
+
+gulp.task('test_browser_amd', ['test_copy'], function (cb) {
+  var cmd = './node_modules/mocha-phantomjs/bin/mocha-phantomjs';
+  cmd += ' ./test/tests_amd.html --reporter spec';
+  exec(cmd, function (err, stdout, stderr) {
+    console.log('\n\n');
+    console.log(chalk.green('CORE | Browser tests, using AMD modules'));
+    console.log(chalk.cyan('(executed in PhantomJS)'));
+    console.log(stdout);
+    console.log(stderr);
+    cb(err);
+  });
+});
+
+gulp.task('test_browser_global', ['test_copy'], function (cb) {
+  var cmd = './node_modules/mocha-phantomjs/bin/mocha-phantomjs';
+  cmd += ' test/tests_global.html --reporter spec';
+  exec(cmd, function (err, stdout, stderr) {
+    console.log('\n\n');
+    console.log(chalk.green('CORE | Browser tests, using global variables'));
+    console.log(chalk.cyan('(executed in PhantomJS)'));
+    console.log(stdout);
+    console.log(stderr);
+    cb(err);
+  });
+});
+
+gulp.task('test', [
+  'test_node', 'test_browser_amd', 'test_browser_global'
+], function (cb) {
+  triggerNotification ('Test Runner', 'All tests OK', function () {
+    displayCowsay('gulp test - DONE', cb);
+  });
+});
+
+/*
+ * BUILD TASKS
+ */
+
+gulp.task('build_clean', ['figlet', 'test'], function (cb) {
+  del(['./dist'], cb);
+});
+
+gulp.task('lint', ['build_clean'], function (cb) {
+  gulp.src(['src/**/*.js', 'test/tests.js', 'gulpfile.js'])
+    .pipe(jshint('./.jshintrc'))
+    .pipe(jshint.reporter('jshint-stylish'))
+    .pipe(jshint.reporter('fail'));
+  cb();
+});
+
+gulp.task('jscs', ['lint'], function (cb) {
+  gulp.src(['src/**/*.js', 'test/tests.js', 'gulpfile.js'])
+    .pipe(jscs('./.jscs.json'));
+  cb();
+});
+
+gulp.task('version', ['jscs'], function (cb) {
+  gulp.src(['src/**/*.js'])
+    .pipe(replace(/(version [0-9]+.[0-9]+.[0-9]+)/g, 'version ' + pkg.version))
+    .pipe(gulp.dest('./src'));
+  gulp.src(['./bower.json'])
+    .pipe(replace(/(.version.: .[0-9]+.[0-9]+.[0-9]+.)/g, '"version": "' + pkg.version + '"'))
+    .pipe(gulp.dest('./'));
+  cb();
+});
+
+gulp.task('build_copy', ['version'], function (cb) {
+  gulp.src('./src/**/*')
+    .pipe(gulp.dest('./dist'));
+  cb();
+});
+
+gulp.task('uglify', ['build_clean', 'lint', 'jscs'], function (cb) {
+  gulp.src('./src/' + pkg.name + '.js')
+    .pipe(rename(pkg.name + '.min.js'))
+    .pipe(uglify({
+      mangle: false,
+      preserveComments: 'some'
+    }))
+    .pipe(gulp.dest('./dist'));
+  gulp.src('./src/' + pkg.name + '.js')
+    .pipe(sourcemaps.init())
+    .pipe(sourcemaps.write('./'))
+    .pipe(gulp.dest('./dist'));
+  cb();
+});
+
+gulp.task('build', ['build_copy', 'uglify'], function (cb) {
+  triggerNotification ('Builder', 'Successfully built application', function () {
+    displayCowsay('gulp build - DONE', cb);
+  });
+});
+
+/*
+ * SERVE TASKS
+ */
+
+gulp.task('serve_lib', ['figlet'], function () {
+  gulp.src([
+    'src/' + pkg.name + '.js'
+  ])
+    .pipe(gulp.dest('./test/assets/js/lib'));
+});
+
+gulp.task('watch', [], function() {
+  gulp.watch(['./src/**/*.js', 'test/**/*.js'], ['serve_lib']);
+});
+
+gulp.task('browser-sync', [], function() {
+  browserSync.init(['test/assets/js/lib/*.js'], {
+    server: {
+      baseDir: './test',
+      index: 'tests_amd.html'
+    },
+    port: 3000
+  });
+});
+
+gulp.task('serve', ['watch', 'browser-sync'], function (cb) {
+  triggerNotification ('App server', 'Successfully served application', function () {
+    console.log('\n\n');
+    console.log(ip.address() + ':3000');
+    console.log('\n');
+    qrcode.generate(ip.address() + ':3000');
+    displayCowsay('Server started on ' + ip.address() + ':3000 - DONE', cb);
+  });
+});
+
+/*
+ * DOC TASKS
+ */
+
+gulp.task('doc_copy', ['figlet', 'build'], function (cb) {
+  /* JS */
+  gulp.src([
+    './src/*.js'
+  ])
+    .pipe(gulp.dest('./gh-pages/assets/js/lib'));
+
+  gulp.src([
+    './test/tests.js'
+  ])
+    .pipe(gulp.dest('./gh-pages'));
+  cb();
+});
+
+gulp.task('doc_template', ['doc_copy'], function (cb) {
   _([
     '404.html',
     'tests_amd.html',
@@ -409,13 +450,14 @@ gulp.task('doc_template', ['doc_copy'], function () {
     .pipe(template({
       ProjectName: pkg.name,
       ProjectVersion: pkg.version,
-      ProjectDependencies: deps
+      ProjectDependencies: docXtraDep
     }))
     .pipe(gulp.dest('./gh-pages'));
   });
+  cb();
 });
 
-gulp.task('doc_template_umd', ['doc_template'], function () {
+gulp.task('doc_template_umd', ['doc_template'], function (cb) {
   _([
     'tests.html',
     'tests_global.html',
@@ -427,27 +469,30 @@ gulp.task('doc_template_umd', ['doc_template'], function () {
     .pipe(template({
       ProjectName: pkg.name,
       ProjectVersion: pkg.version,
-      ProjectDependencies: deps
+      ProjectDependencies: docXtraDep
     }))
     .pipe(gulp.dest('./gh-pages'));
   });
+  cb();
 });
 
-gulp.task('banner', ['doc_template_umd'], function () {
+gulp.task('banner', ['doc_template_umd'], function (cb) {
   var h = '---\nlayout: readme\ntitle: ' + pkg.name;
   h += '\nsitemap:\n  priority: 1\n  changefreq: monthly\n---\n\n';
   gulp.src('./README.md')
     .pipe(header(h))
     .pipe(rename('index.md'))
     .pipe(gulp.dest('./gh-pages'));
+  cb();
 });
 
-gulp.task('jsdoc', ['doc_copy'], function () {
-  gulp.src('./src/**/*.js')
+gulp.task('jsdoc', ['doc_copy'], function (cb) {
+  gulp.src('./src/' + pkg.name + '.js')
     .pipe(jsdoc('./gh-pages/jsdoc'));
+  cb();
 });
 
-gulp.task('dependo', ['doc_copy'], function () {
+gulp.task('dependo_cjs', ['doc_copy'], function (cb) {
   var dep = null,
   msg = '',
   html = '';
@@ -456,7 +501,7 @@ gulp.task('dependo', ['doc_copy'], function () {
 
   dep = new dependo('./src/', {
     format: 'cjs',
-    exclude: '^node_modules|bower_components',
+    exclude: '^bower_components',
     transform: function (d) {
       return d;
     }
@@ -469,12 +514,19 @@ gulp.task('dependo', ['doc_copy'], function () {
       msg = '[' + getDateTime() + '] ';
       msg += 'Dependo: ./gh-pages/dependo/cjs_deps.html was saved!';
       console.log(msg);
+      cb();
     }
   });
+});
+
+gulp.task('dependo_amd', ['dependo_cjs'], function (cb) {
+  var dep = null,
+  msg = '',
+  html = '';
 
   dep = new dependo('./src/', {
     format: 'amd',
-    exclude: '^node_modules|bower_components',
+    exclude: '^node_modules',
     transform: function (d) {
       return d;
     }
@@ -488,6 +540,7 @@ gulp.task('dependo', ['doc_copy'], function () {
       msg = '[' + getDateTime() + '] ';
       msg += 'Dependo: ./gh-pages/dependo/amd_deps.html was saved!';
       console.log(msg);
+      cb();
     }
   });
 });
@@ -511,9 +564,7 @@ gulp.task('coverage_browser_global', ['coverage_instrument'], function (cb) {
   var cmd = './node_modules/mocha-phantomjs/bin/mocha-phantomjs ./test/tests_global.html';
   cmd += ' -R json-cov -f ./tmp2/tmp.json';
   exec(cmd, function (err, stdout, stderr) {
-    //console.log(stdout);
     console.log(stderr);
-    //fs.mkdirParent('./tmp/');
     fs.writeFile('./tmp/coverage_global.json', stdout, function(err) {
       if (err) {
         console.log(err);
@@ -527,7 +578,6 @@ gulp.task('coverage_browser_amd', ['coverage_browser_global'], function (cb) {
   var cmd = './node_modules/mocha-phantomjs/bin/mocha-phantomjs ./test/tests_amd.html';
   cmd += ' -R json-cov -f ./tmp2/tmp.json';
   exec(cmd, function (err, stdout, stderr) {
-    //console.log(stdout);
     console.log(stderr);
     fs.writeFile('./tmp/coverage_amd.json', stdout, function(err) {
       if (err) {
@@ -538,12 +588,10 @@ gulp.task('coverage_browser_amd', ['coverage_browser_global'], function (cb) {
   });
 });
 
-gulp.task('coverage_node', ['build'], function (cb) {
+gulp.task('coverage_node', ['coverage_browser_amd'], function (cb) {
   var cmd = 'istanbul cover ./node_modules/mocha/bin/_mocha test/tests.js';
   cmd += ' --dir ./tmp -- -R json-cov';
-  //cmd += ' && cat ./tmp/coverage_node.json';
   exec(cmd, function (err, stdout, stderr) {
-    //console.log(stdout);
     stdout = null;
     console.log(stderr);
     cb(err);
@@ -564,6 +612,16 @@ gulp.task('coverage', [
   });
 });
 
+gulp.task('uninstrument', ['coverage'], function (cb) {
+  del([
+    './test/assets/js/lib/' + pkg.name + '.js'
+  ], function() {
+    gulp.src('./src/*.js')
+      .pipe(gulp.dest('./test/assets/js/lib'));
+    cb();
+  });
+});
+
 gulp.task('gzip', ['doc_template_umd'], function () {
   gulp.src('./gh-pages/sitemap.xml')
     .pipe(gzip())
@@ -573,7 +631,7 @@ gulp.task('gzip', ['doc_template_umd'], function () {
 gulp.task('changelog', ['doc_template_umd'], function (cb) {
   console.log(pkg.repository.url);
   var cmd = 'node ./node_modules/github-changes/bin/index.js';
-  cmd += ' -o t1st3 -r ' + pkg.name + ' -b master -f ./CHANGELOG.md -a';
+  cmd += ' -o ' + pkgAuthor.name + ' -r ' + pkg.name + ' -b master -f ./CHANGELOG.md -a';
   cmd += ' --order-semver --use-commit-body';
   exec(cmd, function (err, stdout, stderr) {
     console.log(stdout);
@@ -591,9 +649,9 @@ gulp.task('changelog', ['doc_template_umd'], function (cb) {
 });
 
 gulp.task('jekyll', [
-  'doc_clean', 'qr', 'doc_copy', 'doc_template', 'doc_template_umd',
-  'banner', 'jsdoc', 'coverage', 'gzip',
-  'dependo', 'changelog'
+  'doc_copy', 'doc_template', 'doc_template_umd',
+  'banner', 'jsdoc', 'uninstrument', 'gzip',
+  'dependo_cjs', 'dependo_amd', 'changelog'
 ], function (cb) {
   var cmd = 'jekyll build --config ./gh-pages/_config.yml';
   cmd += ' --source ./gh-pages --destination ./docs';
@@ -605,16 +663,16 @@ gulp.task('jekyll', [
 });
 
 gulp.task('doc', [
-  'doc_clean', 'qr', 'doc_copy', 'doc_template', 'doc_template_umd',
-  'banner', 'jsdoc', 'coverage', 'gzip',
-  'dependo', 'changelog', 'jekyll'
+  'doc_copy', 'doc_template', 'doc_template_umd',
+  'banner', 'jsdoc', 'uninstrument', 'gzip',
+  'dependo_cjs', 'dependo_amd', 'changelog', 'jekyll'
 ], function (cb) {
   triggerNotification ('Doc Builder', 'Doc successfully created', function () {
     displayCowsay('gulp doc - DONE', cb);
   });
 });
 
-gulp.task('ci', ['coverage'], function (cb) {
+gulp.task('ci', ['uninstrument'], function (cb) {
   var cmd = 'printf ./gh-pages/coverage/lcov.info';
   cmd += ' | ./node_modules/coveralls/bin/coveralls.js';
   exec(cmd, function (err, stdout, stderr) {
@@ -626,7 +684,7 @@ gulp.task('ci', ['coverage'], function (cb) {
       console.log(stdout);
       console.log(stderr);
       del([
-        'tmp', 'tmp2'
+        'tmp'
       ], cb);
     });
   });
@@ -649,13 +707,13 @@ gulp.task('info', ['figlet'], function (cb) {
   console.log('[' + chalk.green('BUG TRACKER') + '] ' + pkg.bugs.url);
   console.log('\n');
   txt = '[' + chalk.green('DOWNLOAD LATEST') + '] ';
-  txt += 'https://github.com/T1st3/' + pkg.name + '/archive/master.zip';
+  txt += 'https://github.com/' + pkgAuthor.name + '/' + pkg.name + '/archive/master.zip';
   console.log(txt);
   txt = '[' + chalk.green('ALL VERSION TAGS') + '] ';
-  txt += 'https://github.com/T1st3/' + pkg.name + '/tags';
+  txt += 'https://github.com/' + pkgAuthor.name + '/' + pkg.name + '/tags';
   console.log(txt);
   txt = '[' + chalk.green('RSS/ATOM FOR VERSION TAGS') + '] ';
-  txt += 'https://github.com/T1st3/' + pkg.name + '/tags.atom';
+  txt += 'https://github.com/' + pkgAuthor.name + '/' + pkg.name + '/tags.atom';
   console.log(txt);
   console.log('\n');
   txt = '[' + chalk.green('DEPENDENCIES') + '] ';
@@ -667,15 +725,26 @@ gulp.task('info', ['figlet'], function (cb) {
   txt = '[' + chalk.green('AMD DEPENDENCIES') + '] ';
   txt += pkg.homepage + '/amd_dependencies.html';
   console.log(txt);
-  console.log('[' + chalk.green('DAVID-DM URL') + '] https://david-dm.org/t1st3/' + pkg.name);
+  txt = '[' + chalk.green('DAVID-DM URL') + '] ';
+  txt += 'https://david-dm.org/' + pkgAuthor.name + '/' + pkg.name;
+  console.log(txt);
   console.log('\n');
   console.log('[' + chalk.green('TESTS') + '] ' + pkg.homepage + '/tests.html');
-  console.log('[' + chalk.green('TRAVIS-CI URL') + '] https://travis-ci.org/T1st3/' + pkg.name);
-  console.log('[' + chalk.green('TESTS (AMD)') + '] ' + pkg.homepage + '/tests_amd.html');
-  console.log('[' + chalk.green('TESTS (GLOBAL)') + '] ' + pkg.homepage + '/tests_global.html');
-  console.log('[' + chalk.green('CODE COVERAGE') + '] ' + pkg.homepage + '/coverage.html');
+  txt = '[' + chalk.green('TRAVIS-CI URL') + '] ';
+  txt += 'https://travis-ci.org/' + pkgAuthor.name + '/' + pkg.name;
+  console.log(txt);
+  txt = '[' + chalk.green('TESTS (AMD)') + '] ';
+  txt += pkg.homepage + '/tests_amd.html';
+  console.log(txt);
+  txt = '[' + chalk.green('TESTS (GLOBAL)') + '] ';
+  txt += pkg.homepage + '/tests_global.html';
+  console.log(txt);
+  txt = '[' + chalk.green('CODE COVERAGE') + '] ';
+  txt += pkg.homepage + '/coverage.html';
+  console.log(txt);
   txt = '[' + chalk.green('COVERALLS URL') + '] ';
-  txt += 'https://coveralls.io/r/T1st3/' + pkg.name + '?branch=master';
+  txt += 'https://coveralls.io/r/' + pkgAuthor.name;
+  txt += '/' + pkg.name + '?branch=master';
   console.log(txt);
   console.log('\n');
   console.log('[' + chalk.green('DEMO') + '] ' + pkg.homepage + '/demo.html');
@@ -683,7 +752,7 @@ gulp.task('info', ['figlet'], function (cb) {
   console.log('[' + chalk.green('BUILD THE DOC') + '] ' + pkg.homepage + '/build_docs.html');
   console.log('[' + chalk.green('CREDITS') + '] ' + pkg.homepage + '/credits.html');
   txt = '[' + chalk.green('LICENSE') + '] ';
-  txt += 'https://github.com/T1st3/' + pkg.name + '/blob/master/LICENSE';
+  txt += 'https://github.com/' + pkgAuthor.name + '/' + pkg.name + '/blob/master/LICENSE';
   console.log(txt);
   console.log('[' + chalk.green('SITEMAP') + '] ' + pkg.homepage + '/sitemap.html');
   console.log('\n\n');
