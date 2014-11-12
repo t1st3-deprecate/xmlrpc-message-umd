@@ -1,6 +1,6 @@
 {
   "name": "xmlrpc-message-umd",
-  "version": "0.7.7",
+  "version": "0.7.8",
   "homepage": "http://www.tiste.org/xmlrpc-message-umd",
   "description": "A XMLRPC message builder written with UMD definition",
   "keywords": [
