@@ -39,16 +39,16 @@
     "README.md"
   ],
   "dependencies": {
-    "requirejs": "*",
-    "btoa-umd": "*"
+    "requirejs": "~2.1"
+    "btoa-umd": "~0.6"
   },
   "devDependencies": {
-    "jquery": "*",
-    "mocha": "*",
-    "chai": "*",
-    "chai-jquery": "*",
-    "t1st3-assets": "*",
-    "codemirror": "*",
-    "lodash": "*"
+    "jquery": "~2.1",
+    "mocha": "~2.0",
+    "chai": "~1.10",
+    "chai-jquery": "~2.0",
+    "t1st3-assets": "~1.1",
+    "codemirror": "~4.7",
+    "lodash": "~2.4"
   }
 }
