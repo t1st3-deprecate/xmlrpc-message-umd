@@ -10,14 +10,14 @@
     require.config({
       baseUrl: '',
       paths: {
-        jquery: 'assets/js/lib/jquery.min',
-        lodash: 'assets/js/lib/lodash.min',
-        mocha: 'assets/js/lib/mocha',
-        chai: 'assets/js/lib/chai',
-        chaijquery: 'assets/js/lib/chai-jquery',
-        bootstrap: 'assets/js/lib/bootstrap.min',
-        xmlrpcmessage: 'assets/js/lib/xmlrpc-message-umd',
-        btoa: 'assets/js/lib/btoa-umd'
+        jquery: 'assets/lib/jquery/dist/jquery.min',
+        mocha: 'assets/lib/mocha/mocha',
+        chai: 'assets/lib/chai/chai',
+        chaijquery: 'assets/lib/chai-jquery/chai-jquery',
+        bootstrap: 'assets/lib/bootstrap/dist/js/bootstrap.min',
+        btoa: 'assets/lib/btoa-umd/dist/btoa-umd.min',
+        lodash: 'assets/lib/lodash.min',
+        xmlrpcmessage: 'assets/lib/xmlrpc-message-umd'
       },
       shim: {
         jquery: {
@@ -25,7 +25,11 @@
         },
         chaijquery: ['jquery', 'chai'],
         bootstrap: ['jquery'],
+        btoa: {
+          exports: 'Btoa'
+        },
         xmlrpcmessage: {
+          deps: ['btoa'],
           exports: 'XMLRPCMessage'
         }
       },

@@ -1,0 +1,12 @@
+markdown: kramdown
+exclude: ['.git']
+name: <% print(ProjectName) %>
+version: <% print(ProjectVersion) %>
+baseurl: http://www.tiste.org
+domain: www.tiste.org
+git_author_lower: t1st3
+git_author: T1st3
+google_plus_id: 108142747670612311092
+gravatar_id: 16d4be686da36a34b427924e844ff5f7
+gravatar_url: http://www.gravatar.com/avatar/16d4be686da36a34b427924e844ff5f7.png
+gravatar_secure_url: https://www.gravatar.com/avatar/16d4be686da36a34b427924e844ff5f7.png

@@ -1,0 +1,13 @@
+{% include head.html %}
+<link rel="stylesheet" href="assets/css/t1st3.min.css" media="all">
+<link rel="stylesheet" href="assets/css/mocha.css" media="all">
+<!--[if lt IE 9]>
+<script src="//oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
+<script>window.respond || document.write('<script src="assets/lib/dest/respond.min.js"><\/script>')</script>
+<![endif]-->
+{% include header.html %}
+{{ content }}
+{% include bottom-menu.html %}
+<script type="text/javascript" src="assets/lib/modernizr/modernizr.js"></script>
+<script type="text/javascript" data-main="tests" src="assets/lib/requirejs/require.js"></script>
+{% include footer.html %}

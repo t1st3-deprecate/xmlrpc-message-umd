@@ -1,0 +1,30 @@
+{% include head.html %}
+<link rel="stylesheet" href="assets/css/t1st3.min.css" media="all">
+<!--[if lt IE 9]>
+<script src="//oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
+<script>window.respond || document.write('<script src="assets/lib/dest/respond.min.js"><\/script>')</script>
+<![endif]-->
+{% include header.html %}
+{{ content }}
+{% include bottom-menu.html %}
+<script type="text/javascript" src="assets/lib/modernizr/modernizr.js"></script>
+<script src="//ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
+<script>window.jQuery || document.write('<script src="assets/lib/jquery/dist/jquery.min.js"><\/script>')</script>
+<script src="assets/lib/bootstrap/dist/js/bootstrap.min.js"></script>
+<script type="text/javascript">
+  $(document).ready(function() {
+    $('#main h2, #main h3, #main h4').each(function(i, el) {
+      var $el, icon, id, tmp, html;
+      $el = $(el);
+      html = $el.html();
+      id = html.toLowerCase().replace(/<i class="fa fa[a-z-]+"><\/i> /g, '');
+      tmp = id.replace(/\s/g, '_').replace(/\W/g, '');
+      icon = '<i class="fa fa-link"></i>';
+      if (tmp) {
+        $el.prepend($('<a />').addClass('anchor-link').attr('href', '#' + tmp).attr('title', id).attr('id', tmp).html(icon));
+        return $el;
+      }
+    });
+  });
+</script>
+{% include footer.html %}

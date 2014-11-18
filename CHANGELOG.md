@@ -1,5 +1,17 @@
 ## Change Log
 
+### 0.7.8 (2014/11/12 22:16 +00:00)
+- [b7b4efb](https://github.com/T1st3/xmlrpc-message-umd/commit/b7b4efb6dbd0118852b2b4f292a4a4eaa477d178) chore: v0.7.8 (@T1st3)
+- [e4a228a](https://github.com/T1st3/xmlrpc-message-umd/commit/e4a228a327b30b27269b3f6242983e4ba39f8af5) chore: update gulpfile (@T1st3)
+- [ad9499f](https://github.com/T1st3/xmlrpc-message-umd/commit/ad9499f1057ebae5b51223454db54b10360c0d4d) chore: update bower deps (@T1st3)
+- [9f0fe71](https://github.com/T1st3/xmlrpc-message-umd/commit/9f0fe71ebee0e9783eefca991b6bd031520430c9) chore: update bower deps (@T1st3)
+- [f7be00c](https://github.com/T1st3/xmlrpc-message-umd/commit/f7be00c42d92d32fc5b196a6514da67ed6b44727) chore: update bower ignores (@T1st3)
+- [e80ceb8](https://github.com/T1st3/xmlrpc-message-umd/commit/e80ceb8b6612ef6f21828a94088d1d4b15fa5340) chore: update .gitignore (@T1st3)
+- [c09aac7](https://github.com/T1st3/xmlrpc-message-umd/commit/c09aac75bd2e1332eb42297bded65ff05ca9efae) chore: update .npmignore (@T1st3)
+- [22d92f3](https://github.com/T1st3/xmlrpc-message-umd/commit/22d92f30d1474793357918d514e012c1f96ea69c) docs: fix link to licenses in README (@T1st3)
+- [d4a5acd](https://github.com/T1st3/xmlrpc-message-umd/commit/d4a5acdb8aa380ef68d44a5802aaf84d26a0e9ff) chore: update npm deps (@T1st3)
+- [0b1933e](https://github.com/T1st3/xmlrpc-message-umd/commit/0b1933e133b343a1e488b5535ce626af3b26d88e) Add .mailmap file (@T1st3)
+
 ### 0.7.7 (2014/09/22 13:16 +00:00)
 - [090e889](https://github.com/T1st3/xmlrpc-message-umd/commit/090e889c74b7dd3702cb1b03dd7a154274df8371) 0.7.7 (@T1st3)
 - [ed31cb9](https://github.com/T1st3/xmlrpc-message-umd/commit/ed31cb99f898b276db4c10466fafd88faee81dae) Update deps (@T1st3)

@@ -2,8 +2,6 @@
 
 var pkg = require('./package.json'),
 
-docXtraDep = ['btoa-umd'],
-
 fs = require('fs'),
 path = require('path'),
 exec = require('child_process').exec,
@@ -35,6 +33,7 @@ jscs = require('gulp-jscs'),
 jsdoc = require('gulp-jsdoc'),
 
 bower = require('gulp-bower'),
+mainBowerFiles = require('main-bower-files'),
 notify = require('gulp-notify'),
 
 browserSync = require('browser-sync'),
@@ -114,7 +113,10 @@ gulp.task('bower', ['figlet'], function () {
 
 gulp.task('init_clean', ['bower'], function (cb) {
   del([
-    './gh-pages/_layouts', './gh-pages/_config.yml', './gh-pages/_includes/umd_*',
+    './gh-pages/_layouts/changelog.html', './gh-pages/_layouts/demo.html',
+    './gh-pages/_layouts/notfound.html', './gh-pages/_layouts/readme.html',
+    './gh-pages/_layouts/t1st3.html', './gh-pages/_layouts/tests_amd.html',
+    './gh-pages/_config.yml', './gh-pages/_includes/umd_*',
     './gh-pages/jsdoc/', './gh-pages/dependo/', './gh-pages/coverage/',
     './gh-pages/tests.js',
     './gh-pages/assets/', './gh-pages/*.md',
@@ -135,7 +137,7 @@ gulp.task('init_clean', ['bower'], function (cb) {
     '!gh-pages/.git',
     './docs',
     './tmp',
-    './test/assets/js/lib'
+    './test/assets/lib'
   ], cb);
 });
 
@@ -147,60 +149,25 @@ gulp.task('qr', ['init_clean'], function (cb) {
 });
 
 gulp.task('init', ['qr'], function (cb) {
-  gulp.src([
-    './bower_components/jquery/dist/jquery.min.js',
-    './bower_components/jquery/dist/jquery.min.map',
-    './bower_components/mocha/mocha.js',
-    './bower_components/chai/chai.js',
-    './bower_components/chai-jquery/chai-jquery.js',
-    './bower_components/bootstrap/dist/js/bootstrap.min.js',
-    './bower_components/lodash/dist/lodash.min.js'
-  ])
-    .pipe(gulp.dest('./test/assets/js/lib'))
-    .pipe(gulp.dest('./gh-pages/assets/js/lib'));
+  gulp.src(mainBowerFiles({
+    paths: {
+        bowerDirectory: './bower_components',
+        bowerrc: './.bowerrc',
+        bowerJson: './bower.json'
+    },
+    includeDev: true
+  }), {
+    base: './bower_components'
+  })
+    .pipe(gulp.dest('./test/assets/lib'))
+    .pipe(gulp.dest('./gh-pages/assets/lib'));
 
   gulp.src([
-    './bower_components/modernizr/modernizr.js',
-    './bower_components/codemirror/lib/codemirror.js',
-    './bower_components/jshint/dist/jshint.js',
-    './bower_components/respond/dest/respond.min.js'
-  ])
-    .pipe(gulp.dest('./gh-pages/assets/js/lib'));
-
-  gulp.src([
-    './bower_components/requirejs/require.js'
-  ])
-    .pipe(gulp.dest('./test'))
-    .pipe(gulp.dest('./gh-pages'));
-
-  gulp.src([
-    './bower_components/codemirror/mode/javascript/javascript.js'
-  ])
-    .pipe(gulp.dest('./gh-pages/assets/js/lib/codemirror'));
-
-  gulp.src([
-    './bower_components/mocha/mocha.css'
-  ])
-    .pipe(gulp.dest('./test/assets/css'))
-    .pipe(gulp.dest('./gh-pages/assets/css'));
-
-  /* CSS */
-  gulp.src([
-    './bower_components/bootstrap/dist/css/bootstrap.min.css',
-    './bower_components/codemirror/lib/codemirror.css',
-    './bower_components/font-awesome/css/font-awesome.min.css',
     './bower_components/t1st3-assets/dist/common/assets/css/t1st3.min.css',
     './bower_components/t1st3-assets/dist/common/assets/css/404.min.css',
     './bower_components/t1st3-assets/dist/common/assets/css/ie-noscript.min.css'
   ])
     .pipe(gulp.dest('./gh-pages/assets/css'));
-
-  /* FONTS */
-  gulp.src([
-    './bower_components/font-awesome/fonts/*',
-    './bower_components/bootstrap/dist/fonts/*'
-  ])
-    .pipe(gulp.dest('./gh-pages/assets/fonts'));
 
   /* IMG */
   gulp.src([
@@ -252,7 +219,7 @@ gulp.task('init', ['qr'], function (cb) {
 
   gulp.src([
     './bower_components/t1st3-assets/dist/common/_layouts/*',
-    './bower_components/t1st3-assets/dist/umd_docs/_layouts/*'
+    './bower_components/t1st3-assets/dist/umd_docs/_layouts/demo.html'
   ])
     .pipe(gulp.dest('./gh-pages/_layouts'));
 
@@ -267,10 +234,10 @@ gulp.task('init', ['qr'], function (cb) {
 
 gulp.task('test_copy', ['figlet'], function (cb) {
   del([
-    './test/assets/js/lib/' + pkg.name + '.js'
+    './test/assets/lib/' + pkg.name + '.js'
   ], function() {
     gulp.src('./src/*.js')
-      .pipe(gulp.dest('./test/assets/js/lib'));
+      .pipe(gulp.dest('./test/assets/lib'));
     cb();
   });
 });
@@ -386,9 +353,9 @@ gulp.task('build', ['build_copy', 'uglify'], function (cb) {
 
 gulp.task('serve_lib', ['figlet'], function () {
   gulp.src([
-    'src/' + pkg.name + '.js'
+    './src/' + pkg.name + '.js'
   ])
-    .pipe(gulp.dest('./test/assets/js/lib'));
+    .pipe(gulp.dest('./test/assets/lib'));
 });
 
 gulp.task('watch', [], function() {
@@ -396,7 +363,7 @@ gulp.task('watch', [], function() {
 });
 
 gulp.task('browser-sync', [], function() {
-  browserSync.init(['test/assets/js/lib/*.js'], {
+  browserSync.init(['test/assets/lib/*.js'], {
     server: {
       baseDir: './test',
       index: 'tests_amd.html'
@@ -424,7 +391,7 @@ gulp.task('doc_copy', ['figlet', 'build'], function (cb) {
   gulp.src([
     './src/*.js'
   ])
-    .pipe(gulp.dest('./gh-pages/assets/js/lib'));
+    .pipe(gulp.dest('./gh-pages/assets/lib'));
 
   gulp.src([
     './test/tests.js'
@@ -449,8 +416,7 @@ gulp.task('doc_template', ['doc_copy'], function (cb) {
     gulp.src('./bower_components/t1st3-assets/dist/common/' + num)
     .pipe(template({
       ProjectName: pkg.name,
-      ProjectVersion: pkg.version,
-      ProjectDependencies: docXtraDep
+      ProjectVersion: pkg.version
     }))
     .pipe(gulp.dest('./gh-pages'));
   });
@@ -468,8 +434,7 @@ gulp.task('doc_template_umd', ['doc_template'], function (cb) {
     gulp.src('./bower_components/t1st3-assets/dist/umd_docs/' + num)
     .pipe(template({
       ProjectName: pkg.name,
-      ProjectVersion: pkg.version,
-      ProjectDependencies: docXtraDep
+      ProjectVersion: pkg.version
     }))
     .pipe(gulp.dest('./gh-pages'));
   });
@@ -547,7 +512,7 @@ gulp.task('dependo_amd', ['dependo_cjs'], function (cb) {
 
 gulp.task('coverage_instrument', ['build'], function (cb) {
   var cmd = 'istanbul instrument ./src/' + pkg.name + '.js';
-  cmd += ' > ./test/assets/js/lib/' + pkg.name + '.js';
+  cmd += ' > ./test/assets/lib/' + pkg.name + '.js';
   exec(cmd, function (err, stdout, stderr) {
     console.log(stdout);
     console.log(stderr);
@@ -614,10 +579,10 @@ gulp.task('coverage', [
 
 gulp.task('uninstrument', ['coverage'], function (cb) {
   del([
-    './test/assets/js/lib/' + pkg.name + '.js'
+    './test/assets/lib/' + pkg.name + '.js'
   ], function() {
     gulp.src('./src/*.js')
-      .pipe(gulp.dest('./test/assets/js/lib'));
+      .pipe(gulp.dest('./test/assets/lib'));
     cb();
   });
 });

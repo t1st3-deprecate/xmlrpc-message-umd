@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+<!doctype html>
 <!--[if lt IE 7 ]><html class="no-js oldie ie6" lang="en"><![endif]-->
 <!--[if IE 7 ]><html class="no-js oldie ie7" lang="en"><![endif]-->
 <!--[if IE 8 ]><html class="no-js oldie ie8" lang="en"><![endif]-->
@@ -14,14 +14,23 @@
     <link rel="icon" sizes="16x16 32x32 48x48 64x64" href="http://www.tiste.org/xmlrpc-message-umd/favicon.ico">
     <!--[if IE]><link rel="shortcut icon" href="http://www.tiste.org/xmlrpc-message-umd/favicon.ico"><![endif]-->
     <link rel="apple-touch-icon-precomposed" href="http://www.tiste.org/xmlrpc-message-umd/assets/img/favicon/apple-touch-icon-152.png">
-    <meta name="msapplication-TileColor" content="#B5E853">
-    <meta name="msapplication-TileImage" content="http://www.tiste.org/xmlrpc-message-umd/assets/img/favicon/apple-touch-icon-144.png">
+
+    <link rel="apple-touch-icon-precomposed" sizes="180x180" href="http://www.tiste.org/xmlrpc-message-umd/assets/img/favicon/apple-touch-icon-180.png">
     <link rel="apple-touch-icon-precomposed" sizes="152x152" href="http://www.tiste.org/xmlrpc-message-umd/assets/img/favicon/apple-touch-icon-152.png">
     <link rel="apple-touch-icon-precomposed" sizes="144x144" href="http://www.tiste.org/xmlrpc-message-umd/assets/img/favicon/apple-touch-icon-144.png">
     <link rel="apple-touch-icon-precomposed" sizes="120x120" href="http://www.tiste.org/xmlrpc-message-umd/assets/img/favicon/apple-touch-icon-120.png">                                                                                                                                                                    
-    <link rel="apple-touch-icon-precomposed" sizes="114x114" href="http://www.tiste.org/xmlrpc-message-umd/assets/img/favicon/apple-touch-icon-114.png">                                                                                                                                                                    
-    <link rel="apple-touch-icon-precomposed" sizes="72x72" href="http://www.tiste.org/xmlrpc-message-umd/assets/img/favicon/apple-touch-icon-72.png">                                                                                                                                                                       
+    <link rel="apple-touch-icon-precomposed" sizes="114x114" href="http://www.tiste.org/xmlrpc-message-umd/assets/img/favicon/apple-touch-icon-114.png">
+    <link rel="apple-touch-icon-precomposed" sizes="76x76" href="http://www.tiste.org/xmlrpc-message-umd/assets/img/favicon/apple-touch-icon-76.png">
+    <link rel="apple-touch-icon-precomposed" sizes="72x72" href="http://www.tiste.org/xmlrpc-message-umd/assets/img/favicon/apple-touch-icon-72.png">
     <link rel="apple-touch-icon-precomposed" href="http://www.tiste.org/xmlrpc-message-umd/assets/img/favicon/apple-touch-icon-57.png">
+    <link rel="shortcut icon" href="http://www.tiste.org/xmlrpc-message-umd/assets/img/favicon/apple-touch-icon-196.png">
+    <link rel="shortcut icon" href="http://www.tiste.org/xmlrpc-message-umd/assets/img/favicon/apple-touch-icon.png">
+
+    <link rel="icon" sizes="192x192" href="http://www.tiste.org/xmlrpc-message-umd/assets/img/favicon/apple-touch-icon-192.png">
+    <link rel="icon" sizes="128x128" href="http://www.tiste.org/xmlrpc-message-umd/assets/img/favicon/apple-touch-icon-128.png">
+
+    <meta name="msapplication-TileColor" content="#B5E853">
+    <meta name="msapplication-TileImage" content="http://www.tiste.org/xmlrpc-message-umd/assets/img/favicon/apple-touch-icon-144.png">
 
     <link rel="dns-prefetch" href="//ajax.googleapis.com/">
     <link rel="dns-prefetch" href="//www.gravatar.com/">
@@ -67,17 +76,17 @@
       type="application/opensearchdescription+xml" 
       title="www.tiste.org | xmlrpc-message-umd">
 
-    <link rel="stylesheet" href="assets/css/bootstrap.min.css" media="all">
-    <link rel="stylesheet" href="assets/css/font-awesome.min.css" media="all">
+    <link rel="stylesheet" href="assets/lib/bootstrap/dist/css/bootstrap.min.css" media="all">
+    <link rel="stylesheet" href="assets/lib/font-awesome/css/font-awesome.min.css" media="all">
 
     <!--[if lte IE 9]>
       <noscript><link rel="stylesheet" href="assets/css/ie-noscript.css"></noscript>
     <![endif]-->
 
 <link rel="stylesheet" href="assets/css/t1st3.min.css" media="all">
-<script type="text/javascript" src="assets/js/lib/modernizr.js"></script>
 <!--[if lt IE 9]>
 <script src="//oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
+<script>window.respond || document.write('<script src="assets/lib/dest/respond.min.js"><\/script>')</script>
 <![endif]-->
   </head>
   <body role="document">
@@ -104,7 +113,7 @@
         <div class="collapse navbar-collapse" id="t1st3-navbar-collapse">
           <ul class="nav navbar-nav navbar-right" role="menubar">
             <li class="dropdown">
-              <a href="#" class="dropdown-toggle" data-toggle="dropdown" title="Toggle dropdown menu"><i class="fa fa-code-fork"></i> v0.7.8 <b class="caret"></b></a>
+              <a href="#" class="dropdown-toggle" data-toggle="dropdown" title="Toggle dropdown menu"><i class="fa fa-code-fork"></i> v0.7.9 <b class="caret"></b></a>
               <ul class="dropdown-menu" role="menu">
                 <li>
                   <a href="https://github.com/T1st3/xmlrpc-message-umd/archive/master.zip" title="Download latest version of xmlrpc-message-umd">
@@ -505,9 +514,10 @@ cd ../
       </div>
     </div>
 
+<script type="text/javascript" src="assets/lib/modernizr/modernizr.js"></script>
 <script src="//ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
-<script>window.jQuery || document.write('<script src="assets/js/lib/jquery.min.js"><\/script>')</script>
-<script src="assets/js/lib/bootstrap.min.js"></script>
+<script>window.jQuery || document.write('<script src="assets/lib/jquery/dist/jquery.min.js"><\/script>')</script>
+<script src="assets/lib/bootstrap/dist/js/bootstrap.min.js"></script>
 <script type="text/javascript">
   $(document).ready(function() {
     $('#main h2, #main h3, #main h4').each(function(i, el) {
@@ -530,8 +540,6 @@ cd ../
   m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
   })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
   ga('create', 'UA-53514029-1', 'auto');
-  ga('require', 'displayfeatures');
-  ga('require', 'linkid', 'linkid.js');
   ga('send', 'pageview');
 </script>
 <!--
@@ -540,7 +548,7 @@ cd ../
     |     | (_-<   _|  _ \ 
    _|    _| ___/ \__| ___/ 
                            
-built with T1st3-Assets 1.1.0
+built with T1st3-Assets 1.3.0
 -->
   </body>
 </html> 

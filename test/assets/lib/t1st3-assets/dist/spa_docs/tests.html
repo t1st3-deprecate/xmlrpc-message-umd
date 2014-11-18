@@ -1,0 +1,146 @@
+---
+layout: t1st3
+title: <% print(ProjectName) %> - Tests
+sitemap:
+  priority: 0.5
+  changefreq: monthly
+---
+
+<main class="container" id="main" role="main" itemscope itemtype="http://schema.org/WebPage" aria-labelledby="page-title">
+  <nav class="row" id="breadcrumb-wrap" role="navigation" aria-labelledby="breadcrumb-label">
+    <div class="col-12 col-xs-12 col-sm-12 col-lg-12" id="breadcrumb">
+      <ul>
+        <li id="breadcrumb-label">You are here: </li>
+        <li itemscope itemtype="http://data-vocabulary.org/Breadcrumb">
+          <a href="http://www.tiste.org/" title="T1st3 home"><i class="fa fa-home"></i> <span itemprop="title">T1st3 home</span></a>
+        </li>
+        <li itemscope itemtype="http://data-vocabulary.org/Breadcrumb">
+          <a href="http://www.tiste.org/{{ site.name }}" title="{{ site.name }} project homepage" itemprop="url">./ <span itemprop="title">{{ site.name }}</span></a>
+        </li>
+        <li itemscope itemtype="http://data-vocabulary.org/Breadcrumb">
+          <i class="fa fa-cogs"></i> <span itemprop="title">Tests</span>
+        </li>
+      </ul>
+    </div>
+  </nav>
+  <hr>
+  <header class="row">
+    <div class="col-12 col-xs-12 col-sm-12 col-lg-12">
+      <h1 itemprop="name" id="page-title">
+        <i class="fa fa-cogs"></i> {{ page.title }}
+      </h1>
+    </div>
+  </header>
+  <hr>
+  <article class="row" role="article" itemprop="mainContentOfPage">
+    <div class="col-12 col-xs-12 col-sm-12 col-lg-12">
+      <h2><i class="fa fa-globe"></i> Run browser tests right here</h2>
+      <ul>
+        <li>
+          <a href="tests_amd.html" title="Tests for {{ site.name }}, using AMD modules">
+            Unit tests (using AMD modules)
+          </a>
+        </li>
+        <li>
+          <a href="tests_global.html" title="Tests for {{ site.name }}, using globals">
+            Unit tests (using globals)
+          </a>
+        </li>
+      </ul>
+    </div>
+    <div class="col-12 col-xs-12 col-sm-12 col-lg-12">
+      <hr>
+      <h2><i class="fa fa-cog"></i> Run browser tests (with Phantom.js)</h2>
+      <br><br>
+      <p>Please note that this task has <a target="_blank" href="http://phantomjs.org/" title="PhantomJS website"><i class="fa fa-external-link"></i> PhantomJS</a> as a dependency.<br>
+        You also need <a target="_blank" href="http://gotwarlost.github.io/istanbul/" title="Istanbul website"><i class="fa fa-external-link"></i> Istanbul</a> for code coverage. <br>
+        You can install them globally from NPM:
+      </p>
+
+      <pre><code>
+npm install -g istanbul
+npm install -g phantomjs
+      </code></pre>
+
+      <p>Note that on MacOS or GNU/Linux, 
+      you may want to install NPM packages with <code>sudo</code> 
+      to install them globally on your system:</p>
+
+      <pre><code>
+sudo npm install -g istanbul
+sudo npm install -g phantomjs
+      </code></pre>
+      <p>
+        Once you have installed PhantomJS and Istanbul on your system, you can run the tests and the coverage from your terminal with Gulp:
+      </p>
+      <pre><code>gulp test</code></pre>
+    </div>
+    <div class="col-12 col-xs-12 col-sm-12 col-lg-12">
+      <hr>
+      <h2><i class="fa fa-refresh"></i> Continuous testing</h2>
+      <p>
+        Tests for {{ site.name }} are performed on 
+        <a href="https://travis-ci.org/T1st3/{{ site.name }}" title="{{ site.name }} on Travis CI">
+          Travis-CI 
+        </a>
+        <a href="https://travis-ci.org/T1st3/{{ site.name }}" title="{{ site.name }} on Travis CI">
+          <img alt="Travis logo" src="http://t1st3.github.io/{{ site.name }}/assets/img/vendor/travis-ci-16x16.png" width="16" height="16">
+        </a><br>
+        Status on Travis-CI:
+        <a href="https://travis-ci.org/T1st3/{{ site.name }}" title="Build status of {{ site.name }} on Travis CI">
+          <img src="https://travis-ci.org/T1st3/{{ site.name }}.svg?branch=master" alt="Build Status">
+        </a>
+      </p>
+    </div>
+    <div class="col-12 col-xs-12 col-sm-12 col-lg-12">
+      <hr>
+      <h2><i class="fa fa-shield"></i> Coverage</h2>
+      <p>
+        <a href="coverage.html" title="Code coverage of {{ site.name }}, generated with Istanbul">
+          Code coverage of {{ site.name }}
+        </a> (Generated during the tests)
+        <br><br>
+        This code coverage can also be viewed on 
+        <a href="https://coveralls.io/r/T1st3/{{ site.name }}?branch=master" title="{{ site.name }} on Coveralls.io">
+          Coveralls.io 
+        </a>
+        <a href="https://coveralls.io/r/T1st3/{{ site.name }}?branch=master" title="{{ site.name }} on Coveralls.io">
+          <img alt="Coveralls logo" src="http://t1st3.github.io/{{ site.name }}/assets/img/vendor/coveralls-16x16.png" width="16" height="16">
+        </a> and 
+        <a href="https://codeclimate.com/github/T1st3/{{ site.name }}" title="{{ site.name }} on Code Climate">
+          Code Climate 
+        </a>
+        <a href="https://codeclimate.com/github/T1st3/{{ site.name }}" title="{{ site.name }} on Code Climate">
+          <img alt="Code Climate logo" src="http://t1st3.github.io/{{ site.name }}/assets/img/vendor/codeclimate-16x16.png" width="16" height="16">
+        </a><br>
+        Status on Coveralls:
+        <a href="https://coveralls.io/r/T1st3/{{ site.name }}?branch=master" title="Coverage status of {{ site.name }} on Coveralls.io">
+          <img src="https://coveralls.io/repos/T1st3/{{ site.name }}/badge.png?branch=master" alt="Coverage Status" />
+        </a>
+        <br>
+        Status on Code Climate:
+        <a href="https://codeclimate.com/github/T1st3/{{ site.name }}" title="Status of {{ site.name }} on Code Climate">
+          <img src="https://codeclimate.com/github/T1st3/{{ site.name }}/badges/gpa.svg" alt="Coverage Status" />
+        </a>
+      </p>
+    </div>
+    <div class="col-12 col-xs-12 col-sm-12 col-lg-12">
+      <hr>
+      <h2><i class="fa fa-file-text-o"></i> Notes</h2>
+      <p>
+        All tests are run with <a target="_blank" href="http://visionmedia.github.io/mocha/" title="Mocha website"><i class="fa fa-external-link"></i> Mocha</a>.<br><br>
+        <a target="_blank" href="http://chaijs.com/" title="Chai website"><i class="fa fa-external-link"></i> Chai</a> is used in the tests as the assertion library.<br><br>
+        <a href="coverage.html" title="Code coverage of {{ site.name }}, generated with Istanbul">The coverage page</a> 
+        is generated using <a target="_blank" href="http://gotwarlost.github.io/istanbul/" title="Istanbul website"><i class="fa fa-external-link"></i> Istanbul</a><br><br>
+        Browser tests are run from Node.js with <a target="_blank" href="http://phantomjs.org/" title="PhantomJS website"><i class="fa fa-external-link"></i> PhantomJS</a><br><br>
+      </p>
+      <br><br>
+    </div>
+  </article>
+  <hr>
+  <footer class="row" role="navigation">
+    <div class="col-12 col-xs-12 col-sm-12 col-lg-12">
+      <a href="index.html" title="Navigate to homepage" rel="home"><i class="fa fa-home"></i> Back to home</a><br><br>
+    </div>
+  </footer>
+</main>

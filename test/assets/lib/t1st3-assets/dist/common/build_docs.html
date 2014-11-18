@@ -1,0 +1,148 @@
+---
+layout: t1st3
+title: <% print(ProjectName) %> - Build the docs
+sitemap:
+  priority: 0.4
+  changefreq: monthly
+---
+
+<main class="container" id="main" role="main" itemscope itemtype="http://schema.org/WebPage" aria-labelledby="page-title">
+  <nav class="row" id="breadcrumb-wrap" role="navigation" aria-labelledby="breadcrumb-label">
+    <div class="col-12 col-xs-12 col-sm-12 col-lg-12" id="breadcrumb">
+      <ul>
+        <li id="breadcrumb-label">You are here: </li>
+        <li itemscope itemtype="http://data-vocabulary.org/Breadcrumb">
+          <a href="http://www.tiste.org/" title="T1st3 home"><i class="fa fa-home"></i> <span itemprop="title">T1st3 home</span></a>
+        </li>
+        <li itemscope itemtype="http://data-vocabulary.org/Breadcrumb">
+          <a href="http://www.tiste.org/{{ site.name }}" title="{{ site.name }} project homepage" itemprop="url">./ <span itemprop="title">{{ site.name }}</span></a>
+        </li>
+        <li itemscope itemtype="http://data-vocabulary.org/Breadcrumb">
+          <i class="fa fa-file-text-o"></i> <span itemprop="title">Build docs</span>
+        </li>
+      </ul>
+    </div>
+  </nav>
+  <hr>
+  <header class="row">
+    <div class="col-12 col-xs-12 col-sm-12 col-lg-12">
+      <h1 itemprop="name" id="page-title">
+        <i class="fa fa-file-text-o"></i> {{ page.title }}
+      </h1>
+    </div>
+  </header>
+  <hr>
+  <article class="row" role="article" itemprop="mainContentOfPage">
+    <div class="col-12 col-xs-12 col-sm-12 col-lg-12">
+      <h2 id="build-the-docs-and-github-pages">Build the docs and Github pages</h2>
+
+      <p>First, be sure you checked the <a href="http://www.tiste.org/{{ site.name }}/gulp_tasks.html" title="Gulp tasks available for {{ site.name }}">page about Gulp tasks</a> before reading this page, 
+        specially if you are not familiar with Gulp.<br><br>
+        The process of building the docs uses Gulp to make the following:</p>
+
+      <ul>
+        <li>import the <code>gh-pages</code> branch transpently into your master branch (see below)</li>
+        <li>rebuild those gh-pages</li>
+        <li>compile the gh-pages to the “docs” folder</li>
+        <li>the “docs” folder will include all the pages of the <a href="http://t1st3.github.io/{{ site.name }}/">project pages</a>, viewable offline</li>
+        <li>the “docs” folder can be served with the <code>gulp serve</code> task</li>
+      </ul>
+
+      <p>Please note that this task has a few more dependencies:</p>
+
+      <ul>
+        <li><a target="_blank" href="http://gotwarlost.github.io/istanbul/" title="Istanbul website"><i class="fa fa-external-link"></i> Istanbul</a> for code coverage</li>
+        <li><a target="_blank" href="https://www.ruby-lang.org/" title="Ruby website"><i class="fa fa-external-link"></i> Ruby</a> and <a target="_blank" href="https://rubygems.org/" title="RubyGems website"><i class="fa fa-external-link"></i> RubyGems</a></li>
+        <li><a target="_blank" href="http://jekyllrb.com/" title="Jekyll website"><i class="fa fa-external-link"></i> Jekyll</a></li>
+        <li><a target="_blank" href="http://kramdown.gettalong.org/" title="Kramdown website"><i class="fa fa-external-link"></i> Kramdown</a></li>
+      </ul>
+
+      <p>Once you have installed Ruby and RubyGems, 
+      you can get Jekyll and Kramdown “the RubyGem-way”:</p>
+
+      <pre><code>
+gem install jekyll
+gem install kramdown
+      </code></pre>
+
+      <p>Note that on MacOS or GNU/Linux, 
+      you may want to install those Gems with <code>sudo</code> 
+      to install them globally on your system:</p>
+
+      <pre><code>
+sudo gem install jekyll
+sudo gem install kramdown
+      </code></pre>
+
+
+      <p>
+      Finally, install Istanbul globally from NPM:
+      </p>
+
+      <pre><code>
+npm install -g istanbul
+      </code></pre>
+
+      <p>Note that on MacOS or GNU/Linux, 
+      you may want to install NPM packages with <code>sudo</code> 
+      to install them globally on your system:</p>
+
+      <pre><code>
+sudo npm install -g istanbul
+      </code></pre>
+
+      <hr>
+
+      <p>This part may appear tricky, 
+      since you will download the <code>gh-pages</code> branch of the project 
+      right inside the root folder of your current <code>master</code> branch.
+      But the process is quite transparent…</p>
+
+      <p>You first need to get the “gh-pages” branch of the project, 
+      and inject it in the project folder:</p>
+
+      <pre><code>
+git clone https://github.com/T1st3/{{ site.name }}.git
+mv {{ site.name }} gh-pages
+cd gh-pages
+git checkout --orphan gh-pages
+git rm -rf .
+git pull origin gh-pages
+cd ../
+      </code></pre>
+
+      <p>So, you should normally have created the <code>gh-pages</code> folder, along the <code>dist</code> and <code>src</code> folders.</p>
+
+      <p>Note that, even if you keep the <code>gh-pages</code> folder in the project, this folder:</p>
+
+      <ul>
+        <li><a href="https://github.com/T1st3/{{ site.name }}/blob/master/.gitignore">will not be commited/pushed to GIT on master branch</a></li>
+        <li><a href="https://github.com/T1st3/{{ site.name }}/blob/master/bower.json">will not be included in Bower releases</a></li>
+        <li><a href="https://github.com/T1st3/{{ site.name }}/blob/master/.npmignore">will not be included in NPM releases</a></li>
+      </ul>
+
+      <p>Building the docs will rebuild the <code>gh-pages</code>, and compile them to the <code>docs</code> folder, using the following Gulp task:</p>
+
+      <pre><code>
+gulp doc
+      </code></pre>
+
+      <p>And since you transparently have the <code>gh-pages</code> branch being updated by those tasks right in your project folder, 
+      you can commit and push to the <code>gh-pages</code> branch just with a couple of <code>cd</code>:</p>
+
+      <pre><code>
+cd gh-pages
+git add -A
+git commit -m 'from master branch'
+git push origin gh-pages
+cd ../
+      </code></pre>
+    </div>
+  </article>
+  <hr>
+  <footer class="row" role="navigation">
+    <div class="col-12 col-xs-12 col-sm-12 col-lg-12">
+      <a href="index.html" title="Navigate to homepage" rel="home"><i class="fa fa-home"></i> Back to home</a><br><br>
+    </div>
+  </footer>
+</main>

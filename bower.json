@@ -1,6 +1,6 @@
 {
   "name": "xmlrpc-message-umd",
-  "version": "0.7.8",
+  "version": "0.7.9",
   "homepage": "http://www.tiste.org/xmlrpc-message-umd",
   "description": "A XMLRPC message builder written with UMD definition",
   "keywords": [
@@ -95,7 +95,7 @@
       "main": ""
     },
     "btoa-umd": {
-      "main": ["dist/btoa-umd.min.js", "dist/btoa-umd.min.map"]
+      "main": ["dist/btoa-umd.min.js", "dist/btoa-umd.js.map"]
     }
   }
 }
