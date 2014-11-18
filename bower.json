@@ -93,6 +93,9 @@
     },
     "tist3-assets": {
       "main": ""
+    },
+    "btoa-umd": {
+      "main": ["dist/btoa-umd.min.js", "dist/btoa-umd.min.map"]
     }
   }
 }
