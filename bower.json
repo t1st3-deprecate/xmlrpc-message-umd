@@ -68,7 +68,7 @@
       "main": "modernizr.js"
     },
     "codemirror": {
-      "main": ["lib/codemirror.js", "/mode/javascript/javascript.js", "lib/codemirror.css"]
+      "main": ["lib/codemirror.js", "mode/javascript/javascript.js", "lib/codemirror.css"]
     },
     "respond": {
       "main": "dest/respond.min.js"
@@ -91,8 +91,11 @@
     "lodash": {
       "main": "dist/lodash.min.js"
     },
-    "tist3-assets": {
-      "main": ""
+    "t1st3-assets": {
+      "main": [
+        "**/*.js", "**/*.css",
+        "**/*.png", "**/*.jpg", "**/*.gif", "**/*.ico", "**/*.svg"
+      ]
     },
     "btoa-umd": {
       "main": ["dist/btoa-umd.min.js", "dist/btoa-umd.js.map"]
