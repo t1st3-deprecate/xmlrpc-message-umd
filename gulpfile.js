@@ -321,7 +321,7 @@ gulp.task('build_copy', ['version'], function (cb) {
   cb();
 });
 
-gulp.task('uglify', ['build_clean', 'lint', 'jscs'], function (cb) {
+gulp.task('uglify', ['build_copy'], function (cb) {
   gulp.src('./src/' + pkg.name + '.js')
     .pipe(rename(pkg.name + '.min.js'))
     .pipe(uglify({
@@ -336,7 +336,7 @@ gulp.task('uglify', ['build_clean', 'lint', 'jscs'], function (cb) {
   cb();
 });
 
-gulp.task('build', ['build_copy', 'uglify'], function (cb) {
+gulp.task('build', ['uglify'], function (cb) {
   triggerNotification ('Builder', 'Successfully built application', function () {
     displayCowsay('gulp build - DONE', cb);
   });

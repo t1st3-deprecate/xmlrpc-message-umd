@@ -35,8 +35,8 @@ require.config({
 require([
   'jquery',
   'xmlrpcmessage',
-  'assets/js/lib/codemirror',
-  'assets/js/lib/codemirror/javascript',
+  'assets/lib/codemirror/lib/codemirror',
+  'assets/lib/codemirror/mode/javascript/javascript',
   'bootstrap'
 ], function ($, XMLRPCMessage, CodeMirror) {
   $(document).ready(function () {

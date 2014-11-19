@@ -1,5 +1,10 @@
 ## Change Log
 
+### 0.7.10 (2014/11/19 01:04 +00:00)
+- [1c06296](https://github.com/T1st3/xmlrpc-message-umd/commit/1c06296abbeba4e0eebc6d3721bb6fd21be6e1ad) chore: v0.7.10 (@T1st3)
+- [e463d47](https://github.com/T1st3/xmlrpc-message-umd/commit/e463d4763308f4db8b6963bcd8a00130a6cee6ce) chore: update gulpfile (@T1st3)
+- [4ffd0b8](https://github.com/T1st3/xmlrpc-message-umd/commit/4ffd0b8d4f0258c78b5c84a35c95b98bc22c0cd5) fix: update bower.json (@T1st3)
+
 ### 0.7.9 (2014/11/18 23:31 +00:00)
 - [9eaeb88](https://github.com/T1st3/xmlrpc-message-umd/commit/9eaeb880ee000a9b70c7b1f0cce0c5fcda7b0706) chore: v0.7.9 (@T1st3)
 - [35228fe](https://github.com/T1st3/xmlrpc-message-umd/commit/35228febe01f32a0c6ba4d4aeb95210b16294103) feat: add overrides in bower.json, for user with main-bower-files (@T1st3)
