@@ -198,14 +198,9 @@ gulp.task('init', ['qr'], function (cb) {
 
   /* XML */
   gulp.src([
-    './bower_components/t1st3-assets/dist/common/sitemap.xml'
-  ])
-    .pipe(rename('sitemap.xml'))
-    .pipe(gulp.dest('./gh-pages'));
-  gulp.src([
+    './bower_components/t1st3-assets/dist/common/sitemap.xml',
     './bower_components/t1st3-assets/dist/common/opensearch.xml'
   ])
-    .pipe(rename('opensearch.xml'))
     .pipe(gulp.dest('./gh-pages'));
 
   /* HTML */
