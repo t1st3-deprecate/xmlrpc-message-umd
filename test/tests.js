@@ -15,13 +15,16 @@
         chai: 'assets/lib/chai/chai',
         chaijquery: 'assets/lib/chai-jquery/chai-jquery',
         bootstrap: 'assets/lib/bootstrap/dist/js/bootstrap.min',
+        lodash: 'assets/lib/lodash/dist/lodash.min',
         btoa: 'assets/lib/btoa-umd/dist/btoa-umd.min',
-        lodash: 'assets/lib/lodash.min',
         xmlrpcmessage: 'assets/lib/xmlrpc-message-umd'
       },
       shim: {
         jquery: {
           exports: '$'
+        },
+        lodash: {
+          exports: '_'
         },
         chaijquery: ['jquery', 'chai'],
         bootstrap: ['jquery'],

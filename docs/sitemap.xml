@@ -7,22 +7,7 @@
     <url>
       <loc>http://www.tiste.org/xmlrpc-message-umd/404.html</loc>
       
-        <lastmod>2014-11-19T00:31:13+01:00</lastmod>
-      
-      
-        <changefreq>yearly</changefreq>
-      
-      
-        <priority>0.1</priority>
-      
-    </url>
-    
-  
-    
-    <url>
-      <loc>http://www.tiste.org/xmlrpc-message-umd/assets/lib/t1st3-assets/dist/common/404.html</loc>
-      
-        <lastmod>2014-11-19T00:31:13+01:00</lastmod>
+        <lastmod>2014-11-19T02:01:18+01:00</lastmod>
       
       
         <changefreq>yearly</changefreq>
@@ -37,43 +22,13 @@
     <url>
       <loc>http://www.tiste.org/xmlrpc-message-umd/amd_dependencies.html</loc>
       
-        <lastmod>2014-11-19T00:31:13+01:00</lastmod>
+        <lastmod>2014-11-19T02:01:18+01:00</lastmod>
       
       
         <changefreq>monthly</changefreq>
       
       
         <priority>0.5</priority>
-      
-    </url>
-    
-  
-    
-    <url>
-      <loc>http://www.tiste.org/xmlrpc-message-umd/assets/lib/t1st3-assets/dist/common/amd_dependencies.html</loc>
-      
-        <lastmod>2014-11-19T00:31:13+01:00</lastmod>
-      
-      
-        <changefreq>monthly</changefreq>
-      
-      
-        <priority>0.5</priority>
-      
-    </url>
-    
-  
-    
-    <url>
-      <loc>http://www.tiste.org/xmlrpc-message-umd/assets/lib/t1st3-assets/dist/common/build_docs.html</loc>
-      
-        <lastmod>2014-11-19T00:31:13+01:00</lastmod>
-      
-      
-        <changefreq>monthly</changefreq>
-      
-      
-        <priority>0.4</priority>
       
     </url>
     
@@ -82,7 +37,7 @@
     <url>
       <loc>http://www.tiste.org/xmlrpc-message-umd/build_docs.html</loc>
       
-        <lastmod>2014-11-19T00:31:13+01:00</lastmod>
+        <lastmod>2014-11-19T02:01:18+01:00</lastmod>
       
       
         <changefreq>monthly</changefreq>
@@ -97,7 +52,7 @@
     <url>
       <loc>http://www.tiste.org/xmlrpc-message-umd/changelog.html</loc>
       
-        <lastmod>2014-11-19T00:31:13+01:00</lastmod>
+        <lastmod>2014-11-19T02:01:18+01:00</lastmod>
       
       
         <changefreq>weekly</changefreq>
@@ -110,24 +65,9 @@
   
     
     <url>
-      <loc>http://www.tiste.org/xmlrpc-message-umd/assets/lib/t1st3-assets/dist/common/cjs_dependencies.html</loc>
-      
-        <lastmod>2014-11-19T00:31:13+01:00</lastmod>
-      
-      
-        <changefreq>monthly</changefreq>
-      
-      
-        <priority>0.5</priority>
-      
-    </url>
-    
-  
-    
-    <url>
       <loc>http://www.tiste.org/xmlrpc-message-umd/cjs_dependencies.html</loc>
       
-        <lastmod>2014-11-19T00:31:13+01:00</lastmod>
+        <lastmod>2014-11-19T02:01:18+01:00</lastmod>
       
       
         <changefreq>monthly</changefreq>
@@ -142,22 +82,7 @@
     <url>
       <loc>http://www.tiste.org/xmlrpc-message-umd/coverage.html</loc>
       
-        <lastmod>2014-11-19T00:31:13+01:00</lastmod>
-      
-      
-        <changefreq>monthly</changefreq>
-      
-      
-        <priority>0.5</priority>
-      
-    </url>
-    
-  
-    
-    <url>
-      <loc>http://www.tiste.org/xmlrpc-message-umd/assets/lib/t1st3-assets/dist/common/coverage.html</loc>
-      
-        <lastmod>2014-11-19T00:31:13+01:00</lastmod>
+        <lastmod>2014-11-19T02:01:18+01:00</lastmod>
       
       
         <changefreq>monthly</changefreq>
@@ -172,58 +97,13 @@
     <url>
       <loc>http://www.tiste.org/xmlrpc-message-umd/credits.html</loc>
       
-        <lastmod>2014-11-19T00:31:13+01:00</lastmod>
+        <lastmod>2014-11-19T02:01:18+01:00</lastmod>
       
       
         <changefreq>monthly</changefreq>
       
       
         <priority>0.4</priority>
-      
-    </url>
-    
-  
-    
-    <url>
-      <loc>http://www.tiste.org/xmlrpc-message-umd/assets/lib/t1st3-assets/dist/umd_docs/credits.html</loc>
-      
-        <lastmod>2014-11-19T00:31:13+01:00</lastmod>
-      
-      
-        <changefreq>monthly</changefreq>
-      
-      
-        <priority>0.4</priority>
-      
-    </url>
-    
-  
-    
-    <url>
-      <loc>http://www.tiste.org/xmlrpc-message-umd/assets/lib/t1st3-assets/dist/spa_docs/credits.html</loc>
-      
-        <lastmod>2014-11-19T00:31:13+01:00</lastmod>
-      
-      
-        <changefreq>monthly</changefreq>
-      
-      
-        <priority>0.4</priority>
-      
-    </url>
-    
-  
-    
-    <url>
-      <loc>http://www.tiste.org/xmlrpc-message-umd/assets/lib/t1st3-assets/dist/spa_docs/demo.html</loc>
-      
-        <lastmod>2014-11-19T00:31:13+01:00</lastmod>
-      
-      
-        <changefreq>monthly</changefreq>
-      
-      
-        <priority>0.6</priority>
       
     </url>
     
@@ -232,7 +112,7 @@
     <url>
       <loc>http://www.tiste.org/xmlrpc-message-umd/demo.html</loc>
       
-        <lastmod>2014-11-19T00:31:13+01:00</lastmod>
+        <lastmod>2014-11-19T02:01:18+01:00</lastmod>
       
       
         <changefreq>monthly</changefreq>
@@ -245,90 +125,15 @@
   
     
     <url>
-      <loc>http://www.tiste.org/xmlrpc-message-umd/assets/lib/t1st3-assets/dist/umd_docs/demo.html</loc>
-      
-        <lastmod>2014-11-19T00:31:13+01:00</lastmod>
-      
-      
-        <changefreq>monthly</changefreq>
-      
-      
-        <priority>0.6</priority>
-      
-    </url>
-    
-  
-    
-    <url>
       <loc>http://www.tiste.org/xmlrpc-message-umd/dependencies.html</loc>
       
-        <lastmod>2014-11-19T00:31:13+01:00</lastmod>
+        <lastmod>2014-11-19T02:01:18+01:00</lastmod>
       
       
         <changefreq>monthly</changefreq>
       
       
         <priority>0.5</priority>
-      
-    </url>
-    
-  
-    
-    <url>
-      <loc>http://www.tiste.org/xmlrpc-message-umd/assets/lib/t1st3-assets/dist/common/dependencies.html</loc>
-      
-        <lastmod>2014-11-19T00:31:13+01:00</lastmod>
-      
-      
-        <changefreq>monthly</changefreq>
-      
-      
-        <priority>0.5</priority>
-      
-    </url>
-    
-  
-    
-    <url>
-      <loc>http://www.tiste.org/xmlrpc-message-umd/functests_amd.html</loc>
-      
-        <lastmod>2014-11-19T00:31:13+01:00</lastmod>
-      
-      
-        <changefreq>monthly</changefreq>
-      
-      
-        <priority>0.5</priority>
-      
-    </url>
-    
-  
-    
-    <url>
-      <loc>http://www.tiste.org/xmlrpc-message-umd/functests_global.html</loc>
-      
-        <lastmod>2014-11-19T00:31:13+01:00</lastmod>
-      
-      
-        <changefreq>monthly</changefreq>
-      
-      
-        <priority>0.5</priority>
-      
-    </url>
-    
-  
-    
-    <url>
-      <loc>http://www.tiste.org/xmlrpc-message-umd/assets/lib/t1st3-assets/dist/umd_docs/gulp_tasks.html</loc>
-      
-        <lastmod>2014-11-19T00:31:13+01:00</lastmod>
-      
-      
-        <changefreq>monthly</changefreq>
-      
-      
-        <priority>0.4</priority>
       
     </url>
     
@@ -337,22 +142,7 @@
     <url>
       <loc>http://www.tiste.org/xmlrpc-message-umd/gulp_tasks.html</loc>
       
-        <lastmod>2014-11-19T00:31:13+01:00</lastmod>
-      
-      
-        <changefreq>monthly</changefreq>
-      
-      
-        <priority>0.4</priority>
-      
-    </url>
-    
-  
-    
-    <url>
-      <loc>http://www.tiste.org/xmlrpc-message-umd/assets/lib/t1st3-assets/dist/spa_docs/gulp_tasks.html</loc>
-      
-        <lastmod>2014-11-19T00:31:13+01:00</lastmod>
+        <lastmod>2014-11-19T02:01:18+01:00</lastmod>
       
       
         <changefreq>monthly</changefreq>
@@ -367,7 +157,7 @@
     <url>
       <loc>http://www.tiste.org/xmlrpc-message-umd/</loc>
       
-        <lastmod>2014-11-19T00:31:13+01:00</lastmod>
+        <lastmod>2014-11-19T02:01:18+01:00</lastmod>
       
       
         <changefreq>monthly</changefreq>
@@ -382,22 +172,7 @@
     <url>
       <loc>http://www.tiste.org/xmlrpc-message-umd/jsdoc.html</loc>
       
-        <lastmod>2014-11-19T00:31:13+01:00</lastmod>
-      
-      
-        <changefreq>monthly</changefreq>
-      
-      
-        <priority>0.5</priority>
-      
-    </url>
-    
-  
-    
-    <url>
-      <loc>http://www.tiste.org/xmlrpc-message-umd/assets/lib/t1st3-assets/dist/common/jsdoc.html</loc>
-      
-        <lastmod>2014-11-19T00:31:13+01:00</lastmod>
+        <lastmod>2014-11-19T02:01:18+01:00</lastmod>
       
       
         <changefreq>monthly</changefreq>
@@ -412,7 +187,7 @@
     <url>
       <loc>http://www.tiste.org/xmlrpc-message-umd/license.html</loc>
       
-        <lastmod>2014-11-19T00:31:13+01:00</lastmod>
+        <lastmod>2014-11-19T02:01:18+01:00</lastmod>
       
       
         <changefreq>yearly</changefreq>
@@ -421,23 +196,6 @@
         <priority>0.3</priority>
       
     </url>
-    
-  
-    
-    <url>
-      <loc>http://www.tiste.org/xmlrpc-message-umd/assets/lib/t1st3-assets/dist/common/license.html</loc>
-      
-        <lastmod>2014-11-19T00:31:13+01:00</lastmod>
-      
-      
-        <changefreq>yearly</changefreq>
-      
-      
-        <priority>0.3</priority>
-      
-    </url>
-    
-  
     
   
     
@@ -446,7 +204,7 @@
     <url>
       <loc>http://www.tiste.org/xmlrpc-message-umd/sitemap.html</loc>
       
-        <lastmod>2014-11-19T00:31:13+01:00</lastmod>
+        <lastmod>2014-11-19T02:01:18+01:00</lastmod>
       
       
         <changefreq>monthly</changefreq>
@@ -457,75 +215,13 @@
     </url>
     
   
-    
-    <url>
-      <loc>http://www.tiste.org/xmlrpc-message-umd/assets/lib/t1st3-assets/dist/common/sitemap.html</loc>
-      
-        <lastmod>2014-11-19T00:31:13+01:00</lastmod>
-      
-      
-        <changefreq>monthly</changefreq>
-      
-      
-        <priority>0.4</priority>
-      
-    </url>
-    
-  
-    
-  
-    
-  
-    
-    <url>
-      <loc>http://www.tiste.org/xmlrpc-message-umd/assets/lib/t1st3-assets/dist/umd_docs/tests.html</loc>
-      
-        <lastmod>2014-11-19T00:31:13+01:00</lastmod>
-      
-      
-        <changefreq>monthly</changefreq>
-      
-      
-        <priority>0.5</priority>
-      
-    </url>
     
   
     
     <url>
       <loc>http://www.tiste.org/xmlrpc-message-umd/tests.html</loc>
       
-        <lastmod>2014-11-19T00:31:13+01:00</lastmod>
-      
-      
-        <changefreq>monthly</changefreq>
-      
-      
-        <priority>0.5</priority>
-      
-    </url>
-    
-  
-    
-    <url>
-      <loc>http://www.tiste.org/xmlrpc-message-umd/assets/lib/t1st3-assets/dist/spa_docs/tests.html</loc>
-      
-        <lastmod>2014-11-19T00:31:13+01:00</lastmod>
-      
-      
-        <changefreq>monthly</changefreq>
-      
-      
-        <priority>0.5</priority>
-      
-    </url>
-    
-  
-    
-    <url>
-      <loc>http://www.tiste.org/xmlrpc-message-umd/assets/lib/t1st3-assets/dist/common/tests_amd.html</loc>
-      
-        <lastmod>2014-11-19T00:31:13+01:00</lastmod>
+        <lastmod>2014-11-19T02:01:18+01:00</lastmod>
       
       
         <changefreq>monthly</changefreq>
@@ -540,7 +236,7 @@
     <url>
       <loc>http://www.tiste.org/xmlrpc-message-umd/tests_amd.html</loc>
       
-        <lastmod>2014-11-19T00:31:13+01:00</lastmod>
+        <lastmod>2014-11-19T02:01:18+01:00</lastmod>
       
       
         <changefreq>monthly</changefreq>
@@ -555,67 +251,7 @@
     <url>
       <loc>http://www.tiste.org/xmlrpc-message-umd/tests_global.html</loc>
       
-        <lastmod>2014-11-19T00:31:13+01:00</lastmod>
-      
-      
-        <changefreq>monthly</changefreq>
-      
-      
-        <priority>0.5</priority>
-      
-    </url>
-    
-  
-    
-    <url>
-      <loc>http://www.tiste.org/xmlrpc-message-umd/assets/lib/t1st3-assets/dist/umd_docs/tests_global.html</loc>
-      
-        <lastmod>2014-11-19T00:31:13+01:00</lastmod>
-      
-      
-        <changefreq>monthly</changefreq>
-      
-      
-        <priority>0.5</priority>
-      
-    </url>
-    
-  
-    
-    <url>
-      <loc>http://www.tiste.org/xmlrpc-message-umd/assets/lib/t1st3-assets/dist/spa_docs/tests_global.html</loc>
-      
-        <lastmod>2014-11-19T00:31:13+01:00</lastmod>
-      
-      
-        <changefreq>monthly</changefreq>
-      
-      
-        <priority>0.5</priority>
-      
-    </url>
-    
-  
-    
-    <url>
-      <loc>http://www.tiste.org/xmlrpc-message-umd/unittests_amd.html</loc>
-      
-        <lastmod>2014-11-19T00:31:13+01:00</lastmod>
-      
-      
-        <changefreq>monthly</changefreq>
-      
-      
-        <priority>0.5</priority>
-      
-    </url>
-    
-  
-    
-    <url>
-      <loc>http://www.tiste.org/xmlrpc-message-umd/unittests_global.html</loc>
-      
-        <lastmod>2014-11-19T00:31:13+01:00</lastmod>
+        <lastmod>2014-11-19T02:01:18+01:00</lastmod>
       
       
         <changefreq>monthly</changefreq>
