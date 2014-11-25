@@ -10,7 +10,7 @@ require.config({
     bootstrap: 'assets/lib/bootstrap/dist/js/bootstrap.min',
     lodash: 'assets/lib/lodash/dist/lodash.min',
     btoa: 'assets/lib/btoa-umd/dist/btoa-umd.min',
-    xmlrpcmessage: 'assets/lib/xmlrpc-message-umd'
+    xmlrpcmessage: 'assets/lib/xmlrpc-message-umd/dist/xmlrpc-message-umd'
   },
   shim: {
     jquery: {

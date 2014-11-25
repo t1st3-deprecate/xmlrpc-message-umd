@@ -169,7 +169,6 @@ gulp.task('init', ['qr'], function (cb) {
   ])
     .pipe(gulp.dest('./gh-pages/assets/css'));
 
-  /* IMG */
   gulp.src([
     './bower_components/t1st3-assets/dist/common/assets/img/**/*.png',
     './bower_components/t1st3-assets/dist/common/assets/img/**/*.gif',
@@ -196,14 +195,12 @@ gulp.task('init', ['qr'], function (cb) {
   ])
     .pipe(gulp.dest('./gh-pages/'));
 
-  /* XML */
   gulp.src([
     './bower_components/t1st3-assets/dist/common/sitemap.xml',
     './bower_components/t1st3-assets/dist/common/opensearch.xml'
   ])
     .pipe(gulp.dest('./gh-pages'));
 
-  /* HTML */
   gulp.src([
     './bower_components/t1st3-assets/dist/umd_docs/_includes/bottom-menu.html',
     './bower_components/t1st3-assets/dist/umd_docs/_includes/head.html',
@@ -218,7 +215,7 @@ gulp.task('init', ['qr'], function (cb) {
   ])
     .pipe(gulp.dest('./gh-pages/_layouts'));
 
-   triggerNotification ('Init', 'Successfully initiated the project.', function () {
+  triggerNotification ('Init', 'Successfully initiated the project.', function () {
     displayCowsay('gulp init - DONE', cb);
   });
 });
@@ -229,15 +226,14 @@ gulp.task('init', ['qr'], function (cb) {
 
 gulp.task('test_copy', ['figlet'], function (cb) {
   del([
-    './test/assets/lib/' + pkg.name + '.js'
+    './test/assets/lib/' + pkg.name + '/dist/' + pkg.name + '.js'
   ], function() {
     gulp.src('./src/*.js')
-      .pipe(gulp.dest('./test/assets/lib'));
+      .pipe(gulp.dest('./test/assets/lib/' + pkg.name + '/dist'));
     cb();
   });
 });
 
-/* CORE */
 gulp.task('test_node', ['figlet'], function (cb) {
   var cmd = './node_modules/mocha/bin/_mocha test/tests.js --reporter spec';
   exec(cmd, function (err, stdout, stderr) {
@@ -350,7 +346,7 @@ gulp.task('serve_lib', ['figlet'], function () {
   gulp.src([
     './src/' + pkg.name + '.js'
   ])
-    .pipe(gulp.dest('./test/assets/lib'));
+    .pipe(gulp.dest('./test/assets/lib/' + pkg.name + '/dist'));
 });
 
 gulp.task('watch', [], function() {
@@ -358,7 +354,7 @@ gulp.task('watch', [], function() {
 });
 
 gulp.task('browser-sync', [], function() {
-  browserSync.init(['test/assets/lib/*.js'], {
+  browserSync({
     server: {
       baseDir: './test',
       index: 'tests_amd.html'
@@ -382,11 +378,10 @@ gulp.task('serve', ['watch', 'browser-sync'], function (cb) {
  */
 
 gulp.task('doc_copy', ['figlet', 'build'], function (cb) {
-  /* JS */
   gulp.src([
     './src/*.js'
   ])
-    .pipe(gulp.dest('./gh-pages/assets/lib'));
+    .pipe(gulp.dest('./gh-pages/assets/lib/' + pkg.name + '/dist'));
 
   gulp.src([
     './test/tests.js'
@@ -507,7 +502,7 @@ gulp.task('dependo_amd', ['dependo_cjs'], function (cb) {
 
 gulp.task('coverage_instrument', ['build'], function (cb) {
   var cmd = 'istanbul instrument ./src/' + pkg.name + '.js';
-  cmd += ' > ./test/assets/lib/' + pkg.name + '.js';
+  cmd += ' > ./test/assets/lib/' + pkg.name + '/dist/' + pkg.name + '.js';
   exec(cmd, function (err, stdout, stderr) {
     console.log(stdout);
     console.log(stderr);
@@ -574,10 +569,10 @@ gulp.task('coverage', [
 
 gulp.task('uninstrument', ['coverage'], function (cb) {
   del([
-    './test/assets/lib/' + pkg.name + '.js'
+    './test/assets/lib/' + pkg.name + '/dist/' + pkg.name + '.js'
   ], function() {
     gulp.src('./src/*.js')
-      .pipe(gulp.dest('./test/assets/lib'));
+      .pipe(gulp.dest('./test/assets/lib/' + pkg.name + '/dist'));
     cb();
   });
 });

@@ -1,5 +1,8 @@
 ## Change Log
 
+### 0.7.11 (2014/11/19 02:33 +00:00)
+- [35fde7f](https://github.com/T1st3/xmlrpc-message-umd/commit/35fde7f8a25c9e57716c4561609301a3f5b70f39) chore: v0.7.11 (@T1st3)
+
 ### 0.7.10 (2014/11/19 01:04 +00:00)
 - [1c06296](https://github.com/T1st3/xmlrpc-message-umd/commit/1c06296abbeba4e0eebc6d3721bb6fd21be6e1ad) chore: v0.7.10 (@T1st3)
 - [e463d47](https://github.com/T1st3/xmlrpc-message-umd/commit/e463d4763308f4db8b6963bcd8a00130a6cee6ce) chore: update gulpfile (@T1st3)
