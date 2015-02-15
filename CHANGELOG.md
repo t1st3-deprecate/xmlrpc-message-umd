@@ -1,5 +1,8 @@
 ## Change Log
 
+### 0.7.12 (2014/11/25 05:33 +00:00)
+- [ebc0aa4](https://github.com/T1st3/xmlrpc-message-umd/commit/ebc0aa4db4402c2269a9f33f04b9ec72406f8222) chore: v0.7.12 (@T1st3)
+
 ### 0.7.11 (2014/11/19 02:33 +00:00)
 - [35fde7f](https://github.com/T1st3/xmlrpc-message-umd/commit/35fde7f8a25c9e57716c4561609301a3f5b70f39) chore: v0.7.11 (@T1st3)
 

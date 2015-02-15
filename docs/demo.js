@@ -3,14 +3,14 @@
 require.config({
   baseUrl: '',
   paths: {
-    jquery: 'assets/lib/jquery/dist/jquery.min',
-    mocha: 'assets/lib/mocha/mocha',
-    chai: 'assets/lib/chai/chai',
-    chaijquery: 'assets/lib/chai-jquery/chai-jquery',
-    bootstrap: 'assets/lib/bootstrap/dist/js/bootstrap.min',
-    lodash: 'assets/lib/lodash/dist/lodash.min',
-    btoa: 'assets/lib/btoa-umd/dist/btoa-umd.min',
-    xmlrpcmessage: 'assets/lib/xmlrpc-message-umd/dist/xmlrpc-message-umd'
+    jquery: 'app/lib/jquery/dist/jquery.min',
+    mocha: 'app/lib/mocha/mocha',
+    chai: 'app/lib/chai/chai',
+    chaijquery: 'app/lib/chai-jquery/chai-jquery',
+    bootstrap: 'app/lib/bootstrap/dist/js/bootstrap.min',
+    lodash: 'app/lib/lodash/dist/lodash.min',
+    btoa: 'app/lib/btoa-umd/dist/btoa-umd.min',
+    xmlrpcmessage: 'app/lib/xmlrpc-message-umd/dist/xmlrpc-message-umd'
   },
   shim: {
     jquery: {
@@ -35,8 +35,8 @@ require.config({
 require([
   'jquery',
   'xmlrpcmessage',
-  'assets/lib/codemirror/lib/codemirror',
-  'assets/lib/codemirror/mode/javascript/javascript',
+  'app/lib/codemirror/lib/codemirror',
+  'app/lib/codemirror/mode/javascript/javascript',
   'bootstrap'
 ], function ($, XMLRPCMessage, CodeMirror) {
   $(document).ready(function () {

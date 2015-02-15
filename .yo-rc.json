@@ -1,0 +1,13 @@
+{
+  "generator-t1st3-umd": {
+    "ProjectName": "xmlrpc-message-umd",
+    "ProjectVersion": "0.8.0",
+    "ProjectDescr": "A XMLRPC message builder written with UMD definition",
+    "ProjectSamples": false,
+    "ProjectBowerJson": false,
+    "ProjectPackageJson": false,
+    "ProjectGlobalDeps": [
+      "btoa-umd"
+    ]
+  }
+}
