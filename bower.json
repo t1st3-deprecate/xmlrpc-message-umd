@@ -104,7 +104,7 @@
       "main": "dist/jshint.js"
     },
     "lodash": {
-      "main": "dist/lodash.min.js"
+      "main": "lodash.min.js"
     },
     "t1st3-assets": {
       "main": [
