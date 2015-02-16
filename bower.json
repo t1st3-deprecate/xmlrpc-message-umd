@@ -116,6 +116,12 @@
         "**/*.ico",
         "**/*.svg"
       ]
+    },
+    "btoa-umd": {
+      "main": [
+        "dist/btoa-umd.min.js",
+        "dist/btoa-umd.js.map"
+      ]
     }
   }
 }

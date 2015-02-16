@@ -7,7 +7,10 @@
     "ProjectBowerJson": false,
     "ProjectPackageJson": false,
     "ProjectGlobalDeps": [
-      "btoa-umd"
+      {
+        "name": "btoa-umd",
+        "path": "dist/btoa-umd.min.js"
+      }
     ]
   }
 }
