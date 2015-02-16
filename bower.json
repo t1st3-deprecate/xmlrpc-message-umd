@@ -123,5 +123,8 @@
         "dist/btoa-umd.js.map"
       ]
     }
-  }
+  },
+  "globalXtras": [
+    "btoa-umd"
+  ]
 }
