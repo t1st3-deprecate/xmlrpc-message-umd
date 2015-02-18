@@ -1,17 +1,15 @@
 {
   "generator-t1st3-umd": {
     "ProjectName": "xmlrpc-message-umd",
-    "ProjectVersion": "0.8.2",
+    "ProjectVersion": "0.8.3",
     "ProjectDescr": "A XMLRPC message builder written with UMD definition",
     "ProjectSamples": false,
     "ProjectBowerJson": false,
     "ProjectPackageJson": false,
-    "ProjectGlobalDeps": [
-      {
-        "name": "btoa-umd",
-        "path": "dist/btoa-umd.min.js"
-      }
-    ],
+    "ProjectGlobalDeps": [{
+      "name": "btoa-umd",
+      "path": "dist/btoa-umd.min.js"
+    }],
     "ProjectMainClass": "XmlrpcMessage",
     "ProjectKeywords": "xmlrpc,builder,xml",
     "ProjectSrc": false,

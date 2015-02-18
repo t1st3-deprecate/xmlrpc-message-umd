@@ -1,5 +1,12 @@
 ## Change Log
 
+### 0.8.2 (2015/02/16 12:55 +00:00)
+- [de263d3](https://github.com/T1st3/xmlrpc-message-umd/commit/de263d3bb1e6c915bb15218476b77031f0a4d71a) chore: 0.8.2 (@T1st3)
+- [23ed934](https://github.com/T1st3/xmlrpc-message-umd/commit/23ed9344acf104199289a949912dfa724a5d44bc) chore: update btoa-umd version (@T1st3)
+- [edeb712](https://github.com/T1st3/xmlrpc-message-umd/commit/edeb7129f3e801ec639765602f4c680b289ea4cd) chore: update deps and workflow (@T1st3)
+- [c065133](https://github.com/T1st3/xmlrpc-message-umd/commit/c0651334bfeba7d2c57d771df11b32f401d6489a) chore: update workflow (@T1st3)
+- [657bfb5](https://github.com/T1st3/xmlrpc-message-umd/commit/657bfb5f35836f780f93c8206ab9e5c77bff1420) fix: update bower override for lodash (@T1st3)
+
 ### 0.8.1 (2015/02/16 01:56 +00:00)
 - [1041c0a](https://github.com/T1st3/xmlrpc-message-umd/commit/1041c0afcf4f449b0fd4cc17e34d020e0e0ab8e1) chore: 0.8.1 (@T1st3)
 - [0c8cb9e](https://github.com/T1st3/xmlrpc-message-umd/commit/0c8cb9e21203088886eff7efadcaddd0c751feb0) chore: update workflow (@T1st3)
