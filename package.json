@@ -1,27 +1,27 @@
 {
   "name": "xmlrpc-message-umd",
-  "version": "0.8.3",
+  "version": "0.8.4",
   "homepage": "http://www.tiste.org/xmlrpc-message-umd",
   "description": "A XMLRPC message builder written with UMD definition",
   "keywords": [
-    "umd",
     "xmlrpc",
     "builder",
-    "xml"
+    "xml",
+    "umd"
   ],
   "license": "MIT",
-  "author": "t1st3 <contact@tiste.org> (http://www.tiste.org/)",
-  "repository": {
-    "type": "git",
-    "url": "git://github.com/T1st3/xmlrpc-message-umd.git"
-  },
-  "bugs": {
-    "url": "https://github.com/T1st3/xmlrpc-message-umd/issues"
-  },
   "main": "dist/xmlrpc-message-umd.js",
   "files": [
     "dist/xmlrpc-message-umd.js"
   ],
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/T1st3/xmlrpc-message-umd.git"
+  },
+  "author": "t1st3 <contact@tiste.org> (http://www.tiste.org/)",
+  "bugs": {
+    "url": "https://github.com/T1st3/xmlrpc-message-umd/issues"
+  },
   "scripts": {
     "test": "gulp test"
   },
@@ -29,7 +29,8 @@
     "node": ">= 0.10.0"
   },
   "dependencies": {
-    "btoa-umd": "~0.7"
+    "btoa-umd": "~0.7",
+    "chalk": "~0.5"
   },
   "devDependencies": {
     "browser-sync": "~2.1",

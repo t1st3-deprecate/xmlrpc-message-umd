@@ -1,5 +1,10 @@
 ## Change Log
 
+### 0.8.3 (2015/02/18 03:23 +00:00)
+- [04fbaff](https://github.com/T1st3/xmlrpc-message-umd/commit/04fbafffa904f6f2e66b7dad103043d3fac836b5) 0.8.3 (@T1st3)
+- [b107a4a](https://github.com/T1st3/xmlrpc-message-umd/commit/b107a4af8afc20731a2da3a28cd2a7abff654248) chore: update workflow (@T1st3)
+- [d07c6e6](https://github.com/T1st3/xmlrpc-message-umd/commit/d07c6e69652a48e5c1167a3c40d92c46b790ec7e) chore: update dev deps in package.json (@T1st3)
+
 ### 0.8.2 (2015/02/16 12:55 +00:00)
 - [de263d3](https://github.com/T1st3/xmlrpc-message-umd/commit/de263d3bb1e6c915bb15218476b77031f0a4d71a) chore: 0.8.2 (@T1st3)
 - [23ed934](https://github.com/T1st3/xmlrpc-message-umd/commit/23ed9344acf104199289a949912dfa724a5d44bc) chore: update btoa-umd version (@T1st3)

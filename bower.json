@@ -1,13 +1,13 @@
 {
   "name": "xmlrpc-message-umd",
-  "version": "0.8.3",
+  "version": "0.8.4",
   "homepage": "http://www.tiste.org/xmlrpc-message-umd",
   "description": "A XMLRPC message builder written with UMD definition",
   "keywords": [
-    "umd",
     "xmlrpc",
     "builder",
-    "xml"
+    "xml",
+    "umd"
   ],
   "license": "MIT",
   "authors": [
@@ -43,21 +43,47 @@
     "README.md"
   ],
   "dependencies": {
-    "requirejs": "~2.1",
-    "btoa-umd": "~0.7"
+    "btoa-umd": "~0.7",
+    "requirejs": "~2.1"
   },
   "devDependencies": {
-    "t1st3-assets": "~1.6"
+    "jquery": "~2.1",
+    "bootstrap": "~3.3",
+    "font-awesome": "~4.3",
+    "modernizr": "~2.8",
+    "codemirror": "~5.0",
+    "respond": "~1.4",
+    "json3": "~3.3",
+    "mocha": "~2.1",
+    "chai": "~2.0",
+    "chai-jquery": "~2.0",
+    "jshint": "~2.6",
+    "lodash": "~3.2"
   },
   "overrides": {
+    "btoa-umd": {
+      "main": "dist/btoa-umd.min.js"
+    },
     "requirejs": {
       "main": "require.js"
+    },
+    "modernizr": {
+      "main": "modernizr.js"
+    },
+    "respond": {
+      "main": "dest/respond.min.js"
+    },
+    "json3": {
+      "main": "lib/json3.min.js"
     },
     "jquery": {
       "main": [
         "dist/jquery.min.js",
         "dist/jquery.min.map"
       ]
+    },
+    "lodash": {
+      "main": "lodash.min.js"
     },
     "bootstrap": {
       "main": [
@@ -71,22 +97,6 @@
         "css/font-awesome.min.css",
         "fonts/*"
       ]
-    },
-    "modernizr": {
-      "main": "modernizr.js"
-    },
-    "codemirror": {
-      "main": [
-        "lib/codemirror.js",
-        "mode/javascript/javascript.js",
-        "lib/codemirror.css"
-      ]
-    },
-    "respond": {
-      "main": "dest/respond.min.js"
-    },
-    "json3": {
-      "main": "lib/json3.min.js"
     },
     "mocha": {
       "main": [
@@ -103,28 +113,12 @@
     "jshint": {
       "main": "dist/jshint.js"
     },
-    "lodash": {
-      "main": "lodash.min.js"
-    },
-    "t1st3-assets": {
+    "codemirror": {
       "main": [
-        "**/*.js",
-        "**/*.css",
-        "**/*.png",
-        "**/*.jpg",
-        "**/*.gif",
-        "**/*.ico",
-        "**/*.svg"
-      ]
-    },
-    "btoa-umd": {
-      "main": [
-        "dist/btoa-umd.min.js",
-        "dist/btoa-umd.js.map"
+        "lib/codemirror.js",
+        "mode/**/*.js",
+        "lib/codemirror.css"
       ]
     }
-  },
-  "globalXtras": [
-    "btoa-umd"
-  ]
+  }
 }

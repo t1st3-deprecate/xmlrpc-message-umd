@@ -234,36 +234,49 @@ gulp.task('build', ['uglify'], function (cb) {
  * SERVE TASKS
  */
 
-gulp.task('serve_lib', ['figlet'], function () {
+gulp.task('serve_lib', [], function (cb) {
   gulp.src([
     './src/' + pkg.name + '.js'
   ])
     .pipe(gulp.dest('./test/app/lib/' + pkg.name + '/dist'));
+  cb();
 });
 
-gulp.task('watch', [], function() {
-  gulp.watch(['./src/**/*.js', 'test/**/*.js'], ['serve_lib']);
-});
-
-gulp.task('browser-sync', [], function() {
+gulp.task('browser-sync', [], function () {
   browserSync({
     server: {
       baseDir: './test',
       index: 'tests_amd.html'
     },
-    port: 3000
+    watchOptions: {
+      debounceDelay: 2000
+    },
+    reloadDelay: 1000,
+    port: 3000,
+    host: ip.address(),
+    ui: {
+      port: 3001,
+      weinre: {
+        port: 9090
+      }
+    }
   });
 });
 
-gulp.task('serve', ['watch', 'browser-sync'], function (cb) {
+gulp.task('serve', ['figlet', 'serve_lib', 'browser-sync'], function (cb) {
   triggerNotification ('App server', 'Successfully served application', function () {
     console.log('\n\n');
     console.log(ip.address() + ':3000');
     console.log('\n');
     qrcode.generate(ip.address() + ':3000');
+    gulp.watch(['./src/**/*.js', 'test/tests.js'], ['serve_lib', browserSync.reload]);
     displayCowsay('Server started on ' + ip.address() + ':3000 - DONE', cb);
   });
 });
+
+/*
+ * CI TASKS
+ */
 
 gulp.task('coverage_instrument', ['build'], function (cb) {
   var cmd = 'istanbul instrument ./src/' + pkg.name + '.js';

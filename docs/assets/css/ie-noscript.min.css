@@ -1,1 +1,8 @@
-body>* ul li:before{content:">>";font-family:Monaco,"Bitstream Vera Sans Mono","Lucida Console",Terminal,monospace;font-size:13px;color:#b5e853;margin-left:-37px;margin-right:21px;line-height:16px}body>* h2{margin-top:30px;padding-bottom:15px}body>* .readme_wrap h2{padding-top:30px;border-top:1px dashed #b5e853}body>* h2,body>* h3{cursor:default}body>* .anchor-link{position:absolute;left:-20px;opacity:0;-webkit-transition:opacity .2s ease-in-out .1s;transition:opacity .2s ease-in-out .1s;display:inline}body>* h2:hover .anchor-link,body>* h3:hover .anchor-link{opacity:1;cursor:pointer}body>* .fa{color:#b5e853}body>* .anchor-link .fa{color:#428bca}@media (max-width:768px){body>* .anchor-link{display:none}}
+/*!
+ * t1st3-assets
+ *
+ * @link https://github.com/T1st3/t1st3-assets
+ * @author T1st3
+ * @version 1.7.0
+ * 
+ */body>* ul li:before{content:">>";font-family:Monaco,"Bitstream Vera Sans Mono","Lucida Console",Terminal,monospace;font-size:13px;color:#b5e853;margin-left:-37px;margin-right:21px;line-height:16px}body>* h2{margin-top:30px;padding-bottom:15px}body>* .readme_wrap h2{padding-top:30px;border-top:1px dashed #b5e853}body>* h2,body>* h3{cursor:default}body>* .anchor-link{position:absolute;left:-20px;opacity:0;-webkit-transition:opacity .2s ease-in-out .1s;transition:opacity .2s ease-in-out .1s;display:inline}body>* h2:hover .anchor-link,body>* h3:hover .anchor-link{opacity:1;cursor:pointer}body>* .fa{color:#b5e853}body>* .anchor-link .fa{color:#428bca}@media (max-width:768px){body>* .anchor-link{display:none}}
