@@ -1,5 +1,8 @@
 ## Change Log
 
+### 0.8.4 (2015/03/11 03:46 +00:00)
+- [5ffd528](https://github.com/T1st3/xmlrpc-message-umd/commit/5ffd5288c75ca180ea92d161558306dca31c7837) chore: v0.8.4, update workflow (@T1st3)
+
 ### 0.8.3 (2015/02/18 03:23 +00:00)
 - [04fbaff](https://github.com/T1st3/xmlrpc-message-umd/commit/04fbafffa904f6f2e66b7dad103043d3fac836b5) 0.8.3 (@T1st3)
 - [b107a4a](https://github.com/T1st3/xmlrpc-message-umd/commit/b107a4af8afc20731a2da3a28cd2a7abff654248) chore: update workflow (@T1st3)

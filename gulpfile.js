@@ -1,3 +1,19 @@
+/*
+ * Main Gulpfile for xmlrpc-message-umd
+ *
+ * Tasks available in this file:
+ * - gulp info
+ * - gulp init
+ * - gulp test
+ * - gulp build
+ * - gulp serve
+ * - gulp ci
+ *
+ * More info about those tasks:
+ * https://www.tiste.org/xmlrpc-message-umd/gulp_tasks.html
+ *
+ */
+
 'use strict';
 
 var pkg = require('./package.json'),
@@ -131,7 +147,7 @@ gulp.task('test_copy', ['figlet'], function (cb) {
 });
 
 gulp.task('test_node', ['figlet'], function (cb) {
-  var cmd = './node_modules/mocha/bin/_mocha test/tests.js --reporter spec';
+  var cmd = './node_modules/mocha/bin/mocha test/tests.js --reporter spec';
   exec(cmd, function (err, stdout, stderr) {
     console.log('\n\n');
     console.log(chalk.green('Node.js tests'));
@@ -322,7 +338,7 @@ gulp.task('coverage_browser_amd', ['coverage_browser_global'], function (cb) {
 });
 
 gulp.task('coverage_node', ['coverage_browser_amd'], function (cb) {
-  var cmd = 'istanbul cover ./node_modules/mocha/bin/_mocha test/tests.js';
+  var cmd = 'istanbul cover ./node_modules/mocha/bin/mocha test/tests.js';
   cmd += ' --dir ./tmp -- -R json-cov';
   exec(cmd, function (err, stdout, stderr) {
     stdout = null;

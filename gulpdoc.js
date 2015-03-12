@@ -1,3 +1,23 @@
+/*
+ * Alternative Gulpfile for xmlrpc-message-umd
+ * Dedicated tasks to documentation creation and version bump
+ *
+ * Tasks available in this file:
+ * - Bump (patch, minor or major)
+ *   - gulp --gulpfile="gulpdoc.js" patch
+ *   - gulp --gulpfile="gulpdoc.js" minor
+ *   - gulp --gulpfile="gulpdoc.js" major
+ * - Sync bump (do it after any patch|minor|major above)
+ *   - gulp --gulpfile="gulpdoc.js" bumpdate
+ * - Create documentation
+ *   - gulp --gulpfile="gulpdoc.js" doc
+ *
+ * More info about those tasks:
+ * https://www.tiste.org/xmlrpc-message-umd/gulp_tasks.html
+ * https://www.tiste.org/xmlrpc-message-umd/build_docs.html
+ *
+ */
+
 'use strict';
 
 var pkg = require('./package.json'),
