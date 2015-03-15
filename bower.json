@@ -58,7 +58,7 @@
     "chai": "~2.0",
     "chai-jquery": "~2.0",
     "jshint": "~2.6",
-    "lodash": "~3.2"
+    "lodash": "~3.5"
   },
   "overrides": {
     "btoa-umd": {

@@ -30,7 +30,7 @@
   },
   "dependencies": {
     "btoa-umd": "~0.7",
-    "chalk": "~0.5"
+    "chalk": "~1.0"
   },
   "devDependencies": {
     "browser-sync": "~2.2",
@@ -52,7 +52,7 @@
     "ip": "~0.3",
     "istanbul": "~0.3",
     "jshint-stylish": "~1.0",
-    "main-bower-files": "~2.5",
+    "main-bower-files": "~2.6",
     "mocha": "~2.2",
     "mocha-phantomjs": "~3.5",
     "qrcode-terminal": "~0.9",
