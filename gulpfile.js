@@ -28,9 +28,6 @@ del = require('del'),
 somebody = require('somebody'),
 pkgAuthor = somebody.parse(pkg.author),
 
-figletShown = 0,
-figlet = require('figlet'),
-cowsay = require('cowsay'),
 qrcode = require('qrcode-terminal'),
 
 gulp = require('gulp'),
@@ -42,7 +39,6 @@ jscs = require('gulp-jscs'),
 
 bower = require('gulp-bower'),
 mainBowerFiles = require('main-bower-files'),
-notify = require('gulp-notify'),
 
 browserSync = require('browser-sync');
 
@@ -56,49 +52,7 @@ fs.mkdirParent = function (dirPath, mode, callback) {
   });
 };
 
-function displayCowsay (txt, cb) {
-  console.log('\n\n');
-  console.log(chalk.magenta(cowsay.say({
-    text: pkg.name + ' - ' + txt,
-    e: 'oO',
-    T: 'U '
-  })));
-  console.log('\n\n');
-  cb();
-}
-
-function triggerNotification (title, txt, cb) {
-  gulp.src('./')
-    .pipe(notify({
-      title: pkg.name + ' - ' + title,
-      message: txt
-    }));
-  cb();
-}
-
-gulp.task('figlet', [], function (cb) {
-  if (figletShown === 0) {
-    figlet.text(pkg.name, {
-      font: 'Small',
-      horizontalLayout: 'default',
-      verticalLayout: 'default'
-    }, function(err, data) {
-      if (err) {
-        console.log('Something went wrong with FIGlet');
-        console.dir(err);
-        return;
-      }
-      console.log('\n\n');
-      console.log(chalk.green(data));
-      console.log(chalk.blue(pkg.version));
-      console.log('\n\n');
-      figletShown = 1;
-      cb();
-    });
-  }
-});
-
-gulp.task('bower', ['figlet'], function () {
+gulp.task('bower', function () {
   return bower()
     .pipe(gulp.dest('./bower_components'));
 });
@@ -107,15 +61,15 @@ gulp.task('bower', ['figlet'], function () {
  * INIT TASKS
  */
 
-gulp.task('init_clean', ['bower'], function (cb) {
-  del([
+gulp.task('init-clean', function () {
+  return del([
     './tmp',
     './test/app/lib'
-  ], cb);
+  ]);
 });
 
-gulp.task('init', ['init_clean'], function (cb) {
-  gulp.src(mainBowerFiles({
+gulp.task('init-files', ['bower', 'init-clean'], function () {
+  return gulp.src(mainBowerFiles({
     paths: {
         bowerDirectory: './bower_components',
         bowerrc: './.bowerrc',
@@ -126,17 +80,17 @@ gulp.task('init', ['init_clean'], function (cb) {
     base: './bower_components'
   })
     .pipe(gulp.dest('./test/app/lib'));
+});
 
-  triggerNotification ('Init', 'Successfully initiated the project.', function () {
-    displayCowsay('gulp init - DONE', cb);
-  });
+gulp.task('init', ['init-files'], function (cb) {
+  cb();
 });
 
 /*
  * TEST TASKS
  */
 
-gulp.task('test_copy', ['figlet'], function (cb) {
+gulp.task('test_copy', [], function (cb) {
   del([
     './test/app/lib/' + pkg.name + '/dist/' + pkg.name + '.js'
   ], function() {
@@ -146,7 +100,7 @@ gulp.task('test_copy', ['figlet'], function (cb) {
   });
 });
 
-gulp.task('test_node', ['figlet'], function (cb) {
+gulp.task('test_node', [], function (cb) {
   var cmd = './node_modules/mocha/bin/mocha test/tests.js --reporter spec';
   exec(cmd, function (err, stdout, stderr) {
     console.log('\n\n');
@@ -186,16 +140,14 @@ gulp.task('test_browser_global', ['test_copy'], function (cb) {
 gulp.task('test', [
   'test_node', 'test_browser_amd', 'test_browser_global'
 ], function (cb) {
-  triggerNotification ('Test Runner', 'All tests OK', function () {
-    displayCowsay('gulp test - DONE', cb);
-  });
+  cb();
 });
 
 /*
  * BUILD TASKS
  */
 
-gulp.task('build_clean', ['figlet', 'test'], function (cb) {
+gulp.task('build_clean', ['test'], function (cb) {
   del(['./dist/*'], cb);
 });
 
@@ -241,9 +193,7 @@ gulp.task('uglify', ['build_copy'], function (cb) {
 });
 
 gulp.task('build', ['uglify'], function (cb) {
-  triggerNotification ('Builder', 'Successfully built application', function () {
-    displayCowsay('gulp build - DONE', cb);
-  });
+  cb();
 });
 
 /*
@@ -279,15 +229,8 @@ gulp.task('browser-sync', [], function () {
   });
 });
 
-gulp.task('serve', ['figlet', 'serve_lib', 'browser-sync'], function (cb) {
-  triggerNotification ('App server', 'Successfully served application', function () {
-    console.log('\n\n');
-    console.log(ip.address() + ':3000');
-    console.log('\n');
-    qrcode.generate(ip.address() + ':3000');
-    gulp.watch(['./src/**/*.js', 'test/tests.js'], ['serve_lib', browserSync.reload]);
-    displayCowsay('Server started on ' + ip.address() + ':3000 - DONE', cb);
-  });
+gulp.task('serve', ['serve_lib', 'browser-sync'], function (cb) {
+  gulp.watch(['./src/**/*.js', 'test/tests.js'], ['serve_lib', browserSync.reload]);
 });
 
 /*
@@ -393,7 +336,7 @@ gulp.task('ci', ['uninstrument'], function (cb) {
  * INFO TASK
  */
 
-gulp.task('info', ['figlet'], function (cb) {
+gulp.task('info', [], function (cb) {
   var txt;
   console.log('\n\n');
   console.log('[' + chalk.green('NAME') + '] ' + pkg.name);
@@ -457,9 +400,7 @@ gulp.task('info', ['figlet'], function (cb) {
   console.log('\n\n');
   qrcode.generate(pkg.homepage);
   console.log('\n\n');
-  triggerNotification ('Info', 'Rendered the info...', function () {
-    displayCowsay('gulp info - DONE', cb);
-  });
+  cb();
 });
 
 gulp.task('default', ['info', 'build']);
