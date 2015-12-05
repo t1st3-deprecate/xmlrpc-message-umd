@@ -87,13 +87,16 @@
   * @param {*} data
   * @since 0.1.0
   */
-  XMLRPCMessage.prototype.addParameter = function (data) {
+  XMLRPCMessage.prototype.addParameter = function (data, type) {
     // Check data
     if (arguments.length === 0) {
       // keep chainability
       return this;
     }
-    this.params[this.params.length] = data;
+    this.params[this.params.length] = {
+      data: data,
+      type: type
+    };
     // keep chainability
     return this;
   };
@@ -107,16 +110,22 @@
   XMLRPCMessage.prototype.xml = function () {
     var xml = '',
     i = 0,
+    obj = {},
     data = null;
     xml += '<?xml version=\'1.0\'?>\n';
     xml += '<methodCall>\n';
     xml += '<methodName>' + this.method + '</methodName>\n';
     xml += '<params>\n';
     for (i = 0; i < this.params.length; i++) {
-      data = this.params[i];
+      obj = this.params[i];
+      data = obj.data;
       xml += '<param>\n';
       xml += '<value>';
-      xml += XMLRPCMessage.getParamXML(data, XMLRPCMessage.dataTypeOf(data));
+      if (obj.type) {
+        xml += XMLRPCMessage.getParamXML(data, XMLRPCMessage.dataTypeOf(data, obj.type));
+      } else {
+        xml += XMLRPCMessage.getParamXML(data, XMLRPCMessage.dataTypeOf(data));
+      }
       xml += '</value>\n';
       xml += '</param>\n';
     }

@@ -141,7 +141,7 @@
       it('Should return "xyz"', function (done) {
         var msg = new XMLRPCMessage();
         msg.addParameter('xyz');
-        msg.params[0].should.equal('xyz');
+        msg.params[0].data.should.equal('xyz');
         done();
       });
     });
@@ -150,7 +150,7 @@
         var msg = new XMLRPCMessage();
         msg.addParameter(20);
         msg.addParameter(22);
-        msg.params[1].should.equal(22);
+        msg.params[1].data.should.equal(22);
         done();
       });
     });
@@ -158,7 +158,7 @@
       it('Should return 39.5', function (done) {
         var msg = new XMLRPCMessage();
         msg.addParameter(39.5);
-        msg.params[0].should.equal(39.5);
+        msg.params[0].data.should.equal(39.5);
         done();
       });
     });
@@ -166,7 +166,7 @@
       it('Should return an array with length = 0', function (done) {
         var msg = new XMLRPCMessage();
         msg.addParameter([]);
-        msg.params[0].should.have.length(0);
+        msg.params[0].data.should.have.length(0);
         done();
       });
     });
@@ -174,7 +174,7 @@
       it('Should return an array with length = 2', function (done) {
         var msg = new XMLRPCMessage();
         msg.addParameter(['a', 'b']);
-        msg.params[0].should.have.length(2);
+        msg.params[0].data.should.have.length(2);
         done();
       });
     });
@@ -182,7 +182,7 @@
       it('Should return an object', function (done) {
       var msg = new XMLRPCMessage();
         msg.addParameter({});
-        msg.params[0].should.have.be.a('object');
+        msg.params[0].data.should.have.be.a('object');
         done();
       });
     });
@@ -190,7 +190,7 @@
       it('Should return an object with "a" property of length 1', function (done) {
         var msg = new XMLRPCMessage();
         msg.addParameter({a: 'b', c: 'd'});
-        msg.params[0].should.have.property('a').with.length(1);
+        msg.params[0].data.should.have.property('a').with.length(1);
         done();
       });
     });
@@ -199,7 +199,7 @@
         var y2k = new Date(2000, 1, 1, 0, 0, 0, 0),
         msg = new XMLRPCMessage();
         msg.addParameter(y2k);
-        msg.params[0].should.equal(y2k);
+        msg.params[0].data.should.equal(y2k);
         done();
       });
     });
@@ -208,7 +208,7 @@
         var bin = XMLRPCMessage.btoa('Hello world'),
         msg = new XMLRPCMessage();
         msg.addParameter(bin);
-        msg.params[0].a.should.equal('SGVsbG8gd29ybGQ=');
+        msg.params[0].data.a.should.equal('SGVsbG8gd29ybGQ=');
         done();
       });
     });
