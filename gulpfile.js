@@ -90,8 +90,8 @@ gulp.task('init', ['init-files'], function (cb) {
  * TEST TASKS
  */
 
-gulp.task('test_copy', [], function (cb) {
-  del([
+gulp.task('test-copy', function () {
+  return del([
     './test/app/lib/' + pkg.name + '/dist/' + pkg.name + '.js'
   ], function() {
     gulp.src('./src/*.js')
@@ -100,7 +100,7 @@ gulp.task('test_copy', [], function (cb) {
   });
 });
 
-gulp.task('test_node', [], function (cb) {
+gulp.task('test-node', function (cb) {
   var cmd = './node_modules/mocha/bin/mocha test/tests.js --reporter spec';
   exec(cmd, function (err, stdout, stderr) {
     console.log('\n\n');
@@ -111,7 +111,7 @@ gulp.task('test_node', [], function (cb) {
   });
 });
 
-gulp.task('test_browser_amd', ['test_copy'], function (cb) {
+gulp.task('test-browser-amd', ['test-copy'], function (cb) {
   var cmd = './node_modules/mocha-phantomjs/bin/mocha-phantomjs';
   cmd += ' ./test/tests_amd.html --reporter spec';
   exec(cmd, function (err, stdout, stderr) {
@@ -124,7 +124,7 @@ gulp.task('test_browser_amd', ['test_copy'], function (cb) {
   });
 });
 
-gulp.task('test_browser_global', ['test_copy'], function (cb) {
+gulp.task('test-browser-global', ['test-copy'], function (cb) {
   var cmd = './node_modules/mocha-phantomjs/bin/mocha-phantomjs';
   cmd += ' test/tests_global.html --reporter spec';
   exec(cmd, function (err, stdout, stderr) {
@@ -138,7 +138,7 @@ gulp.task('test_browser_global', ['test_copy'], function (cb) {
 });
 
 gulp.task('test', [
-  'test_node', 'test_browser_amd', 'test_browser_global'
+  'test-node'
 ], function (cb) {
   cb();
 });
