@@ -51,8 +51,7 @@
     "mocha": "^2.3.4",
     "chai": "^3.4.2",
     "chai-jquery": "^2.0.1",
-    "lodash": "^3.10.1",
-    "respond": "^1.4.2"
+    "lodash": "^3.10.1"
   },
   "overrides": {
     "btoa-umd": {
@@ -60,9 +59,6 @@
     },
     "requirejs": {
       "main": "require.js"
-    },
-    "respond": {
-      "main": "dest/respond.min.js"
     },
     "jquery": {
       "main": [
@@ -72,19 +68,6 @@
     },
     "lodash": {
       "main": "lodash.min.js"
-    },
-    "bootstrap": {
-      "main": [
-        "dist/js/bootstrap.min.js",
-        "dist/css/bootstrap.min.css",
-        "dist/fonts/*"
-      ]
-    },
-    "font-awesome": {
-      "main": [
-        "css/font-awesome.min.css",
-        "fonts/*"
-      ]
     },
     "mocha": {
       "main": [
@@ -97,13 +80,6 @@
     },
     "chai-jquery": {
       "main": "chai-jquery.js"
-    },
-    "codemirror": {
-      "main": [
-        "lib/codemirror.js",
-        "mode/**/*.js",
-        "lib/codemirror.css"
-      ]
     }
   }
 }
