@@ -90,14 +90,15 @@ gulp.task('init', ['init-files'], function (cb) {
  * TEST TASKS
  */
 
-gulp.task('test-copy', function () {
+gulp.task('test-clean', function () {
   return del([
     './test/app/lib/' + pkg.name + '/dist/' + pkg.name + '.js'
-  ], function() {
-    gulp.src('./src/*.js')
-      .pipe(gulp.dest('./test/app/lib/' + pkg.name + '/dist'));
-    cb();
-  });
+  ]);
+});
+
+gulp.task('test-copy', ['test-clean'], function () {
+  return gulp.src('./src/' + pkg.name + '.js')
+    .pipe(gulp.dest('./test/app/lib/' + pkg.name + '/dist'));
 });
 
 gulp.task('test-node', function (cb) {
@@ -138,7 +139,7 @@ gulp.task('test-browser-global', ['test-copy'], function (cb) {
 });
 
 gulp.task('test', [
-  'test-node'
+  'test-node', 'test-browser-amd', 'test-browser-global'
 ], function (cb) {
   cb();
 });
