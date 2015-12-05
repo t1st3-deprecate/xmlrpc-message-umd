@@ -43,22 +43,19 @@
     "README.md"
   ],
   "dependencies": {
-    "btoa-umd": "~0.7",
-    "requirejs": "~2.1"
+    "btoa-umd": "~0.7"
   },
   "devDependencies": {
-    "jquery": "~2.1",
-    "bootstrap": "~3.3",
-    "font-awesome": "~4.3",
-    "modernizr": "~2.8",
-    "codemirror": "~5.0",
-    "respond": "~1.4",
-    "json3": "~3.3",
-    "mocha": "~2.2",
-    "chai": "~2.0",
-    "chai-jquery": "~2.0",
-    "jshint": "~2.6",
-    "lodash": "~3.5"
+    "requirejs": "^2.1.22",
+    "jquery": "^2.1.4",
+    "bootstrap": "^3.3.6",
+    "font-awesome": "^4.5.0",
+    "codemirror": "^5.9.0",
+    "mocha": "^2.3.4",
+    "chai": "^3.4.2",
+    "chai-jquery": "^2.0.1",
+    "lodash": "^3.10.1",
+    "respond": "^1.4.2"
   },
   "overrides": {
     "btoa-umd": {
@@ -67,14 +64,8 @@
     "requirejs": {
       "main": "require.js"
     },
-    "modernizr": {
-      "main": "modernizr.js"
-    },
     "respond": {
       "main": "dest/respond.min.js"
-    },
-    "json3": {
-      "main": "lib/json3.min.js"
     },
     "jquery": {
       "main": [
@@ -109,9 +100,6 @@
     },
     "chai-jquery": {
       "main": "chai-jquery.js"
-    },
-    "jshint": {
-      "main": "dist/jshint.js"
     },
     "codemirror": {
       "main": [
