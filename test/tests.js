@@ -24,7 +24,6 @@
         mocha: 'app/lib/mocha/mocha',
         chai: 'app/lib/chai/chai',
         chaijquery: 'app/lib/chai-jquery/chai-jquery',
-        bootstrap: 'app/lib/bootstrap/dist/js/bootstrap.min',
         lodash: 'app/lib/lodash/dist/lodash.min',
         btoa: 'app/lib/btoa-umd/dist/btoa-umd.min',
         xmlrpcmessage: 'app/lib/xmlrpc-message-umd/dist/xmlrpc-message-umd'
@@ -37,7 +36,6 @@
           exports: '_'
         },
         chaijquery: ['jquery', 'chai'],
-        bootstrap: ['jquery'],
         btoa: {
           exports: 'Btoa'
         },
@@ -52,8 +50,7 @@
       'chai',
       'xmlrpcmessage',
       'jquery',
-      'mocha',
-      'bootstrap'
+      'mocha'
     ], factory);
   // Test for Node.js
   } else if (typeof exports === 'object') {

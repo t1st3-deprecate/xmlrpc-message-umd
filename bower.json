@@ -48,9 +48,6 @@
   "devDependencies": {
     "requirejs": "^2.1.22",
     "jquery": "^2.1.4",
-    "bootstrap": "^3.3.6",
-    "font-awesome": "^4.5.0",
-    "codemirror": "^5.9.0",
     "mocha": "^2.3.4",
     "chai": "^3.4.2",
     "chai-jquery": "^2.0.1",
