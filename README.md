@@ -18,7 +18,6 @@ About
 This module only provides a message builder; it does not make any request by itself.
 Basically, it is just a small set of utils that create a correct “ready-to-be-sent” XMLRPC string.
 
-You'll find all about this project on its **[project pages](http://www.tiste.org/xmlrpc-message-umd/)**
 
 
 Installation for production
