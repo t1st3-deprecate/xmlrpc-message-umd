@@ -71,23 +71,6 @@ Then, get the dependencies of the project from both Bower and NPM:
 
 
 
-Documentation
----
-
-
-You can find fully functional examples, tests and a documentation in the [JSDoc](http://usejsdoc.org/) format in the `docs` folder.
-
-You can also browse these documents and tests online:
-
-- [Demo](http://www.tiste.org/xmlrpc-message-umd/demo.html)
-- [this README and more info](http://www.tiste.org/xmlrpc-message-umd)
-- [JSDoc](http://www.tiste.org/xmlrpc-message-umd/jsdoc.html)
-- [Credits](http://www.tiste.org/xmlrpc-message-umd/credits.html)
-- [Tests](http://www.tiste.org/xmlrpc-message-umd/tests.html)
-- [Coverage](http://www.tiste.org/xmlrpc-message-umd/coverage.html)
-- [Dependencies](http://www.tiste.org/xmlrpc-message-umd/dependencies.html)
-
-
 
 
 Build from source
