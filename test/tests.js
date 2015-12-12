@@ -716,6 +716,7 @@
   });
 
   if (browser === true) {
+    /* global window */
     if (window.mochaPhantomJS) {
       window.mochaPhantomJS.run();
     } else {
