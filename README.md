@@ -64,6 +64,7 @@ Then, get the dependencies of the project from both Bower and NPM:
     bower install
 
 
+<<<<<<< HEAD
 Usage
 ---
 
@@ -89,6 +90,8 @@ To create an XML-RPC message, just add parameters to a new instance of the lib, 
 
 `msg.xml()` would then return the complete XML string.
 
+=======
+>>>>>>> 96589e907b889e1e4f4641f2c6e18ad3ea24d103
 
 
 
