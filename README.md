@@ -16,9 +16,8 @@ About
 `xmlrpc-message-umd` is a Javascript XMLRPC message builder. 
 
 This module only provides a message builder; it does not make any request by itself.
-Basically, it is just a small set of utils that create a correct “ready-to-be-sent” XMLRPC string.
+Basically, it is just a small set of utils that create a correct "ready-to-be-sent" XMLRPC string.
 
-You'll find all about this project on its **[project pages](http://www.tiste.org/xmlrpc-message-umd/)**
 
 
 Installation for production
@@ -27,9 +26,6 @@ Installation for production
 **with Node.js**
 
 `xmlrpc-message-umd` is available on [NPM](https://www.npmjs.com/package/xmlrpc-message-umd)
-[![NPM](http://www.tiste.org/xmlrpc-message-umd/assets/img/vendor/npm.png)](https://www.npmjs.com/package/xmlrpc-message-umd).
-
-[![NPM version](https://img.shields.io/npm/v/xmlrpc-message-umd.svg)](https://www.npmjs.com/package/xmlrpc-message-umd)
 
 You can install it with the following command:
 
@@ -40,9 +36,6 @@ You can install it with the following command:
 
 
 `xmlrpc-message-umd` is available on [Bower](http://bower.io/search/?q=xmlrpc-message-umd)
-[![Bower](http://www.tiste.org/xmlrpc-message-umd/assets/img/vendor/bower.png)](http://bower.io/search/?q=xmlrpc-message-umd).
-
-[![Bower version](https://img.shields.io/bower/v/xmlrpc-message-umd.svg)](http://bower.io/search/?q=xmlrpc-message-umd)
 
 To install it from Bower, just run 
 
@@ -70,22 +63,30 @@ Then, get the dependencies of the project from both Bower and NPM:
     bower install
 
 
-
-Documentation
+Usage
 ---
 
+To create an XML-RPC message, just add parameters to a new instance of the lib, like the following:
 
-You can find fully functional examples, tests and a documentation in the [JSDoc](http://usejsdoc.org/) format in the `docs` folder.
 
-You can also browse these documents and tests online:
+    var a = ["chicken","duck","goose"];
+    var obj = new Object();
+    obj.x = 20;
+    obj.y = "cow";
+    obj.z = 3.14;
+    var date = new Date();
+    var msg = new XMLRPCMessage();
+    msg.setMethod("system.myMethod");
+    msg.addParameter("mississippi");
+    msg.addParameter(7);
+    msg.addParameter(false);
+    msg.addParameter(a);
+    msg.addParameter(obj);
+    msg.addParameter(date);
+    msg.xml();
 
-- [Demo](http://www.tiste.org/xmlrpc-message-umd/demo.html)
-- [this README and more info](http://www.tiste.org/xmlrpc-message-umd)
-- [JSDoc](http://www.tiste.org/xmlrpc-message-umd/jsdoc.html)
-- [Credits](http://www.tiste.org/xmlrpc-message-umd/credits.html)
-- [Tests](http://www.tiste.org/xmlrpc-message-umd/tests.html)
-- [Coverage](http://www.tiste.org/xmlrpc-message-umd/coverage.html)
-- [Dependencies](http://www.tiste.org/xmlrpc-message-umd/dependencies.html)
+
+`msg.xml()` would then return the complete XML string.
 
 
 
@@ -122,10 +123,6 @@ To build, just run:
 
 **Tests**
 
-Note that you need a few more dependencies to test the project.
-
-See [the tests page for more info](http://www.tiste.org/xmlrpc-message-umd/tests.html)
-
 To test, you can use either the `npm test` command or the `gulp test` command:
 
     npm test
@@ -148,37 +145,11 @@ If changes happen in the source, the task automatically reloads the page in the 
 
 
 
-
-Build the docs and Github pages
----
-
-Please note that this task has a few more dependencies:
-
-* [Istanbul](http://gotwarlost.github.io/istanbul/)
-* [Ruby](https://www.ruby-lang.org/) and [RubyGems](https://rubygems.org/)
-* [Jekyll](http://jekyllrb.com/)
-* [Kramdown](http://kramdown.gettalong.org/)
-
-
-Check [the build-docs page](http://www.tiste.org/xmlrpc-message-umd/build_docs.html) for more info.
-
-
-
-
-Credits
----
-
-
-See [the credits page](http://www.tiste.org/xmlrpc-message-umd/credits.html) to see more.
-
-
 License
 ---
 
 
 This piece of code is triple-licensed: [MIT / BSD / GPL licenses](https://github.com/T1st3/xmlrpc-message-umd/blob/master/LICENSE)
-
-You can also view it in a re-formatted fashion: [MIT / BSD / GPL licenses](http://www.tiste.org/xmlrpc-message-umd/license.html).
 
 
 
@@ -186,5 +157,3 @@ Initial author
 ---
 
 [T1st3](https://github.com/T1st3/) 
-[![T1st3](http://www.tiste.org/xmlrpc-message-umd/assets/img/gravatar-16x16.png)](https://github.com/T1st3/)
-
