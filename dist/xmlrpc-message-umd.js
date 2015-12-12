@@ -3,7 +3,7 @@
 *
 * @link https://github.com/T1st3/xmlrpc-message-umd
 * @author T1st3
-* @version 0.8.6
+* @version 1.0.0
 * @license https://github.com/T1st3/xmlrpc-message-umd/blob/master/LICENSE
 *
 *
@@ -30,19 +30,17 @@
   // Test for AMD modules
   if (typeof define === 'function' && define.amd) {
     // AMD
-    define([
-      'btoa'
-    ], factory);
+    define([], factory);
   // Test for Node.js
   } else if (typeof exports === 'object') {
     // Node
-    module.exports = factory(require('btoa-umd'));
+    module.exports = factory();
   // Browser globals
   } else {
     // Browser globals
-    root.XMLRPCMessage = factory(root.Btoa);
+    root.XMLRPCMessage = factory();
   }
-}(this, function (Btoa) {
+}(this, function () {
   /**
   * An XMLRPC message builder, AMD style
   * @module XMLRPCMessage
@@ -87,13 +85,16 @@
   * @param {*} data
   * @since 0.1.0
   */
-  XMLRPCMessage.prototype.addParameter = function (data) {
+  XMLRPCMessage.prototype.addParameter = function (data, type) {
     // Check data
     if (arguments.length === 0) {
       // keep chainability
       return this;
     }
-    this.params[this.params.length] = data;
+    this.params[this.params.length] = {
+      data: data,
+      type: type
+    };
     // keep chainability
     return this;
   };
@@ -107,16 +108,22 @@
   XMLRPCMessage.prototype.xml = function () {
     var xml = '',
     i = 0,
+    obj = {},
     data = null;
     xml += '<?xml version=\'1.0\'?>\n';
     xml += '<methodCall>\n';
     xml += '<methodName>' + this.method + '</methodName>\n';
     xml += '<params>\n';
     for (i = 0; i < this.params.length; i++) {
-      data = this.params[i];
+      obj = this.params[i];
+      data = obj.data;
       xml += '<param>\n';
       xml += '<value>';
-      xml += XMLRPCMessage.getParamXML(data, XMLRPCMessage.dataTypeOf(data));
+      if (obj.type) {
+        xml += XMLRPCMessage.getParamXML(data, XMLRPCMessage.dataTypeOf(data, obj.type));
+      } else {
+        xml += XMLRPCMessage.getParamXML(data, XMLRPCMessage.dataTypeOf(data));
+      }
       xml += '</value>\n';
       xml += '</param>\n';
     }
@@ -155,17 +162,13 @@
         break;
       case 'object':
         con = o.constructor;
-        if (con === Btoa) {
-          type = 'base64';
+        if (con === Date) {
+        type = 'date';
         } else {
-          if (con === Date) {
-          type = 'date';
+          if (con === Array) {
+            type = 'array';
           } else {
-            if (con === Array) {
-              type = 'array';
-            } else {
-              type = 'struct';
-            }
+            type = 'struct';
           }
         }
         break;
@@ -237,7 +240,7 @@
       return '';
     }
     var xml = '<base64>';
-    xml += data.a;
+    xml += data;
     xml += '</base64>';
     return xml;
   };
@@ -258,7 +261,11 @@
     i = 0;
     for (i = 0; i < data.length; i++) {
       xml += '<value>';
-      xml += XMLRPCMessage.getParamXML(data[i], XMLRPCMessage.dataTypeOf(data[i]));
+      if (typeof data[i] === 'object' && data[i].type && data[i].val) {
+        xml += XMLRPCMessage.getParamXML(data[i].val, data[i].type);
+      } else {
+        xml += XMLRPCMessage.getParamXML(data[i], XMLRPCMessage.dataTypeOf(data[i]));
+      }
       xml += '</value>\n';
     }
     xml += '</data></array>\n';
@@ -282,8 +289,12 @@
     for (i in data) {
       xml += '<member>\n';
       xml += '<name>' + i + '</name>\n';
-      xml += '<value>' ;
-      xml += XMLRPCMessage.getParamXML(data[i], XMLRPCMessage.dataTypeOf(data[i]));
+      xml += '<value>';
+      if (typeof data[i] === 'object' && data[i].type && data[i].val) {
+        xml += XMLRPCMessage.getParamXML(data[i].val, data[i].type);
+      } else {
+        xml += XMLRPCMessage.getParamXML(data[i], XMLRPCMessage.dataTypeOf(data[i]));
+      }
       xml += '</value>\n';
       xml += '</member>\n';
     }
@@ -377,22 +388,5 @@
     return n;
   };
 
-  /**
-  * handles binary to ascii
-  * @method btoa
-  * @memberof XMLRPCMessage
-  * @param {string} data
-  * @since 0.1.0
-  */
-  XMLRPCMessage.btoa = function (data) {
-    if (!data) {
-      return false;
-    }
-    var ba = new Btoa();
-    return ba.handle(data);
-  };
-
   return XMLRPCMessage;
 }));
-
-//# sourceMappingURL=xmlrpc-message-umd.js.map
