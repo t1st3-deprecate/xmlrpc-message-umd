@@ -37,26 +37,19 @@
     ".travis.yml",
     "src",
     "test",
-    "gh-pages",
-    "docs",
+    "coverage",
     "gulpfile.js",
     "README.md"
   ],
-  "dependencies": {
-    "btoa-umd": "^0.7.8"
-  },
+  "dependencies": {},
   "devDependencies": {
-    "requirejs": "^2.1.22",
-    "jquery": "^2.1.4",
-    "mocha": "^2.3.4",
-    "chai": "^3.4.2",
-    "chai-jquery": "^2.0.1",
-    "lodash": "^3.10.1"
+    "requirejs": "~2.1.22",
+    "jquery": "~2.1.4",
+    "mocha": "~2.3.4",
+    "chai": "~3.4.2",
+    "chai-jquery": "~2.0.1"
   },
   "overrides": {
-    "btoa-umd": {
-      "main": "dist/btoa-umd.min.js"
-    },
     "requirejs": {
       "main": "require.js"
     },
@@ -65,9 +58,6 @@
         "dist/jquery.min.js",
         "dist/jquery.min.map"
       ]
-    },
-    "lodash": {
-      "main": "lodash.min.js"
     },
     "mocha": {
       "main": [
