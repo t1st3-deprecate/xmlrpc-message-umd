@@ -19,7 +19,6 @@ gulpfile.js
 .jscs.json
 .jshintrc
 
-docs
-gh-pages
+coverage
 src
 test
