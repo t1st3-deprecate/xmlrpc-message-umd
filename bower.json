@@ -1,7 +1,7 @@
 {
   "name": "xmlrpc-message-umd",
   "version": "0.8.6",
-  "homepage": "http://www.tiste.org/xmlrpc-message-umd",
+  "homepage": "https://github.com/T1st3/xmlrpc-message-umd",
   "description": "A XMLRPC message builder written with UMD definition",
   "keywords": [
     "xmlrpc",
