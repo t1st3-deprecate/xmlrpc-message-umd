@@ -24,21 +24,13 @@
         mocha: 'app/lib/mocha/mocha',
         chai: 'app/lib/chai/chai',
         chaijquery: 'app/lib/chai-jquery/chai-jquery',
-        lodash: 'app/lib/lodash/dist/lodash.min',
-        btoa: 'app/lib/btoa-umd/dist/btoa-umd.min',
         xmlrpcmessage: 'app/lib/xmlrpc-message-umd/dist/xmlrpc-message-umd'
       },
       shim: {
         jquery: {
           exports: '$'
         },
-        lodash: {
-          exports: '_'
-        },
         chaijquery: ['jquery', 'chai'],
-        btoa: {
-          exports: 'Btoa'
-        },
         xmlrpcmessage: {
           deps: ['btoa'],
           exports: 'XMLRPCMessage'
@@ -760,11 +752,6 @@
         str += '</methodCall>';
 
         msg.xml().should.equal(str);
-        if (browser === true) {
-          /* last test callback */
-          /* global window */
-          console.log(window.__coverage__);
-        }
         done();
       });
     });
