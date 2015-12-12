@@ -30,19 +30,17 @@
   // Test for AMD modules
   if (typeof define === 'function' && define.amd) {
     // AMD
-    define([
-      'btoa'
-    ], factory);
+    define([], factory);
   // Test for Node.js
   } else if (typeof exports === 'object') {
     // Node
-    module.exports = factory(require('btoa-umd'));
+    module.exports = factory();
   // Browser globals
   } else {
     // Browser globals
-    root.XMLRPCMessage = factory(root.Btoa);
+    root.XMLRPCMessage = factory();
   }
-}(this, function (Btoa) {
+}(this, function () {
   /**
   * An XMLRPC message builder, AMD style
   * @module XMLRPCMessage
@@ -164,17 +162,13 @@
         break;
       case 'object':
         con = o.constructor;
-        if (con === Btoa) {
-          type = 'base64';
+        if (con === Date) {
+        type = 'date';
         } else {
-          if (con === Date) {
-          type = 'date';
+          if (con === Array) {
+            type = 'array';
           } else {
-            if (con === Array) {
-              type = 'array';
-            } else {
-              type = 'struct';
-            }
+            type = 'struct';
           }
         }
         break;
@@ -246,7 +240,7 @@
       return '';
     }
     var xml = '<base64>';
-    xml += data.a;
+    xml += data;
     xml += '</base64>';
     return xml;
   };
@@ -267,7 +261,11 @@
     i = 0;
     for (i = 0; i < data.length; i++) {
       xml += '<value>';
-      xml += XMLRPCMessage.getParamXML(data[i], XMLRPCMessage.dataTypeOf(data[i]));
+      if (typeof data[i] === 'object' && data[i].type && data[i].val) {
+        xml += XMLRPCMessage.getParamXML(data[i].val, data[i].type);
+      } else {
+        xml += XMLRPCMessage.getParamXML(data[i], XMLRPCMessage.dataTypeOf(data[i]));
+      }
       xml += '</value>\n';
     }
     xml += '</data></array>\n';
@@ -291,8 +289,12 @@
     for (i in data) {
       xml += '<member>\n';
       xml += '<name>' + i + '</name>\n';
-      xml += '<value>' ;
-      xml += XMLRPCMessage.getParamXML(data[i], XMLRPCMessage.dataTypeOf(data[i]));
+      xml += '<value>';
+      if (typeof data[i] === 'object' && data[i].type && data[i].val) {
+        xml += XMLRPCMessage.getParamXML(data[i].val, data[i].type);
+      } else {
+        xml += XMLRPCMessage.getParamXML(data[i], XMLRPCMessage.dataTypeOf(data[i]));
+      }
       xml += '</value>\n';
       xml += '</member>\n';
     }
@@ -384,21 +386,6 @@
       n = '0' + n;
     }
     return n;
-  };
-
-  /**
-  * handles binary to ascii
-  * @method btoa
-  * @memberof XMLRPCMessage
-  * @param {string} data
-  * @since 0.1.0
-  */
-  XMLRPCMessage.btoa = function (data) {
-    if (!data) {
-      return false;
-    }
-    var ba = new Btoa();
-    return ba.handle(data);
   };
 
   return XMLRPCMessage;

@@ -20,10 +20,12 @@
     require.config({
       baseUrl: '',
       paths: {
+        /* dependencies */
         jquery: 'app/lib/jquery/dist/jquery.min',
         mocha: 'app/lib/mocha/mocha',
         chai: 'app/lib/chai/chai',
         chaijquery: 'app/lib/chai-jquery/chai-jquery',
+        /* this project */
         xmlrpcmessage: 'app/lib/xmlrpc-message-umd/dist/xmlrpc-message-umd'
       },
       shim: {
@@ -32,7 +34,6 @@
         },
         chaijquery: ['jquery', 'chai'],
         xmlrpcmessage: {
-          deps: ['btoa'],
           exports: 'XMLRPCMessage'
         }
       },
@@ -192,15 +193,6 @@
         done();
       });
     });
-    describe('Correct param btoa("Hello world") for data', function () {
-      it('Should return SGVsbG8gd29ybGQ=', function (done) {
-        var bin = XMLRPCMessage.btoa('Hello world'),
-        msg = new XMLRPCMessage();
-        msg.addParameter(bin);
-        msg.params[0].data.a.should.equal('SGVsbG8gd29ybGQ=');
-        done();
-      });
-    });
   });
 
   describe('tests against xml', function () {
@@ -218,7 +210,6 @@
     describe('Correct params', function () {
       it('should return the correct XML', function (done) {
         var a = ['chicken', 'duck', 'goose'],
-        bin = XMLRPCMessage.btoa('Hello world'),
         obj = {},
         msg = null,
         str = '';
@@ -230,7 +221,6 @@
         msg.addParameter('mississippi');
         msg.addParameter(7);
         msg.addParameter(false);
-        msg.addParameter(bin);
         msg.addParameter(a);
         msg.addParameter(obj);
 
@@ -246,9 +236,6 @@
         str += '</param>\n';
         str += '<param>\n';
         str += '<value><boolean>0</boolean></value>\n';
-        str += '</param>\n';
-        str += '<param>\n';
-        str += '<value><base64>SGVsbG8gd29ybGQ=</base64></value>\n';
         str += '</param>\n';
         str += '<param>\n';
         str += '<value><array><data>\n';
@@ -346,13 +333,6 @@
         var y2k = new Date(2000, 1, 1, 0, 0, 0, 0),
         type = XMLRPCMessage.dataTypeOf(y2k);
         type.should.equal('date');
-        done();
-      });
-    });
-    describe('Correct param base64 for o', function () {
-      it('Should return "base64"', function (done) {
-        var type = XMLRPCMessage.dataTypeOf(XMLRPCMessage.btoa('iiiiiiii'));
-        type.should.equal('base64');
         done();
       });
     });
@@ -670,28 +650,10 @@
     });
   });
 
-  describe('tests against btoa', function () {
-    describe('No param for data', function () {
-      it('Should return false', function (done) {
-        var data = XMLRPCMessage.btoa();
-        data.should.equal(false);
-        done();
-      });
-    });
-    describe('Correct param "Hello world" for data', function () {
-      it('Should return "SGVsbG8gd29ybGQ="', function (done) {
-        var data = XMLRPCMessage.btoa('Hello world');
-        'SGVsbG8gd29ybGQ='.should.equal(data.a);
-        done();
-      });
-    });
-  });
-
   describe('Functional tests', function () {
     describe('Test XMLRPC', function () {
       it('should return the correct XML', function (done) {
         var a = ['chicken', 'duck', 'goose'],
-        bin = XMLRPCMessage.btoa('Hello world'),
         obj = {},
         msg = null,
         str = '';
@@ -703,7 +665,6 @@
         msg.addParameter('mississippi');
         msg.addParameter(7);
         msg.addParameter(false);
-        msg.addParameter(bin);
         msg.addParameter(a);
         msg.addParameter(obj);
 
@@ -719,9 +680,6 @@
         str += '</param>\n';
         str += '<param>\n';
         str += '<value><boolean>0</boolean></value>\n';
-        str += '</param>\n';
-        str += '<param>\n';
-        str += '<value><base64>SGVsbG8gd29ybGQ=</base64></value>\n';
         str += '</param>\n';
         str += '<param>\n';
         str += '<value><array><data>\n';
