@@ -7,6 +7,7 @@ xmlrpc-message-umd
 [![Build Status](https://img.shields.io/travis/T1st3/xmlrpc-message-umd.svg)](https://travis-ci.org/T1st3/xmlrpc-message-umd)
 [![Coverage Status](https://img.shields.io/coveralls/T1st3/xmlrpc-message-umd.svg)](https://coveralls.io/r/T1st3/xmlrpc-message-umd)
 [![Code Climate](https://img.shields.io/codeclimate/github/T1st3/xmlrpc-message-umd.svg)](https://codeclimate.com/github/T1st3/xmlrpc-message-umd)
+[![Percentage of issues still open](http://isitmaintained.com/badge/open/t1st3/xmlrpc-message-umd.svg)](http://isitmaintained.com/project/t1st3/xmlrpc-message-umd "Percentage of issues still open")
 
 
 
