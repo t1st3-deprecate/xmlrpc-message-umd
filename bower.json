@@ -16,7 +16,7 @@
   "main": [
     "./dist/xmlrpc-message-umd.js",
     "./dist/xmlrpc-message-umd.min.js",
-    "./dist/xmlrpc-message-umd.js.map"
+    "./dist/xmlrpc-message-umd.min.js.map"
   ],
   "ignore": [
     ".directory",
