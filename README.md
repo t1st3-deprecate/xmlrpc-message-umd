@@ -69,23 +69,25 @@ Usage
 
 To create an XML-RPC message, just add parameters to a new instance of the lib, like the following:
 
+```js
 
-    var a = ["chicken","duck","goose"];
-    var obj = new Object();
-    obj.x = 20;
-    obj.y = "cow";
-    obj.z = 3.14;
-    var date = new Date();
-    var msg = new XMLRPCMessage();
-    msg.setMethod("system.myMethod");
-    msg.addParameter("mississippi");
-    msg.addParameter(7);
-    msg.addParameter(false);
-    msg.addParameter(a);
-    msg.addParameter(obj);
-    msg.addParameter(date);
-    msg.xml();
+var a = ["chicken","duck","goose"];
+var obj = new Object();
+obj.x = 20;
+obj.y = "cow";
+obj.z = 3.14;
+var date = new Date();
+var msg = new XMLRPCMessage();
+msg.setMethod("system.myMethod");
+msg.addParameter("mississippi");
+msg.addParameter(7);
+msg.addParameter(false);
+msg.addParameter(a);
+msg.addParameter(obj);
+msg.addParameter(date);
+msg.xml();
 
+```
 
 `msg.xml()` would then return the complete XML string.
 
