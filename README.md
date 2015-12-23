@@ -90,6 +90,41 @@ To create an XML-RPC message, just add parameters to a new instance of the lib, 
 `msg.xml()` would then return the complete XML string.
 
 
+By default, the type of the parameters is automatically detected. You can prevent this behavior and force the type of a parameter, for example:
+
+```js
+
+var msg = new XMLRPCMessage();
+msg.setMethod("system.myMethod");
+msg.addParameter("qwerty", "base64");
+
+```
+
+As described on [Apache Sofftware Foundation's XMLRPC documentation](https://ws.apache.org/xmlrpc/types.html), the following types are available for XMLRPC:
+
+* `i4` or `int`
+* `boolean`
+* `string`
+* `double`
+* `dateTime.iso8601`
+* `base64`
+* `struct`
+* `array`
+
+
+Finally, you can also force types of elements within a `struct` element or an `array` element:
+
+```js
+
+var obj = new Object();
+obj.x = 20;
+obj.y = {data: "cow", type: "base64"};
+var msg = new XMLRPCMessage();
+msg.setMethod("system.myMethod");
+msg.addParameter(obj);
+
+```
+
 
 
 Build from source
