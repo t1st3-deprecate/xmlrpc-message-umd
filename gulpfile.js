@@ -94,13 +94,13 @@ gulp.task('test-copy', ['test-clean'], function () {
 gulp.task('test-browser-amd', ['test-copy'], function () {
   return gulp
     .src('./test/tests_amd.html')
-    .pipe(mochaPhantomJS({reporter: 'spec'}));
+    .pipe(mochaPhantomJS({reporter: 'spec', phantomjs: {useColors: true}}));
 });
 
 gulp.task('test-browser-global', ['test-browser-amd'], function () {
   return gulp
     .src('./test/tests_amd.html')
-    .pipe(mochaPhantomJS({reporter: 'spec'}));
+    .pipe(mochaPhantomJS({reporter: 'spec', phantomjs: {useColors: true}}));
 });
 
 gulp.task('test-node', ['test-browser-global'], function () {
