@@ -30,7 +30,7 @@
   },
   "dependencies": {},
   "devDependencies": {
-    "browser-sync": "^2.10.1",
+    "browser-sync": "^2.11.0",
     "chai": "^3.4.1",
     "chalk": "^1.1.1",
     "codeclimate-test-reporter": "^0.1.1",
