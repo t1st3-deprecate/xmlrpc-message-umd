@@ -6,7 +6,7 @@ node_js:
 - 4
 - 5
 before_install:
-  - npm install -g gulp
+- npm install -g gulp
 after_success:
 - gulp ci
 addons:
