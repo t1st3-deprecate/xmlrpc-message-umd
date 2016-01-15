@@ -33,7 +33,7 @@
     "browser-sync": "^2.11.0",
     "chai": "^3.4.1",
     "chalk": "^1.1.1",
-    "codeclimate-test-reporter": "^0.1.1",
+    "codeclimate-test-reporter": "^0.2.0",
     "coveralls": "^2.11.6",
     "del": "^2.2.0",
     "gulp": "^3.9.0",
