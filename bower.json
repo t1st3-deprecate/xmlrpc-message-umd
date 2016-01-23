@@ -43,11 +43,11 @@
   ],
   "dependencies": {},
   "devDependencies": {
-    "requirejs": "~2.1.22",
-    "jquery": "~2.1.4",
-    "mocha": "~2.3.4",
     "chai": "~3.4.2",
-    "chai-jquery": "~2.0.1"
+    "chai-jquery": "~2.0.1",
+    "jquery": "~2.2.0",
+    "mocha": "~2.3.4",
+    "requirejs": "~2.1.22"
   },
   "overrides": {
     "requirejs": {
