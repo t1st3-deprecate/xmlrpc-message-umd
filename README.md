@@ -14,10 +14,9 @@ xmlrpc-message-umd
 About
 ---
 
-`xmlrpc-message-umd` is a Javascript XMLRPC message builder. 
+`xmlrpc-message-umd` is an XMLRPC message builder, written in Javascript. 
 
-This module only provides a message builder; it does not make any request by itself.
-Basically, it is just a small set of utils that create a correct "ready-to-be-sent" XMLRPC string.
+This module only provides a string builder; it does not make any HTTP request by itself. Basically, it is just a small set of utils that create a valid "ready-to-be-sent" XMLRPC string, also meaning it works with any HTTP request module.
 
 
 
@@ -42,7 +41,6 @@ To install it from Bower, just run
 
     bower install xmlrpc-message-umd
 
-Note that published versions on both NPM and Bower should stay in sync.
 
 
 
