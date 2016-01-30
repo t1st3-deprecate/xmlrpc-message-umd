@@ -27,7 +27,7 @@
 'use strict';
 
 (function (root, factory) {
-  // Test for AMD modules
+  /* istanbul ignore next */
   if (typeof define === 'function' && define.amd) {
     // AMD
     define([], factory);
