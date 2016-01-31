@@ -1,7 +1,7 @@
 {
   "name": "xmlrpc-message-umd",
   "version": "1.0.0",
-  "homepage": "https://github.com/T1st3/xmlrpc-message-umd",
+  "homepage": "https://github.com/t1st3/xmlrpc-message-umd",
   "description": "A XMLRPC message builder written with UMD definition",
   "keywords": [
     "xmlrpc",
@@ -11,7 +11,7 @@
   ],
   "license": "MIT",
   "authors": [
-    "T1st3 <contact@tiste.org> (http://www.tiste.org/)"
+    "t1st3 <contact@tiste.org> (http://www.tiste.org/)"
   ],
   "main": [
     "./dist/xmlrpc-message-umd.js",

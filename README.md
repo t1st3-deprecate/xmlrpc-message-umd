@@ -3,10 +3,10 @@ xmlrpc-message-umd
 
 
 [![NPM version](https://img.shields.io/npm/v/xmlrpc-message-umd.svg)](https://www.npmjs.com/package/xmlrpc-message-umd)
-[![Dependency Status](https://img.shields.io/david/T1st3/xmlrpc-message-umd.svg)](https://david-dm.org/t1st3/xmlrpc-message-umd)
-[![Build Status](https://img.shields.io/travis/T1st3/xmlrpc-message-umd.svg)](https://travis-ci.org/T1st3/xmlrpc-message-umd)
-[![Coverage Status](https://img.shields.io/coveralls/T1st3/xmlrpc-message-umd.svg)](https://coveralls.io/r/T1st3/xmlrpc-message-umd)
-[![Code Climate](https://img.shields.io/codeclimate/github/T1st3/xmlrpc-message-umd.svg)](https://codeclimate.com/github/T1st3/xmlrpc-message-umd)
+[![Dependency Status](https://img.shields.io/david/t1st3/xmlrpc-message-umd.svg)](https://david-dm.org/t1st3/xmlrpc-message-umd)
+[![Build Status](https://img.shields.io/travis/t1st3/xmlrpc-message-umd.svg)](https://travis-ci.org/t1st3/xmlrpc-message-umd)
+[![Coverage Status](https://img.shields.io/coveralls/t1st3/xmlrpc-message-umd.svg)](https://coveralls.io/r/t1st3/xmlrpc-message-umd)
+[![Code Climate](https://img.shields.io/codeclimate/github/t1st3/xmlrpc-message-umd.svg)](https://codeclimate.com/github/t1st3/xmlrpc-message-umd)
 [![Percentage of issues still open](http://isitmaintained.com/badge/open/t1st3/xmlrpc-message-umd.svg)](http://isitmaintained.com/project/t1st3/xmlrpc-message-umd "Percentage of issues still open")
 
 
@@ -52,9 +52,9 @@ You also can download the whole project (and build it from its source; see below
 
 Either use `git clone` command to get it:
 
-    git clone https://github.com/T1st3/xmlrpc-message-umd.git
+    git clone https://github.com/t1st3/xmlrpc-message-umd.git
 
-Or download the latest version of [the whole project](https://github.com/T1st3/xmlrpc-message-umd/archive/master.zip).
+Or download the latest version of [the whole project](https://github.com/t1st3/xmlrpc-message-umd/archive/master.zip).
 
 Then, get the dependencies of the project from both Bower and NPM:
 
@@ -185,11 +185,11 @@ License
 ---
 
 
-This piece of code is triple-licensed: [MIT / BSD / GPL licenses](https://github.com/T1st3/xmlrpc-message-umd/blob/master/LICENSE.md)
+This piece of code is triple-licensed: [MIT / BSD / GPL licenses](https://github.com/t1st3/xmlrpc-message-umd/blob/master/LICENSE.md)
 
 
 
 Initial author
 ---
 
-[T1st3](https://github.com/T1st3/) 
+[t1st3](https://github.com/t1st3/) 

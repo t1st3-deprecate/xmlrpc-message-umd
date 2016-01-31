@@ -1,7 +1,7 @@
 {
   "name": "xmlrpc-message-umd",
   "version": "1.0.0",
-  "homepage": "https://github.com/T1st3/xmlrpc-message-umd",
+  "homepage": "https://github.com/t1st3/xmlrpc-message-umd",
   "description": "A XMLRPC message builder written with UMD definition",
   "keywords": [
     "xmlrpc",
@@ -16,11 +16,11 @@
   ],
   "repository": {
     "type": "git",
-    "url": "https://github.com/T1st3/xmlrpc-message-umd.git"
+    "url": "https://github.com/t1st3/xmlrpc-message-umd.git"
   },
   "author": "t1st3 <contact@tiste.org> (http://www.tiste.org/)",
   "bugs": {
-    "url": "https://github.com/T1st3/xmlrpc-message-umd/issues"
+    "url": "https://github.com/t1st3/xmlrpc-message-umd/issues"
   },
   "scripts": {
     "test": "gulp test"
