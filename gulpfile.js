@@ -223,15 +223,7 @@ gulp.task('ci', ['coverage'], function (cb) {
   exec(cmd, function (err, stdout, stderr) {
     console.log(stdout);
     console.log(stderr);
-    cmd = './node_modules/codeclimate-test-reporter/bin/codeclimate.js < ';
-    cmd += './coverage/lcov.info';
-    exec(cmd, function (err, stdout, stderr) {
-      console.log(stdout);
-      console.log(stderr);
-      del([
-        './coverage'
-      ], cb);
-    });
+    cb();
   });
 });
 
