@@ -35,7 +35,7 @@
     "chalk": "^1.1.1",
     "coveralls": "^2.11.6",
     "del": "^2.2.0",
-    "gulp": "^3.9.0",
+    "gulp": "^3.9.1",
     "gulp-bower": "^0.0.13",
     "gulp-bump": "^1.0.0",
     "gulp-concat": "^2.6.0",
