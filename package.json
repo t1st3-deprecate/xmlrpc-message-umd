@@ -33,7 +33,7 @@
     "browser-sync": "^2.11.0",
     "chai": "^3.4.1",
     "chalk": "^1.1.1",
-    "coveralls": "^2.11.6",
+    "coveralls": "^2.11.8",
     "del": "^2.2.0",
     "gulp": "^3.9.1",
     "gulp-bower": "^0.0.13",
