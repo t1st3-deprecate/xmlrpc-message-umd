@@ -1,6 +1,6 @@
 {
   "name": "xmlrpc-message-umd",
-  "version": "1.0.0",
+  "version": "1.1.0",
   "homepage": "https://github.com/t1st3/xmlrpc-message-umd",
   "description": "A XMLRPC message builder written with UMD definition",
   "keywords": [
