@@ -37,7 +37,7 @@
     "del": "^2.2.0",
     "gulp": "^3.9.1",
     "gulp-bower": "^0.0.13",
-    "gulp-bump": "^1.0.0",
+    "gulp-bump": "^2.0.0",
     "gulp-concat": "^2.6.0",
     "gulp-istanbul": "^0.10.3",
     "gulp-jscs": "^3.0.2",
