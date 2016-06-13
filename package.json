@@ -39,7 +39,7 @@
     "gulp-bower": "^0.0.13",
     "gulp-bump": "^2.1.0",
     "gulp-concat": "^2.6.0",
-    "gulp-istanbul": "^0.10.3",
+    "gulp-istanbul": "^1.0.0",
     "gulp-jscs": "^3.0.2",
     "gulp-jshint": "^2.0.0",
     "gulp-mocha": "^2.2.0",
