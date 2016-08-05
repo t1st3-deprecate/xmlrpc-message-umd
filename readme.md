@@ -183,7 +183,7 @@ License
 ---
 
 
-This piece of code is triple-licensed: [MIT / BSD / GPL licenses](https://github.com/t1st3/xmlrpc-message-umd/blob/master/LICENSE.md)
+This piece of code is triple-licensed: [MIT / BSD / GPL licenses](https://github.com/t1st3/xmlrpc-message-umd/blob/master/license)
 
 
 
