@@ -1,12 +1,11 @@
 xmlrpc-message-umd
 ==================
 
+**UNMAINTAINED** | This project is not maintained anymore (as of 2016 November 14).
 
 [![NPM version](https://img.shields.io/npm/v/xmlrpc-message-umd.svg)](https://www.npmjs.com/package/xmlrpc-message-umd)
 [![Dependency Status](https://img.shields.io/david/t1st3/xmlrpc-message-umd.svg)](https://david-dm.org/t1st3/xmlrpc-message-umd)
 [![Build Status](https://img.shields.io/travis/t1st3/xmlrpc-message-umd.svg)](https://travis-ci.org/t1st3/xmlrpc-message-umd)
-[![Coverage Status](https://img.shields.io/coveralls/t1st3/xmlrpc-message-umd.svg)](https://coveralls.io/r/t1st3/xmlrpc-message-umd)
-
 
 
 About

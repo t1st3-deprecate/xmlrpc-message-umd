@@ -1,7 +1,7 @@
 {
   "name": "xmlrpc-message-umd",
-  "version": "2.0.0",
-  "description": "A XMLRPC message builder written with UMD definition",
+  "version": "2.0.1",
+  "description": "UNMAINTAINED XMLRPC message builder written with UMD definition",
   "keywords": [
     "xmlrpc",
     "builder",
